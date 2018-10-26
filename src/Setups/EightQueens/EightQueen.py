@@ -7,7 +7,7 @@ def random_initialization(pop_size, chrom_length):
 
 
 # compute fitness of an individual for the 8-queen puzzle
-def fitness_8queen(individual):  # maximization
+def fitness_8queen_old(individual):  # maximization
     M = 28
 
     neg_diag = dict()
@@ -27,7 +27,15 @@ def fitness_8queen(individual):  # maximization
         inc(neg_diag, (i - individual[i]))
         inc(pos_diag, (i + individual[i]))
 
-    return M - clashes(neg_diag) + clashes(pos_diag)
+    return M - (clashes(neg_diag) + clashes(pos_diag))
+
+
+def fitness_8queen(individual):  # maximization
+    m = len(individual)
+    neg_diag = set([i - individual[i] for i in range(m)])
+    pos_diag = set([i + individual[i] for i in range(m)])
+
+    return len(neg_diag) + len(pos_diag)
 
 
 def permutation_cut_and_crossfill(parent1, parent2):
