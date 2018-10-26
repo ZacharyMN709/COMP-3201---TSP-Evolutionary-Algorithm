@@ -1,5 +1,6 @@
 from random import shuffle, random
 
+#import src.Setups.TSP.TSP as TSP
 from src.Setups.EightQueens.EightQueen import random_initialization as initialize
 from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
 from src.Setups.EightQueens.EightQueen import permutation_cut_and_crossfill as recombine
@@ -13,32 +14,36 @@ MUTATIONS = 0
 PARENT_STRINGS = ['MPS', 'Tourney']
 SURVIVOR_STRINGS = ['Mu + Lambda', 'Replace']
 MUTATION_STRINGS = ['Swap']
+FILENUM = 1
 
 
-def main(generation_limit, print_gens=False):
+def main(generation_limit, maximize, print_gens=False):
     genome_length = 8
+    # genome_length = TSP.read_TSP_file(FILENUM)
     population_size = 60
     mating_pool_size = population_size//2 if (population_size//2) % 2 == 0 else (population_size//2)+1  # has to be even
     tournament_size = 3
     mutation_rate = 0.2
     crossover_rate = 0.9
+    op = max if maximize else min
 
     # Initialize Population
     population = initialize(population_size, genome_length)
     fitness = [eval_fitness(i) for i in population]
 
     for generation in range(generation_limit):
+
         # Generation Info
         if print_gens:
             print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                generation+1, max(fitness), sum(fitness)/len(fitness))
+                generation+1, op(fitness), sum(fitness)/len(fitness))
             )
 
         # Parent Selection
         if PARENTS == 0:
             parents_index = ParentSelectionMethods.MPS(fitness, mating_pool_size)
         elif PARENTS == 1:
-            parents_index = ParentSelectionMethods.tournament(fitness, mating_pool_size, tournament_size)
+            parents_index = ParentSelectionMethods.tournament(fitness, mating_pool_size, tournament_size, op)
         else:
             parents_index = population
             print('Parent method not selected. Defaulting to original population.')
@@ -64,16 +69,16 @@ def main(generation_limit, print_gens=False):
 
         # Survivor Selection
         if SURVIVOR == 0:
-            population, fitness = SurvivorSelectionMethods.mu_plus_lambda(population, fitness, offspring, offspring_fitness)
+            population, fitness = SurvivorSelectionMethods.mu_plus_lambda(population, fitness, offspring, offspring_fitness, op)
         elif SURVIVOR == 1:
-            population, fitness = SurvivorSelectionMethods.replacement(population, fitness, offspring, offspring_fitness)
+            population, fitness = SurvivorSelectionMethods.replacement(population, fitness, offspring, offspring_fitness, op)
         else:
             print('Survivor method not selected. Defaulting to original population and fitness.')
 
     # Final Fitness Info
-    max_fit = max(fitness)
-    optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == max_fit]
-    print("Best solution fitness:", max_fit, "Number of optimal solutions: ", len(optimal_solutions), '/', population_size)
+    op_fit = op(fitness)
+    optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
+    print("Best solution fitness:", op_fit, "Number of optimal solutions: ", len(optimal_solutions), '/', population_size)
     print("Best solution indexes:", optimal_solutions)
 
 
@@ -90,5 +95,5 @@ if __name__ == '__main__':
                 print("Parent selection '{}', survivor selection '{}', and '{}' mutator".format(
                     PARENT_STRINGS[x], SURVIVOR_STRINGS[y], MUTATION_STRINGS[z])
                 )
-                main(generation_limit)
+                main(generation_limit, True)
                 print("\n -------- \n")
