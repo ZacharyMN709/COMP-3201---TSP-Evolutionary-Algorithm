@@ -1,12 +1,10 @@
 from random import shuffle, random
 
-from EightQueenSetup import random_initialization as initialize
-from EightQueenSetup import fitness_8queen as eval_fitness
-from EightQueenSetup import permutation_cut_and_crossfill as recombine
-import MutationMethods as mutation
-import ParentSelectionMethods as parentSelection
-import SurvivorSelectionMethods as survivorSelection
-
+from src.Setups.EightQueens.EightQueen import random_initialization as initialize
+from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
+from src.Setups.EightQueens.EightQueen import permutation_cut_and_crossfill as recombine
+from src import ParentSelectionMethods as parentSelection, MutationMethods as mutation, \
+    SurvivorSelectionMethods as survivorSelection
 
 PARENTS = 0
 SURVIVOR = 0
