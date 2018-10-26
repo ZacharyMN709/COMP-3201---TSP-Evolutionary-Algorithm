@@ -1,12 +1,12 @@
 from random import sample
 
 
-# initialize a population of permutation
+# Initialization
 def random_initialization(pop_size, chrom_length):
     return [sample([c for c in range(chrom_length)], chrom_length) for _ in range(pop_size)]
 
 
-# compute fitness of an individual for the 8-queen puzzle
+# Fitness
 def fitness_8queen_old(individual):  # maximization
     M = 28
 
@@ -38,6 +38,7 @@ def fitness_8queen(individual):  # maximization
     return len(neg_diag) + len(pos_diag)
 
 
+# Recombination
 def permutation_cut_and_crossfill(parent1, parent2):
     PIVOT = 3
     offspring1 = parent1[:PIVOT] + [x for x in parent2[PIVOT:] + parent2[:PIVOT] if x not in parent1[:PIVOT]]
