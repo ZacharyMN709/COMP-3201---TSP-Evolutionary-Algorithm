@@ -36,12 +36,3 @@ def fitness_8queen(individual):  # maximization
     pos_diag = set([i + individual[i] for i in range(m)])
 
     return len(neg_diag) + len(pos_diag)
-
-
-# Recombination
-def permutation_cut_and_crossfill(parent1, parent2):
-    PIVOT = 3
-    offspring1 = parent1[:PIVOT] + [x for x in parent2[PIVOT:] + parent2[:PIVOT] if x not in parent1[:PIVOT]]
-    offspring2 = parent2[:PIVOT] + [x for x in parent1[PIVOT:] + parent1[:PIVOT] if x not in parent2[:PIVOT]]
-    return offspring1, offspring2
-

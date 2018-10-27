@@ -2,7 +2,6 @@ import csv
 from random import sample
 
 LOCATIONS = dict()
-PIVOT = 0
 
 
 def euclid_memoize(f):
@@ -18,15 +17,24 @@ def euclid_memoize(f):
     return memoize
 
 
+def brute_force_solver(fnum=None):
+    if fnum: read_TSP_file(fnum)
+
+    # TODO - Implement exhaustive search for TSP
+
+
 # region Initialization
 def read_TSP_file(fnum):
     if fnum == 1:
         fname = "TSP_WesternSahara_29.txt"
     elif fnum == 2:
+        print('Warning! Takes approximately 1.5 seconds per decade')
         fname = "TSP_Uruguay_734.txt"
     elif fnum == 3:
+        print('Warning! Takes approximately 45 seconds per decade')
         fname = "TSP_Canada_4663.txt"
     else:
+        print('Warning! Invalid seletion. Defaulting to 1')
         fname = "TSP_WesternSahara_29.txt"
 
     fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
@@ -45,14 +53,16 @@ def read_TSP_file(fnum):
         for i in range(len(locations)):
             LOCATIONS[i] = locations[i]
 
-    global PIVOT
-    PIVOT = len(LOCATIONS) // 3
-
     return len(LOCATIONS)
 
 
 def random_initialization(pop_size, genome_length):
     return [sample([c for c in range(genome_length)], genome_length) for _ in range(pop_size)]
+
+
+def heurisitic_initialization(pop_size, genome_length):
+    print('TSP.heurisitic_initialization() is a stub Method! Returning random_initialization()')
+    return random_initialization(pop_size, genome_length)
 # endregion
 
 
@@ -66,14 +76,6 @@ def calc_distance(loc1, loc2):
     x1, y1 = LOCATIONS[loc1]
     x2, y2 = LOCATIONS[loc2]
     return ((x1-x2)**2 + (y1 - y2)**2)**0.5
-# endregion
-
-
-# region Recombination
-def permutation_cut_and_crossfill(parent1, parent2):
-    offspring1 = parent1[:PIVOT] + [x for x in parent2[PIVOT:] + parent2[:PIVOT] if x not in parent1[:PIVOT]]
-    offspring2 = parent2[:PIVOT] + [x for x in parent1[PIVOT:] + parent1[:PIVOT] if x not in parent2[:PIVOT]]
-    return offspring1, offspring2
 # endregion
 
 

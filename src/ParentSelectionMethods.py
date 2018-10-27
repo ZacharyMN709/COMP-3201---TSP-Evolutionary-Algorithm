@@ -1,13 +1,12 @@
 from random import shuffle, sample, random
 
-#multi-pointer selection (MPS)
-def MPS(fitness, mating_pool_size):
 
-    selected_to_mate = []  # a list of indices of picked parents in population
+def mps(fitness, mating_pool_size):
+    selected_to_mate = []           # a list of indices of picked parents in population
     total_fitness = sum(fitness)
     increment = 1/mating_pool_size  # The pointer 'angle'
-    seed = random()/len(fitness)  # The pointer start position
-    a = 0  # The rolling probability sum
+    seed = random()/len(fitness)    # The pointer start position
+    a = 0                           # The rolling probability sum
 
     # makes a list with normalized cumulatively summed fitnesses, and indexes
     fit_indexes = [[x, fitness[x]/total_fitness] for x in range(len(fitness))]
