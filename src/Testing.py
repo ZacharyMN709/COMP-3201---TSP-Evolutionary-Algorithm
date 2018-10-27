@@ -1,4 +1,4 @@
-from random import shuffle, random
+from random import shuffle
 import time
 
 from src.EA_Methods import ParentSelectionMethods as PSM
@@ -34,6 +34,7 @@ def queens():
 
 
 def tsp():
+    # TODO - Find the solutions for each problem and use to grade
     if FILENUM == 1:
         opt = None
     elif FILENUM == 2:

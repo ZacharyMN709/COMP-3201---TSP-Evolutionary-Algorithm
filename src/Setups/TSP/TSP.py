@@ -68,7 +68,10 @@ def read_tsp_file(fnum):
         max_x, max_y = max(locations, key=lambda i: i[0])[0], max(locations, key=lambda i: i[1])[1]
         min_x, min_y = min(locations, key=lambda i: i[0])[0], min(locations, key=lambda i: i[1])[1]
         shift_x, shift_y = min_x + ((max_x - min_x)/2), min_y + ((max_y - min_y)/2)
-        locations = [(i[0] - shift_x, i[1] - shift_y) for i in locations]
+
+        # NOTE: Locations are slightly odd. Original (x, y) mapped to normalized (-y, x) to produce
+        # identifiable population map of Canada.
+        locations = [(shift_y - i[1], i[0] - shift_x) for i in locations]
 
         # Save each location relative to an index for future use.
         for i in range(len(locations)):
