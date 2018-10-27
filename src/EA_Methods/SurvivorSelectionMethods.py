@@ -1,6 +1,14 @@
 import random
 
-op = None               # Set to max() or min() from the outside
+
+# region Globals and Setters
+op = None
+
+
+def set_op(i):
+    global op
+    op = i
+# endregion
 
 
 def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness):

@@ -53,15 +53,19 @@ def main(maximize, known_optimum=None, print_gens=False):
     mutation_rate = 0.2
     crossover_rate = 0.9
     crossover_point = genome_length//3
-    PSM.tournament_size = tournament_size
+
+    PSM.set_tournament_size(tournament_size)
+    RM.set_crossover_point(crossover_point)
+    RM.set_crossover_rate(crossover_rate)
+    MM.set_mutation_rate(mutation_rate)
 
     # Modular function declarations
     def gte(x, y): return x >= y
     def lte(x, y): return x <= y
     op = max if maximize else min
     cmp = gte if maximize else lte
-    PSM.op = op
-    SSM.op = op
+    PSM.set_op(op)
+    SSM.set_op(op)
 
     # Initialize Population
     population = initialize(population_size, genome_length)
@@ -88,31 +92,26 @@ def main(maximize, known_optimum=None, print_gens=False):
         # Recombination
         offspring = []
         for i in range(0, mating_pool_size, 2):
-            if random() < crossover_rate:
-                if RECOMBINATIONS == 0:
-                    off1, off2 = RM.recombination_cut_crossover(
-                        population[parents_index[i]], population[parents_index[i+1]], crossover_point
-                    )
-                else:
-                    print('Recombination method not selected. Defaulting to original offspring.')
-                    off1, off2 = population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
+            if RECOMBINATIONS == 0:
+                off1, off2 = RM.recombination_cut_crossover(population[parents_index[i]], population[parents_index[i+1]])
             else:
-                off1, off2 = population[parents_index[i]].copy(), population[parents_index[i+1]].copy()
+                print('Recombination method not selected. Defaulting to original offspring.')
+                off1, off2 = population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
             offspring.append(off1)
             offspring.append(off2)
 
         # Mutations Selection
         if MUTATIONS == 0:
-            offspring = [MM.permutation_swap(i) if random() < mutation_rate else i for i in offspring]
+            offspring = [MM.permutation_swap(i) for i in offspring]
         else:
             print('Offspring method not selected. Defaulting to original offspring.')
         offspring_fitness = [eval_fitness(i) for i in offspring]
 
         # Survivor Selection
         if SURVIVORS == 0:
-            population, fitness = SSM.mu_plus_lambda(population, fitness, offspring, offspring_fitness, op)
+            population, fitness = SSM.mu_plus_lambda(population, fitness, offspring, offspring_fitness)
         elif SURVIVORS == 1:
-            population, fitness = SSM.replacement(population, fitness, offspring, offspring_fitness, op)
+            population, fitness = SSM.replacement(population, fitness, offspring, offspring_fitness)
         else:
             print('Survivor method not selected. Defaulting to original population and fitness.')
 

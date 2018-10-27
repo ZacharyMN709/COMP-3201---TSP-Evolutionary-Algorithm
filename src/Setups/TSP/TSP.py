@@ -2,6 +2,12 @@ import csv
 from random import sample
 import pandas as pd
 
+# Graphing helpers
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure as Figure
+import seaborn as sns
+
 LOCATIONS = dict()
 
 
@@ -19,9 +25,18 @@ def euclid_memoize(f):
 
 
 def point_display():
+    # TODO - Improve Graphs
     df = pd.DataFrame.from_dict(LOCATIONS, orient='index')
     df.columns = ['x', 'y']
     df.plot.scatter(x='x', y='y')
+
+
+def path_display(path):
+    # TODO - Improve Graphs
+    df = pd.DataFrame.from_dict(LOCATIONS, orient='index')
+    df.columns = ['x', 'y']
+    df.plot.scatter(x='x', y='y')
+    plt.title('City Locations (Normalized to origin of 0)')
 
 
 def brute_force_solver(fnum=None):
@@ -60,7 +75,6 @@ def read_tsp_file(fnum):
         for i in range(len(locations)):
             LOCATIONS[i] = locations[i]
 
-    point_display()
     return len(LOCATIONS)
 
 

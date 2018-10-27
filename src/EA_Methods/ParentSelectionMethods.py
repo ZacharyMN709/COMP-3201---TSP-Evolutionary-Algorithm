@@ -1,7 +1,20 @@
 from random import sample, random
 
-tournament_size = None  # Set to an integer value from the outside
-op = None               # Set to max() or min() from the outside
+
+# region Globals and Setters
+tournament_size = None
+op = None
+
+
+def set_tournament_size(i):
+    global tournament_size
+    tournament_size = i
+
+
+def set_op(i):
+    global op
+    op = i
+# endregion
 
 
 def mps(fitness, mating_pool_size):
