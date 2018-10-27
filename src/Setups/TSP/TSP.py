@@ -9,6 +9,8 @@ from matplotlib.figure import Figure as Figure
 import seaborn as sns
 
 LOCATIONS = dict()
+DATAFRAME = None
+DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 
 
 def euclid_memoize(f):
@@ -26,16 +28,13 @@ def euclid_memoize(f):
 
 def point_display():
     # TODO - Improve Graphs
-    df = pd.DataFrame.from_dict(LOCATIONS, orient='index')
-    df.columns = ['x', 'y']
-    df.plot.scatter(x='x', y='y')
+    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1])
+    plt.title('City Locations (Normalized to origin of 0)')
 
 
 def path_display(path):
     # TODO - Improve Graphs
-    df = pd.DataFrame.from_dict(LOCATIONS, orient='index')
-    df.columns = ['x', 'y']
-    df.plot.scatter(x='x', y='y')
+    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1])
     plt.title('City Locations (Normalized to origin of 0)')
 
 
@@ -74,6 +73,10 @@ def read_tsp_file(fnum):
         # Save each location relative to an index for future use.
         for i in range(len(locations)):
             LOCATIONS[i] = locations[i]
+
+    global DATAFRAME
+    DATAFRAME = pd.DataFrame.from_dict(LOCATIONS, orient='index')
+    DATAFRAME.columns = DATAFRAME_COLUMNS
 
     return len(LOCATIONS)
 

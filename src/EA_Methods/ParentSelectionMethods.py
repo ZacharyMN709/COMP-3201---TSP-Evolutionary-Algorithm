@@ -1,4 +1,4 @@
-from random import sample, random
+from random import sample, random, shuffle
 
 
 # region Globals and Setters
@@ -17,6 +17,15 @@ def set_op(i):
 # endregion
 
 
+def randomize_output(func):
+    def generate_output(fitness, mating_pool_size):
+        selected_to_mate = func(fitness, mating_pool_size)
+        shuffle(selected_to_mate)
+        return selected_to_mate
+    return generate_output
+
+
+@randomize_output
 def mps(fitness, mating_pool_size):
     selected_to_mate = []           # a list of indices of picked parents in population
     total_fitness = sum(fitness)
@@ -38,12 +47,13 @@ def mps(fitness, mating_pool_size):
     return selected_to_mate
 
 
-# TODO - Make tournament_size and op global, and declare from outside.
+@randomize_output
 def tournament(fitness, mating_pool_size):
     fit_indexes = [(x, fitness[x]) for x in range(len(fitness))]
     return [op(sample(fit_indexes, tournament_size), key=lambda x: x[1])[0] for _ in range(mating_pool_size)]
 
 
+@randomize_output
 def random_uniform(fitness, mating_pool_size):
     return sample([x for x in range(len(fitness))], mating_pool_size)
 

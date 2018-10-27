@@ -86,19 +86,19 @@ def main(maximize, known_optimum=None, print_gens=False):
             parents_index = PSM.tournament(fitness, mating_pool_size)
         else:
             parents_index = population
+            shuffle(parents_index)
             print('Parent method not selected. Defaulting to original population.')
-        shuffle(parents_index)
 
         # Recombination
-        offspring = []
-        for i in range(0, mating_pool_size, 2):
-            if RECOMBINATIONS == 0:
-                off1, off2 = RM.recombination_cut_crossover(population[parents_index[i]], population[parents_index[i+1]])
-            else:
-                print('Recombination method not selected. Defaulting to original offspring.')
+        if RECOMBINATIONS == 0:
+            offspring = RM.recombination_cut_crossover(population, parents_index)
+        else:
+            offspring = []
+            print('Recombination method not selected. Defaulting to original offspring.')
+            for i in range(0, mating_pool_size, 2):
                 off1, off2 = population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
-            offspring.append(off1)
-            offspring.append(off2)
+                offspring.append(off1)
+                offspring.append(off2)
 
         # Mutations Selection
         if MUTATIONS == 0:

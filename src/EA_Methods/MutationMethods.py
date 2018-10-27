@@ -11,7 +11,7 @@ def set_mutation_rate(i):
 # endregion
 
 
-def select_randomize(func):
+def method_randomizer(func):
     def select_method(offspring):
         if random() < mutation_rate:
             return func(offspring)
@@ -20,7 +20,7 @@ def select_randomize(func):
     return select_method
 
 
-@select_randomize
+@method_randomizer
 def permutation_swap(individual):
     l = len(individual)
     x = randint(0, l - 1)
@@ -29,19 +29,19 @@ def permutation_swap(individual):
     return individual
 
 
-@select_randomize
+@method_randomizer
 def permutation_insert(individual):
     print('Stub Method!')
     return individual
 
 
-@select_randomize
+@method_randomizer
 def permutation_inversion(individual):
     print('Stub Method!')
     return individual
 
 
-@select_randomize
+@method_randomizer
 def permutation_scramble(individual):
     print('Stub Method!')
     return individual
