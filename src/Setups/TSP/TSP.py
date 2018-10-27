@@ -1,5 +1,6 @@
 import csv
 from random import sample
+import pandas as pd
 
 LOCATIONS = dict()
 
@@ -15,6 +16,12 @@ def euclid_memoize(f):
             distances[key] = f(loc1, loc2)
         return distances[key]
     return memoize
+
+
+def point_display():
+    df = pd.DataFrame.from_dict(LOCATIONS, orient='index')
+    df.columns = ['x', 'y']
+    df.plot.scatter(x='x', y='y')
 
 
 def brute_force_solver(fnum=None):
@@ -53,6 +60,7 @@ def read_tsp_file(fnum):
         for i in range(len(locations)):
             LOCATIONS[i] = locations[i]
 
+    point_display()
     return len(LOCATIONS)
 
 

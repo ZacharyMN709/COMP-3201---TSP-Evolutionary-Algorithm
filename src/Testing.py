@@ -1,11 +1,10 @@
 from random import shuffle, random
 import time
 
-from src import ParentSelectionMethods as PSM
-from src import RecombinationMethods as RM
-from src import MutationMethods as MM
-from src import SurvivorSelectionMethods as SSM
-
+from src.EA_Methods import ParentSelectionMethods as PSM
+from src.EA_Methods import MutationMethods as MM
+from src.EA_Methods import RecombinationMethods as RM
+from src.EA_Methods import SurvivorSelectionMethods as SSM
 
 TEST = True
 PARENTS = 0
@@ -36,14 +35,14 @@ def queens():
 
 def tsp():
     if FILENUM == 1:
-        ko = None
+        opt = None
     elif FILENUM == 2:
-        ko = None
+        opt = None
     elif FILENUM == 3:
-        ko = None
+        opt = None
     else:
-        ko = None
-    main(False, known_optimum=ko)
+        opt = None
+    main(False, known_optimum=opt)
 
 
 def main(maximize, known_optimum=None, print_gens=False):
@@ -54,12 +53,15 @@ def main(maximize, known_optimum=None, print_gens=False):
     mutation_rate = 0.2
     crossover_rate = 0.9
     crossover_point = genome_length//3
+    PSM.tournament_size = tournament_size
 
     # Modular function declarations
     def gte(x, y): return x >= y
     def lte(x, y): return x <= y
     op = max if maximize else min
     cmp = gte if maximize else lte
+    PSM.op = op
+    SSM.op = op
 
     # Initialize Population
     population = initialize(population_size, genome_length)
@@ -77,7 +79,7 @@ def main(maximize, known_optimum=None, print_gens=False):
         if PARENTS == 0:
             parents_index = PSM.mps(fitness, mating_pool_size)
         elif PARENTS == 1:
-            parents_index = PSM.tournament(fitness, mating_pool_size, tournament_size, op)
+            parents_index = PSM.tournament(fitness, mating_pool_size)
         else:
             parents_index = population
             print('Parent method not selected. Defaulting to original population.')

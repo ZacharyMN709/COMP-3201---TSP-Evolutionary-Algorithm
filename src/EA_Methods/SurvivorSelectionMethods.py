@@ -1,8 +1,10 @@
 import random
 
-#mu+lambda selection to pick survivors
-def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness, op):
-    op = min if op == max else max
+op = None               # Set to max() or min() from the outside
+
+
+def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness):
+    loc_op = min if op == max else max
     max_size = len(parents)
 
     population = parents + offspring
@@ -10,21 +12,20 @@ def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness, op):
 
     # remove the weakest until the population is trimmed to size
     while len(population) > max_size:
-        i = fitness.index(op(fitness))
+        i = fitness.index(loc_op(fitness))
         population.pop(i)
         fitness.pop(i)
 
     return population, fitness
 
 
-#use offspring to replace the same number of worst parents
-def replacement(parents, parent_fitness, offspring, offspring_fitness, op):
-    op = min if op == max else max
+def replacement(parents, parent_fitness, offspring, offspring_fitness):
+    loc_op = min if op == max else max
     max_size = len(parents) - len(offspring)
 
     # remove the weakest parents to make room for children
     while len(parents) > max_size:
-        i = parent_fitness.index(op(parent_fitness))
+        i = parent_fitness.index(loc_op(parent_fitness))
         parents.pop(i)
         parent_fitness.pop(i)
 
@@ -35,7 +36,6 @@ def replacement(parents, parent_fitness, offspring, offspring_fitness, op):
     return population, fitness
 
     
-#randomly uniformly pick survivors from parents and offspring
 def random_uniform(parents, parent_fitness, offspring, offspring_fitness):
 
     #student code begin

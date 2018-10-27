@@ -1,5 +1,8 @@
 from random import sample, random
 
+tournament_size = None  # Set to an integer value from the outside
+op = None               # Set to max() or min() from the outside
+
 
 def mps(fitness, mating_pool_size):
     selected_to_mate = []           # a list of indices of picked parents in population
@@ -23,7 +26,7 @@ def mps(fitness, mating_pool_size):
 
 
 # TODO - Make tournament_size and op global, and declare from outside.
-def tournament(fitness, mating_pool_size, tournament_size, op):
+def tournament(fitness, mating_pool_size):
     fit_indexes = [(x, fitness[x]) for x in range(len(fitness))]
     return [op(sample(fit_indexes, tournament_size), key=lambda x: x[1])[0] for _ in range(mating_pool_size)]
 
