@@ -2,8 +2,8 @@ from random import shuffle, random
 import time
 
 from src import ParentSelectionMethods as PSM
-from src import MutationMethods as MM
 from src import RecombinationMethods as RM
+from src import MutationMethods as MM
 from src import SurvivorSelectionMethods as SSM
 
 
@@ -24,10 +24,10 @@ if TEST:
     from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
     genome_length = 8
 else:
-    import src.Setups.TSP.TSP as TSP
+    from src.Setups.TSP.TSP import read_tsp_file as parse_file
     from src.Setups.TSP.TSP import random_initialization as initialize
     from src.Setups.TSP.TSP import euclidean_distance as eval_fitness
-    genome_length = TSP.read_TSP_file(FILENUM)
+    genome_length = parse_file(FILENUM)
 
 
 def queens():
@@ -35,7 +35,15 @@ def queens():
 
 
 def tsp():
-    main(False)
+    if FILENUM == 1:
+        ko = None
+    elif FILENUM == 2:
+        ko = None
+    elif FILENUM == 3:
+        ko = None
+    else:
+        ko = None
+    main(False, known_optimum=ko)
 
 
 def main(maximize, known_optimum=None, print_gens=False):
@@ -46,7 +54,12 @@ def main(maximize, known_optimum=None, print_gens=False):
     mutation_rate = 0.2
     crossover_rate = 0.9
     crossover_point = genome_length//3
+
+    # Modular function declarations
+    def gte(x, y): return x >= y
+    def lte(x, y): return x <= y
     op = max if maximize else min
+    cmp = gte if maximize else lte
 
     # Initialize Population
     population = initialize(population_size, genome_length)
@@ -105,7 +118,7 @@ def main(maximize, known_optimum=None, print_gens=False):
         if known_optimum:
             op_fit = op(fitness)
             optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
-            if (op_fit == known_optimum) and (len(optimal_solutions) == population_size):
+            if cmp(op_fit, known_optimum) and (len(optimal_solutions) == population_size):
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
                 break
 

@@ -18,13 +18,13 @@ def euclid_memoize(f):
 
 
 def brute_force_solver(fnum=None):
-    if fnum: read_TSP_file(fnum)
+    if fnum: read_tsp_file(fnum)
 
     # TODO - Implement exhaustive search for TSP
 
 
 # region Initialization
-def read_TSP_file(fnum):
+def read_tsp_file(fnum):
     if fnum == 1:
         fname = "TSP_WesternSahara_29.txt"
     elif fnum == 2:
@@ -80,4 +80,4 @@ def calc_distance(loc1, loc2):
 
 
 if __name__ == '__main__':
-    read_TSP_file(1)
+    read_tsp_file(1)
