@@ -1,6 +1,7 @@
 import csv
-from random import sample
+from random import sample, shuffle
 import pandas as pd
+import time
 
 # Graphing helpers
 import matplotlib.pyplot as plt
@@ -8,24 +9,14 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure as Figure
 import seaborn as sns
 
+FILENUM = None
 LOCATIONS = dict()
 DATAFRAME = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
+MEMOIZED = dict()
 
 
-def euclid_memoize(f):
-    distances = dict()
-
-    def memoize(loc1, loc2):
-        if loc1 > loc2:
-            loc1, loc2 = loc2, loc1
-        key = "{}.{}".format(loc1, loc2)
-        if key not in distances:
-            distances[key] = f(loc1, loc2)
-        return distances[key]
-    return memoize
-
-
+# region Display Helpers
 def point_display():
     # TODO - Improve Graphs
     DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1])
@@ -36,16 +27,13 @@ def path_display(path):
     # TODO - Improve Graphs
     DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1])
     plt.title('City Locations (Normalized to origin of 0)')
-
-
-def brute_force_solver(fnum=None):
-    if fnum: read_tsp_file(fnum)
-
-    # TODO - Implement exhaustive search for TSP
+# endregion
 
 
 # region Initialization
 def read_tsp_file(fnum):
+    global FILENUM
+    FILENUM = fnum
     if fnum == 1:
         fname = "TSP_WesternSahara_29.txt"
     elif fnum == 2:
@@ -77,9 +65,10 @@ def read_tsp_file(fnum):
         for i in range(len(locations)):
             LOCATIONS[i] = locations[i]
 
-    global DATAFRAME
+    global DATAFRAME, MEMOIZED
     DATAFRAME = pd.DataFrame.from_dict(LOCATIONS, orient='index')
     DATAFRAME.columns = DATAFRAME_COLUMNS
+    MEMOIZED = {key: dict() for key in range(len(LOCATIONS))}
 
     return len(LOCATIONS)
 
@@ -95,6 +84,16 @@ def heurisitic_initialization(pop_size, genome_length):
 
 
 # region Fitness
+def euclid_memoize(f):
+    def memoize(loc1, loc2):
+        if loc1 < loc2:  # Make sure loc1 is the bigger of the two
+            loc1, loc2 = loc2, loc1
+        if loc2 not in MEMOIZED[loc1]:
+            MEMOIZED[loc1][loc2] = f(loc1, loc2)
+        return MEMOIZED[loc1][loc2]
+    return memoize
+
+
 def euclidean_distance(individual):
     return sum([calc_distance(individual[i-1], individual[i]) for i in range(len(individual))])
 
@@ -107,5 +106,85 @@ def calc_distance(loc1, loc2):
 # endregion
 
 
+# region Brute Force Solver
+def generate_hamiltonian_circuits(lst_instance):
+    """
+    A hamiltonian circuit is a loop around a graph. Of note, [1,2,3] would be
+    equivalent to [3,2,1] and [3,1,2] as they travel the same path, simply in
+    a different order - which is irrelevant to the problem.
+    :param lst_instance: Takes a list, which is an instance of the set's hamiltonian circuit.
+    :return: A list of all unique hamiltonian circuits.
+    """
+    def recursive_element_injector(lsts, to_add):
+        if len(to_add) == 0:
+            return lsts
+        else:
+            new_lsts = []
+            ele = to_add.pop(0)
+            for i in lsts:
+                for j in range(len(i), 0, -1):
+                    temp = i.copy()
+                    temp.insert(j, ele)
+                    new_lsts.append(temp)
+            del lsts  # To free memory
+            return recursive_element_injector(new_lsts, to_add)
+
+    def iterative_element_injector(lsts, to_add):
+        while len(to_add) != 0:
+            new_lsts = []
+            ele = to_add.pop(0)
+            for i in lsts:
+                for j in range(len(i), 0, -1):
+                    temp = i.copy()
+                    temp.insert(j, ele)
+                    new_lsts.append(temp)
+            lsts = new_lsts
+
+    if len(lst_instance) <= 3:
+        return lst_instance
+    else:
+        return iterative_element_injector([lst_instance[:3]], lst_instance[3:])
+
+
+def brute_force_solver(fnum=None):
+    if fnum: read_tsp_file(fnum)
+
+    if FILENUM == 1:
+        BEST_SO_FAR = 27748.70957813486
+    elif FILENUM == 2:
+        BEST_SO_FAR = 872396.8786880216
+    elif FILENUM == 3:
+        BEST_SO_FAR = 97488248.77626759
+    else:
+        BEST_SO_FAR = 97488248.77626759
+
+    """
+    start_time = time.time()
+    nodes = [i for i in range(len(LOCATIONS))]
+    circuits = generate_hamiltonian_circuits(nodes)
+    print("Generating hamiltonian circuits took: %s seconds" % (time.time() - start_time))
+
+    optimum = min([euclidean_distance(i) for i in circuits])
+    print("Brute force search took a total of: %s seconds" % (time.time() - start_time))
+    print('Optimal fitness: ', optimum)
+    """
+
+    print('Starting best:', BEST_SO_FAR)
+    nodes = [i for i in range(len(LOCATIONS))]
+    counter = 0
+    print_break = 250
+    while True:
+        counter += 1
+        if counter % print_break == 0: print('.', end='')
+        if counter % (print_break * 100) == 0: print()
+        shuffle(nodes)
+        fit = euclidean_distance(nodes)
+        if fit < BEST_SO_FAR:
+            BEST_SO_FAR = fit
+            print('\nNew best:', fit)
+# endregion
+
+
 if __name__ == '__main__':
-    read_tsp_file(1)
+    # read_tsp_file(1)
+    brute_force_solver(2)

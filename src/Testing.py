@@ -6,7 +6,6 @@ from src.EA_Methods import MutationMethods as MM
 from src.EA_Methods import RecombinationMethods as RM
 from src.EA_Methods import SurvivorSelectionMethods as SSM
 
-TEST = True
 PARENTS = 0
 SURVIVORS = 0
 MUTATIONS = 0
@@ -15,7 +14,10 @@ PARENT_STRINGS = ['MPS', 'Tourney']
 SURVIVOR_STRINGS = ['Mu + Lambda', 'Replace']
 MUTATION_STRINGS = ['Swap']
 RECOMBINATION_STRINGS = ['Cut & Cross']
+
+TEST = False
 FILENUM = 1
+BEST_SO_FAR = None
 
 
 if TEST:
@@ -34,20 +36,26 @@ def queens():
 
 
 def tsp():
+    global TEST, FILENUM, BEST_SO_FAR
     # TODO - Find the solutions for each problem and use to grade
     if FILENUM == 1:
-        opt = None
+        BEST_SO_FAR = 27748.70957813486
+        opt = BEST_SO_FAR
     elif FILENUM == 2:
-        opt = None
+        BEST_SO_FAR = 872396.8786880216
+        opt = BEST_SO_FAR - (BEST_SO_FAR/10)
     elif FILENUM == 3:
-        opt = None
+        BEST_SO_FAR = 97488248.77626759
+        opt = BEST_SO_FAR - (BEST_SO_FAR/10)
     else:
         opt = None
     main(False, known_optimum=opt)
 
 
 def main(maximize, known_optimum=None, print_gens=False):
-    generation_limit = 100
+    global TEST, FILENUM, BEST_SO_FAR
+
+    generation_limit = 10000
     population_size = 60
     mating_pool_size = population_size//2 if (population_size//2) % 2 == 0 else (population_size//2)+1  # has to be even
     tournament_size = population_size//10
@@ -124,28 +132,39 @@ def main(maximize, known_optimum=None, print_gens=False):
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
                 break
 
+        # For finding the optimum
+        op_fit = op(fitness)
+        if BEST_SO_FAR and cmp(op_fit, BEST_SO_FAR):
+            BEST_SO_FAR = op_fit
+
     # Final Fitness Info
     op_fit = op(fitness)
-    optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
-    print("Best solution fitness:", op_fit, "\nNumber of optimal solutions: ", len(optimal_solutions), '/', population_size)
-    print("Best solution indexes:", optimal_solutions)
+    # optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
+    # print("Best solution fitness:", op_fit, "\nNumber of optimal solutions: ", len(optimal_solutions), '/', population_size)
+    # print("Best solution indexes:", optimal_solutions)
+    if BEST_SO_FAR and cmp(op_fit, BEST_SO_FAR):
+        BEST_SO_FAR = op_fit
+        print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
 
 
 if __name__ == '__main__':
-    for x in range(len(PARENT_STRINGS)):
-        for y in range(len(SURVIVOR_STRINGS)):
-            for z in range(len(MUTATION_STRINGS)):
-                for w in range(len(RECOMBINATION_STRINGS)):
-                    PARENTS = x
-                    SURVIVORS = y
-                    MUTATIONS = z
-                    RECOMBINATIONS = w
+    for _ in range(100):
+        for x in range(len(PARENT_STRINGS)):
+            for y in range(len(SURVIVOR_STRINGS)):
+                for z in range(len(MUTATION_STRINGS)):
+                    for w in range(len(RECOMBINATION_STRINGS)):
+                        PARENTS = x
+                        SURVIVORS = y
+                        MUTATIONS = z
+                        RECOMBINATIONS = w
 
-                    start_time = time.time()
+                        start_time = time.time()
 
-                    print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
-                    print("Mutation Method: '{}', Recombination Method: {}".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
-                    if TEST: queens()
-                    else: tsp()
-                    print("--- %s seconds ---" % (time.time() - start_time))
-                    print("\n -------- \n")
+                        #print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
+                        #print("Mutation Method: '{}', Recombination Method: {}".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
+                        if TEST: queens()
+                        else: tsp()
+                        print("--- %s seconds ---" % (time.time() - start_time) + "'{} {}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
+                        #print("\n -------- \n")
+
+    print("\n\nFinished!\nBest distance:".format(BEST_SO_FAR))
