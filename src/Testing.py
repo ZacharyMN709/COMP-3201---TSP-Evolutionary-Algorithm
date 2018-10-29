@@ -32,7 +32,7 @@ else:
 
 
 def queens():
-    main(True, known_optimum=16)
+    return main(True, known_optimum=16)
 
 
 def tsp():
@@ -49,7 +49,7 @@ def tsp():
         opt = BEST_SO_FAR - (BEST_SO_FAR/10)
     else:
         opt = None
-    main(False, known_optimum=opt)
+    return main(False, known_optimum=opt)
 
 
 def main(maximize, known_optimum=None, print_gens=False):
@@ -145,9 +145,23 @@ def main(maximize, known_optimum=None, print_gens=False):
     if BEST_SO_FAR and cmp(op_fit, BEST_SO_FAR):
         BEST_SO_FAR = op_fit
         print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
+    return op_fit, len(optimal_solutions), generation
 
 
 if __name__ == '__main__':
+    matrix = [[[[[]  # Make a matrix of empty lists.
+                 # matrix[x][y][z][w] returns a list corresponding to the functions used
+              for w in range(len(RECOMBINATION_STRINGS))]
+              for z in range(len(MUTATION_STRINGS))]
+              for y in range(len(SURVIVOR_STRINGS))]
+              for x in range(len(PARENT_STRINGS))]
+
+    best_fitnesses = matrix.copy()
+    solutions_found = matrix.copy()
+    final_generations = matrix.copy()
+    times_elapsed = matrix.copy()
+    op = None
+
     for _ in range(1):
         for x in range(len(PARENT_STRINGS)):
             for y in range(len(SURVIVOR_STRINGS)):
@@ -162,7 +176,34 @@ if __name__ == '__main__':
 
                         print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
                         print("Mutation Method: '{}', Recombination Method: '{}'".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
-                        if TEST: queens()
-                        else: tsp()
-                        print("--- %s seconds ---" % (time.time() - start_time))
+                        if TEST:
+                            op = max
+                            op_fit, num_sols, generation = queens()
+                        else:
+                            op = min
+                            op_fit, num_sols, generation = tsp()
+                        runtime = time.time() - start_time
+                        print("--- %s seconds ---" % runtime)
+                        best_fitnesses[x][y][z][w].append(op_fit)
+                        solutions_found[x][y][z][w].append(num_sols)
+                        final_generations[x][y][z][w].append(generation)
+                        times_elapsed[x][y][z][w].append(runtime)
                         print("\n -------- \n")
+
+    for x in range(len(PARENT_STRINGS)):
+        for y in range(len(SURVIVOR_STRINGS)):
+            for z in range(len(MUTATION_STRINGS)):
+                for w in range(len(RECOMBINATION_STRINGS)):
+                    PARENTS = x
+                    SURVIVORS = y
+                    MUTATIONS = z
+                    RECOMBINATIONS = w
+
+                    print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
+                    print("Mutation Method: '{}', Recombination Method: '{}'".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
+                    print("Average fitness: {}".format(sum(best_fitnesses[x][y][z][w])/len(best_fitnesses[x][y][z][w])))
+                    print("Best fitness: {}".format(op(best_fitnesses[x][y][z][w])))
+                    print("Total 'best' individuals: {}".format(sum(solutions_found[x][y][z][w])))
+                    print("Total generations elapsed: {} generations".format(sum(final_generations[x][y][z][w])))
+                    print("Total time elapsed: {} seconds".format(sum(times_elapsed[x][y][z][w])))
+                    print("\n -------- \n")

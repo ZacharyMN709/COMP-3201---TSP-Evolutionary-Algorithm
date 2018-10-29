@@ -177,23 +177,26 @@ def brute_force_solver(fnum=None):
         for i in range(1, len(start_list)+1):
             temp = start_list.copy()
             temp.insert(i, ele)
-            best = depth_first_eval(temp, to_add, BEST_SO_FAR)
-            if best < BEST_SO_FAR:
-                BEST_SO_FAR = best
+            if euclidean_distance(temp) <= BEST_SO_FAR:
+                best = depth_first_eval(temp, to_add, BEST_SO_FAR)
+                if best < BEST_SO_FAR:
+                    BEST_SO_FAR = best
+            # else: print('Skipping subtree:', temp)  # Warning! Produces copious output
             if top_layer: print('{}/3rd way through at: {} seconds'.format(i, (time.time() - start_time)))
         to_add.insert(0, ele)
         return BEST_SO_FAR
 
     if fnum: read_tsp_file(fnum)
     if FILENUM == 1:
-        print('WARNING! The number of digits in 29! is 30')
+        print('WARNING! The number of digits in 28! is 30')
         BEST_SO_FAR = 27748.70957813486
     elif FILENUM == 2:
         print('WARNING! The number of digits in 733! is 1784')
         BEST_SO_FAR = 843853.0137981402
     elif FILENUM == 3:
-        print('WARNING! The number of digits in 4663! is 15081')
+        print('WARNING! The number of digits in 4662! is 15081')
         from sys import setrecursionlimit
+        print('Increasing recursion limit...')
         setrecursionlimit(4700)
         BEST_SO_FAR = 47893212.03023812
     else:
