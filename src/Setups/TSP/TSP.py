@@ -62,8 +62,8 @@ def read_tsp_file(fnum):
         locations = [(shift_y - i[1], i[0] - shift_x) for i in locations]
 
         # Save each location relative to an index for future use.
-        for i in range(len(locations)):
-            LOCATIONS[i] = locations[i]
+        global LOCATIONS
+        LOCATIONS = {key: locations[key] for key in range(len(locations))}
 
     global DATAFRAME, MEMOIZED
     DATAFRAME = pd.DataFrame.from_dict(LOCATIONS, orient='index')
@@ -86,7 +86,7 @@ def heurisitic_initialization(pop_size, genome_length):
 # region Fitness
 def euclid_memoize(f):
     def memoize(loc1, loc2):
-        if loc1 < loc2:  # Make sure loc1 is the bigger of the two
+        if loc1 < loc2:  # Make sure loc1 is the bigger of the two. Removes memoization redundancy.
             loc1, loc2 = loc2, loc1
         if loc2 not in MEMOIZED[loc1]:
             MEMOIZED[loc1][loc2] = f(loc1, loc2)
@@ -109,6 +109,7 @@ def calc_distance(loc1, loc2):
 # region Brute Force Solver
 def generate_hamiltonian_circuits(lst_instance):
     """
+    ERROR: Runs out of memory!
     A hamiltonian circuit is a loop around a graph. Of note, [1,2,3] would be
     equivalent to [3,2,1] and [3,1,2] as they travel the same path, simply in
     a different order - which is irrelevant to the problem.
@@ -146,33 +147,11 @@ def generate_hamiltonian_circuits(lst_instance):
         return iterative_element_injector([lst_instance[:3]], lst_instance[3:])
 
 
-def brute_force_solver(fnum=None):
-    if fnum: read_tsp_file(fnum)
-
-    if FILENUM == 1:
-        BEST_SO_FAR = 27748.70957813486
-    elif FILENUM == 2:
-        BEST_SO_FAR = 872396.8786880216
-    elif FILENUM == 3:
-        BEST_SO_FAR = 97488248.77626759
-    else:
-        BEST_SO_FAR = 97488248.77626759
-
-    """
-    start_time = time.time()
-    nodes = [i for i in range(len(LOCATIONS))]
-    circuits = generate_hamiltonian_circuits(nodes)
-    print("Generating hamiltonian circuits took: %s seconds" % (time.time() - start_time))
-
-    optimum = min([euclidean_distance(i) for i in circuits])
-    print("Brute force search took a total of: %s seconds" % (time.time() - start_time))
-    print('Optimal fitness: ', optimum)
-    """
-
+def random_search(BEST_SO_FAR):
     print('Starting best:', BEST_SO_FAR)
     nodes = [i for i in range(len(LOCATIONS))]
     counter = 0
-    print_break = 250
+    print_break = 100
     while True:
         counter += 1
         if counter % print_break == 0: print('.', end='')
@@ -182,9 +161,53 @@ def brute_force_solver(fnum=None):
         if fit < BEST_SO_FAR:
             BEST_SO_FAR = fit
             print('\nNew best:', fit)
+
+
+def brute_force_solver(fnum=None):
+    def depth_first_eval(start_list, to_add, BEST_SO_FAR, top_layer=False):
+        if not to_add:
+            fitness = euclidean_distance(start_list)
+            if fitness <= BEST_SO_FAR:
+                if fitness == BEST_SO_FAR: print('Equal fitness found.')
+                else: print('New best fitness found: {}'.format(fitness))
+                print(start_list)
+            return fitness
+
+        ele = to_add.pop(0)
+        for i in range(1, len(start_list)+1):
+            temp = start_list.copy()
+            temp.insert(i, ele)
+            best = depth_first_eval(temp, to_add, BEST_SO_FAR)
+            if best < BEST_SO_FAR:
+                BEST_SO_FAR = best
+            if top_layer: print('{}/3rd way through at: {} seconds'.format(i, (time.time() - start_time)))
+        to_add.insert(0, ele)
+        return BEST_SO_FAR
+
+    if fnum: read_tsp_file(fnum)
+    if FILENUM == 1:
+        print('WARNING! The number of digits in 29! is 30')
+        BEST_SO_FAR = 27748.70957813486
+    elif FILENUM == 2:
+        print('WARNING! The number of digits in 733! is 1784')
+        BEST_SO_FAR = 843853.0137981402
+    elif FILENUM == 3:
+        print('WARNING! The number of digits in 4663! is 15081')
+        from sys import setrecursionlimit
+        setrecursionlimit(4700)
+        BEST_SO_FAR = 47893212.03023812
+    else:
+        BEST_SO_FAR = 47893212.03023812
+
+    start_time = time.time()
+    nodes = [i for i in range(len(LOCATIONS))]
+    optimum = depth_first_eval(nodes[:3], nodes[3:], BEST_SO_FAR)
+    print("Brute force search took a total of: %s seconds" % (time.time() - start_time))
+    print('Optimal fitness: ', optimum)
 # endregion
 
 
 if __name__ == '__main__':
     # read_tsp_file(1)
-    brute_force_solver(2)
+    brute_force_solver(1)
+

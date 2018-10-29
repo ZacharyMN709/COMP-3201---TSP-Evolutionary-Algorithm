@@ -17,20 +17,6 @@ def set_crossover_rate(i):
 # endregion
 
 
-def method_iterator(func):
-    def method_appicator(population, parents_index):
-        offspring = []
-        for i in range(0, len(parents_index), 2):
-            if random() < crossover_rate:
-                off1, off2 = func(population[parents_index[i]], population[parents_index[i + 1]])
-            else:
-                off1, off2 = population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
-            offspring.append(off1)
-            offspring.append(off2)
-        return offspring
-    return method_appicator
-
-
 def method_randomizer(func):
     def select_method(population, parents_index):
         offspring = []
