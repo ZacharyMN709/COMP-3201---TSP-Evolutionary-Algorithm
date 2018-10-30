@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Added a folder of relevant PDFs, for reference.&#10;Also added a heuristic to the depth first brute force of TSP.&#10;TODO: Finish implementing mutation and crossover methods.">
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="*** Trying push again. Unsure if notebook &#10;Updated best path lengths found so far.&#10;Added a notebook to play around with pandas and graphs.&#10;Made the scatter plots use a cool heatmap.&#10;TODO: Finish implementing mutation and crossover methods.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/EA_Methods/SurvivorSelectionMethods.py" afterPath="$PROJECT_DIR$/src/EA_Methods/SurvivorSelectionMethods.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP.py" />
-      <change beforePath="$PROJECT_DIR$/src/Testing.py" afterPath="$PROJECT_DIR$/src/Testing.py" />
+      <change beforePath="$PROJECT_DIR$/src/Map Playground.ipynb" afterPath="$PROJECT_DIR$/src/Map Playground.ipynb" />
+      <change beforePath="$PROJECT_DIR$/src/Presentation.ipynb" afterPath="$PROJECT_DIR$/src/Presentation.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,11 +25,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Testing.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Testing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="51">
-              <caret line="41" column="40" lean-forward="false" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+            <state relative-caret-position="272">
+              <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
@@ -38,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TSP.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TSP.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="191" column="22" lean-forward="true" selection-start-line="191" selection-start-column="22" selection-end-line="191" selection-end-column="40" />
+            <state relative-caret-position="-2533">
+              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -187,16 +186,17 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Other" />
-      <recent name="C:\Users\Zachary\Google Drive\MUN\Courses\Computer Science\COMP 3201\Assignments\Responses\COMP 3201 - Response 3 - Code" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Documents" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\EightQueens" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Other" />
+      <recent name="C:\Users\Zachary\Google Drive\MUN\Courses\Computer Science\COMP 3201\Assignments\Responses\COMP 3201 - Response 3 - Code" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -447,7 +447,14 @@
       <option name="project" value="LOCAL" />
       <updated>1540825527445</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Updated best path lengths found so far.&#10;Added a notebook to play around with pandas and graphs.&#10;Made the scatter plots use a cool heatmap.&#10;TODO: Finish implementing mutation and crossover methods.">
+      <created>1540866835482</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1540866835482</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TodoView">
@@ -529,7 +536,8 @@
     <MESSAGE value="Improved the Memoization set-up.&#10;Added a brute force solver for the TSP, but throws 'MemoryError', due to computational size of the problem. For now, randomly shuffles the list, and compares against the previous optimal ad infinitum.&#10;TODO: Finish implementing mutation and crossover methods." />
     <MESSAGE value="Added another brute-force solver, works, though is unfeasible for scale of problems.&#10;TODO: Finish implementing mutation and crossover methods." />
     <MESSAGE value="Added a folder of relevant PDFs, for reference.&#10;Also added a heuristic to the depth first brute force of TSP.&#10;TODO: Finish implementing mutation and crossover methods." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a folder of relevant PDFs, for reference.&#10;Also added a heuristic to the depth first brute force of TSP.&#10;TODO: Finish implementing mutation and crossover methods." />
+    <MESSAGE value="Updated best path lengths found so far.&#10;Added a notebook to play around with pandas and graphs.&#10;Made the scatter plots use a cool heatmap.&#10;TODO: Finish implementing mutation and crossover methods." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated best path lengths found so far.&#10;Added a notebook to play around with pandas and graphs.&#10;Made the scatter plots use a cool heatmap.&#10;TODO: Finish implementing mutation and crossover methods." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -830,13 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Map Playground.ipynb">
-      <provider selected="true" editor-type-id="ipnb-editor">
-        <state>
-          <selected id="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_734.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -853,22 +854,36 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="191" column="22" lean-forward="true" selection-start-line="191" selection-start-column="22" selection-end-line="191" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
+    <entry file="file://$PROJECT_DIR$/src/Map Playground.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Map Playground - Backup.ipynb">
+      <provider selected="true" editor-type-id="ipnb-editor">
+        <state>
+          <selected id="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="41" column="40" lean-forward="false" selection-start-line="41" selection-start-column="40" selection-end-line="41" selection-end-column="40" />
+        <state relative-caret-position="272">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2533">
+          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
