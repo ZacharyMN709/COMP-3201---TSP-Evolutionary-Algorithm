@@ -39,13 +39,13 @@ def tsp():
     global TEST, FILENUM, BEST_SO_FAR
     # TODO - Find the solutions for each problem and use to grade
     if FILENUM == 1:
-        BEST_SO_FAR = 27748.70957813486
+        BEST_SO_FAR = 27620.778129222075
         opt = BEST_SO_FAR
     elif FILENUM == 2:
-        BEST_SO_FAR = 872396.8786880216
+        BEST_SO_FAR = 843853.0137981402
         opt = BEST_SO_FAR - (BEST_SO_FAR/10)
     elif FILENUM == 3:
-        BEST_SO_FAR = 97488248.77626759
+        BEST_SO_FAR = 47838772.09969168
         opt = BEST_SO_FAR - (BEST_SO_FAR/10)
     else:
         opt = None

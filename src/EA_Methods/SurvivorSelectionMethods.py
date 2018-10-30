@@ -1,4 +1,4 @@
-import random
+from random import randint
 
 
 # region Globals and Setters
@@ -56,7 +56,7 @@ def random_uniform(parents, parent_fitness, offspring, offspring_fitness):
 
     # randomly remove members until the population is trimmed to size
     while len(population) > max_size:
-        x = random.randint(0, len(population)-1)
+        x = randint(0, len(population)-1)
         population.pop(x)
         fitness.pop(x)
 

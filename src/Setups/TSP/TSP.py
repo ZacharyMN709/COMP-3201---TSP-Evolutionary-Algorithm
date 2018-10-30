@@ -19,13 +19,13 @@ MEMOIZED = dict()
 # region Display Helpers
 def point_display():
     # TODO - Improve Graphs
-    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1])
+    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=DATAFRAME.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
 
 
 def path_display(path):
     # TODO - Improve Graphs
-    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1])
+    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=DATAFRAME.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
 # endregion
 
@@ -189,7 +189,7 @@ def brute_force_solver(fnum=None):
     if fnum: read_tsp_file(fnum)
     if FILENUM == 1:
         print('WARNING! The number of digits in 28! is 30')
-        BEST_SO_FAR = 27748.70957813486
+        BEST_SO_FAR = 27620.778129222075
     elif FILENUM == 2:
         print('WARNING! The number of digits in 733! is 1784')
         BEST_SO_FAR = 843853.0137981402
@@ -198,9 +198,9 @@ def brute_force_solver(fnum=None):
         from sys import setrecursionlimit
         print('Increasing recursion limit...')
         setrecursionlimit(4700)
-        BEST_SO_FAR = 47893212.03023812
+        BEST_SO_FAR = 47838772.09969168
     else:
-        BEST_SO_FAR = 47893212.03023812
+        BEST_SO_FAR = 47838772.09969168
 
     start_time = time.time()
     nodes = [i for i in range(len(LOCATIONS))]
