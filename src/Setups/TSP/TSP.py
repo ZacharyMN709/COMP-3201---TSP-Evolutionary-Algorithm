@@ -1,19 +1,33 @@
 import csv
 from random import sample, shuffle
+import matplotlib.pyplot as plt
 import pandas as pd
+import numpy as np
 import time
 
-# Graphing helpers
-import matplotlib.pyplot as plt
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure as Figure
-import seaborn as sns
 
+# region Globals and Setters
 FILENUM = None
 LOCATIONS = dict()
 DATAFRAME = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 MEMOIZED = dict()
+eval_fitness = None
+
+
+def set_fitness_function(i):
+    global eval_fitness
+    eval_fitness = i
+# endregion
+
+
+def fitness_applicator(func):
+    def generate_population(pop_size, genome_length):
+        population = func(pop_size, genome_length)
+        global eval_fitness
+        # df['fitnesses'] = df.apply(lambda row: eval_fitness(row['individuals']), axis=1)
+        return population, [eval_fitness(i) for i in population]
+    return generate_population
 
 
 # region Display Helpers
@@ -73,10 +87,13 @@ def read_tsp_file(fnum):
     return len(LOCATIONS)
 
 
+#@fitness_applicator
 def random_initialization(pop_size, genome_length):
+    #test = pd.DataFrame([np.random.permutation(genome_length) for _ in range(pop_size)], columns=['individuals'])
     return [sample([c for c in range(genome_length)], genome_length) for _ in range(pop_size)]
 
 
+#@fitness_applicator
 def heurisitic_initialization(pop_size, genome_length):
     print('TSP.heurisitic_initialization() is a stub Method! Returning random_initialization()')
     return random_initialization(pop_size, genome_length)
@@ -196,11 +213,12 @@ def brute_force_solver(fnum=None):
     elif FILENUM == 3:
         print('WARNING! The number of digits in 4662! is 15081')
         from sys import setrecursionlimit
-        print('Increasing recursion limit...')
+        print('Increasing recursion limit...\n')
+        print('Godspeed.\n\n')
         setrecursionlimit(4700)
-        BEST_SO_FAR = 47838772.09969168
+        BEST_SO_FAR = 47818095.12710089
     else:
-        BEST_SO_FAR = 47838772.09969168
+        BEST_SO_FAR = 47818095.12710089
 
     start_time = time.time()
     nodes = [i for i in range(len(LOCATIONS))]

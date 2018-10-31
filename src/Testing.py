@@ -23,11 +23,13 @@ BEST_SO_FAR = None
 if TEST:
     from src.Setups.EightQueens.EightQueen import random_initialization as initialize
     from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
+    from src.Setups.EightQueens import EightQueen as DEF
     genome_length = 8
 else:
     from src.Setups.TSP.TSP import read_tsp_file as parse_file
     from src.Setups.TSP.TSP import random_initialization as initialize
     from src.Setups.TSP.TSP import euclidean_distance as eval_fitness
+    from src.Setups.TSP import TSP as DEF
     genome_length = parse_file(FILENUM)
 
 
@@ -67,6 +69,8 @@ def main(maximize, known_optimum=None, print_gens=False):
     RM.set_crossover_point(crossover_point)
     RM.set_crossover_rate(crossover_rate)
     MM.set_mutation_rate(mutation_rate)
+    DEF.set_fitness_function(eval_fitness)
+    RM.set_fitness_function(eval_fitness)
 
     # Modular function declarations
     def gte(x, y): return x >= y
@@ -77,8 +81,7 @@ def main(maximize, known_optimum=None, print_gens=False):
     SSM.set_op(op)
 
     # Initialize Population
-    population = initialize(population_size, genome_length)
-    fitness = [eval_fitness(i) for i in population]
+    population, fitness = initialize(population_size, genome_length)
 
     for generation in range(generation_limit):
 
@@ -157,6 +160,7 @@ if __name__ == '__main__':
               for x in range(len(PARENT_STRINGS))]
 
     best_fitnesses = matrix.copy()
+    avg_fitnesses = matrix.copy()
     solutions_found = matrix.copy()
     final_generations = matrix.copy()
     times_elapsed = matrix.copy()
@@ -201,7 +205,7 @@ if __name__ == '__main__':
 
                     print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
                     print("Mutation Method: '{}', Recombination Method: '{}'".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
-                    print("Average fitness: {}".format(sum(best_fitnesses[x][y][z][w])/len(best_fitnesses[x][y][z][w])))
+                    print("Average fitness: {}".format(sum(avg_fitnesses[x][y][z][w])/len(avg_fitnesses[x][y][z][w])))
                     print("Best fitness: {}".format(op(best_fitnesses[x][y][z][w])))
                     print("Total 'best' individuals: {}".format(sum(solutions_found[x][y][z][w])))
                     print("Total generations elapsed: {} generations".format(sum(final_generations[x][y][z][w])))
