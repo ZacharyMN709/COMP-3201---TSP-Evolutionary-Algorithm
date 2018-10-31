@@ -30,14 +30,14 @@ def fitness_applicator(func):
     return generate_population
 
 
-# region Display Helpers
-def point_display():
+# region Display Methods
+def start_up_display():
     # TODO - Improve Graphs
     DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=DATAFRAME.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
 
 
-def path_display(path):
+def generation_display(population):
     # TODO - Improve Graphs
     DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=DATAFRAME.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
@@ -206,10 +206,11 @@ def brute_force_solver(fnum=None):
     if fnum: read_tsp_file(fnum)
     if FILENUM == 1:
         print('WARNING! The number of digits in 28! is 30')
-        BEST_SO_FAR = 27620.778129222075
+        BEST_SO_FAR = 27601.173774493756
+        opt_path = [0, 1, 5, 9, 10, 11, 14, 18, 17, 16, 20, 21, 22, 28, 27, 25, 19, 24, 26, 23, 15, 13, 12, 8, 6, 2, 3, 7, 4]
     elif FILENUM == 2:
         print('WARNING! The number of digits in 733! is 1784')
-        BEST_SO_FAR = 843853.0137981402
+        BEST_SO_FAR = 842069.6207684122
     elif FILENUM == 3:
         print('WARNING! The number of digits in 4662! is 15081')
         from sys import setrecursionlimit
@@ -230,5 +231,5 @@ def brute_force_solver(fnum=None):
 
 if __name__ == '__main__':
     # read_tsp_file(1)
-    brute_force_solver(1)
+    brute_force_solver(2)
 

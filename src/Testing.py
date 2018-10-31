@@ -41,8 +41,9 @@ def tsp():
     global TEST, FILENUM, BEST_SO_FAR
     # TODO - Find the solutions for each problem and use to grade
     if FILENUM == 1:
-        BEST_SO_FAR = 27620.778129222075
+        BEST_SO_FAR = 27601.173774493756
         opt = BEST_SO_FAR
+        opt_path = [0, 1, 5, 9, 10, 11, 14, 18, 17, 16, 20, 21, 22, 28, 27, 25, 19, 24, 26, 23, 15, 13, 12, 8, 6, 2, 3, 7, 4]
     elif FILENUM == 2:
         BEST_SO_FAR = 843853.0137981402
         opt = BEST_SO_FAR - (BEST_SO_FAR/10)

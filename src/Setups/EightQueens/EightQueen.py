@@ -11,6 +11,17 @@ def set_fitness_function(i):
 # endregion
 
 
+# region Display Methods
+def start_up_display():
+    pass
+
+
+def Generation_display(population):
+    pass
+# endregion
+
+
+
 # Initialization
 def fitness_applicator(func):
     def generate_population(pop_size, genome_length):
