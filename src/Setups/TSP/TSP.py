@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import time
-
+from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 # region Globals and Setters
 FILENUM = None
@@ -124,6 +124,18 @@ def calc_distance(loc1, loc2):
 
 
 # region Brute Force Solver
+def declare_deprecated(f):
+    input("WARNING! This function is no longer in use!\n\
+    If you wish to use this function, please remove the decorator in the source code.\n\
+    For now, returning an empty function.\n\
+    Press enter to continue.")
+
+    def pass_func():
+        pass
+    return pass_func
+
+
+@declare_deprecated
 def generate_hamiltonian_circuits(lst_instance):
     """
     ERROR: Runs out of memory!
@@ -164,8 +176,9 @@ def generate_hamiltonian_circuits(lst_instance):
         return iterative_element_injector([lst_instance[:3]], lst_instance[3:])
 
 
-def random_search(BEST_SO_FAR):
-    print('Starting best:', BEST_SO_FAR)
+@declare_deprecated
+def random_search(opt_dist):
+    print('Starting best:', opt_dist)
     nodes = [i for i in range(len(LOCATIONS))]
     counter = 0
     print_break = 100
@@ -175,57 +188,42 @@ def random_search(BEST_SO_FAR):
         if counter % (print_break * 100) == 0: print()
         shuffle(nodes)
         fit = euclidean_distance(nodes)
-        if fit < BEST_SO_FAR:
-            BEST_SO_FAR = fit
+        if fit < opt_dist:
+            opt_dist = fit
             print('\nNew best:', fit)
 
 
 def brute_force_solver(fnum=None):
-    def depth_first_eval(start_list, to_add, BEST_SO_FAR, top_layer=False):
+    def depth_first_eval(start_list, to_add, opt_dist, opt_path):
         if not to_add:
             fitness = euclidean_distance(start_list)
-            if fitness <= BEST_SO_FAR:
-                if fitness == BEST_SO_FAR: print('Equal fitness found.')
+            if fitness <= opt_dist:
+                if fitness == opt_dist: print('Equal fitness found.')
                 else: print('New best fitness found: {}'.format(fitness))
-                print(start_list)
-            return fitness
+                opt_path = start_list.copy()
+                print(opt_path)
+            return fitness, opt_path
 
         ele = to_add.pop(0)
         for i in range(1, len(start_list)+1):
             temp = start_list.copy()
             temp.insert(i, ele)
-            if euclidean_distance(temp) <= BEST_SO_FAR:
-                best = depth_first_eval(temp, to_add, BEST_SO_FAR)
-                if best < BEST_SO_FAR:
-                    BEST_SO_FAR = best
-            # else: print('Skipping subtree:', temp)  # Warning! Produces copious output
-            if top_layer: print('{}/3rd way through at: {} seconds'.format(i, (time.time() - start_time)))
+            if euclidean_distance(temp) <= opt_dist:
+                best, opt_path = depth_first_eval(temp, to_add, opt_dist, opt_path)
+                if best < opt_dist:
+                    opt_dist = best
         to_add.insert(0, ele)
-        return BEST_SO_FAR
+        return opt_dist, opt_path
 
     if fnum: read_tsp_file(fnum)
-    if FILENUM == 1:
-        print('WARNING! The number of digits in 28! is 30')
-        BEST_SO_FAR = 27601.173774493756
-        opt_path = [0, 1, 5, 9, 10, 11, 14, 18, 17, 16, 20, 21, 22, 28, 27, 25, 19, 24, 26, 23, 15, 13, 12, 8, 6, 2, 3, 7, 4]
-    elif FILENUM == 2:
-        print('WARNING! The number of digits in 733! is 1784')
-        BEST_SO_FAR = 842069.6207684122
-    elif FILENUM == 3:
-        print('WARNING! The number of digits in 4662! is 15081')
-        from sys import setrecursionlimit
-        print('Increasing recursion limit...\n')
-        print('Godspeed.\n\n')
-        setrecursionlimit(4700)
-        BEST_SO_FAR = 47818095.12710089
-    else:
-        BEST_SO_FAR = 47818095.12710089
+    opt_dist, opt_path, _ = get_best_path(FILENUM, brute_search=True)
 
     start_time = time.time()
     nodes = [i for i in range(len(LOCATIONS))]
-    optimum = depth_first_eval(nodes[:3], nodes[3:], BEST_SO_FAR)
-    print("Brute force search took a total of: %s seconds" % (time.time() - start_time))
-    print('Optimal fitness: ', optimum)
+    opt_dist, opt_path = depth_first_eval(nodes[:3], nodes[3:], opt_dist, opt_path)
+    print("Heuristic aided brute force search took a total of: %s seconds" % (time.time() - start_time))
+    print('Optimal fitness: ', opt_dist)
+    print(opt_path)
 # endregion
 
 

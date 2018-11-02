@@ -17,7 +17,6 @@ RECOMBINATION_STRINGS = ['Cut & Cross']
 
 TEST = True
 FILENUM = 1
-BEST_SO_FAR = None
 
 
 if TEST:
@@ -29,36 +28,29 @@ else:
     from src.Setups.TSP.TSP import read_tsp_file as parse_file
     from src.Setups.TSP.TSP import random_initialization as initialize
     from src.Setups.TSP.TSP import euclidean_distance as eval_fitness
+    from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
     from src.Setups.TSP import TSP as DEF
     genome_length = parse_file(FILENUM)
 
 
 def queens():
-    return main(True, known_optimum=16)
+    op_fit, optimal_solutions, generation = main(False, known_optimum=16, true_opt=True)
+    return op_fit, len(optimal_solutions), generation
 
 
 def tsp():
-    global TEST, FILENUM, BEST_SO_FAR
-    # TODO - Find the solutions for each problem and use to grade
-    if FILENUM == 1:
-        BEST_SO_FAR = 27601.173774493756
-        opt = BEST_SO_FAR
-        opt_path = [0, 1, 5, 9, 10, 11, 14, 18, 17, 16, 20, 21, 22, 28, 27, 25, 19, 24, 26, 23, 15, 13, 12, 8, 6, 2, 3, 7, 4]
-    elif FILENUM == 2:
-        BEST_SO_FAR = 843853.0137981402
-        opt = BEST_SO_FAR - (BEST_SO_FAR/10)
-    elif FILENUM == 3:
-        BEST_SO_FAR = 47838772.09969168
-        opt = BEST_SO_FAR - (BEST_SO_FAR/10)
-    else:
-        opt = None
-    return main(False, known_optimum=opt)
+    global TEST, FILENUM
+    opt_dist, opt_path, true_opt = get_best_path(FILENUM)
+    op_fit, optimal_solutions, generation = main(False, known_optimum=opt_dist, true_opt=true_opt)
+    print("Best individual is:")
+    print(optimal_solutions[0])
+    return op_fit, len(optimal_solutions), generation
 
 
-def main(maximize, known_optimum=None, print_gens=False):
-    global TEST, FILENUM, BEST_SO_FAR
+def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
+    global TEST, FILENUM
 
-    generation_limit = 10000
+    generation_limit = 500
     population_size = 60
     mating_pool_size = population_size//2 if (population_size//2) % 2 == 0 else (population_size//2)+1  # has to be even
     tournament_size = population_size//10
@@ -71,7 +63,6 @@ def main(maximize, known_optimum=None, print_gens=False):
     RM.set_crossover_rate(crossover_rate)
     MM.set_mutation_rate(mutation_rate)
     DEF.set_fitness_function(eval_fitness)
-    RM.set_fitness_function(eval_fitness)
 
     # Modular function declarations
     def gte(x, y): return x >= y
@@ -129,27 +120,22 @@ def main(maximize, known_optimum=None, print_gens=False):
             print('Survivor method not selected. Defaulting to original population and fitness.')
 
         # Break if converged at optimal solution
-        if known_optimum:
+        if true_opt:
             op_fit = op(fitness)
             optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
             if cmp(op_fit, known_optimum) and (len(optimal_solutions) == population_size):
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
                 break
 
-        # For finding the optimum
-        op_fit = op(fitness)
-        if BEST_SO_FAR and cmp(op_fit, BEST_SO_FAR):
-            BEST_SO_FAR = op_fit
-
     # Final Fitness Info
     op_fit = op(fitness)
     optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
     print("Best solution fitness:", op_fit, "\nNumber of optimal solutions: ", len(optimal_solutions), '/', population_size)
     print("Best solution indexes:", optimal_solutions)
-    if BEST_SO_FAR and cmp(op_fit, BEST_SO_FAR):
-        BEST_SO_FAR = op_fit
+    if cmp(op_fit, known_optimum):
         print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
-    return op_fit, len(optimal_solutions), generation
+    # TODO - Grade efficacy based on TSP solutions.
+    return op_fit, optimal_solutions, generation
 
 
 if __name__ == '__main__':
@@ -167,7 +153,7 @@ if __name__ == '__main__':
     times_elapsed = matrix.copy()
     op = None
 
-    for _ in range(1):
+    for _ in range(100):
         for x in range(len(PARENT_STRINGS)):
             for y in range(len(SURVIVOR_STRINGS)):
                 for z in range(len(MUTATION_STRINGS)):
