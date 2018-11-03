@@ -17,6 +17,7 @@ def set_op(i):
 # endregion
 
 
+# region Parent Selection Methods
 def randomize_output(func):
     def generate_output(fitness, mating_pool_size):
         selected_to_mate = func(fitness, mating_pool_size)
@@ -56,4 +57,4 @@ def tournament(fitness, mating_pool_size):
 @randomize_output
 def random_uniform(fitness, mating_pool_size):
     return sample([x for x in range(len(fitness))], mating_pool_size)
-
+# endregion

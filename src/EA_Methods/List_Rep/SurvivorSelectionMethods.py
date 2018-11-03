@@ -11,6 +11,7 @@ def set_op(i):
 # endregion
 
 
+# region Survivor Selection Methods
 def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness):
     loc_op = min if op == max else max
     max_size = len(parents)
@@ -45,9 +46,6 @@ def replacement(parents, parent_fitness, offspring, offspring_fitness):
 
     
 def random_uniform(parents, parent_fitness, offspring, offspring_fitness):
-
-    #student code begin
-
     max_size = len(parents)
 
     # merge the populations
@@ -60,9 +58,5 @@ def random_uniform(parents, parent_fitness, offspring, offspring_fitness):
         population.pop(x)
         fitness.pop(x)
 
-    #student code end
-   
     return population, fitness
-    
-
-
+# endregion

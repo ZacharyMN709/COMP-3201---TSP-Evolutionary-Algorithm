@@ -16,18 +16,16 @@ def start_up_display():
     pass
 
 
-def Generation_display(population):
+def generation_display(population):
     pass
 # endregion
 
 
-
-# Initialization
+# region Initialization
 def fitness_applicator(func):
     def generate_population(pop_size, genome_length):
         population = func(pop_size, genome_length)
         global eval_fitness
-        # df['fitnesses'] = df.apply(lambda row: eval_fitness(row['individuals']), axis=1)
         return population, [eval_fitness(i) for i in population]
     return generate_population
 
@@ -35,9 +33,10 @@ def fitness_applicator(func):
 @fitness_applicator
 def random_initialization(pop_size, chrom_length):
     return [sample([c for c in range(chrom_length)], chrom_length) for _ in range(pop_size)]
+# endregion
 
 
-# Fitness
+# region Fitness
 def fitness_8queen_old(individual):  # maximization
     M = 28
 
@@ -67,3 +66,4 @@ def fitness_8queen(individual):  # maximization
     pos_diag = set([i + individual[i] for i in range(m)])
 
     return len(neg_diag) + len(pos_diag)
+# endregion

@@ -11,6 +11,7 @@ def set_mutation_rate(i):
 # endregion
 
 
+# region Mutation Methods
 def method_randomizer(func):
     def select_method(offspring):
         if random() < mutation_rate:
@@ -45,4 +46,4 @@ def permutation_inversion(individual):
 def permutation_scramble(individual):
     print('Stub Method!')
     return individual
-
+# endregion

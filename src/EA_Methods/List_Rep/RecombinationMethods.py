@@ -17,6 +17,7 @@ def set_crossover_rate(i):
 # endregion
 
 
+# region Recombination Methods
 def method_randomizer(func):
     def select_method(population, parents_index):
         offspring = []
@@ -54,3 +55,4 @@ def recombination_edge_crossover(parent1, parent2):
 def recombination_order_crossover(parent1, parent2):
     print('Stub Method!')
     return parent1, parent2
+# endregion

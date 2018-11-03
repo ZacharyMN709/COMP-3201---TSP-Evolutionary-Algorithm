@@ -25,7 +25,6 @@ def fitness_applicator(func):
     def generate_population(pop_size, genome_length):
         population = func(pop_size, genome_length)
         global eval_fitness
-        # df['fitnesses'] = df.apply(lambda row: eval_fitness(row['individuals']), axis=1)
         return population, [eval_fitness(i) for i in population]
     return generate_population
 
@@ -87,15 +86,14 @@ def read_tsp_file(fnum):
     return len(LOCATIONS)
 
 
-#@fitness_applicator
+@fitness_applicator
 def random_initialization(pop_size, genome_length):
-    #test = pd.DataFrame([np.random.permutation(genome_length) for _ in range(pop_size)], columns=['individuals'])
     return [sample([c for c in range(genome_length)], genome_length) for _ in range(pop_size)]
 
 
-#@fitness_applicator
+@fitness_applicator
 def heurisitic_initialization(pop_size, genome_length):
-    print('TSP.heurisitic_initialization() is a stub Method! Returning random_initialization()')
+    print('heurisitic_initialization() is a stub Method! Returning random_initialization()')
     return random_initialization(pop_size, genome_length)
 # endregion
 
@@ -111,7 +109,7 @@ def euclid_memoize(f):
     return memoize
 
 
-def euclidean_distance(individual):
+def euclidean_distance(individual):  # Minimization
     return sum([calc_distance(individual[i-1], individual[i]) for i in range(len(individual))])
 
 

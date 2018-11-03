@@ -1,10 +1,10 @@
 from random import shuffle
 import time
 
-from src.EA_Methods import ParentSelectionMethods as PSM
-from src.EA_Methods import MutationMethods as MM
-from src.EA_Methods import RecombinationMethods as RM
-from src.EA_Methods import SurvivorSelectionMethods as SSM
+from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
+from src.EA_Methods.List_Rep import MutationMethods as MM
+from src.EA_Methods.List_Rep import RecombinationMethods as RM
+from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
 
 PARENTS = 0
 SURVIVORS = 0
@@ -25,11 +25,11 @@ if TEST:
     from src.Setups.EightQueens import EightQueen as DEF
     genome_length = 8
 else:
-    from src.Setups.TSP.TSP import read_tsp_file as parse_file
-    from src.Setups.TSP.TSP import random_initialization as initialize
-    from src.Setups.TSP.TSP import euclidean_distance as eval_fitness
+    from src.Setups.TSP.TSP_PD import read_tsp_file as parse_file
+    from src.Setups.TSP.TSP_PD import random_initialization as initialize
+    from src.Setups.TSP.TSP_PD import euclidean_distance as eval_fitness
     from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
-    from src.Setups.TSP import TSP as DEF
+    from src.Setups.TSP import TSP_PD as DEF
     genome_length = parse_file(FILENUM)
 
 
