@@ -122,18 +122,6 @@ def calc_distance(loc1, loc2):
 
 
 # region Brute Force Solver
-def declare_deprecated(f):
-    input("WARNING! This function is no longer in use!\n\
-    If you wish to use this function, please remove the decorator in the source code.\n\
-    For now, returning an empty function.\n\
-    Press enter to continue.")
-
-    def pass_func():
-        pass
-    return pass_func
-
-
-@declare_deprecated
 def generate_hamiltonian_circuits(lst_instance):
     """
     ERROR: Runs out of memory!
@@ -174,7 +162,6 @@ def generate_hamiltonian_circuits(lst_instance):
         return iterative_element_injector([lst_instance[:3]], lst_instance[3:])
 
 
-@declare_deprecated
 def random_search(opt_dist):
     print('Starting best:', opt_dist)
     nodes = [i for i in range(len(LOCATIONS))]

@@ -1,4 +1,3 @@
-import csv
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
@@ -106,6 +105,7 @@ def euclidean_distance(individual):  # Minimization
 
 @euclid_memoize
 def calc_distance(loc1, loc2):
+    # TODO - Get x an y values from CITIES dataframe
     x1, y1 = LOCATIONS[loc1]
     x2, y2 = LOCATIONS[loc2]
     return ((x1-x2)**2 + (y1 - y2)**2)**0.5
@@ -139,6 +139,7 @@ def brute_force_solver(fnum=None):
     opt_dist, opt_path, _ = get_best_path(FILENUM, brute_search=True)
 
     start_time = time.time()
+    # TODO - Get the height of df columns
     nodes = [i for i in range(len(LOCATIONS))]
     opt_dist, opt_path = depth_first_eval(nodes[:3], nodes[3:], opt_dist, opt_path)
     print("Heuristic aided brute force search took a total of: %s seconds" % (time.time() - start_time))
