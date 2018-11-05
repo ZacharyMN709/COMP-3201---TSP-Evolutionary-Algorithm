@@ -27,14 +27,14 @@ def set_crossover_rate(i):
 # region Recombination Methods
 def method_mapper(func):
     def recombinator(parents):
+        # TODO - Something is going wrong here. Must find out what.
         def method_randomizer(individual):
             if rand() < crossover_rate:
-                index = parents.index.get_loc(individual.name)
-                if index % 2 == 0: mate = parents.iloc[index + 1]
-                else: mate = parents.iloc[index - 1]
+                if individual.name % 2 == 0: mate = parents.iloc[individual.name + 1]
+                else: mate = parents.iloc[individual.name - 1]
                 return func(individual, mate)
             else:
-                return individual
+                return individual['individuals'], individual['fitnesses']
 
         parents = parents.apply(method_randomizer, axis=1)
         return parents
@@ -44,6 +44,7 @@ def method_mapper(func):
 
 @method_mapper
 def recombination_cut_crossover(individual, mate):
+    # TODO - Something is going wrong here. Must find out what.
     temp = np.roll(mate['individuals'], genome_length - pivot)
     mask = np.isin(temp, individual['individuals'][:pivot], invert=True)
     return np.concatenate((individual['individuals'][:pivot], temp[mask]), axis=None), individual['fitnesses']

@@ -18,6 +18,15 @@ def set_op(i):
 
 
 # region Parent Selection Methods
+def reset_indices(func):
+    def generate_output(population, mating_pool_size):
+        parents = func(population, mating_pool_size)
+        # Reset the indices on the individuals to avoid clashes when mating
+        return parents.reset_index(drop=True)
+    return generate_output
+
+
+@reset_indices
 def mps(population, mating_pool_size):
     selected_to_mate = []           # a list of indices of picked parents in population
     increment = 1 / mating_pool_size        # The pointer 'angle'
@@ -35,6 +44,7 @@ def mps(population, mating_pool_size):
     return selected_to_mate.sample(frac=1)
 
 
+@reset_indices
 def tournament(population, mating_pool_size):
     population.sample(n=mating_pool_size, replace=True).sort_values(by=['fitnesses'], ascending=(op != max))
     # TODO - Finish. The above gets a single tournament, and sorts it so the top row is the winner.
@@ -42,12 +52,12 @@ def tournament(population, mating_pool_size):
     return population.sample(n=mating_pool_size, replace=True).sort_values(by=['fitnesses'], ascending=(op != max))
 
 
+@reset_indices
 def roulette(population, mating_pool_size):
-    # TODO - Occasionally causes a list of booleans to appear. Unsure why.
     return population.sample(n=mating_pool_size, replace=True, weights=(1/population['fitnesses']))
 
 
+@reset_indices
 def random_uniform(population, mating_pool_size):
-    # TODO - Occasionally causes a list of booleans to appear. Unsure why.
     return population.sample(n=mating_pool_size, replace=True)
 # endregion

@@ -9,19 +9,26 @@ FILENUM = None
 CITIES = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 MEMOIZED = dict()
+genome_length = 0
 eval_fitness = None
+op = None
 
 
 def set_fitness_function(i):
     global eval_fitness
     eval_fitness = i
+
+
+def set_op(i):
+    global op
+    op = i
 # endregion
 
 
 def fitness_applicator(func):
     def generate_population(pop_size, genome_length):
         population = func(pop_size, genome_length)
-        population['fitnesses'] = population.apply(lambda row: eval_fitness(row['individuals']), axis=1)
+        population['fitnesses'] = population.apply(eval_fitness, axis=1)
         return population
     return generate_population
 
@@ -35,8 +42,18 @@ def start_up_display():
 
 def generation_display(population):
     # TODO - Improve Graphs
+
+   # op_fit = op(fitness)
+   # optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
+
     CITIES.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=CITIES.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
+
+   # print("Generation: {}\n - Best fitness: {}\n - Avg. fitness: {}\n - Number of optimal solutions: {}/{}\n".format(
+   #     generation + 1, op(fitness), sum(fitness) / len(fitness), len(optimal_solutions), population_size)
+   # )
+
+
 # endregion
 
 
@@ -70,10 +87,12 @@ def read_tsp_file(fnum):
     CITIES.columns = DATAFRAME_COLUMNS
 
     # TODO - Get the height of df columns
+    global genome_length
+    genome_length = len(CITIES)
     global MEMOIZED
-    MEMOIZED = {key: dict() for key in range(len(CITIES))}
+    MEMOIZED = {key: dict() for key in range(genome_length)}
 
-    return len(CITIES)
+    return genome_length
 
 
 @fitness_applicator
@@ -102,12 +121,12 @@ def euclid_memoize(f):
 
 
 def euclidean_distance(individual):  # Minimization
-    return sum([calc_distance(individual[i-1], individual[i]) for i in range(len(individual))])
+    nodes = individual['individuals']
+    return sum([calc_distance(nodes[i-1], nodes[i]) for i in range(genome_length)])
 
 
 @euclid_memoize
 def calc_distance(loc1, loc2):
-    # TODO - Get x an y values from CITIES dataframe
     x1, y1 = CITIES.loc[loc1]
     x2, y2 = CITIES.loc[loc2]
     return ((x1-x2)**2 + (y1 - y2)**2)**0.5

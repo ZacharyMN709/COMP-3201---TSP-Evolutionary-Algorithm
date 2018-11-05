@@ -9,7 +9,7 @@ from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 # region Globals and Setters
 FILENUM = None
 LOCATIONS = dict()
-DATAFRAME = None
+CITIES = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 MEMOIZED = dict()
 eval_fitness = None
@@ -32,13 +32,13 @@ def fitness_applicator(func):
 # region Display Methods
 def start_up_display():
     # TODO - Improve Graphs
-    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=DATAFRAME.index.get_values(), colormap='winter')
+    CITIES.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=CITIES.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
 
 
 def generation_display(population):
     # TODO - Improve Graphs
-    DATAFRAME.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=DATAFRAME.index.get_values(), colormap='winter')
+    CITIES.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=CITIES.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
 # endregion
 
@@ -78,9 +78,9 @@ def read_tsp_file(fnum):
         global LOCATIONS
         LOCATIONS = {key: locations[key] for key in range(len(locations))}
 
-    global DATAFRAME, MEMOIZED
-    DATAFRAME = pd.DataFrame.from_dict(LOCATIONS, orient='index')
-    DATAFRAME.columns = DATAFRAME_COLUMNS
+    global CITIES, MEMOIZED
+    CITIES = pd.DataFrame.from_dict(LOCATIONS, orient='index')
+    CITIES.columns = DATAFRAME_COLUMNS
     MEMOIZED = {key: dict() for key in range(len(LOCATIONS))}
 
     return len(LOCATIONS)

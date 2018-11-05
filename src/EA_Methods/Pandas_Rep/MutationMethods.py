@@ -33,7 +33,7 @@ def method_mapper(func):
                 return individual
 
         offspring = offspring.apply(method_randomizer, axis=1)
-        offspring['fitnesses'] = offspring.apply(lambda row: eval_fitness(row['individuals']), axis=1)
+        offspring['fitnesses'] = offspring.apply(eval_fitness, axis=1)
         return offspring
 
     return mutator
