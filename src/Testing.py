@@ -20,16 +20,16 @@ FILENUM = 1
 
 
 if TEST:
+    from src.Setups.EightQueens import EightQueen as DEF
     from src.Setups.EightQueens.EightQueen import random_initialization as initialize
     from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
-    from src.Setups.EightQueens import EightQueen as DEF
     genome_length = 8
 else:
-    from src.Setups.TSP.TSP_PD import read_tsp_file as parse_file
-    from src.Setups.TSP.TSP_PD import random_initialization as initialize
-    from src.Setups.TSP.TSP_PD import euclidean_distance as eval_fitness
+    from src.Setups.TSP import TSP_PDS as DEF
+    from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
+    from src.Setups.TSP.TSP_PDS import random_initialization as initialize
+    from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
     from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
-    from src.Setups.TSP import TSP_PD as DEF
     genome_length = parse_file(FILENUM)
 
 

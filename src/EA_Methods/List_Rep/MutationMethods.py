@@ -2,7 +2,13 @@ from random import randint, random
 
 
 # region Globals and Setters
-mutation_rate = None
+genome_length = 0
+mutation_rate = 0.2
+
+
+def set_genome_length(i):
+    global genome_length
+    genome_length = i
 
 
 def set_mutation_rate(i):
@@ -23,9 +29,8 @@ def method_randomizer(func):
 
 @method_randomizer
 def permutation_swap(individual):
-    l = len(individual)
-    x = randint(0, l - 1)
-    y = (x + randint(1, l - 1)) % l
+    x = randint(0, genome_length - 1)
+    y = (x + randint(1, genome_length - 1)) % genome_length
     individual[x], individual[y] = individual[y], individual[x]
     return individual
 

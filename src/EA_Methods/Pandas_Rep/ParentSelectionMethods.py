@@ -1,8 +1,8 @@
-from random import sample, random, shuffle
+from numpy.random import rand
 
 
 # region Globals and Setters
-tournament_size = None
+tournament_size = 10
 op = None
 
 
@@ -18,43 +18,36 @@ def set_op(i):
 
 
 # region Parent Selection Methods
-def randomize_output(func):
-    def generate_output(fitness, mating_pool_size):
-        selected_to_mate = func(fitness, mating_pool_size)
-        shuffle(selected_to_mate)
-        return selected_to_mate
-    return generate_output
-
-
-@randomize_output
-def mps(fitness, mating_pool_size):
+def mps(population, mating_pool_size):
     selected_to_mate = []           # a list of indices of picked parents in population
-    total_fitness = sum(fitness)
-    increment = 1/mating_pool_size  # The pointer 'angle'
-    seed = random()/len(fitness)    # The pointer start position
-    a = 0                           # The rolling probability sum
+    increment = 1 / mating_pool_size        # The pointer 'angle'
+    seed = rand()/population.shape[0]     # The pointer start position
 
-    # makes a list with normalized cumulatively summed fitnesses, and indexes
-    fit_indexes = [[x, fitness[x]/total_fitness] for x in range(len(fitness))]
-    for x in fit_indexes:
-        a += x[1]
-        x[1] = a
+    population = population.assign(cumprob=(1 / population['fitnesses']) / (1 / population['fitnesses']).sum())
+    population['cumprob'] = population['cumprob'].cumsum()
+    # TODO - Finish. The above creates a column of the cumulative probability, leaving only selection left.
 
-    for x in fit_indexes:
-        while seed < x[1]:
+    for x in population:
+        while seed < x['cumprob']:
             seed += increment
-            selected_to_mate.append(x[0])
+            selected_to_mate.append(x['indexes'])
 
-    return selected_to_mate
-
-
-@randomize_output
-def tournament(fitness, mating_pool_size):
-    fit_indexes = [(x, fitness[x]) for x in range(len(fitness))]
-    return [op(sample(fit_indexes, tournament_size), key=lambda x: x[1])[0] for _ in range(mating_pool_size)]
+    return selected_to_mate.sample(frac=1)
 
 
-@randomize_output
-def random_uniform(fitness, mating_pool_size):
-    return sample([x for x in range(len(fitness))], mating_pool_size)
+def tournament(population, mating_pool_size):
+    population.sample(n=mating_pool_size, replace=True).sort_values(by=['fitnesses'], ascending=(op != max))
+    # TODO - Finish. The above gets a single tournament, and sorts it so the top row is the winner.
+    # Set below to use the n number of tournament winners
+    return population.sample(n=mating_pool_size, replace=True).sort_values(by=['fitnesses'], ascending=(op != max))
+
+
+def roulette(population, mating_pool_size):
+    # TODO - Occasionally causes a list of booleans to appear. Unsure why.
+    return population.sample(n=mating_pool_size, replace=True, weights=(1/population['fitnesses']))
+
+
+def random_uniform(population, mating_pool_size):
+    # TODO - Occasionally causes a list of booleans to appear. Unsure why.
+    return population.sample(n=mating_pool_size, replace=True)
 # endregion

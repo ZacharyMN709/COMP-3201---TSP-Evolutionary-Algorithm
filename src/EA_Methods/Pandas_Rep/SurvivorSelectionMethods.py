@@ -2,7 +2,19 @@ from random import randint
 
 
 # region Globals and Setters
+population_size = 60
+mating_pool_size = 20
 op = None
+
+
+def set_population_size(i):
+    global population_size
+    population_size = i
+
+
+def set_mating_pool_size(i):
+    global mating_pool_size
+    mating_pool_size = i
 
 
 def set_op(i):
@@ -12,51 +24,28 @@ def set_op(i):
 
 
 # region Survivor Selection Methods
-def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness):
-    loc_op = min if op == max else max
-    max_size = len(parents)
-
-    population = parents + offspring
-    fitness = parent_fitness + offspring_fitness
-
-    # remove the weakest until the population is trimmed to size
-    while len(population) > max_size:
-        i = fitness.index(loc_op(fitness))
-        population.pop(i)
-        fitness.pop(i)
-
-    return population, fitness
+def reset_indices(func):
+    def generate_output(parents, offspring):
+        new_population = func(parents, offspring)
+        # Select 100% of the new_population, and shuffle them, while resetting their indices
+        return new_population.sample(frac=1).reset_index(drop=True)
+    return generate_output
 
 
-def replacement(parents, parent_fitness, offspring, offspring_fitness):
-    loc_op = min if op == max else max
-    max_size = len(parents) - len(offspring)
+@reset_indices
+def mu_plus_lambda(parents, offspring):
+    # Merge the two dataframes, sort by optimality, and take the best population_size
+    return parents.append(offspring).sort_values(by=['fitnesses'], ascending=(op != max)).iloc[:population_size]
 
-    # remove the weakest parents to make room for children
-    while len(parents) > max_size:
-        i = parent_fitness.index(loc_op(parent_fitness))
-        parents.pop(i)
-        parent_fitness.pop(i)
 
-    # add the children
-    population = parents + offspring
-    fitness = parent_fitness + offspring_fitness
-
-    return population, fitness
+@reset_indices
+def replacement(parents, offspring):
+    # Sort the parents by optimality, remove mating_pool_size, and append the offspring
+    return parents.sort_values(by=['fitnesses'], ascending=(op != max)).iloc[:population_size-mating_pool_size].append(offspring)
 
     
-def random_uniform(parents, parent_fitness, offspring, offspring_fitness):
-    max_size = len(parents)
-
-    # merge the populations
-    population = parents + offspring
-    fitness = parent_fitness + offspring_fitness
-
-    # randomly remove members until the population is trimmed to size
-    while len(population) > max_size:
-        x = randint(0, len(population)-1)
-        population.pop(x)
-        fitness.pop(x)
-
-    return population, fitness
+@reset_indices
+def random_uniform(parents, offspring):
+    # Merge the two dataframes, and randomly select population_size
+    return parents.append(offspring).sample(n=population_size)
 # endregion

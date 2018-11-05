@@ -2,8 +2,8 @@ from random import random
 
 
 # region Globals and Setters
-pivot = None
-crossover_rate = None
+pivot = 10
+crossover_rate = 0.9
 
 
 def set_crossover_point(i):

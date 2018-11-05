@@ -21,7 +21,6 @@ def set_fitness_function(i):
 def fitness_applicator(func):
     def generate_population(pop_size, genome_length):
         population = func(pop_size, genome_length)
-        global eval_fitness
         population['fitnesses'] = population.apply(lambda row: eval_fitness(row['individuals']), axis=1)
         return population
     return generate_population
@@ -60,7 +59,8 @@ def read_tsp_file(fnum):
     fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
 
     global CITIES
-    CITIES = pd.read_csv(fname, index_col=0, header=None, delimiter=' ')
+    # Uses indexing from 0, rather than 1, by skipping the first column in the data.
+    CITIES = pd.read_csv(fname, usecols=[1, 2], header=None, delimiter=' ')
     CITIES.columns = ['Lat', 'Lon']
     CITIES.index.names = ['City']
 
@@ -78,7 +78,9 @@ def read_tsp_file(fnum):
 
 @fitness_applicator
 def random_initialization(pop_size, genome_length):
-    return pd.DataFrame([np.random.permutation(genome_length) for _ in range(pop_size)], columns=['individuals'])
+    df = pd.DataFrame([(np.random.permutation(genome_length), ) for _ in range(pop_size)], columns=['individuals'])
+    df.index.names = ['indexes']
+    return df
 
 
 @fitness_applicator
@@ -106,8 +108,8 @@ def euclidean_distance(individual):  # Minimization
 @euclid_memoize
 def calc_distance(loc1, loc2):
     # TODO - Get x an y values from CITIES dataframe
-    x1, y1 = LOCATIONS[loc1]
-    x2, y2 = LOCATIONS[loc2]
+    x1, y1 = CITIES.loc[loc1]
+    x2, y2 = CITIES.loc[loc2]
     return ((x1-x2)**2 + (y1 - y2)**2)**0.5
 # endregion
 
