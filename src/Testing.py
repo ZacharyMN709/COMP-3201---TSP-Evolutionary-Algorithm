@@ -62,6 +62,7 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
     RM.set_crossover_point(crossover_point)
     RM.set_crossover_rate(crossover_rate)
     MM.set_mutation_rate(mutation_rate)
+    MM.set_genome_length(genome_length)
     DEF.set_fitness_function(eval_fitness)
 
     # Modular function declarations
@@ -139,21 +140,33 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
 
 
 if __name__ == '__main__':
-    matrix = [[[[[]  # Make a matrix of empty lists.
+    best_fitnesses = [[[[[]  # Make a matrix of empty lists.
                  # matrix[x][y][z][w] returns a list corresponding to the functions used
               for w in range(len(RECOMBINATION_STRINGS))]
               for z in range(len(MUTATION_STRINGS))]
               for y in range(len(SURVIVOR_STRINGS))]
               for x in range(len(PARENT_STRINGS))]
-
-    best_fitnesses = matrix.copy()
-    avg_fitnesses = matrix.copy()
-    solutions_found = matrix.copy()
-    final_generations = matrix.copy()
-    times_elapsed = matrix.copy()
+    solutions_found = [[[[[]  # Make a matrix of empty lists.
+                 # matrix[x][y][z][w] returns a list corresponding to the functions used
+              for w in range(len(RECOMBINATION_STRINGS))]
+              for z in range(len(MUTATION_STRINGS))]
+              for y in range(len(SURVIVOR_STRINGS))]
+              for x in range(len(PARENT_STRINGS))]
+    final_generations = [[[[[]  # Make a matrix of empty lists.
+                 # matrix[x][y][z][w] returns a list corresponding to the functions used
+              for w in range(len(RECOMBINATION_STRINGS))]
+              for z in range(len(MUTATION_STRINGS))]
+              for y in range(len(SURVIVOR_STRINGS))]
+              for x in range(len(PARENT_STRINGS))]
+    times_elapsed = [[[[[]  # Make a matrix of empty lists.
+                 # matrix[x][y][z][w] returns a list corresponding to the functions used
+              for w in range(len(RECOMBINATION_STRINGS))]
+              for z in range(len(MUTATION_STRINGS))]
+              for y in range(len(SURVIVOR_STRINGS))]
+              for x in range(len(PARENT_STRINGS))]
     op = None
 
-    for _ in range(100):
+    for _ in range(1):
         for x in range(len(PARENT_STRINGS)):
             for y in range(len(SURVIVOR_STRINGS)):
                 for z in range(len(MUTATION_STRINGS)):
@@ -192,7 +205,7 @@ if __name__ == '__main__':
 
                     print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
                     print("Mutation Method: '{}', Recombination Method: '{}'".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
-                    print("Average fitness: {}".format(sum(avg_fitnesses[x][y][z][w])/len(avg_fitnesses[x][y][z][w])))
+                    print("Average fitness: {}".format(sum(best_fitnesses[x][y][z][w])/len(best_fitnesses[x][y][z][w])))
                     print("Best fitness: {}".format(op(best_fitnesses[x][y][z][w])))
                     print("Total 'best' individuals: {}".format(sum(solutions_found[x][y][z][w])))
                     print("Total generations elapsed: {} generations".format(sum(final_generations[x][y][z][w])))
