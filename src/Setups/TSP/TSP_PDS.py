@@ -73,7 +73,7 @@ def read_tsp_file(fnum):
         print('Warning! Invalid seletion. Defaulting to 1')
         fname = "TSP_WesternSahara_29.txt"
 
-    fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
+    fname = 'Setups/TSP/TSP_Inputs/' + fname
 
     global CITIES
     # Uses indexing from 0, rather than 1, by skipping the first column in the data.
