@@ -25,14 +25,6 @@ def set_op(i):
 # endregion
 
 
-def fitness_applicator(func):
-    def generate_population(pop_size, genome_length):
-        population = func(pop_size, genome_length)
-        population['fitnesses'] = population.apply(eval_fitness, axis=1)
-        return population
-    return generate_population
-
-
 # region Display Methods
 def start_up_display():
     # TODO - Improve Graphs
@@ -40,20 +32,25 @@ def start_up_display():
     plt.title('City Locations (Normalized to origin of 0)')
 
 
-def generation_display(population):
+def generation_display(population, generation):
     # TODO - Improve Graphs
 
-   # op_fit = op(fitness)
-   # optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
-
+    op_fit = population['fitnesses'].max()
+    num_sols = population[population['fitnesses'] == op_fit]
     CITIES.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=CITIES.index.get_values(), colormap='winter')
     plt.title('City Locations (Normalized to origin of 0)')
 
-   # print("Generation: {}\n - Best fitness: {}\n - Avg. fitness: {}\n - Number of optimal solutions: {}/{}\n".format(
-   #     generation + 1, op(fitness), sum(fitness) / len(fitness), len(optimal_solutions), population_size)
-   # )
+    print("Generation: {}\n - Best fitness: {}\n - Avg. fitness: {}\n - Number of optimal solutions: {}/{}\n".format(
+        generation, op_fit, population.mean(), len(num_sols), len(population))
+    )
 
 
+def final_display(population):
+    op_fit = population['fitnesses'].max()
+    num_sols = population[population['fitnesses'] == op_fit]
+    print("\nBest solution fitness:", op_fit, "\nNumber of optimal solutions: ", len(num_sols), '/', len(population))
+    print("Best solution indexes:\n", num_sols)
+    print('\n\n\n\n\n\n')
 # endregion
 
 
@@ -95,6 +92,14 @@ def read_tsp_file(fnum):
     return genome_length
 
 
+def fitness_applicator(func):
+    def generate_population(pop_size, genome_length):
+        population = func(pop_size, genome_length)
+        population['fitnesses'] = population['individuals'].apply(eval_fitness)
+        return population
+    return generate_population
+
+
 @fitness_applicator
 def random_initialization(pop_size, genome_length):
     df = pd.DataFrame([(np.random.permutation(genome_length), ) for _ in range(pop_size)], columns=['individuals'])
@@ -121,8 +126,7 @@ def euclid_memoize(f):
 
 
 def euclidean_distance(individual):  # Minimization
-    nodes = individual['individuals']
-    return sum([calc_distance(nodes[i-1], nodes[i]) for i in range(genome_length)])
+    return sum([calc_distance(individual[i-1], individual[i]) for i in range(genome_length)])
 
 
 @euclid_memoize

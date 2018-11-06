@@ -1,3 +1,4 @@
+import numpy as np
 from numpy.random import randint, rand
 
 
@@ -28,12 +29,12 @@ def method_mapper(func):
     def mutator(offspring):
         def method_randomizer(individual):
             if rand() < mutation_rate:
-                return func(individual['individuals']), individual['fitnesses']
+                return tuple(func(individual))
             else:
-                return individual
+                return tuple(individual)
 
-        offspring = offspring.apply(method_randomizer, axis=1)
-        offspring['fitnesses'] = offspring.apply(eval_fitness, axis=1)
+        offspring['individuals'] = offspring['individuals'].apply(method_randomizer).apply(np.array)
+        offspring['fitnesses'] = offspring['individuals'].apply(eval_fitness)
         return offspring
 
     return mutator
