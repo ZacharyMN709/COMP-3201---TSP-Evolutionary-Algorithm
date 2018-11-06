@@ -34,7 +34,7 @@ else:
 
 
 def queens():
-    op_fit, optimal_solutions, generation = main(False, known_optimum=16, true_opt=True)
+    op_fit, optimal_solutions, generation = main(True, known_optimum=16, true_opt=True)
     return op_fit, len(optimal_solutions), generation
 
 
@@ -68,8 +68,11 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
     # Modular function declarations
     def gte(x, y): return x >= y
     def lte(x, y): return x <= y
+    def gt(x, y): return x > y
+    def lt(x, y): return x < y
     op = max if maximize else min
-    cmp = gte if maximize else lte
+    cmp_eq = gte if maximize else lte
+    cmp_ne = gt if maximize else lt
     PSM.set_op(op)
     SSM.set_op(op)
 
@@ -124,7 +127,7 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
         if true_opt:
             op_fit = op(fitness)
             optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
-            if cmp(op_fit, known_optimum) and (len(optimal_solutions) == population_size):
+            if cmp_eq(op_fit, known_optimum) and (len(optimal_solutions) == population_size):
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
                 break
 
@@ -133,7 +136,7 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
     optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
     print("Best solution fitness:", op_fit, "\nNumber of optimal solutions: ", len(optimal_solutions), '/', population_size)
     print("Best solution indexes:", optimal_solutions)
-    if cmp(op_fit, known_optimum):
+    if cmp_ne(op_fit, known_optimum):
         print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
     # TODO - Grade efficacy based on TSP solutions.
     return op_fit, optimal_solutions, generation
@@ -166,7 +169,7 @@ if __name__ == '__main__':
               for x in range(len(PARENT_STRINGS))]
     op = None
 
-    for _ in range(1):
+    for _ in range(20):
         for x in range(len(PARENT_STRINGS)):
             for y in range(len(SURVIVOR_STRINGS)):
                 for z in range(len(MUTATION_STRINGS)):
