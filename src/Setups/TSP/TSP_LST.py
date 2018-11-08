@@ -10,6 +10,7 @@ from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 FILENUM = None
 LOCATIONS = dict()
 CITIES = None
+DISTANCES = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 MEMOIZED = dict()
 eval_fitness = None
@@ -56,10 +57,10 @@ def read_tsp_file(fnum):
         print('Warning! Takes approximately 45 seconds per decade')
         fname = "TSP_Canada_4663.txt"
     else:
-        print('Warning! Invalid seletion. Defaulting to 1')
-        fname = "TSP_WesternSahara_29.txt"
+        print('Warning! Invalid seletion. Defaulting to test')
+        fname = "TSP_Testbed_10.txt"
 
-    fname = 'Setups/TSP/TSP_Inputs/' + fname
+    fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
     with open(fname, 'r') as f:
         # Read and parse the file
         file = csv.reader(f, delimiter=' ')
@@ -78,9 +79,23 @@ def read_tsp_file(fnum):
         global LOCATIONS
         LOCATIONS = {key: locations[key] for key in range(len(locations))}
 
-    global CITIES, MEMOIZED
-    CITIES = pd.DataFrame.from_dict(LOCATIONS, orient='index')
+    global CITIES
+    # Uses indexing from 0, rather than 1, by skipping the first column in the data.
+    CITIES = pd.read_csv(fname, usecols=[1, 2], header=None, delimiter=' ')
+    CITIES.columns = ['Lat', 'Lon']
+    CITIES.index.names = ['City']
+
+    global DISTANCES
+    Lats = CITIES['Lat'].transpose()
+    Lons = CITIES['Lon'].transpose()
+    DISTANCES = pd.DataFrame([((Lats - Lats[i])**2 + (Lons - Lons[i])**2)**0.5 for i in range(Lons.size)])
+
+    # Translate and invert the x values, and translate the y values
+    CITIES['Lat'] = CITIES['Lat'] - (CITIES['Lat'].min() + (CITIES['Lat'].max() - CITIES['Lat'].min()) / 2)
+    CITIES['Lon'] = (CITIES['Lon'].min() + (CITIES['Lon'].max() - CITIES['Lon'].min()) / 2) - CITIES['Lon']
     CITIES.columns = DATAFRAME_COLUMNS
+
+    global MEMOIZED
     MEMOIZED = {key: dict() for key in range(len(LOCATIONS))}
 
     return len(LOCATIONS)
@@ -183,20 +198,19 @@ def brute_force_solver(fnum=None):
         if not to_add:
             fitness = euclidean_distance(start_list)
             if fitness <= opt_dist:
-                if fitness == opt_dist: print('Equal fitness found.')
-                else: print('New best fitness found: {}'.format(fitness))
+                if fitness == opt_dist: print('Equal fitness found.   -  ', time.asctime(time.localtime(time.time())))
+                else: print('New best fitness found: {}   -   '.format(fitness, time.asctime(time.localtime(time.time()))))
+                opt_dist = fitness
                 opt_path = start_list.copy()
                 print(opt_path)
-            return fitness, opt_path
+            return opt_dist, opt_path
 
         ele = to_add.pop(0)
         for i in range(1, len(start_list)+1):
-            temp = start_list.copy()
-            temp.insert(i, ele)
-            if euclidean_distance(temp) <= opt_dist:
-                best, opt_path = depth_first_eval(temp, to_add, opt_dist, opt_path)
-                if best < opt_dist:
-                    opt_dist = best
+            start_list.insert(i, ele)
+            if euclidean_distance(start_list) <= opt_dist:
+                opt_dist, opt_path = depth_first_eval(start_list, to_add, opt_dist, opt_path)
+            del start_list[i]
         to_add.insert(0, ele)
         return opt_dist, opt_path
 
@@ -214,5 +228,5 @@ def brute_force_solver(fnum=None):
 
 if __name__ == '__main__':
     # read_tsp_file(1)
-    brute_force_solver(2)
+    brute_force_solver(1)
 

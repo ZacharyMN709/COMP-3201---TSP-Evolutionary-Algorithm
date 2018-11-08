@@ -7,6 +7,7 @@ from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 # region Globals and Setters
 FILENUM = None
 CITIES = None
+DISTANCES = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 MEMOIZED = dict()
 genome_length = 0
@@ -67,10 +68,10 @@ def read_tsp_file(fnum):
         #print('Warning! Takes approximately 45 seconds per decade')
         fname = "TSP_Canada_4663.txt"
     else:
-        print('Warning! Invalid seletion. Defaulting to 1')
-        fname = "TSP_WesternSahara_29.txt"
+        print('Warning! Invalid seletion. Defaulting to test')
+        fname = "TSP_Testbed_10.txt"
 
-    fname = 'Setups/TSP/TSP_Inputs/' + fname
+    fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
 
     global CITIES
     # Uses indexing from 0, rather than 1, by skipping the first column in the data.
@@ -78,12 +79,16 @@ def read_tsp_file(fnum):
     CITIES.columns = ['Lat', 'Lon']
     CITIES.index.names = ['City']
 
+    global DISTANCES
+    Lats = CITIES['Lat'].transpose()
+    Lons = CITIES['Lon'].transpose()
+    DISTANCES = pd.DataFrame([((Lats - Lats[i])**2 + (Lons - Lons[i])**2)**0.5 for i in range(Lons.size)])
+
     # Translate and invert the x values, and translate the y values
     CITIES['Lat'] = CITIES['Lat'] - (CITIES['Lat'].min() + (CITIES['Lat'].max() - CITIES['Lat'].min()) / 2)
     CITIES['Lon'] = (CITIES['Lon'].min() + (CITIES['Lon'].max() - CITIES['Lon'].min()) / 2) - CITIES['Lon']
     CITIES.columns = DATAFRAME_COLUMNS
 
-    # TODO - Get the height of df columns
     global genome_length
     genome_length = len(CITIES)
     global MEMOIZED
@@ -115,58 +120,44 @@ def heurisitic_initialization(pop_size, genome_length):
 
 
 # region Fitness
-def euclid_memoize(f):
-    def memoize(loc1, loc2):
-        if loc1 < loc2:  # Make sure loc1 is the bigger of the two. Removes memoization redundancy.
-            loc1, loc2 = loc2, loc1
-        if loc2 not in MEMOIZED[loc1]:
-            MEMOIZED[loc1][loc2] = f(loc1, loc2)
-        return MEMOIZED[loc1][loc2]
-    return memoize
-
-
 def euclidean_distance(individual):  # Minimization
-    return sum([calc_distance(individual[i-1], individual[i]) for i in range(genome_length)])
+    return sum([calc_distance(individual[i-1], individual[i]) for i in range(individual.size)])
 
 
-@euclid_memoize
 def calc_distance(loc1, loc2):
-    x1, y1 = CITIES.loc[loc1]
-    x2, y2 = CITIES.loc[loc2]
-    return ((x1-x2)**2 + (y1 - y2)**2)**0.5
+    return DISTANCES[loc1][loc2]
 # endregion
 
 
 # region Brute Force Solver
 def brute_force_solver(fnum=None):
-    def depth_first_eval(start_list, to_add, opt_dist, opt_path):
-        if not to_add:
-            fitness = euclidean_distance(start_list)
-            if fitness <= opt_dist:
-                if fitness == opt_dist: print('Equal fitness found.')
-                else: print('New best fitness found: {}'.format(fitness))
+    def depth_first_eval(start_list, to_add, opt_dist, opt_path, cost):
+        if to_add.size == 0:
+            if cost <= opt_dist:
+                if cost == opt_dist: print('Equal fitness found.   -  ', time.asctime(time.localtime(time.time())))
+                else: print('New best fitness found: {}   -   '.format(cost, time.asctime(time.localtime(time.time()))))
+                opt_dist = cost
                 opt_path = start_list.copy()
                 print(opt_path)
-            return fitness, opt_path
+            return opt_dist, opt_path
 
-        ele = to_add.pop(0)
-        for i in range(1, len(start_list)+1):
-            temp = start_list.copy()
-            temp.insert(i, ele)
-            if euclidean_distance(temp) <= opt_dist:
-                best, opt_path = depth_first_eval(temp, to_add, opt_dist, opt_path)
-                if best < opt_dist:
-                    opt_dist = best
-        to_add.insert(0, ele)
+        ele = to_add[0]
+        to_add = np.delete(to_add, 0)
+        for i in range(0, len(start_list)):
+            cost += DISTANCES[start_list[i-1]][ele] + DISTANCES[ele][start_list[i]] - DISTANCES[start_list[i - 1]][start_list[i]]
+            start_list = np.insert(start_list, i, ele)
+            if cost <= opt_dist:
+                opt_dist, opt_path = depth_first_eval(start_list, to_add, opt_dist, opt_path, cost)
+            start_list = np.delete(start_list, i)
+            cost -= DISTANCES[start_list[i-1]][ele] + DISTANCES[ele][start_list[i]] - DISTANCES[start_list[i - 1]][start_list[i]]
         return opt_dist, opt_path
 
     if fnum: read_tsp_file(fnum)
     opt_dist, opt_path, _ = get_best_path(FILENUM, brute_search=True)
 
     start_time = time.time()
-    # TODO - Get the height of df columns
-    nodes = [i for i in range(len(LOCATIONS))]
-    opt_dist, opt_path = depth_first_eval(nodes[:3], nodes[3:], opt_dist, opt_path)
+    nodes = np.array([i for i in range(genome_length-1, -1, -1)])
+    opt_dist, opt_path = depth_first_eval(nodes[:3], nodes[3:], opt_dist, opt_path, euclidean_distance(nodes[:3]))
     print("Heuristic aided brute force search took a total of: %s seconds" % (time.time() - start_time))
     print('Optimal fitness: ', opt_dist)
     print(opt_path)
@@ -175,5 +166,5 @@ def brute_force_solver(fnum=None):
 
 if __name__ == '__main__':
     # read_tsp_file(1)
-    brute_force_solver(2)
+    brute_force_solver(1)
 
