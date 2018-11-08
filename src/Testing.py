@@ -1,11 +1,7 @@
 from random import shuffle
 import time
 
-from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
-from src.EA_Methods.List_Rep import MutationMethods as MM
-from src.EA_Methods.List_Rep import RecombinationMethods as RM
-from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
-
+PANDAS = 0
 PARENTS = 0
 SURVIVORS = 0
 MUTATIONS = 0
@@ -15,20 +11,38 @@ SURVIVOR_STRINGS = ['Mu + Lambda', 'Replace']
 MUTATION_STRINGS = ['Swap']
 RECOMBINATION_STRINGS = ['Cut & Cross']
 
-TEST = True
+TEST = False
 FILENUM = 1
 
 
 if TEST:
+    from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
+    from src.EA_Methods.List_Rep import MutationMethods as MM
+    from src.EA_Methods.List_Rep import RecombinationMethods as RM
+    from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
     from src.Setups.EightQueens import EightQueen as DEF
     from src.Setups.EightQueens.EightQueen import random_initialization as initialize
     from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
     genome_length = 8
 else:
-    from src.Setups.TSP import TSP_PDS as DEF
-    from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
-    from src.Setups.TSP.TSP_PDS import random_initialization as initialize
-    from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
+    if PANDAS:
+        from src.EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
+        from src.EA_Methods.Pandas_Rep import MutationMethods as MM
+        from src.EA_Methods.Pandas_Rep import RecombinationMethods as RM
+        from src.EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
+        from src.Setups.TSP import TSP_PDS as DEF
+        from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
+        from src.Setups.TSP.TSP_PDS import random_initialization as initialize
+        from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
+    else:
+        from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
+        from src.EA_Methods.List_Rep import MutationMethods as MM
+        from src.EA_Methods.List_Rep import RecombinationMethods as RM
+        from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
+        from src.Setups.TSP import TSP_LST as DEF
+        from src.Setups.TSP.TSP_LST import read_tsp_file as parse_file
+        from src.Setups.TSP.TSP_LST import random_initialization as initialize
+        from src.Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
     from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
     genome_length = parse_file(FILENUM)
 
@@ -42,8 +56,6 @@ def tsp():
     global TEST, FILENUM
     opt_dist, opt_path, true_opt = get_best_path(FILENUM)
     op_fit, optimal_solutions, generation = main(False, known_optimum=opt_dist, true_opt=true_opt)
-    print("Best individual is:")
-    print(optimal_solutions[0])
     return op_fit, len(optimal_solutions), generation
 
 
