@@ -39,30 +39,46 @@ def gen_two_nums(substring):
 
 @method_randomizer
 def permutation_swap(individual):
-    x, y = gen_two_nums(False)
+    # Generate two random indeces
+    x = randint(0, genome_length-1)
+    y = (x + randint(1, genome_length-1)) % genome_length
+
+    # Swap the values at those indeces
     individual[x], individual[y] = individual[y], individual[x]
+
     return individual
 
 
 @method_randomizer
 def permutation_insert(individual):
-    x, y = gen_two_nums(False)
-    ele = individual.pop(y)
-    individual.insert(x, ele)
+    # Generate two random indeces
+    x = randint(0, genome_length-1)
+    y = (x + randint(1, genome_length-1)) % genome_length
+
+    # Insert the value at y in the position after x
+    value = individual.pop(y)
+    individual.insert(x, value)
+
     return individual
 
 
 @method_randomizer
 def permutation_inversion(individual):
+    # Generate two random indeces in ascending order
     x, y = gen_two_nums(True)
-    return individual[:x] + individual[y-1:x-1:-1] + individual[y:]
+
+    # Reverse the contents from x to y
+    return individual[:x] + individual[x:y][::-1] + individual[y:]
 
 
 @method_randomizer
 def permutation_scramble(individual):
+    # Generate two random indeces in ascending order
     x, y = gen_two_nums(True)
-    temp = individual[x:y]
-    shuffle(temp)
+
+    # Randomize the order of indeces from x to y
+    temp = shuffle(individual[x:y])
+    
     return individual[:x] + temp + individual[y:]
 # endregion
 
@@ -73,5 +89,5 @@ if __name__ == '__main__':
     test = [sample([c for c in range(genome_length)], genome_length) for _ in range(genome_length)]
     for i in test:
         print(i)
-        print(permutation_scramble(i))
+        print(permutation_inversion(i))
         print('- - -')

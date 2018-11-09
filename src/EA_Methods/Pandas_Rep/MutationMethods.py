@@ -1,5 +1,6 @@
 import numpy as np
 from numpy.random import randint, rand
+from random import sample
 
 
 # region Globals and Setters
@@ -65,3 +66,19 @@ def permutation_scramble(individual):
     print('Stub Method!')
     return individual
 # endregion
+
+if __name__ == '__main__':
+    from time import clock
+
+    test_count = 500000
+    genome_length = 10
+    mutation_rate = 1
+
+    individuals = []
+    for _ in range(test_count):
+        individuals.append(np.random.permutation(np.arange(1, genome_length+1)))
+
+    start_time = clock()
+    for individual in individuals:
+        permutation_swap(individual)
+    print(clock() - start_time)
