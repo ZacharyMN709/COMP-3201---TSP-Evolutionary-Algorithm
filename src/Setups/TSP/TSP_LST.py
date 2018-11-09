@@ -60,7 +60,7 @@ def read_tsp_file(fnum):
         print('Warning! Invalid seletion. Defaulting to test')
         fname = "TSP_Testbed_10.txt"
 
-    fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
+    fname = 'src/Setups/TSP/TSP_Inputs/' + fname
     with open(fname, 'r') as f:
         # Read and parse the file
         file = csv.reader(f, delimiter=' ')
