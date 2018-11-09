@@ -39,11 +39,11 @@ def gen_two_nums(substring):
 
 @method_randomizer
 def permutation_swap(individual):
-    # Generate two random indeces
+    # Generate two random indices
     x = randint(0, genome_length-1)
     y = (x + randint(1, genome_length-1)) % genome_length
 
-    # Swap the values at those indeces
+    # Swap the values at those indices
     individual[x], individual[y] = individual[y], individual[x]
 
     return individual
@@ -51,7 +51,7 @@ def permutation_swap(individual):
 
 @method_randomizer
 def permutation_insert(individual):
-    # Generate two random indeces
+    # Generate two random indices
     x = randint(0, genome_length-1)
     y = (x + randint(1, genome_length-1)) % genome_length
 
@@ -64,7 +64,7 @@ def permutation_insert(individual):
 
 @method_randomizer
 def permutation_inversion(individual):
-    # Generate two random indeces in ascending order
+    # Generate two random indices in ascending order
     x, y = gen_two_nums(True)
 
     # Reverse the contents from x to y
@@ -73,10 +73,10 @@ def permutation_inversion(individual):
 
 @method_randomizer
 def permutation_scramble(individual):
-    # Generate two random indeces in ascending order
+    # Generate two random indices in ascending order
     x, y = gen_two_nums(True)
 
-    # Randomize the order of indeces from x to y
+    # Randomize the order of indices from x to y
     temp = shuffle(individual[x:y])
     
     return individual[:x] + temp + individual[y:]

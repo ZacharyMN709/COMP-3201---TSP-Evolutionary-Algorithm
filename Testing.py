@@ -8,8 +8,9 @@ MUTATIONS = 0
 RECOMBINATIONS = 0
 PARENT_STRINGS = ['MPS', 'Tourney']
 SURVIVOR_STRINGS = ['Mu + Lambda', 'Replace']
-MUTATION_STRINGS = ['Swap']
+MUTATION_STRINGS = ['Swap', 'Insert', 'Inversion', 'Scramble']
 RECOMBINATION_STRINGS = ['Cut & Cross']
+
 
 TEST = False
 FILENUM = 1
@@ -123,6 +124,12 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
         # Mutations Selection
         if MUTATIONS == 0:
             offspring = [MM.permutation_swap(i) for i in offspring]
+        elif MUTATIONS == 1:
+            offspring = [MM.permutation_insert(i) for i in offspring]
+        elif MUTATIONS == 2:
+            offspring = [MM.permutation_inversion(i) for i in offspring]
+        elif MUTATIONS == 3:
+            offspring = [MM.permutation_scramble(i) for i in offspring]
         else:
             print('Offspring method not selected. Defaulting to original offspring.')
         offspring_fitness = [eval_fitness(i) for i in offspring]
@@ -181,7 +188,7 @@ if __name__ == '__main__':
               for x in range(len(PARENT_STRINGS))]
     op = None
 
-    for _ in range(20):
+    for _ in range(5):
         for x in range(len(PARENT_STRINGS)):
             for y in range(len(SURVIVOR_STRINGS)):
                 for z in range(len(MUTATION_STRINGS)):
