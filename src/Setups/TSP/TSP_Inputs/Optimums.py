@@ -1,4 +1,5 @@
 def get_best_path(FILENUM, brute_search=False):
+    # http://www.math.uwaterloo.ca/tsp/world/countries.html
     if FILENUM == 1:
         if brute_search:
             print('WARNING! The number of digits in 28! is 30')
