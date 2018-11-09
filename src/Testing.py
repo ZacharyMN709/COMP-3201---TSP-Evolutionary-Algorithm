@@ -1,5 +1,11 @@
 from random import shuffle
 import time
+import os
+script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+path = os.path.join(script_dir, '..')
+os.chdir(path)
+print("Present working directory:", os.getcwd())
+
 
 PANDAS = 0
 PARENTS = 0
@@ -9,7 +15,7 @@ RECOMBINATIONS = 0
 PARENT_STRINGS = ['MPS', 'Tourney']
 SURVIVOR_STRINGS = ['Mu + Lambda', 'Replace']
 MUTATION_STRINGS = ['Swap', 'Insert', 'Inversion', 'Scramble']
-RECOMBINATION_STRINGS = ['Cut & Cross']
+RECOMBINATION_STRINGS = ['Order Crossover']
 
 
 TEST = False
@@ -112,7 +118,7 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
 
         # Recombination
         if RECOMBINATIONS == 0:
-            offspring = RM.recombination_cut_crossover(population, parents_index)
+            offspring = RM.recombination_order_crossover(population, parents_index)
         else:
             offspring = []
             print('Recombination method not selected. Defaulting to original offspring.')
@@ -188,7 +194,7 @@ if __name__ == '__main__':
               for x in range(len(PARENT_STRINGS))]
     op = None
 
-    for _ in range(5):
+    for _ in range(1):
         for x in range(len(PARENT_STRINGS)):
             for y in range(len(SURVIVOR_STRINGS)):
                 for z in range(len(MUTATION_STRINGS)):

@@ -48,7 +48,7 @@ def method_mapper(func):
 
 
 @method_mapper
-def recombination_cut_crossover(individual, mate):
+def recombination_order_crossover(individual, mate):
     temp = np.roll(mate, shift)
     mask = np.isin(temp, individual[:pivot], invert=True)
     return np.concatenate((individual[:pivot], temp[mask]), axis=None)
@@ -62,12 +62,6 @@ def recombination_pmx_crossover(individual, mate):
 
 @method_mapper
 def recombination_edge_crossover(individual, mate):
-    print('Stub Method!')
-    return individual
-
-
-@method_mapper
-def recombination_order_crossover(individual, mate):
     print('Stub Method!')
     return individual
 # endregion

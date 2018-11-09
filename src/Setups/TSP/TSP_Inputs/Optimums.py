@@ -312,8 +312,11 @@ def get_best_path(FILENUM, brute_search=False):
 
 
 def calc_optimum(fnum, fname):
-    fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
-    with open(fname, 'r') as f:
+    import os
+    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+    abs_file_path = os.path.join(script_dir, fname)
+
+    with open(abs_file_path, 'r') as f:
         import csv
         # Read and parse the file
         file = csv.reader(f, delimiter=' ')

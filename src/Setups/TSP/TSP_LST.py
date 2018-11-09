@@ -60,8 +60,12 @@ def read_tsp_file(fnum):
         print('Warning! Invalid seletion. Defaulting to test')
         fname = "TSP_Testbed_10.txt"
 
-    fname = 'src/Setups/TSP/TSP_Inputs/' + fname
-    with open(fname, 'r') as f:
+    import os
+    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+    abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
+    print(abs_file_path)
+
+    with open(abs_file_path, 'r') as f:
         # Read and parse the file
         file = csv.reader(f, delimiter=' ')
         locations = [(float(i[1]), float(i[2])) for i in file]
@@ -81,7 +85,7 @@ def read_tsp_file(fnum):
 
     global CITIES
     # Uses indexing from 0, rather than 1, by skipping the first column in the data.
-    CITIES = pd.read_csv(fname, usecols=[1, 2], header=None, delimiter=' ')
+    CITIES = pd.read_csv(abs_file_path, usecols=[1, 2], header=None, delimiter=' ')
     CITIES.columns = ['Lat', 'Lon']
     CITIES.index.names = ['City']
 

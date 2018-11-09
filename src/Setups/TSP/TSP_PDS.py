@@ -71,11 +71,13 @@ def read_tsp_file(fnum):
         print('Warning! Invalid seletion. Defaulting to test')
         fname = "TSP_Testbed_10.txt"
 
-    fname = 'C:\\Users\\Zachary\\Documents\\GitHub\\COMP 3201 - TSP Evolutionary Algorithm\\src\\Setups\\TSP\\TSP_Inputs\\' + fname
+    import os
+    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+    abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
 
     global CITIES
     # Uses indexing from 0, rather than 1, by skipping the first column in the data.
-    CITIES = pd.read_csv(fname, usecols=[1, 2], header=None, delimiter=' ')
+    CITIES = pd.read_csv(abs_file_path, usecols=[1, 2], header=None, delimiter=' ')
     CITIES.columns = ['Lat', 'Lon']
     CITIES.index.names = ['City']
 
