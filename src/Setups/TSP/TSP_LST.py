@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import time
-from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
+from Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 # region Globals and Setters
 FILENUM = None
