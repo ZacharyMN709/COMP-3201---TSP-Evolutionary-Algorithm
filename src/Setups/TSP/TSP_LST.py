@@ -95,6 +95,7 @@ def read_tsp_file(fnum):
     DISTANCES = pd.DataFrame([((Lats - Lats[i])**2 + (Lons - Lons[i])**2)**0.5 for i in range(Lons.size)])
 
     # Translate and invert the x values, and translate the y values
+    global CITIES
     CITIES['Lat'] = CITIES['Lat'] - (CITIES['Lat'].min() + (CITIES['Lat'].max() - CITIES['Lat'].min()) / 2)
     CITIES['Lon'] = (CITIES['Lon'].min() + (CITIES['Lon'].max() - CITIES['Lon'].min()) / 2) - CITIES['Lon']
     CITIES.columns = DATAFRAME_COLUMNS

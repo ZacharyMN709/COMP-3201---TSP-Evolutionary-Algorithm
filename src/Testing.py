@@ -14,12 +14,13 @@ MUTATIONS = 0
 RECOMBINATIONS = 0
 PARENT_STRINGS = ['MPS', 'Tourney']
 SURVIVOR_STRINGS = ['Mu + Lambda', 'Replace']
-MUTATION_STRINGS = ['Swap', 'Insert', 'Inversion', 'Scramble']
-RECOMBINATION_STRINGS = ['Order Crossover']
+MUTATION_STRINGS = ['Swap', 'Insert', 'Inversion']
+RECOMBINATION_STRINGS = ['Order Crossover', 'PMX Crossover']
 
 
-TEST = False
-FILENUM = 1
+TEST = False      # True runs 8-Queens, False runs TSP
+FILENUM = 2       # 1: Sahara   2: Uruguay   3: Canada   4: Test World
+RUNS = 25         # Number of times each combination is run.
 
 
 if TEST:
@@ -69,7 +70,7 @@ def tsp():
 def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
     global TEST, FILENUM
 
-    generation_limit = 500
+    generation_limit = 1000
     population_size = 60
     mating_pool_size = population_size//2 if (population_size//2) % 2 == 0 else (population_size//2)+1  # has to be even
     tournament_size = population_size//10
@@ -78,6 +79,7 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
     cp_1, cp_2, cp_3 = genome_length//4, 2*genome_length//4, 3*genome_length//4
 
     PSM.set_tournament_size(tournament_size)
+    RM.set_genome_length(genome_length)
     RM.set_crossover_points(cp_1, cp_2, cp_3)
     RM.set_crossover_rate(crossover_rate)
     MM.set_mutation_rate(mutation_rate)
@@ -119,6 +121,10 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
         # Recombination
         if RECOMBINATIONS == 0:
             offspring = RM.order_crossover(population, parents_index)
+        elif RECOMBINATIONS == 1:
+            offspring = RM.pmx_crossover(population, parents_index)
+        elif RECOMBINATIONS == 2:
+            offspring = RM.edge_crossover(population, parents_index)
         else:
             offspring = []
             print('Recombination method not selected. Defaulting to original offspring.')
@@ -194,7 +200,7 @@ if __name__ == '__main__':
               for x in range(len(PARENT_STRINGS))]
     op = None
 
-    for _ in range(1):
+    for _ in range(RUNS):
         for x in range(len(PARENT_STRINGS)):
             for y in range(len(SURVIVOR_STRINGS)):
                 for z in range(len(MUTATION_STRINGS)):

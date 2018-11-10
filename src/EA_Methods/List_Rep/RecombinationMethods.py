@@ -108,6 +108,7 @@ def edge_crossover(parent1, parent2):
         # Randomly select the first element to insert
         x = randint(0, genome_length - 1)
 
+        # TODO - Fix
         for i in range(0, genome_length-1):
             # Set the element in the list, and increment
             offspring[i] = x
