@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import time
-from Setups.TSP.TSP_Inputs.Optimums import get_best_path
+from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 # region Globals and Setters
 FILENUM = None
@@ -88,17 +88,17 @@ def read_tsp_file(fnum):
     CITIES = pd.read_csv(abs_file_path, usecols=[1, 2], header=None, delimiter=' ')
     CITIES.columns = ['Lat', 'Lon']
     CITIES.index.names = ['City']
-
-    global DISTANCES
-    Lats = CITIES['Lat'].transpose()
-    Lons = CITIES['Lon'].transpose()
-    DISTANCES = pd.DataFrame([((Lats - Lats[i])**2 + (Lons - Lons[i])**2)**0.5 for i in range(Lons.size)])
-
     # Translate and invert the x values, and translate the y values
-    global CITIES
     CITIES['Lat'] = CITIES['Lat'] - (CITIES['Lat'].min() + (CITIES['Lat'].max() - CITIES['Lat'].min()) / 2)
     CITIES['Lon'] = (CITIES['Lon'].min() + (CITIES['Lon'].max() - CITIES['Lon'].min()) / 2) - CITIES['Lon']
     CITIES.columns = DATAFRAME_COLUMNS
+
+    global DISTANCES
+    Lats = CITIES[DATAFRAME_COLUMNS[0]].transpose()
+    Lons = CITIES[DATAFRAME_COLUMNS[1]].transpose()
+    DISTANCES = pd.DataFrame([((Lats - Lats[i])**2 + (Lons - Lons[i])**2)**0.5 for i in range(Lons.size)])
+
+
 
     global MEMOIZED
     MEMOIZED = {key: dict() for key in range(len(LOCATIONS))}
@@ -232,6 +232,6 @@ def brute_force_solver(fnum=None):
 
 
 if __name__ == '__main__':
-    # read_tsp_file(1)
-    brute_force_solver(1)
+    read_tsp_file(1)
+    # brute_force_solver(1)
 

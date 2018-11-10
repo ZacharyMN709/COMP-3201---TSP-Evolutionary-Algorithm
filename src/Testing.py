@@ -1,10 +1,6 @@
 from random import shuffle
 import time
-import os
-script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-path = os.path.join(script_dir, '..')
-os.chdir(path)
-print("Present working directory:", os.getcwd())
+
 
 
 PANDAS = 0
@@ -24,34 +20,34 @@ RUNS = 25         # Number of times each combination is run.
 
 
 if TEST:
-    from EA_Methods.List_Rep import ParentSelectionMethods as PSM
-    from EA_Methods.List_Rep import MutationMethods as MM
-    from EA_Methods.List_Rep import RecombinationMethods as RM
-    from EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
-    from Setups.EightQueens import EightQueen as DEF
-    from Setups.EightQueens.EightQueen import random_initialization as initialize
-    from Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
+    from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
+    from src.EA_Methods.List_Rep import MutationMethods as MM
+    from src.EA_Methods.List_Rep import RecombinationMethods as RM
+    from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
+    from src.Setups.EightQueens import EightQueen as DEF
+    from src.Setups.EightQueens.EightQueen import random_initialization as initialize
+    from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
     genome_length = 8
 else:
     if PANDAS:
-        from EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
-        from EA_Methods.Pandas_Rep import MutationMethods as MM
-        from EA_Methods.Pandas_Rep import RecombinationMethods as RM
-        from EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
-        from Setups.TSP import TSP_PDS as DEF
-        from Setups.TSP.TSP_PDS import read_tsp_file as parse_file
-        from Setups.TSP.TSP_PDS import random_initialization as initialize
-        from Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
+        from src.EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
+        from src.EA_Methods.Pandas_Rep import MutationMethods as MM
+        from src.EA_Methods.Pandas_Rep import RecombinationMethods as RM
+        from src.EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
+        from src.Setups.TSP import TSP_PDS as DEF
+        from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
+        from src.Setups.TSP.TSP_PDS import random_initialization as initialize
+        from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
     else:
-        from EA_Methods.List_Rep import ParentSelectionMethods as PSM
-        from EA_Methods.List_Rep import MutationMethods as MM
-        from EA_Methods.List_Rep import RecombinationMethods as RM
-        from EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
-        from Setups.TSP import TSP_LST as DEF
-        from Setups.TSP.TSP_LST import read_tsp_file as parse_file
-        from Setups.TSP.TSP_LST import random_initialization as initialize
-        from Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
-    from Setups.TSP.TSP_Inputs.Optimums import get_best_path
+        from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
+        from src.EA_Methods.List_Rep import MutationMethods as MM
+        from src.EA_Methods.List_Rep import RecombinationMethods as RM
+        from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
+        from src.Setups.TSP import TSP_LST as DEF
+        from src.Setups.TSP.TSP_LST import read_tsp_file as parse_file
+        from src.Setups.TSP.TSP_LST import random_initialization as initialize
+        from src.Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
+    from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
     genome_length = parse_file(FILENUM)
 
 
@@ -174,6 +170,20 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
 
 
 if __name__ == '__main__':
+    import os
+    import sys
+
+    def go_to_project_root():
+        path = os.path.join(os.getcwd(), '..')
+        print(path)
+        sys.path.append(path)
+        os.chdir(path)
+        print("Present working directory:", os.getcwd())
+
+
+    print("Present working directory:", os.getcwd())
+    go_to_project_root()
+
     best_fitnesses = [[[[[]  # Make a matrix of empty lists.
                  # matrix[x][y][z][w] returns a list corresponding to the functions used
               for w in range(len(RECOMBINATION_STRINGS))]
