@@ -4,7 +4,7 @@ import numpy as np
 
 # region Globals and Setters
 genome_length = 0
-pivot = 10
+p1 = 10
 shift = 5
 crossover_rate = 0.9
 
@@ -13,11 +13,11 @@ def set_genome_length(i):
     global genome_length
     genome_length = i
     global shift
-    shift = i - pivot
+    shift = i - p1
 
 
 def set_crossover_point(i):
-    global pivot
+    global p1
     pivot = i
     global shift
     shift = genome_length - i
@@ -48,20 +48,20 @@ def method_mapper(func):
 
 
 @method_mapper
-def recombination_order_crossover(individual, mate):
+def order_crossover(individual, mate):
     temp = np.roll(mate, shift)
-    mask = np.isin(temp, individual[:pivot], invert=True)
-    return np.concatenate((individual[:pivot], temp[mask]), axis=None)
+    mask = np.isin(temp, individual[:p1], invert=True)
+    return np.concatenate((individual[:p1], temp[mask]), axis=None)
 
 
 @method_mapper
-def recombination_pmx_crossover(individual, mate):
+def pmx_crossover(individual, mate):
     print('Stub Method!')
     return individual
 
 
 @method_mapper
-def recombination_edge_crossover(individual, mate):
+def edge_crossover(individual, mate):
     print('Stub Method!')
     return individual
 # endregion

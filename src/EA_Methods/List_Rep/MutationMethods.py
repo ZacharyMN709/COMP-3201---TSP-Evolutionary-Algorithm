@@ -1,4 +1,4 @@
-from random import randint, random, sample, shuffle
+from random import randint, random, shuffle
 
 
 # region Globals and Setters
@@ -103,6 +103,7 @@ def permutation_scramble(individual):
 
 
 if __name__ == '__main__':
+    from random import sample
     genome_length = 10
     mutation_rate = 1
     test = [sample([c for c in range(genome_length)], genome_length) for _ in range(genome_length)]

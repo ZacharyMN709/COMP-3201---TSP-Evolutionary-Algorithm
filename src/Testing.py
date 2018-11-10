@@ -75,10 +75,10 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
     tournament_size = population_size//10
     mutation_rate = 0.2
     crossover_rate = 0.9
-    crossover_point = genome_length//3
+    cp_1, cp_2, cp_3 = genome_length//4, 2*genome_length//4, 3*genome_length//4
 
     PSM.set_tournament_size(tournament_size)
-    RM.set_crossover_point(crossover_point)
+    RM.set_crossover_points(cp_1, cp_2, cp_3)
     RM.set_crossover_rate(crossover_rate)
     MM.set_mutation_rate(mutation_rate)
     MM.set_genome_length(genome_length)
@@ -118,7 +118,7 @@ def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
 
         # Recombination
         if RECOMBINATIONS == 0:
-            offspring = RM.recombination_order_crossover(population, parents_index)
+            offspring = RM.order_crossover(population, parents_index)
         else:
             offspring = []
             print('Recombination method not selected. Defaulting to original offspring.')
