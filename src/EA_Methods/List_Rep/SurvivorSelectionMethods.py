@@ -1,4 +1,5 @@
-from random import randint
+from random import randint, choice
+from time import clock
 
 
 # region Globals and Setters
@@ -60,3 +61,21 @@ def random_uniform(parents, parent_fitness, offspring, offspring_fitness):
 
     return population, fitness
 # endregion
+
+if __name__ == '__main__':
+    test_count = 1000
+    parent = []
+    parent_fitness = []
+    offspring = []
+    offspring_fitness = []
+
+    for _ in range(test_count):
+        parent.append(list(range(10)))
+        offspring.append(list(range(10)))
+        parent_fitness.append(15)
+        offspring_fitness.append(15)
+
+    start_time = clock()
+    for i in range(test_count):
+        random_uniform(parent, parent_fitness, offspring, offspring_fitness)
+    print(clock() - start_time)

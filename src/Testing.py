@@ -23,34 +23,34 @@ FILENUM = 1
 
 
 if TEST:
-    from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
-    from src.EA_Methods.List_Rep import MutationMethods as MM
-    from src.EA_Methods.List_Rep import RecombinationMethods as RM
-    from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
-    from src.Setups.EightQueens import EightQueen as DEF
-    from src.Setups.EightQueens.EightQueen import random_initialization as initialize
-    from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
+    from EA_Methods.List_Rep import ParentSelectionMethods as PSM
+    from EA_Methods.List_Rep import MutationMethods as MM
+    from EA_Methods.List_Rep import RecombinationMethods as RM
+    from EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
+    from Setups.EightQueens import EightQueen as DEF
+    from Setups.EightQueens.EightQueen import random_initialization as initialize
+    from Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
     genome_length = 8
 else:
     if PANDAS:
-        from src.EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
-        from src.EA_Methods.Pandas_Rep import MutationMethods as MM
-        from src.EA_Methods.Pandas_Rep import RecombinationMethods as RM
-        from src.EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
-        from src.Setups.TSP import TSP_PDS as DEF
-        from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
-        from src.Setups.TSP.TSP_PDS import random_initialization as initialize
-        from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
+        from EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
+        from EA_Methods.Pandas_Rep import MutationMethods as MM
+        from EA_Methods.Pandas_Rep import RecombinationMethods as RM
+        from EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
+        from Setups.TSP import TSP_PDS as DEF
+        from Setups.TSP.TSP_PDS import read_tsp_file as parse_file
+        from Setups.TSP.TSP_PDS import random_initialization as initialize
+        from Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
     else:
-        from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
-        from src.EA_Methods.List_Rep import MutationMethods as MM
-        from src.EA_Methods.List_Rep import RecombinationMethods as RM
-        from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
-        from src.Setups.TSP import TSP_LST as DEF
-        from src.Setups.TSP.TSP_LST import read_tsp_file as parse_file
-        from src.Setups.TSP.TSP_LST import random_initialization as initialize
-        from src.Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
-    from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
+        from EA_Methods.List_Rep import ParentSelectionMethods as PSM
+        from EA_Methods.List_Rep import MutationMethods as MM
+        from EA_Methods.List_Rep import RecombinationMethods as RM
+        from EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
+        from Setups.TSP import TSP_LST as DEF
+        from Setups.TSP.TSP_LST import read_tsp_file as parse_file
+        from Setups.TSP.TSP_LST import random_initialization as initialize
+        from Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
+    from Setups.TSP.TSP_Inputs.Optimums import get_best_path
     genome_length = parse_file(FILENUM)
 
 
