@@ -1,4 +1,5 @@
 from random import random, randint
+from copy import deepcopy
 
 
 # region Globals and Setters
@@ -88,34 +89,58 @@ def pmx_crossover(parent1, parent2):
 
 @method_randomizer
 def edge_crossover(parent1, parent2):
+    # Make the edge list.
     edge_list = {key: set() for key in parent1}
     for x in range(-1, genome_length-1):
         edge_list[parent1[x]].add(parent1[x-1])
         edge_list[parent1[x]].add(parent1[x+1])
         edge_list[parent2[x]].add(parent2[x-1])
         edge_list[parent2[x]].add(parent2[x+1])
-    edge_list_lens = {key: set() for key in range(2, 6)}
-    for key in edge_list: edge_list_lens[len(edge_list[key])].add(key)
+
+    # Make a dictionary of edge list lengths to simplify handling of edges.
+    edge_list_len = {key: set() for key in range(0, 5)}
+    for key in edge_list: edge_list_len[len(edge_list[key])].add(key)
 
     def edge_helper(edge_list, edge_list_len):
+        # Generate an empty individual
         offspring = [None for _ in range(genome_length)]
+
+        # Randomly select the first element to insert
         x = randint(0, genome_length - 1)
-        offspring[0] = x
 
+        for i in range(0, genome_length-1):
+            # Set the element in the list, and increment
+            offspring[i] = x
 
+            # Clean and update the edge list and length list
+            for y in edge_list[x]:
+                edge_list_len[len(edge_list[y]) - 1].add(y)
+                edge_list_len[len(edge_list[y])].remove(y)
+                edge_list[y].remove(x)
+            edge_list_len[len(edge_list[x])].remove(x)
 
+            # Find the next edge through the lowest list length
+            for y in range(1, 5):
+                temp = edge_list[x] & edge_list_len[y]
+                if len(temp) != 0:
+                    del edge_list[x]
+                    x = temp.pop()
+                    break
 
-    print('Stub Method!')
-    return parent1, parent2
+        # Set the last element manually, as it is the only one left.
+        offspring[-1] = edge_list[x].pop()
+        return offspring
+
+    return edge_helper(deepcopy(edge_list), deepcopy(edge_list_len)), edge_helper(edge_list, edge_list_len)
 # endregion
 
 
 if __name__ == '__main__':
     from random import sample
-    genome_length = 10
+    set_genome_length(10)
     crossover_rate = 1
     test = [sample([c for c in range(genome_length)], genome_length) for _ in range(genome_length)]
-    out = pmx_crossover(test, [c for c in range(genome_length)])
+    out = edge_crossover(test, [c for c in range(genome_length)])
     for x in range(len(test)):
         print(test[x])
         print(out[x])
