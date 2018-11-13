@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test_Pilot.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/Presentation - Pandas Ver.ipynb" afterPath="$PROJECT_DIR$/src/Presentation - Pandas Ver.ipynb" />
+      <change beforePath="$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py" afterPath="$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py" />
+      <change beforePath="$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py" afterPath="$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py" />
+      <change beforePath="$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py" afterPath="$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py" />
+      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py" />
       <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
       <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_PDS.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_PDS.py" />
       <change beforePath="$PROJECT_DIR$/src/Testing.py" afterPath="$PROJECT_DIR$/src/Testing.py" />
@@ -28,7 +32,8 @@
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$MutationMethods.coverage" NAME="MutationMethods Coverage Results" MODIFIED="1541693651897" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/EA_Methods/List_Rep" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Optimums.coverage" NAME="Optimums Coverage Results" MODIFIED="1541781731611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Main.coverage" NAME="Main Coverage Results" MODIFIED="1540609486080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Testing.coverage" NAME="Testing Coverage Results" MODIFIED="1541874196418" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Testing.coverage" NAME="Testing Coverage Results" MODIFIED="1542078783514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
+    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Test_Pilot.coverage" NAME="Test_Pilot Coverage Results" MODIFIED="1542148181330" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/COMP_3201___Response_3___Code$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1540307553443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -36,30 +41,28 @@
       <file leaf-file-name="scratch" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Documents/scratch">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="680">
-              <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+            <state relative-caret-position="166">
+              <caret line="297" column="0" lean-forward="true" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Testing.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Testing.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="151">
-              <caret line="180" column="20" lean-forward="false" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
-              <folding>
-                <element signature="e#0#26#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="298">
+              <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Optimums.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py">
+      <file leaf-file-name="Test_Pilot.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+            <state relative-caret-position="128">
+              <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -81,6 +84,7 @@
       <find />
       <find>,</find>
       <find>62753.80992618512</find>
+      <find>[v][x][y][z][w]</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -113,7 +117,6 @@
         <option value="$PROJECT_DIR$/src/EA_Methods/ParentSelectionMethods.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/MutationMethods.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP.py" />
-        <option value="$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_PD.py" />
         <option value="$PROJECT_DIR$/src/Presentation - Pandas Ver.ipynb" />
         <option value="$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/SurvivorSelectionMethods.py" />
@@ -127,15 +130,18 @@
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/CDN.txt" />
         <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/ParentSelectionMethods.py" />
         <option value="$PROJECT_DIR$/src/Other/Modular_Reference.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py" />
         <option value="$PROJECT_DIR$/Testing.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/RecombinationMethods.py" />
-        <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py" />
+        <option value="$PROJECT_DIR$/src/Other/Timer.py" />
         <option value="$PROJECT_DIR$/Documents/scratch" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py" />
+        <option value="$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_PDS.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
+        <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py" />
         <option value="$PROJECT_DIR$/src/Testing.py" />
+        <option value="$PROJECT_DIR$/Test_Pilot.py" />
       </list>
     </option>
   </component>
@@ -175,18 +181,40 @@
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Documents" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="EA_Methods" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="EA_Methods" type="462c0819:PsiDirectoryNode" />
+              <item name="List_Rep" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="EA_Methods" type="462c0819:PsiDirectoryNode" />
+              <item name="Pandas_Rep" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Setups" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Setups" type="462c0819:PsiDirectoryNode" />
+              <item name="EightQueens" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
@@ -373,7 +401,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Testing">
+  <component name="RunManager" selected="Python.Test_Pilot">
     <configuration name="RecombinationMethods" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -431,7 +459,7 @@
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
     </configuration>
-    <configuration name="Testing (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="Test_Pilot" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
@@ -444,7 +472,7 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="COMP 3201 - Assignment 3" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Testing.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Test_Pilot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -490,17 +518,17 @@
       <item index="0" class="java.lang.String" itemvalue="Jupyter Notebook.COMP 3201 - Assignment 3" />
       <item index="1" class="java.lang.String" itemvalue="Python.Testing" />
       <item index="2" class="java.lang.String" itemvalue="Python.TSP_LST" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Testing (1)" />
-      <item index="4" class="java.lang.String" itemvalue="Python.RecombinationMethods" />
-      <item index="5" class="java.lang.String" itemvalue="Python.TSP_PDS" />
+      <item index="3" class="java.lang.String" itemvalue="Python.RecombinationMethods" />
+      <item index="4" class="java.lang.String" itemvalue="Python.TSP_PDS" />
+      <item index="5" class="java.lang.String" itemvalue="Python.Test_Pilot" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Testing" />
-        <item index="1" class="java.lang.String" itemvalue="Python.TSP_LST" />
-        <item index="2" class="java.lang.String" itemvalue="Python.TSP_PDS" />
-        <item index="3" class="java.lang.String" itemvalue="Python.RecombinationMethods" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Testing (1)" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Test_Pilot" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Testing" />
+        <item index="2" class="java.lang.String" itemvalue="Python.TSP_LST" />
+        <item index="3" class="java.lang.String" itemvalue="Python.TSP_PDS" />
+        <item index="4" class="java.lang.String" itemvalue="Python.RecombinationMethods" />
       </list>
     </recent_temporary>
   </component>
@@ -770,7 +798,14 @@
       <option name="project" value="LOCAL" />
       <updated>1541871201223</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Another attempt at resolving path issues.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
+      <created>1541874263915</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1541874263915</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TodoView">
@@ -788,7 +823,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.42598686" sideWeight="0.4924357" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2631579" sideWeight="0.4924357" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -817,7 +852,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Some general tidying-up.&#10;Translated GPS points so graphical representation is more meaningful.&#10;Backed-up presentation notebook, before attempting optimization.&#10;TODO: Finish implementing mutation and crossover methods." />
     <MESSAGE value="Improved the Memoization set-up.&#10;Added a brute force solver for the TSP, but throws 'MemoryError', due to computational size of the problem. For now, randomly shuffles the list, and compares against the previous optimal ad infinitum.&#10;TODO: Finish implementing mutation and crossover methods." />
     <MESSAGE value="Added another brute-force solver, works, though is unfeasible for scale of problems.&#10;TODO: Finish implementing mutation and crossover methods." />
     <MESSAGE value="Added a folder of relevant PDFs, for reference.&#10;Also added a heuristic to the depth first brute force of TSP.&#10;TODO: Finish implementing mutation and crossover methods." />
@@ -842,39 +876,16 @@
     <MESSAGE value="Made the file paths work system independently, and fixed their root to the main project folder.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Added Partially Mapped Crossover in the list implementation, and started on the Edge List function.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas." />
     <MESSAGE value="Finished the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
+    <MESSAGE value="Another attempt at resolving path issues.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
+    <option name="LAST_COMMIT_MESSAGE" value="Another attempt at resolving path issues.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="12" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="25" lean-forward="false" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/MutationMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/ParentSelectionMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/SurvivorSelectionMethods.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1010,14 +1021,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_WesternSahara_29.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -1038,9 +1041,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1870">
           <caret line="197" column="20" lean-forward="false" selection-start-line="197" selection-start-column="20" selection-end-line="197" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1064,14 +1065,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="413">
           <caret line="63" column="18" lean-forward="false" selection-start-line="63" selection-start-column="4" selection-end-line="63" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/MutationMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-52">
-          <caret line="54" column="21" lean-forward="true" selection-start-line="54" selection-start-column="21" selection-end-line="54" selection-end-column="21" />
           <folding />
         </state>
       </provider>
@@ -1100,17 +1093,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py">
+    <entry file="file://$PROJECT_DIR$/.gitattributes">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="110" column="20" lean-forward="false" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitattributes">
+    <entry file="file://$PROJECT_DIR$/Documents/EA Proposal V2.gdoc">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -1120,34 +1111,57 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/SurvivorSelectionMethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-714">
+        <state relative-caret-position="-566">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py">
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="24" lean-forward="true" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+        <state relative-caret-position="-67">
+          <caret line="62" column="0" lean-forward="true" selection-start-line="62" selection-start-column="0" selection-end-line="62" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#34#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Other/Timer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="24" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="24" />
+        <state relative-caret-position="194">
+          <caret line="367" column="5" lean-forward="false" selection-start-line="367" selection-start-column="5" selection-end-line="367" selection-end-column="5" />
+          <folding>
+            <element signature="e#316#442#0" expanded="false" />
+            <element signature="e#642#4902#0" expanded="false" />
+            <element signature="e#4963#5189#0" expanded="false" />
+            <element signature="e#5288#37696#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Documents/scratch">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="297" column="0" lean-forward="true" selection-start-line="297" selection-start-column="0" selection-end-line="297" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3995">
-          <caret line="235" column="6" lean-forward="false" selection-start-line="235" selection-start-column="6" selection-end-line="235" selection-end-column="6" />
+        <state relative-caret-position="97">
+          <caret line="9" column="11" lean-forward="false" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
@@ -1156,29 +1170,49 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_PDS.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2873">
-          <caret line="169" column="4" lean-forward="true" selection-start-line="169" selection-start-column="4" selection-end-line="169" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="7" column="6" lean-forward="true" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Documents/scratch">
+    <entry file="file://$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="30" column="29" lean-forward="false" selection-start-line="30" selection-start-column="29" selection-end-line="30" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/MutationMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="40" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="180" column="20" lean-forward="false" selection-start-line="180" selection-start-column="20" selection-end-line="180" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="298">
+          <caret line="195" column="0" lean-forward="false" selection-start-line="195" selection-start-column="0" selection-end-line="195" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="60" column="0" lean-forward="true" selection-start-line="60" selection-start-column="0" selection-end-line="60" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

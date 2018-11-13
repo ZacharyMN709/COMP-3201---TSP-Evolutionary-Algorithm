@@ -2,6 +2,7 @@ from random import sample
 
 
 # region Globals and Setters
+MAX = True
 eval_fitness = None
 
 

@@ -5,6 +5,7 @@ import time
 from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 # region Globals and Setters
+MAX = False
 FILENUM = None
 CITIES = None
 DISTANCES = None

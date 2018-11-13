@@ -1,257 +1,195 @@
-from random import shuffle
 import time
 
 
-
-PANDAS = 0
-PARENTS = 0
-SURVIVORS = 0
-MUTATIONS = 0
-RECOMBINATIONS = 0
-PARENT_STRINGS = ['MPS', 'Tourney']
-SURVIVOR_STRINGS = ['Mu + Lambda', 'Replace']
-MUTATION_STRINGS = ['Swap', 'Insert', 'Inversion']
-RECOMBINATION_STRINGS = ['Order Crossover', 'PMX Crossover']
+def gte(x, y):
+    return x >= y
 
 
-TEST = False      # True runs 8-Queens, False runs TSP
-FILENUM = 2       # 1: Sahara   2: Uruguay   3: Canada   4: Test World
-RUNS = 25         # Number of times each combination is run.
+def lte(x, y):
+    return x <= y
 
 
-if TEST:
-    from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
-    from src.EA_Methods.List_Rep import MutationMethods as MM
-    from src.EA_Methods.List_Rep import RecombinationMethods as RM
-    from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
-    from src.Setups.EightQueens import EightQueen as DEF
-    from src.Setups.EightQueens.EightQueen import random_initialization as initialize
-    from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
-    genome_length = 8
-else:
-    if PANDAS:
-        from src.EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
-        from src.EA_Methods.Pandas_Rep import MutationMethods as MM
-        from src.EA_Methods.Pandas_Rep import RecombinationMethods as RM
-        from src.EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
-        from src.Setups.TSP import TSP_PDS as DEF
-        from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
-        from src.Setups.TSP.TSP_PDS import random_initialization as initialize
-        from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
-    else:
-        from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
-        from src.EA_Methods.List_Rep import MutationMethods as MM
-        from src.EA_Methods.List_Rep import RecombinationMethods as RM
-        from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
-        from src.Setups.TSP import TSP_LST as DEF
-        from src.Setups.TSP.TSP_LST import read_tsp_file as parse_file
-        from src.Setups.TSP.TSP_LST import random_initialization as initialize
-        from src.Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
-    from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
-    genome_length = parse_file(FILENUM)
+def gt(x, y):
+    return x > y
 
 
-def queens():
-    op_fit, optimal_solutions, generation = main(True, known_optimum=16, true_opt=True)
-    return op_fit, len(optimal_solutions), generation
+def lt(x, y):
+    return x < y
 
 
-def tsp():
-    global TEST, FILENUM
-    opt_dist, opt_path, true_opt = get_best_path(FILENUM)
-    op_fit, optimal_solutions, generation = main(False, known_optimum=opt_dist, true_opt=true_opt)
-    return op_fit, len(optimal_solutions), generation
+class EARunner:
 
+    def __init__(self, PSM, RM, MM, SSM, DEF):
+        self.PSM = PSM
+        self.RM = RM
+        self.MM = MM
+        self.SSM = SSM
+        self.DEF = DEF
+        self.op = max if self.DEF.MAX else min
+        self.cmp_eq = gte if self.DEF.MAX else lte
+        self.cmp_ne = gt if self.DEF.MAX else lt
+        self.runnable = False
+        self.testable =False
 
-def main(maximize, known_optimum=None, true_opt=False, print_gens=False):
-    global TEST, FILENUM
+        self.genome_length = None
+        self.initialize = None
+        self.eval_fitness = None
+        self.parent_selection = None
+        self.generate_offspring = None
+        self.apply_mutation = None
+        self.select_survivors = None
 
-    generation_limit = 1000
-    population_size = 60
-    mating_pool_size = population_size//2 if (population_size//2) % 2 == 0 else (population_size//2)+1  # has to be even
-    tournament_size = population_size//10
-    mutation_rate = 0.2
-    crossover_rate = 0.9
-    cp_1, cp_2, cp_3 = genome_length//4, 2*genome_length//4, 3*genome_length//4
+    def set_funcs(self, genome_len, fit_eval, pop_init, psm, rm, mm, ssm):
+        self.genome_length = genome_len
+        self.eval_fitness = fit_eval
+        self.initialize = pop_init
+        self.parent_selection = psm
+        self.generate_offspring = rm
+        self.apply_mutation = mm
+        self.select_survivors = ssm
 
-    PSM.set_tournament_size(tournament_size)
-    RM.set_genome_length(genome_length)
-    RM.set_crossover_points(cp_1, cp_2, cp_3)
-    RM.set_crossover_rate(crossover_rate)
-    MM.set_mutation_rate(mutation_rate)
-    MM.set_genome_length(genome_length)
-    DEF.set_fitness_function(eval_fitness)
+        self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
-    # Modular function declarations
-    def gte(x, y): return x >= y
-    def lte(x, y): return x <= y
-    def gt(x, y): return x > y
-    def lt(x, y): return x < y
-    op = max if maximize else min
-    cmp_eq = gte if maximize else lte
-    cmp_ne = gt if maximize else lt
-    PSM.set_op(op)
-    SSM.set_op(op)
+    def evo_algo(self, generation_limit, known_optimum=None, true_opt=False, print_gens=False):
+        if not self.runnable:
+            print("Error! Missing information to run EA. Please check the code for errors.")
+            return
 
-    # Initialize Population
-    population, fitness = initialize(population_size, genome_length)
+        population_size = 60
+        mating_pool_size = population_size//2 if (population_size//2) % 2 == 0 else (population_size//2)+1  # has to be even
+        tournament_size = population_size//10
+        mutation_rate = 0.2
+        crossover_rate = 0.9
+        cp_1, cp_2, cp_3 = self.genome_length//4, 2*self.genome_length//4, 3*self.genome_length//4
 
-    for generation in range(generation_limit):
+        self.PSM.set_tournament_size(tournament_size)
+        self.RM.set_genome_length(self.genome_length)
+        self.RM.set_crossover_points(cp_1, cp_2, cp_3)
+        self.RM.set_crossover_rate(crossover_rate)
+        self.MM.set_mutation_rate(mutation_rate)
+        self.MM.set_genome_length(self.genome_length)
+        self.MM.set_fitness_function(self.eval_fitness)
+        self.DEF.set_fitness_function(self.eval_fitness)
+        self.PSM.set_op(self.op)
+        self.SSM.set_op(self.op)
 
-        # Generation Info
-        if print_gens:
-            print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                generation+1, op(fitness), sum(fitness)/len(fitness))
-            )
+        # Initialize Population
+        population, fitness = self.initialize(population_size, self.genome_length)
 
-        # Parent Selection
-        if PARENTS == 0:
-            parents_index = PSM.mps(fitness, mating_pool_size)
-        elif PARENTS == 1:
-            parents_index = PSM.tournament(fitness, mating_pool_size)
-        else:
-            parents_index = population
-            shuffle(parents_index)
-            print('Parent method not selected. Defaulting to original population.')
+        for generation in range(generation_limit):
 
-        # Recombination
-        if RECOMBINATIONS == 0:
-            offspring = RM.order_crossover(population, parents_index)
-        elif RECOMBINATIONS == 1:
-            offspring = RM.pmx_crossover(population, parents_index)
-        elif RECOMBINATIONS == 2:
-            offspring = RM.edge_crossover(population, parents_index)
-        else:
-            offspring = []
-            print('Recombination method not selected. Defaulting to original offspring.')
-            for i in range(0, mating_pool_size, 2):
-                off1, off2 = population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
-                offspring.append(off1)
-                offspring.append(off2)
+            # Generation Info
+            if print_gens:
+                print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
+                    generation+1, self.op(fitness), sum(fitness)/len(fitness))
+                )
 
-        # Mutations Selection
-        if MUTATIONS == 0:
-            offspring = [MM.permutation_swap(i) for i in offspring]
-        elif MUTATIONS == 1:
-            offspring = [MM.permutation_insert(i) for i in offspring]
-        elif MUTATIONS == 2:
-            offspring = [MM.permutation_inversion(i) for i in offspring]
-        elif MUTATIONS == 3:
-            offspring = [MM.permutation_scramble(i) for i in offspring]
-        else:
-            print('Offspring method not selected. Defaulting to original offspring.')
-        offspring_fitness = [eval_fitness(i) for i in offspring]
+            parents_index = self.parent_selection(fitness, mating_pool_size)
+            offspring = self.generate_offspring(population, parents_index)
+            offspring, offspring_fitness = self.apply_mutation(offspring)
+            population, fitness = self.select_survivors(population, fitness, offspring, offspring_fitness)
 
-        # Survivor Selection
-        if SURVIVORS == 0:
-            population, fitness = SSM.mu_plus_lambda(population, fitness, offspring, offspring_fitness)
-        elif SURVIVORS == 1:
-            population, fitness = SSM.replacement(population, fitness, offspring, offspring_fitness)
-        else:
-            print('Survivor method not selected. Defaulting to original population and fitness.')
+            # Break if converged at optimal solution
+            if true_opt:
+                op_fit = self.op(fitness)
+                optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
+                if self.cmp_eq(op_fit, known_optimum) and (len(optimal_solutions) == population_size):
+                    print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
+                    break
 
-        # Break if converged at optimal solution
-        if true_opt:
-            op_fit = op(fitness)
-            optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
-            if cmp_eq(op_fit, known_optimum) and (len(optimal_solutions) == population_size):
-                print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
-                break
+        # Final Fitness Info
+        op_fit = self.op(fitness)
+        optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
+        print("Best solution fitness:", op_fit)
+        print("Number of optimal solutions: ", len(optimal_solutions), '/', population_size)
+        print("Best solution indexes:", optimal_solutions)
+        if self.cmp_ne(op_fit, known_optimum):
+            print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
+        print("Best solution path:", population[optimal_solutions[0]])
+        print('--- Solution Length: {} ---'.format(len(population[optimal_solutions[0]])))
+        # TODO - Grade efficacy based on TSP solutions.
+        return op_fit, optimal_solutions, generation
 
-    # Final Fitness Info
-    op_fit = op(fitness)
-    optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
-    print("Best solution fitness:", op_fit, "\nNumber of optimal solutions: ", len(optimal_solutions), '/', population_size)
-    print("Best solution indexes:", optimal_solutions)
-    if cmp_ne(op_fit, known_optimum):
-        print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
-    # TODO - Grade efficacy based on TSP solutions.
-    return op_fit, optimal_solutions, generation
+    def set_test_vars(self, pop, par, rec, mut, sur, runs):
+        self.POPULATION_METHODS = pop
+        self.PARENT_METHODS = par
+        self.RECOMBINATION_METHODS = rec
+        self.MUTATION_METHODS = mut
+        self.SURVIVOR_METHODS = sur
+        self.RUNS = runs
 
+        self.testable = pop and par and rec and mut and sur and runs
 
-if __name__ == '__main__':
-    import os
-    import sys
+    def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=False):
+        if not self.testable:
+            print("Error! Missing information to run tests. Please check the code for errors.")
+            return
 
-    def go_to_project_root():
-        path = os.path.join(os.getcwd(), '..')
-        print(path)
-        sys.path.append(path)
-        os.chdir(path)
-        print("Present working directory:", os.getcwd())
+        def run_test(v, w, x, y, z):
+            start_time = time.time()
+            if len(self.POPULATION_METHODS) != 1:
+                print("Population initialization: '{}'".format(self.POPULATION_METHODS[v][0]))
+            print("Parent selection: '{}', Survivor selection: '{}'".format(
+                self.PARENT_METHODS[w][0], self.SURVIVOR_METHODS[z][0]))
+            print("Mutation Method: '{}', Recombination Method: '{}'".format(
+                self.MUTATION_METHODS[y][0], self.RECOMBINATION_METHODS[x][0]))
 
+            self.set_funcs(self.genome_length, self.eval_fitness,
+                           self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
+                           self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1])
+            op_fit, optimal_solutions, generation = self.evo_algo(generation_limit, known_optimum, true_opt, print_gens)
 
-    print("Present working directory:", os.getcwd())
-    go_to_project_root()
+            runtime = time.time() - start_time
+            print("--- %s seconds ---" % runtime)
+            best_fitnesses[v][w][x][y][z].append(op_fit)
+            solutions_found[v][w][x][y][z].append(len(optimal_solutions))
+            final_generations[v][w][x][y][z].append(generation)
+            times_elapsed[v][w][x][y][z].append(runtime)
+            print("\n -------- \n")
 
-    best_fitnesses = [[[[[]  # Make a matrix of empty lists.
-                 # matrix[x][y][z][w] returns a list corresponding to the functions used
-              for w in range(len(RECOMBINATION_STRINGS))]
-              for z in range(len(MUTATION_STRINGS))]
-              for y in range(len(SURVIVOR_STRINGS))]
-              for x in range(len(PARENT_STRINGS))]
-    solutions_found = [[[[[]  # Make a matrix of empty lists.
-                 # matrix[x][y][z][w] returns a list corresponding to the functions used
-              for w in range(len(RECOMBINATION_STRINGS))]
-              for z in range(len(MUTATION_STRINGS))]
-              for y in range(len(SURVIVOR_STRINGS))]
-              for x in range(len(PARENT_STRINGS))]
-    final_generations = [[[[[]  # Make a matrix of empty lists.
-                 # matrix[x][y][z][w] returns a list corresponding to the functions used
-              for w in range(len(RECOMBINATION_STRINGS))]
-              for z in range(len(MUTATION_STRINGS))]
-              for y in range(len(SURVIVOR_STRINGS))]
-              for x in range(len(PARENT_STRINGS))]
-    times_elapsed = [[[[[]  # Make a matrix of empty lists.
-                 # matrix[x][y][z][w] returns a list corresponding to the functions used
-              for w in range(len(RECOMBINATION_STRINGS))]
-              for z in range(len(MUTATION_STRINGS))]
-              for y in range(len(SURVIVOR_STRINGS))]
-              for x in range(len(PARENT_STRINGS))]
-    op = None
+        def print_final(v, w, x, y, z):
+            if len(self.POPULATION_METHODS) != 1:
+                print("Population initialization: '{}'".format(self.POPULATION_METHODS[v][0]))
+            print("Parent selection: '{}', Survivor selection: '{}'".format(
+                self.PARENT_METHODS[w][0], self.SURVIVOR_METHODS[z][0]))
+            print("Mutation Method: '{}', Recombination Method: '{}'".format(
+                self.MUTATION_METHODS[y][0], self.RECOMBINATION_METHODS[x][0]))
+            print("Average fitness: {}".format(sum(best_fitnesses[v][w][x][y][z]) / len(best_fitnesses[v][w][x][y][z])))
+            print("Best fitness: {}".format(self.op(best_fitnesses[v][w][x][y][z])))
+            print("Total 'best' individuals: {}".format(sum(solutions_found[v][w][x][y][z])))
+            print("Total generations elapsed: {} generations".format(sum(final_generations[v][w][x][y][z])))
+            print("Total time elapsed: {} seconds".format(sum(times_elapsed[v][w][x][y][z])))
+            print("\n -------- \n")
 
-    for _ in range(RUNS):
-        for x in range(len(PARENT_STRINGS)):
-            for y in range(len(SURVIVOR_STRINGS)):
-                for z in range(len(MUTATION_STRINGS)):
-                    for w in range(len(RECOMBINATION_STRINGS)):
-                        PARENTS = x
-                        SURVIVORS = y
-                        MUTATIONS = z
-                        RECOMBINATIONS = w
+        # Stats Set-up
+        import copy
 
-                        start_time = time.time()
+        matrix = [[[[[[]  # Make a matrix of empty lists.
+                      # matrix[v][w][x][y][z] returns a list corresponding to the functions used
+                      for z in range(len(self.SURVIVOR_METHODS))]
+                     for y in range(len(self.MUTATION_METHODS))]
+                    for x in range(len(self.RECOMBINATION_METHODS))]
+                   for w in range(len(self.PARENT_METHODS))]
+                  for v in range(len(self.POPULATION_METHODS))]
 
-                        print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
-                        print("Mutation Method: '{}', Recombination Method: '{}'".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
-                        if TEST:
-                            op = max
-                            op_fit, num_sols, generation = queens()
-                        else:
-                            op = min
-                            op_fit, num_sols, generation = tsp()
-                        runtime = time.time() - start_time
-                        print("--- %s seconds ---" % runtime)
-                        best_fitnesses[x][y][z][w].append(op_fit)
-                        solutions_found[x][y][z][w].append(num_sols)
-                        final_generations[x][y][z][w].append(generation)
-                        times_elapsed[x][y][z][w].append(runtime)
-                        print("\n -------- \n")
+        best_fitnesses = copy.deepcopy(matrix)
+        solutions_found = copy.deepcopy(matrix)
+        final_generations = copy.deepcopy(matrix)
+        times_elapsed = copy.deepcopy(matrix)
 
-    for x in range(len(PARENT_STRINGS)):
-        for y in range(len(SURVIVOR_STRINGS)):
-            for z in range(len(MUTATION_STRINGS)):
-                for w in range(len(RECOMBINATION_STRINGS)):
-                    PARENTS = x
-                    SURVIVORS = y
-                    MUTATIONS = z
-                    RECOMBINATIONS = w
+        # EA Iterator
+        for _ in range(self.RUNS):
+            for v in range(len(self.POPULATION_METHODS)):
+                for w in range(len(self.PARENT_METHODS)):
+                    for x in range(len(self.RECOMBINATION_METHODS)):
+                        for y in range(len(self.MUTATION_METHODS)):
+                            for z in range(len(self.SURVIVOR_METHODS)):
+                                run_test(v, w, x, y, z)
 
-                    print("Parent selection: '{}', Survivor selection: '{}'".format(PARENT_STRINGS[x], SURVIVOR_STRINGS[y]))
-                    print("Mutation Method: '{}', Recombination Method: '{}'".format(MUTATION_STRINGS[z], RECOMBINATION_STRINGS[w]))
-                    print("Average fitness: {}".format(sum(best_fitnesses[x][y][z][w])/len(best_fitnesses[x][y][z][w])))
-                    print("Best fitness: {}".format(op(best_fitnesses[x][y][z][w])))
-                    print("Total 'best' individuals: {}".format(sum(solutions_found[x][y][z][w])))
-                    print("Total generations elapsed: {} generations".format(sum(final_generations[x][y][z][w])))
-                    print("Total time elapsed: {} seconds".format(sum(times_elapsed[x][y][z][w])))
-                    print("\n -------- \n")
+        # Stats Output
+        for v in range(len(self.POPULATION_METHODS)):
+            for w in range(len(self.PARENT_METHODS)):
+                for x in range(len(self.RECOMBINATION_METHODS)):
+                    for y in range(len(self.MUTATION_METHODS)):
+                        for z in range(len(self.SURVIVOR_METHODS)):
+                            print_final(v, w, x, y, z)

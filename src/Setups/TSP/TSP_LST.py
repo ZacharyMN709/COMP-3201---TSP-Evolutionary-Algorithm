@@ -7,6 +7,7 @@ import time
 from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 # region Globals and Setters
+MAX = False
 FILENUM = None
 LOCATIONS = dict()
 CITIES = None
@@ -63,7 +64,6 @@ def read_tsp_file(fnum):
     import os
     script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
     abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
-    print(abs_file_path)
 
     with open(abs_file_path, 'r') as f:
         # Read and parse the file

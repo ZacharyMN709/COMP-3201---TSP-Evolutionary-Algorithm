@@ -4,6 +4,7 @@ from random import randint, random, shuffle
 # region Globals and Setters
 genome_length = 0
 mutation_rate = 0.2
+eval_fitness = None
 
 
 def set_genome_length(i):
@@ -14,21 +15,31 @@ def set_genome_length(i):
 def set_mutation_rate(i):
     global mutation_rate
     mutation_rate = i
+
+
+def set_fitness_function(i):
+    global eval_fitness
+    eval_fitness = i
 # endregion
 
 
 # region Mutation Methods
 
 # Takes in a method, and then 'injects' the random chance of running into the function
-def method_randomizer(func):
-    def select_method(offspring):
-        # If apply the mutation X% of the time,
-        if random() < mutation_rate:
-            return func(offspring)
-        # and the original if the mutation is not applied.
-        else:
-            return offspring
-    return select_method
+def method_mapper(func):
+    def mutator(offspring):
+        def method_randomizer(individual):
+            # If apply the mutation X% of the time,
+            if random() < mutation_rate:
+                return func(individual)
+            # and the original if the mutation is not applied.
+            else:
+                return individual
+
+        offspring = [method_randomizer(i) for i in offspring]
+        offspring_fitness = [eval_fitness(i) for i in offspring]
+        return offspring, offspring_fitness
+    return mutator
 
 
 def gen_two_nums(substring):
@@ -57,7 +68,7 @@ def gen_two_nums(substring):
         return x, y
 
 
-@method_randomizer
+@method_mapper
 def permutation_swap(individual):
     # Generate two random indices
     x, y = gen_two_nums(False)
@@ -68,7 +79,7 @@ def permutation_swap(individual):
     return individual
 
 
-@method_randomizer
+@method_mapper
 def permutation_insert(individual):
     # Generate two random indices
     x, y = gen_two_nums(False)
@@ -80,7 +91,7 @@ def permutation_insert(individual):
     return individual
 
 
-@method_randomizer
+@method_mapper
 def permutation_inversion(individual):
     # Generate two random indices in ascending order
     x, y = gen_two_nums(True)
@@ -89,7 +100,7 @@ def permutation_inversion(individual):
     return individual[:x] + individual[x:y][::-1] + individual[y:]
 
 
-@method_randomizer
+@method_mapper
 def permutation_scramble(individual):
     # Generate two random indices in ascending order
     x, y = gen_two_nums(True)
@@ -103,11 +114,19 @@ def permutation_scramble(individual):
 
 
 if __name__ == '__main__':
+    import time
     from random import sample
-    genome_length = 10
+    genome_length = 100
     mutation_rate = 1
+
+    mutate = permutation_insert
+
+    start_time = time.time()
     test = [sample([c for c in range(genome_length)], genome_length) for _ in range(genome_length)]
     for i in test:
         print(i)
-        print(permutation_inversion(i))
+        print(mutate(i))
         print('- - -')
+
+    runtime = time.time() - start_time
+    print("--- %s seconds ---" % runtime)

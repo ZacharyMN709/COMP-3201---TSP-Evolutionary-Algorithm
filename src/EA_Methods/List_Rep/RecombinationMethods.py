@@ -56,8 +56,8 @@ def method_randomizer(func):
 @method_randomizer
 def order_crossover(parent1, parent2):
     # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
-    offspring1 = parent1[:p1] + [x for x in parent2[p1:] + parent2[:p1] if x not in parent1[:p1]]
-    offspring2 = parent2[:p1] + [x for x in parent1[p1:] + parent1[:p1] if x not in parent2[:p1]]
+    offspring1 = parent1[:p1] + [x for x in parent2[p1:] + parent2[:p1] if x not in set(parent1[:p1])]
+    offspring2 = parent2[:p1] + [x for x in parent1[p1:] + parent1[:p1] if x not in set(parent2[:p1])]
     return offspring1, offspring2
 
 
