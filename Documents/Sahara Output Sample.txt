@@ -1,0 +1,421 @@
+Parent selection: 'Tourney', Survivor selection: 'Mu + Lambda'
+Mutation Method: 'Inversion', Recombination Method: 'PMX Crossover'
+Generation: 20
+  Best fitness: 56734.91042864735
+  Avg. fitness: 58376.811113348216
+Generation: 40
+  Best fitness: 48443.04892351006
+  Avg. fitness: 48680.031380687244
+Generation: 60
+  Best fitness: 41600.369449382204
+  Avg. fitness: 45580.183056935115
+Generation: 80
+  Best fitness: 35971.39934253132
+  Avg. fitness: 36605.13108164927
+Generation: 100
+  Best fitness: 32887.82097511885
+  Avg. fitness: 32887.820975118826
+Generation: 120
+  Best fitness: 32150.694354198073
+  Avg. fitness: 32308.965328091752
+Generation: 140
+  Best fitness: 31580.46060532736
+  Avg. fitness: 31674.551895336273
+Generation: 160
+  Best fitness: 31483.05498558104
+  Avg. fitness: 31483.054985581017
+Generation: 180
+  Best fitness: 30284.97621563063
+  Avg. fitness: 30632.562491489432
+Generation: 200
+  Best fitness: 29196.39456741375
+  Avg. fitness: 29196.394567413725
+Generation: 220
+  Best fitness: 29196.39456741375
+  Avg. fitness: 29196.394567413725
+Generation: 240
+  Best fitness: 29196.39456741375
+  Avg. fitness: 29196.394567413725
+Generation: 260
+  Best fitness: 29196.39456741375
+  Avg. fitness: 29196.394567413725
+Generation: 280
+  Best fitness: 29196.39456741375
+  Avg. fitness: 29196.394567413725
+Generation: 300
+  Best fitness: 29196.39456741375
+  Avg. fitness: 29196.394567413725
+Generation: 320
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 340
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 360
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 380
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 400
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 420
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 440
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 460
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 480
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Generation: 500
+  Best fitness: 28825.76817709046
+  Avg. fitness: 28825.76817709045
+Best solution fitness: 28825.76817709046
+Best solution 4.44% larger than true optimum.
+Number of optimal solutions:  60 / 60
+Best solution indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+Best solution path: [4, 0, 1, 5, 9, 10, 14, 18, 17, 21, 22, 20, 28, 27, 25, 24, 26, 23, 15, 19, 16, 13, 12, 11, 8, 6, 2, 3, 7]
+--- 0.9634237289428711 seconds ---
+
+ --------
+
+Parent selection: 'Tourney', Survivor selection: 'Mu + Lambda'
+Mutation Method: 'Inversion', Recombination Method: 'PMX Crossover'
+Generation: 20
+  Best fitness: 65431.37968422247
+  Avg. fitness: 68238.55236615584
+Generation: 40
+  Best fitness: 49099.65790113299
+  Avg. fitness: 54615.96270582155
+Generation: 60
+  Best fitness: 43808.803643384264
+  Avg. fitness: 43953.95058281718
+Generation: 80
+  Best fitness: 42323.696613406275
+  Avg. fitness: 43051.52610198909
+Generation: 100
+  Best fitness: 38154.49454755783
+  Avg. fitness: 40286.05550732885
+Generation: 120
+  Best fitness: 35209.467967780314
+  Avg. fitness: 35533.92518215478
+Generation: 140
+  Best fitness: 34508.7212157699
+  Avg. fitness: 34602.87998152466
+Generation: 160
+  Best fitness: 32910.20931186754
+  Avg. fitness: 32910.209311867584
+Generation: 180
+  Best fitness: 31762.125489347796
+  Avg. fitness: 31762.125489347833
+Generation: 200
+  Best fitness: 29247.463451856274
+  Avg. fitness: 29247.463451856278
+Generation: 220
+  Best fitness: 29238.343622672583
+  Avg. fitness: 29238.3436226726
+Generation: 240
+  Best fitness: 29238.343622672583
+  Avg. fitness: 29238.3436226726
+Generation: 260
+  Best fitness: 29238.343622672583
+  Avg. fitness: 29238.3436226726
+Generation: 280
+  Best fitness: 29132.608193185562
+  Avg. fitness: 29132.60819318559
+Generation: 300
+  Best fitness: 29132.608193185562
+  Avg. fitness: 29132.60819318559
+Generation: 320
+  Best fitness: 28964.50733185212
+  Avg. fitness: 29100.237532761646
+Generation: 340
+  Best fitness: 28964.50733185212
+  Avg. fitness: 28964.507331852106
+Generation: 360
+  Best fitness: 27614.478081746205
+  Avg. fitness: 27614.47808174624
+Ending early. Converged at generation: 373/500
+Best solution fitness: 27601.173774493756
+Best solution 0.00% larger than true optimum.
+Number of optimal solutions:  60 / 60
+Best solution indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+Best solution path: [16, 17, 18, 14, 11, 10, 9, 5, 1, 0, 4, 7, 3, 2, 6, 8, 12, 13, 15, 23, 26, 24, 19, 25, 27, 28, 22, 21, 20]
+--- 0.7489957809448242 seconds ---
+
+ --------
+
+Parent selection: 'Tourney', Survivor selection: 'Mu + Lambda'
+Mutation Method: 'Inversion', Recombination Method: 'PMX Crossover'
+Generation: 20
+  Best fitness: 63251.42997585056
+  Avg. fitness: 66871.3503683842
+Generation: 40
+  Best fitness: 56600.4254766039
+  Avg. fitness: 58871.37651007993
+Generation: 60
+  Best fitness: 49094.34472397654
+  Avg. fitness: 51055.12459261704
+Generation: 80
+  Best fitness: 40868.85717895109
+  Avg. fitness: 40977.07905410904
+Generation: 100
+  Best fitness: 37898.12321253384
+  Avg. fitness: 38824.030531854674
+Generation: 120
+  Best fitness: 36495.61061157154
+  Avg. fitness: 37031.06841412456
+Generation: 140
+  Best fitness: 36221.243280019306
+  Avg. fitness: 36221.24328001933
+Generation: 160
+  Best fitness: 32200.04634250241
+  Avg. fitness: 35105.5733578819
+Generation: 180
+  Best fitness: 31167.618255502082
+  Avg. fitness: 31167.618255502082
+Generation: 200
+  Best fitness: 30445.076252224917
+  Avg. fitness: 30635.38900385116
+Generation: 220
+  Best fitness: 30435.52115636226
+  Avg. fitness: 30435.52115636226
+Generation: 240
+  Best fitness: 30435.52115636226
+  Avg. fitness: 30435.52115636226
+Generation: 260
+  Best fitness: 29068.9174576553
+  Avg. fitness: 29902.259035893996
+Generation: 280
+  Best fitness: 29068.9174576553
+  Avg. fitness: 29068.9174576553
+Generation: 300
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 320
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 340
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 360
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 380
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 400
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 420
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 440
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 460
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 480
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Generation: 500
+  Best fitness: 29068.917457655298
+  Avg. fitness: 29068.9174576553
+Best solution fitness: 29068.917457655298
+Best solution 5.32% larger than true optimum.
+Number of optimal solutions:  60 / 60
+Best solution indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+Best solution path: [1, 5, 10, 9, 7, 11, 12, 14, 18, 17, 16, 20, 21, 22, 28, 27, 25, 19, 24, 26, 23, 15, 13, 8, 6, 2, 3, 4, 0]
+--- 0.9644193649291992 seconds ---
+
+ --------
+
+Parent selection: 'Tourney', Survivor selection: 'Mu + Lambda'
+Mutation Method: 'Inversion', Recombination Method: 'PMX Crossover'
+Generation: 20
+  Best fitness: 61835.27900397096
+  Avg. fitness: 64566.045964136756
+Generation: 40
+  Best fitness: 57011.95014013442
+  Avg. fitness: 57252.024404749594
+Generation: 60
+  Best fitness: 52282.33379638382
+  Avg. fitness: 53115.01290675432
+Generation: 80
+  Best fitness: 44413.384395353234
+  Avg. fitness: 45422.72730698075
+Generation: 100
+  Best fitness: 42666.97857072315
+  Avg. fitness: 43297.71787205602
+Generation: 120
+  Best fitness: 39168.221393851185
+  Avg. fitness: 40904.41273928679
+Generation: 140
+  Best fitness: 37645.32828686724
+  Avg. fitness: 37935.13895605136
+Generation: 160
+  Best fitness: 36652.34228290944
+  Avg. fitness: 37293.612091453324
+Generation: 180
+  Best fitness: 36148.01802437323
+  Avg. fitness: 36148.01802437328
+Generation: 200
+  Best fitness: 35374.68352937966
+  Avg. fitness: 35596.54346103142
+Generation: 220
+  Best fitness: 32366.776054158854
+  Avg. fitness: 34048.68414636321
+Generation: 240
+  Best fitness: 30343.448729590233
+  Avg. fitness: 30731.90642466634
+Generation: 260
+  Best fitness: 29991.50063941796
+  Avg. fitness: 29991.50063941792
+Generation: 280
+  Best fitness: 28361.08279488035
+  Avg. fitness: 29889.727357069212
+Generation: 300
+  Best fitness: 28361.08279488035
+  Avg. fitness: 28361.082794880327
+Generation: 320
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28201.17423269574
+Generation: 340
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 360
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 380
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 400
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 420
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 440
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 460
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 480
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Generation: 500
+  Best fitness: 28189.75219253972
+  Avg. fitness: 28189.752192539698
+Best solution fitness: 28189.75219253972
+Best solution 2.13% larger than true optimum.
+Number of optimal solutions:  60 / 60
+Best solution indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+Best solution path: [12, 13, 16, 19, 15, 23, 26, 24, 25, 27, 28, 20, 22, 21, 17, 18, 14, 10, 9, 5, 1, 0, 4, 3, 2, 6, 8, 7, 11]
+--- 0.9723994731903076 seconds ---
+
+ --------
+
+Parent selection: 'Tourney', Survivor selection: 'Mu + Lambda'
+Mutation Method: 'Inversion', Recombination Method: 'PMX Crossover'
+Generation: 20
+  Best fitness: 67709.07364516736
+  Avg. fitness: 70280.46480272914
+Generation: 40
+  Best fitness: 54630.80647466912
+  Avg. fitness: 56028.43594715739
+Generation: 60
+  Best fitness: 45067.05358899189
+  Avg. fitness: 47329.14386235438
+Generation: 80
+  Best fitness: 38000.157145374724
+  Avg. fitness: 41110.44946304705
+Generation: 100
+  Best fitness: 35608.6482749618
+  Avg. fitness: 36065.831876538876
+Generation: 120
+  Best fitness: 33914.15300587274
+  Avg. fitness: 34098.11975649044
+Generation: 140
+  Best fitness: 31661.72833284658
+  Avg. fitness: 32148.777026000484
+Generation: 160
+  Best fitness: 31661.72833284658
+  Avg. fitness: 31661.728332846604
+Generation: 180
+  Best fitness: 30031.287314040957
+  Avg. fitness: 30031.28731404099
+Generation: 200
+  Best fitness: 30031.287314040957
+  Avg. fitness: 30031.28731404099
+Generation: 220
+  Best fitness: 29826.3258633269
+  Avg. fitness: 29826.3258633269
+Generation: 240
+  Best fitness: 29826.3258633269
+  Avg. fitness: 29826.3258633269
+Generation: 260
+  Best fitness: 29826.3258633269
+  Avg. fitness: 29826.3258633269
+Generation: 280
+  Best fitness: 29826.3258633269
+  Avg. fitness: 29826.3258633269
+Generation: 300
+  Best fitness: 29819.21423851189
+  Avg. fitness: 29819.214238511868
+Generation: 320
+  Best fitness: 29236.30047387744
+  Avg. fitness: 29649.298439540777
+Generation: 340
+  Best fitness: 28930.51669890238
+  Avg. fitness: 28930.516698902407
+Generation: 360
+  Best fitness: 28930.51669890238
+  Avg. fitness: 28930.516698902407
+Generation: 380
+  Best fitness: 28930.51669890238
+  Avg. fitness: 28930.516698902407
+Generation: 400
+  Best fitness: 28930.51669890238
+  Avg. fitness: 28930.516698902407
+Generation: 420
+  Best fitness: 28930.51669890238
+  Avg. fitness: 28930.516698902407
+Generation: 440
+  Best fitness: 28792.3065309108
+  Avg. fitness: 28796.07608463232
+Generation: 460
+  Best fitness: 28792.3065309108
+  Avg. fitness: 28792.30653091078
+Generation: 480
+  Best fitness: 28792.3065309108
+  Avg. fitness: 28792.30653091078
+Generation: 500
+  Best fitness: 28792.3065309108
+  Avg. fitness: 28792.30653091078
+Best solution fitness: 28792.3065309108
+Best solution 4.32% larger than true optimum.
+Number of optimal solutions:  60 / 60
+Best solution indexes: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60]
+Best solution path: [4, 3, 2, 6, 8, 12, 13, 19, 15, 23, 26, 24, 25, 27, 28, 22, 21, 20, 16, 17, 18, 14, 10, 9, 11, 7, 5, 1, 0]
+--- 1.0112946033477783 seconds ---
+
+ --------
+
+Parent selection: 'Tourney', Survivor selection: 'Mu + Lambda'
+Mutation Method: 'Inversion', Recombination Method: 'PMX Crossover'
+Average fitness: 28495.58362653801
+Average solution 3.24% larger than true optimum.
+Best fitness: 27601.173774493756
+Best solution 0.00% larger than true optimum.
+Total 'best' individuals: 300
+Total generations elapsed: 2373 generations
+Total time elapsed: 4.6605329513549805 seconds
+
+ --------

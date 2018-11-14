@@ -50,7 +50,7 @@ class EARunner:
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
-    def evo_algo(self, generation_limit, known_optimum=None, true_opt=False, print_gens=False):
+    def evo_algo(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0):
         if not self.runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             return
@@ -76,12 +76,12 @@ class EARunner:
         # Initialize Population
         population, fitness = self.initialize(population_size, self.genome_length)
 
-        for generation in range(generation_limit):
+        for generation in range(1, generation_limit + 1):
 
             # Generation Info
-            if print_gens:
+            if print_gens != 0 and generation % print_gens == 0:
                 print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                    generation+1, self.op(fitness), sum(fitness)/len(fitness))
+                    generation, self.op(fitness), sum(fitness)/len(fitness))
                 )
 
             parents_index = self.parent_selection(fitness, mating_pool_size)
@@ -101,12 +101,13 @@ class EARunner:
         op_fit = self.op(fitness)
         optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
         print("Best solution fitness:", op_fit)
+        if true_opt: print("Best solution {:4.2f}% larger than true optimum.".format(100*((op_fit/known_optimum)-1)))
         print("Number of optimal solutions: ", len(optimal_solutions), '/', population_size)
         print("Best solution indexes:", optimal_solutions)
         if self.cmp_ne(op_fit, known_optimum):
             print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
         print("Best solution path:", population[optimal_solutions[0]])
-        print('--- Solution Length: {} ---'.format(len(population[optimal_solutions[0]])))
+        # print('--- Solution Length: {} ---'.format(len(population[optimal_solutions[0]])))
         # TODO - Grade efficacy based on TSP solutions.
         return op_fit, optimal_solutions, generation
 
@@ -154,8 +155,14 @@ class EARunner:
                 self.PARENT_METHODS[w][0], self.SURVIVOR_METHODS[z][0]))
             print("Mutation Method: '{}', Recombination Method: '{}'".format(
                 self.MUTATION_METHODS[y][0], self.RECOMBINATION_METHODS[x][0]))
-            print("Average fitness: {}".format(sum(best_fitnesses[v][w][x][y][z]) / len(best_fitnesses[v][w][x][y][z])))
-            print("Best fitness: {}".format(self.op(best_fitnesses[v][w][x][y][z])))
+            mean = sum(best_fitnesses[v][w][x][y][z]) / len(best_fitnesses[v][w][x][y][z])
+            print("Average fitness: {}".format(mean))
+            if true_opt: print(
+                "Average solution {:4.2f}% larger than true optimum.".format(100 * ((mean / known_optimum) - 1)))
+            best = self.op(best_fitnesses[v][w][x][y][z])
+            print("Best fitness: {}".format(best))
+            if true_opt: print(
+                "Best solution {:4.2f}% larger than true optimum.".format(100 * ((best / known_optimum) - 1)))
             print("Total 'best' individuals: {}".format(sum(solutions_found[v][w][x][y][z])))
             print("Total generations elapsed: {} generations".format(sum(final_generations[v][w][x][y][z])))
             print("Total time elapsed: {} seconds".format(sum(times_elapsed[v][w][x][y][z])))

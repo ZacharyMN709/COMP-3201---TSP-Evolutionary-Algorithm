@@ -1,4 +1,6 @@
 from src.Testing import EARunner
+import os
+import sys
 
 
 def import_modules(FILENUM=0, PANDAS=False):
@@ -45,24 +47,21 @@ def generate_algoritm(FILENUM=0, PANDAS=False):
     return tester
 
 
+def go_to_project_root():
+    path = os.path.join(os.getcwd(), '..')
+    print(path)
+    sys.path.append(path)
+    os.chdir(path)
+    print("Present working directory:", os.getcwd(), '\n')
+
+
 if __name__ == '__main__':
-    # File System Housekeeping
-    import os
-    import sys
-
-    def go_to_project_root():
-        path = os.path.join(os.getcwd(), '..')
-        print(path)
-        sys.path.append(path)
-        os.chdir(path)
-        print("Present working directory:", os.getcwd(), '\n')
-
     print("Present working directory:", os.getcwd(), '\n')
 
     FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     PANDAS = False
-    RUNS = 2  # Number of times each combination is run.
-    GENERATIONS = 1000
+    RUNS = 5  # Number of times each combination is run.
+    GENERATIONS = 500
 
     PSM, RM, MM, SSM, DEF = import_modules(FILENUM, PANDAS)
 
@@ -83,7 +82,7 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum)
+    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 20)
 
 
 
