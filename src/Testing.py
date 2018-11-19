@@ -149,6 +149,7 @@ class EARunner:
             print("\n -------- \n")
 
         def print_final(v, w, x, y, z):
+            print("Number of iterations used: ".format(self.RUNS))
             if len(self.POPULATION_METHODS) != 1:
                 print("Population initialization: '{}'".format(self.POPULATION_METHODS[v][0]))
             print("Parent selection: '{}', Survivor selection: '{}'".format(

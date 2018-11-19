@@ -58,22 +58,22 @@ def go_to_project_root():
 if __name__ == '__main__':
     print("Present working directory:", os.getcwd(), '\n')
 
-    FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+    FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     PANDAS = False
     RUNS = 5  # Number of times each combination is run.
-    GENERATIONS = 500
+    GENERATIONS = 500000
 
     PSM, RM, MM, SSM, DEF = import_modules(FILENUM, PANDAS)
 
     POPULATION_METHODS = [('Random Initialization', DEF.random_initialization)]
     PARENT_METHODS = [('MPS', PSM.mps), ('Tourney', PSM.tournament)]
-    RECOMBINATION_METHODS = [('Order Crossover', RM.order_crossover), ('PMX Crossover',RM.pmx_crossover)]
+    RECOMBINATION_METHODS = [('Order Crossover', RM.order_crossover), ('PMX Crossover', RM.pmx_crossover)]
     MUTATION_METHODS = [('Swap', MM.permutation_swap), ('Insert', MM.permutation_insert), ('Inversion', MM.permutation_inversion)]
     SURVIVOR_METHODS = [('Mu + Lambda', SSM.mu_plus_lambda), ('Replace', SSM.replacement)]
 
     tester = generate_algoritm(FILENUM, PANDAS)
     tester.set_test_vars(POPULATION_METHODS, PARENT_METHODS[1:], RECOMBINATION_METHODS[1:],
-                         MUTATION_METHODS[2:], SURVIVOR_METHODS[0:1], RUNS)
+                         MUTATION_METHODS[2:], SURVIVOR_METHODS[1:], RUNS)
 
     if FILENUM:
         from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 20)
+    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 2000)
 
 
 
