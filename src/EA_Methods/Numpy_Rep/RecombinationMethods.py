@@ -1,3 +1,4 @@
+import numpy as np
 from random import random, randint
 from copy import deepcopy
 
@@ -41,11 +42,11 @@ def method_randomizer(func):
         for i in range(0, len(parents_index), 2):
             # apply the mutation randomly,
             if random() < crossover_rate:
-                offspring[i], offspring[i + 1] = \
+                offspring[i], offspring[i+1] = \
                     func(population[parents_index[i]], population[parents_index[i + 1]])
             # or add copies of the originals, if no mutation happens.
             else:
-                offspring[i], offspring[i + 1] = \
+                offspring[i], offspring[i+1] = \
                     population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
         return offspring
     return select_method

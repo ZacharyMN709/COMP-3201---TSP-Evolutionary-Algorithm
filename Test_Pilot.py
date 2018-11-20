@@ -58,10 +58,10 @@ def go_to_project_root():
 if __name__ == '__main__':
     print("Present working directory:", os.getcwd(), '\n')
 
-    FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+    FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     PANDAS = False
     RUNS = 5  # Number of times each combination is run.
-    GENERATIONS = 500000
+    GENERATIONS = 5000
 
     PSM, RM, MM, SSM, DEF = import_modules(FILENUM, PANDAS)
 
@@ -82,7 +82,7 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 2000)
+    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 100)
 
 
 

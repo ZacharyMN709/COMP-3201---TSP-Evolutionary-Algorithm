@@ -10,7 +10,6 @@ FILENUM = None
 CITIES = None
 DISTANCES = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
-MEMOIZED = dict()
 genome_length = 0
 eval_fitness = None
 op = None
@@ -94,8 +93,6 @@ def read_tsp_file(fnum):
 
     global genome_length
     genome_length = len(CITIES)
-    global MEMOIZED
-    MEMOIZED = {key: dict() for key in range(genome_length)}
 
     return genome_length
 
