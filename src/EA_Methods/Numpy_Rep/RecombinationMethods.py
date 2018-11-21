@@ -9,11 +9,14 @@ crossover_rate = 0.9
 p1 = 2
 p2 = 5
 p3 = 8
+shift = 10
 
 
 def set_genome_length(i):
     global genome_length
     genome_length = i
+    global shift
+    shift = i - p1
 
 
 def set_crossover_rate(i):
@@ -28,6 +31,8 @@ def set_crossover_points(i, j, k):
     if j > k: j, k = k, j
 
     p1, p2, p3 = i, j, k
+    global shift
+    shift = genome_length - i
 # endregion
 
 
@@ -55,9 +60,12 @@ def method_randomizer(func):
 @method_randomizer
 def order_crossover(parent1, parent2):
     # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
-    offspring1 = parent1[:p1] + [x for x in parent2[p1:] + parent2[:p1] if x not in set(parent1[:p1])]
-    offspring2 = parent2[:p1] + [x for x in parent1[p1:] + parent1[:p1] if x not in set(parent2[:p1])]
-    return offspring1, offspring2
+
+    temp1 = np.roll(parent2, shift)
+    temp2 = np.roll(parent1, shift)
+    mask1 = np.isin(temp1, parent1[:p1], invert=True)
+    mask2 = np.isin(temp2, parent2[:p1], invert=True)
+    return np.concatenate((parent1[:p1], temp1[mask1]), axis=None), np.concatenate((parent2[:p1], temp2[mask2]), axis=None)
 
 
 @method_randomizer
@@ -67,16 +75,16 @@ def pmx_crossover(parent1, parent2):
 
     def pmx_helper(parent, mate):
         # Generate simple offspring template, which contains some duplicates, to be modified.
-        offspring = mate[:p1] + parent[p1:p2] + mate[p2:]
+        offspring = np.concatenate((mate[:p1], parent[p1:p2], mate[p2:]), axis=None)
         off_mod = []
         for x in mate[p1:p2]:
             if x in diffs:
                 # Find the index of the unique element in the mate's crossover segment,
-                i = mate.index(x)
+                i, = np.where(mate == x)
                 # then in the mate, find the index of the element in the parent at the previous index,
                 # until the found index is outside the index range of the crossover points.
                 while p1 <= i < p2:
-                    i = mate.index(parent[i])
+                    i, = np.where(mate == parent[i])
                 # Save the index of the duplicate to overwrite, and the element that replaces it.
                 off_mod.append((x,  i))
         # Finally, make all of the needed adjustments to the offspring.

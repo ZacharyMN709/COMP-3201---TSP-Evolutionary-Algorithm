@@ -26,7 +26,7 @@ def fitness_applicator(func):
     def generate_population(pop_size, genome_length):
         population = func(pop_size, genome_length)
         global eval_fitness
-        return population, np.array(map(eval_fitness, population))
+        return population, [eval_fitness(i) for i in population]
     return generate_population
 
 

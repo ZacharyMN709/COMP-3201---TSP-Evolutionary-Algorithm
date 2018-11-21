@@ -57,7 +57,7 @@ def mps(fitness, mating_pool_size):
 @randomize_output
 def tournament(fitness, mating_pool_size):
     # Generate tuples of index-fitness pairs.
-    fit_indexes = [x for x in enumerate(fitness)]
+    fit_indexes = [(x, fitness[x]) for x in range(len(fitness))]
 
     # Return a list of parents indices based of the winners of the tournaments.
     return [op(sample(fit_indexes, tournament_size), key=lambda x: x[1])[0] for _ in range(mating_pool_size)]

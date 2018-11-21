@@ -37,6 +37,8 @@ def method_mapper(func):
             else:
                 return individual
 
+        offspring = [method_randomizer(i) for i in offspring]
+        return offspring, [eval_fitness(i) for i in offspring]
         offspring = np.array(map(method_randomizer, offspring))
         return offspring, np.array(map(eval_fitness, offspring))
     return mutator
@@ -82,6 +84,9 @@ def permutation_insert(individual):
     x, y = gen_two_nums(False)
 
     # Insert the value at y in the position after x
+    #a = np.asarray([1, 2, 3, 4])
+    #np.insert(a, 2, 66)
+    # >>> array([1, 2, 66, 3, 4])
     value = individual.pop(y)
     individual.insert(x+1, value)
 
@@ -93,8 +98,8 @@ def permutation_inversion(individual):
     # Generate two random indices in ascending order
     x, y = gen_two_nums(True)
 
-    # Reverse the contents from x to y
-    return individual[:x] + individual[x:y][::-1] + individual[y:]
+    # Reverse the contents from x to y, and concatenate
+    return np.concatenate((individual[:x], individual[x:y][::-1], individual[y:]), axis=None)
 
 
 @method_mapper
@@ -102,11 +107,9 @@ def permutation_scramble(individual):
     # Generate two random indices in ascending order
     x, y = gen_two_nums(True)
 
-    # Randomize the order of indices from x to y
-    temp = individual[x:y]
-    shuffle(temp)
+    # Randomize the order of indices from x to y, and concatenate
+    return np.concatenate((individual[:x], individual[x:y].sample(frac=1), individual[y:]), axis=None)
 
-    return individual[:x] + temp + individual[y:]
 # endregion
 
 

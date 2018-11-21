@@ -3,7 +3,7 @@ import os
 import sys
 
 
-def import_modules(FILENUM=0, PANDAS=False):
+def import_modules(FILENUM=0, MODULE=0):
     if not FILENUM:
         from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
         from src.EA_Methods.List_Rep import MutationMethods as MM
@@ -11,12 +11,18 @@ def import_modules(FILENUM=0, PANDAS=False):
         from src.EA_Methods.List_Rep import SurvivorSelectionMethods as SSM
         from src.Setups.EightQueens import EightQueen as DEF
     else:
-        if PANDAS:
+        if MODULE == 2:
             from src.EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
             from src.EA_Methods.Pandas_Rep import MutationMethods as MM
             from src.EA_Methods.Pandas_Rep import RecombinationMethods as RM
             from src.EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
             from src.Setups.TSP import TSP_PDS as DEF
+        elif MODULE == 1:
+            from src.EA_Methods.Numpy_Rep import ParentSelectionMethods as PSM
+            from src.EA_Methods.Numpy_Rep import MutationMethods as MM
+            from src.EA_Methods.Numpy_Rep import RecombinationMethods as RM
+            from src.EA_Methods.Numpy_Rep import SurvivorSelectionMethods as SSM
+            from src.Setups.TSP import TSP_NPY as DEF
         else:
             from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
             from src.EA_Methods.List_Rep import MutationMethods as MM
@@ -26,16 +32,20 @@ def import_modules(FILENUM=0, PANDAS=False):
     return PSM, RM, MM, SSM, DEF
 
 
-def generate_algoritm(FILENUM=0, PANDAS=False):
+def generate_algoritm(FILENUM=0, MODULE=0):
     if not FILENUM:
         from src.Setups.EightQueens.EightQueen import random_initialization as initialize
         from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
         genome_len = 8
     else:
-        if PANDAS:
+        if MODULE == 2:
             from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
             from src.Setups.TSP.TSP_PDS import random_initialization as initialize
             from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
+        elif MODULE == 1:
+            from src.Setups.TSP.TSP_NPY import read_tsp_file as parse_file
+            from src.Setups.TSP.TSP_NPY import random_initialization as initialize
+            from src.Setups.TSP.TSP_NPY import euclidean_distance as eval_fitness
         else:
             from src.Setups.TSP.TSP_LST import read_tsp_file as parse_file
             from src.Setups.TSP.TSP_LST import random_initialization as initialize
@@ -59,11 +69,11 @@ if __name__ == '__main__':
     print("Present working directory:", os.getcwd(), '\n')
 
     FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-    PANDAS = False
+    METHOD = 0  # 0: Lists   1: Numpy Arrays   2: Pandas Dataframes
     RUNS = 5  # Number of times each combination is run.
-    GENERATIONS = 5000
+    GENERATIONS = 500
 
-    PSM, RM, MM, SSM, DEF = import_modules(FILENUM, PANDAS)
+    PSM, RM, MM, SSM, DEF = import_modules(FILENUM, METHOD)
 
     POPULATION_METHODS = [('Random Initialization', DEF.random_initialization)]
     PARENT_METHODS = [('MPS', PSM.mps), ('Tourney', PSM.tournament)]
@@ -71,7 +81,7 @@ if __name__ == '__main__':
     MUTATION_METHODS = [('Swap', MM.permutation_swap), ('Insert', MM.permutation_insert), ('Inversion', MM.permutation_inversion)]
     SURVIVOR_METHODS = [('Mu + Lambda', SSM.mu_plus_lambda), ('Replace', SSM.replacement)]
 
-    tester = generate_algoritm(FILENUM, PANDAS)
+    tester = generate_algoritm(FILENUM, METHOD)
     tester.set_test_vars(POPULATION_METHODS, PARENT_METHODS[1:], RECOMBINATION_METHODS[1:],
                          MUTATION_METHODS[2:], SURVIVOR_METHODS[1:], RUNS)
 
@@ -82,7 +92,7 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 100)
+    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 25)
 
 
 
