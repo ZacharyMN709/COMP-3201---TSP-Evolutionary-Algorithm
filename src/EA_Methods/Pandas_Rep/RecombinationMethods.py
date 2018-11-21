@@ -16,9 +16,13 @@ def set_genome_length(i):
     shift = i - p1
 
 
-def set_crossover_point(i):
-    global p1
-    p1 = i
+def set_crossover_points(i, j, k):
+    global p1, p2, p3
+    if i > k: i, k = k, i
+    if i > j: i, j = j, i
+    if j > k: j, k = k, j
+
+    p1, p2, p3 = i, j, k
     global shift
     shift = genome_length - i
 

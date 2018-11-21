@@ -29,7 +29,7 @@ class EARunner:
         self.cmp_eq = gte if self.DEF.MAX else lte
         self.cmp_ne = gt if self.DEF.MAX else lt
         self.runnable = False
-        self.testable =False
+        self.testable = False
 
         self.genome_length = None
         self.initialize = None
@@ -38,8 +38,9 @@ class EARunner:
         self.generate_offspring = None
         self.apply_mutation = None
         self.select_survivors = None
+        self.manage_population = None
 
-    def set_funcs(self, genome_len, fit_eval, pop_init, psm, rm, mm, ssm):
+    def set_funcs(self, genome_len, fit_eval, pop_init, psm, rm, mm, ssm, ppm):
         self.genome_length = genome_len
         self.eval_fitness = fit_eval
         self.initialize = pop_init
@@ -47,6 +48,7 @@ class EARunner:
         self.generate_offspring = rm
         self.apply_mutation = mm
         self.select_survivors = ssm
+        self.manage_population = ppm
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
@@ -73,6 +75,8 @@ class EARunner:
         self.PSM.set_op(self.op)
         self.SSM.set_op(self.op)
 
+        PSMTime, RMTime, MMTime, SSMTime, PMMTime = 0, 0, 0, 0, 0
+
         # Initialize Population
         population, fitness = self.initialize(population_size, self.genome_length)
 
@@ -84,10 +88,26 @@ class EARunner:
                     generation, self.op(fitness), sum(fitness)/len(fitness))
                 )
 
+            start_time = time.time()
             parents_index = self.parent_selection(fitness, mating_pool_size)
+            PSMTime += time.time() - start_time
+
+            start_time = time.time()
             offspring = self.generate_offspring(population, parents_index)
+            RMTime += time.time() - start_time
+
+            start_time = time.time()
             offspring, offspring_fitness = self.apply_mutation(offspring)
+            MMTime += time.time() - start_time
+
+            start_time = time.time()
             population, fitness = self.select_survivors(population, fitness, offspring, offspring_fitness)
+            SSMTime += time.time() - start_time
+
+            # TODO - Add Population Management Methods.
+            #start_time = time.time()
+            #population, fitness = self.manage_population(population, fitness)
+            #PMMTime += time.time() - start_time
 
             # Break if converged at optimal solution
             if true_opt:
@@ -107,19 +127,20 @@ class EARunner:
         if self.cmp_ne(op_fit, known_optimum):
             print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
         print("Best solution path:", population[optimal_solutions[0]])
-        # print('--- Solution Length: {} ---'.format(len(population[optimal_solutions[0]])))
-        # TODO - Grade efficacy based on TSP solutions.
+        print("PSMTime = {:4.2f}, RMTime = {:4.2f}, MMTime = {:4.2f} SSMTime = {:4.2f}".format(PSMTime, RMTime, MMTime, SSMTime))
+        print('Total time: {:4.2f}'.format(sum([PSMTime, RMTime, MMTime, SSMTime])))
         return op_fit, optimal_solutions, generation
 
-    def set_test_vars(self, pop, par, rec, mut, sur, runs):
+    def set_test_vars(self, runs, pop, par, rec, mut, sur, man):
+        self.RUNS = runs
         self.POPULATION_METHODS = pop
         self.PARENT_METHODS = par
         self.RECOMBINATION_METHODS = rec
         self.MUTATION_METHODS = mut
         self.SURVIVOR_METHODS = sur
-        self.RUNS = runs
+        self.MANAGEMENT_METHODS = man
 
-        self.testable = pop and par and rec and mut and sur and runs
+        self.testable = pop and par and rec and mut and sur and runs and man
 
     def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=False):
         if not self.testable:

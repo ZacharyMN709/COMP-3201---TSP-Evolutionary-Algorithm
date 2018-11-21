@@ -69,7 +69,7 @@ if __name__ == '__main__':
     print("Present working directory:", os.getcwd(), '\n')
 
     FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-    METHOD = 0  # 0: Lists   1: Numpy Arrays   2: Pandas Dataframes
+    METHOD = 1  # 0: Lists   1: Numpy Arrays   2: Pandas Dataframes
     RUNS = 5  # Number of times each combination is run.
     GENERATIONS = 500
 
@@ -82,8 +82,8 @@ if __name__ == '__main__':
     SURVIVOR_METHODS = [('Mu + Lambda', SSM.mu_plus_lambda), ('Replace', SSM.replacement)]
 
     tester = generate_algoritm(FILENUM, METHOD)
-    tester.set_test_vars(POPULATION_METHODS, PARENT_METHODS[1:], RECOMBINATION_METHODS[1:],
-                         MUTATION_METHODS[2:], SURVIVOR_METHODS[1:], RUNS)
+    tester.set_test_vars(RUNS, POPULATION_METHODS, PARENT_METHODS[1:], RECOMBINATION_METHODS[1:],
+                         MUTATION_METHODS[2:], SURVIVOR_METHODS[0:1])
 
     if FILENUM:
         from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path

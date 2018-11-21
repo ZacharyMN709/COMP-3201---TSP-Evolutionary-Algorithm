@@ -39,8 +39,6 @@ def method_mapper(func):
 
         offspring = [method_randomizer(i) for i in offspring]
         return offspring, [eval_fitness(i) for i in offspring]
-        offspring = np.array(map(method_randomizer, offspring))
-        return offspring, np.array(map(eval_fitness, offspring))
     return mutator
 
 
