@@ -98,11 +98,21 @@ def read_tsp_file(fnum):
     DISTANCES = pd.DataFrame([((Lats - Lats[i])**2 + (Lons - Lons[i])**2)**0.5 for i in range(Lons.size)])
 
     return len(LOCATIONS)
+# endregion
+
+
+# region Population Seeding
+def single_random_individual(genome_length):
+    return np.random.permutation(genome_length)
+
+
+def single_heuristic_individual(genome_length):
+    return np.random.permutation(genome_length)
 
 
 @fitness_applicator
 def random_initialization(pop_size, genome_length):
-    return [np.random.permutation(genome_length) for _ in range(pop_size)]
+    return [single_random_individual(genome_length) for _ in range(pop_size)]
 
 
 @fitness_applicator
@@ -119,96 +129,6 @@ def euclidean_distance(individual):  # Minimization
 
 def calc_distance(loc1, loc2):
     return DISTANCES[loc1][loc2]
-# endregion
-
-
-# region Brute Force Solver
-def generate_hamiltonian_circuits(lst_instance):
-    """
-    ERROR: Runs out of memory!
-    A hamiltonian circuit is a loop around a graph. Of note, [1,2,3] would be
-    equivalent to [3,2,1] and [3,1,2] as they travel the same path, simply in
-    a different order - which is irrelevant to the problem.
-    :param lst_instance: Takes a list, which is an instance of the set's hamiltonian circuit.
-    :return: A list of all unique hamiltonian circuits.
-    """
-    def recursive_element_injector(lsts, to_add):
-        if len(to_add) == 0:
-            return lsts
-        else:
-            new_lsts = []
-            ele = to_add.pop(0)
-            for i in lsts:
-                for j in range(len(i), 0, -1):
-                    temp = i.copy()
-                    temp.insert(j, ele)
-                    new_lsts.append(temp)
-            del lsts  # To free memory
-            return recursive_element_injector(new_lsts, to_add)
-
-    def iterative_element_injector(lsts, to_add):
-        while len(to_add) != 0:
-            new_lsts = []
-            ele = to_add.pop(0)
-            for i in lsts:
-                for j in range(len(i), 0, -1):
-                    temp = i.copy()
-                    temp.insert(j, ele)
-                    new_lsts.append(temp)
-            lsts = new_lsts
-
-    if len(lst_instance) <= 3:
-        return lst_instance
-    else:
-        return iterative_element_injector([lst_instance[:3]], lst_instance[3:])
-
-
-def random_search(opt_dist):
-    print('Starting best:', opt_dist)
-    nodes = [i for i in range(len(LOCATIONS))]
-    counter = 0
-    print_break = 100
-    while True:
-        counter += 1
-        if counter % print_break == 0: print('.', end='')
-        if counter % (print_break * 100) == 0: print()
-        shuffle(nodes)
-        fit = euclidean_distance(nodes)
-        if fit < opt_dist:
-            opt_dist = fit
-            print('\nNew best:', fit)
-
-
-def brute_force_solver(fnum=None):
-    def depth_first_eval(start_list, to_add, opt_dist, opt_path):
-        if not to_add:
-            fitness = euclidean_distance(start_list)
-            if fitness <= opt_dist:
-                if fitness == opt_dist: print('Equal fitness found.   -  ', time.asctime(time.localtime(time.time())))
-                else: print('New best fitness found: {}   -   '.format(fitness, time.asctime(time.localtime(time.time()))))
-                opt_dist = fitness
-                opt_path = start_list.copy()
-                print(opt_path)
-            return opt_dist, opt_path
-
-        ele = to_add.pop(0)
-        for i in range(1, len(start_list)+1):
-            start_list.insert(i, ele)
-            if euclidean_distance(start_list) <= opt_dist:
-                opt_dist, opt_path = depth_first_eval(start_list, to_add, opt_dist, opt_path)
-            del start_list[i]
-        to_add.insert(0, ele)
-        return opt_dist, opt_path
-
-    if fnum: read_tsp_file(fnum)
-    opt_dist, opt_path, _ = get_best_path(FILENUM, brute_search=True)
-
-    start_time = time.time()
-    nodes = [i for i in range(len(LOCATIONS))]
-    opt_dist, opt_path = depth_first_eval(nodes[:3], nodes[3:], opt_dist, opt_path)
-    print("Heuristic aided brute force search took a total of: %s seconds" % (time.time() - start_time))
-    print('Optimal fitness: ', opt_dist)
-    print(opt_path)
 # endregion
 
 

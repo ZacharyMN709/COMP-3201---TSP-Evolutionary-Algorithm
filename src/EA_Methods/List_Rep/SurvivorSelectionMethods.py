@@ -62,6 +62,7 @@ def random_uniform(parents, parent_fitness, offspring, offspring_fitness):
     return population, fitness
 # endregion
 
+
 if __name__ == '__main__':
     test_count = 1000
     parent = []
