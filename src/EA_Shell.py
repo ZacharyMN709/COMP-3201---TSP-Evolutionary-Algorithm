@@ -145,7 +145,6 @@ class EARunner:
 
         # Final Fitness Info
         op_fit = self.op(fitness)
-        # TODO - Remove +1
         optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
         total_time = sum([PSMTime, RMTime, MMTime, SSMTime, PMMTime])
 
