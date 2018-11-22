@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Made some significant changes to the EA algorithm structure.&#10;The test suite parts are now split from the main EARunner, and access it by extending the ERRunner class and pilot module.&#10;Also cleaned up strings for ease of reading, and added tallies of individual function run-times.&#10;&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Test_Pilot.py" afterPath="$PROJECT_DIR$/Test_Pilot.py" />
-      <change beforePath="$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py" afterPath="$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py" />
-      <change beforePath="$PROJECT_DIR$/src/EA_Shell.py" afterPath="$PROJECT_DIR$/src/EA_Shell.py" />
-      <change beforePath="$PROJECT_DIR$/src/Testing.py" afterPath="$PROJECT_DIR$/src/Testing.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -70,7 +66,7 @@
       <file leaf-file-name="EA_Shell.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/EA_Shell.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
+            <state relative-caret-position="765">
               <caret line="147" column="30" lean-forward="false" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
               <folding />
             </state>
@@ -817,7 +813,14 @@
       <option name="project" value="LOCAL" />
       <updated>1542868070049</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/EA_Shell.py&#10;#&#9;src/Testing.py">
+      <created>1542897441220</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1542897441220</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TodoView">
@@ -865,7 +868,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Improved storage and handling of the optimum paths and how the data is handed around the programs. Also updated the testbed to make better use of it. &#10;TODO: Finish implementing mutation and crossover methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Branched EA_methods into files that handle vanilla python lists, and another which handles pandas and numpy implementations&#10;Also branched the TSP file into a list based initialisation and a pandas initialisation. &#10;TODO: Finish TSP pandas initialisation&#10;TODO: Finish implementing mutation and crossover methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Made a copy of the presentation file, and split it into list implmentation, and pandas implementation.&#10;TODO: Finish TSP pandas initialisation&#10;TODO: Finish implementing mutation and crossover methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Started on pandas based optimization. There are some odd errors that I can't pin down. Recombination for example, (using pd.sample) introduces boolean arrays.&#10;TODO: Track down pandas errors.&#10;TODO: Finish implementing mutation and crossover methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
@@ -890,7 +892,8 @@
     <MESSAGE value="Implemented some numpy array methods.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
     <MESSAGE value="Implemented some numpy array methods. Added a population mamangement suite of functions, which still needs work.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
     <MESSAGE value="Made some significant changes to the EA algorithm structure.&#10;The test suite parts are now split from the main EARunner, and access it by extending the ERRunner class and pilot module.&#10;Also cleaned up strings for ease of reading, and added tallies of individual function run-times.&#10;&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
-    <option name="LAST_COMMIT_MESSAGE" value="Made some significant changes to the EA algorithm structure.&#10;The test suite parts are now split from the main EARunner, and access it by extending the ERRunner class and pilot module.&#10;Also cleaned up strings for ease of reading, and added tallies of individual function run-times.&#10;&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
+    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/EA_Shell.py&#10;#&#9;src/Testing.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/EA_Shell.py&#10;#&#9;src/Testing.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1267,7 +1270,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/EA_Shell.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="765">
           <caret line="147" column="30" lean-forward="false" selection-start-line="147" selection-start-column="30" selection-end-line="147" selection-end-column="30" />
           <folding />
         </state>
