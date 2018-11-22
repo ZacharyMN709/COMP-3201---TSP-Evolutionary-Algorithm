@@ -1,32 +1,13 @@
-from random import random, sample
-
-
-def gte(x, y):
-    return x >= y
-
-
-def lte(x, y):
-    return x <= y
-
-
-def gt(x, y):
-    return x > y
-
-
-def lt(x, y):
-    return x < y
-
+from random import random
 
 # region Globals and Setters
 genome_length = 0
 population_method = None
 eval_fitness = None
 op = None
-cmp_eq = None
-cmp_ne = None
 start_temp = 10000
 cooling_rate = 0.995
-population_threshold = 20
+population_threshold = 0.35
 
 
 def set_genome_length(i):
@@ -45,9 +26,7 @@ def set_fitness_function(i):
 
 
 def set_op(i):
-    global op, cmp_eq, cmp_ne
-    cmp_eq = gte if op == max else lte
-    cmp_ne = gt if op == max else lt
+    global op
     op = i
 
 
@@ -68,6 +47,8 @@ def set_population_threshold(i):
 
 
 # region Population Management Methods
+# TODO - Optimize input as a sorted list, so that searching is not required.
+
 # TODO - Determine if the decorators are needed.
 def probabilistic_modification(func):
     def generate_output(population, fitness):
@@ -103,17 +84,32 @@ def metallurgic_annealing(population, fitness):
     probability which is gauged by the 'temperature' and 'cooling rate'
     """
 
-    global start_temp
-    start_temp *= cooling_rate
+    '''
+    // Calculate the acceptance probability
+    public static double acceptanceProbability(int energy, int newEnergy, double temperature) {
+        // If the new solution is better, accept it
+        if (newEnergy < energy) {
+            return 1.0;
+        }
+        // If the new solution is worse, calculate an acceptance probability
+        return Math.exp((energy - newEnergy) / temperature);
+    '''
 
-    new_pop = [sample([c for c in range(genome_length)], genome_length) for _ in range(len(population))]
-    new_fit = [eval_fitness(x) for x in new_pop]
+    '''
+    class MyNumbers:
+        def __iter__(self):
+            self.a = 1
+            return self
 
-    for x in range(len(population)):
-        if cmp_ne(new_fit[x], fitness[x]) or random() < 2.7182818**((fitness[x] - new_fit[x])/start_temp):
-            population[x] = new_pop[x]
-
-    return population, fitness
+        def __next__(self):
+            if self.a <= 20:
+                x = self.a
+                self.a += 1
+                return x
+            else:
+                raise StopIteration
+    '''
+    pass
 
 
 def entropic_stabilizing(population, fitness):

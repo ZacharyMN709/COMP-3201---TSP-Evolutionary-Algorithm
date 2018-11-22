@@ -95,8 +95,10 @@ def read_tsp_file(fnum):
     genome_length = len(CITIES)
 
     return genome_length
+# endregion
 
 
+# region Population Seeding
 def fitness_applicator(func):
     def generate_population(pop_size, genome_length):
         population = func(pop_size, genome_length)
@@ -105,9 +107,17 @@ def fitness_applicator(func):
     return generate_population
 
 
+def single_random_individual(genome_length):
+    return np.random.permutation(genome_length)
+
+
+def single_heuristic_individual(genome_length):
+    return np.random.permutation(genome_length)
+
+
 @fitness_applicator
 def random_initialization(pop_size, genome_length):
-    df = pd.DataFrame([(np.random.permutation(genome_length), ) for _ in range(pop_size)], columns=['individuals'])
+    df = pd.DataFrame([(single_random_individual(genome_length), ) for _ in range(pop_size)], columns=['individuals'])
     df.index.names = ['indexes']
     return df
 
@@ -126,41 +136,6 @@ def euclidean_distance(individual):  # Minimization
 
 def calc_distance(loc1, loc2):
     return DISTANCES[loc1][loc2]
-# endregion
-
-
-# region Brute Force Solver
-def brute_force_solver(fnum=None):
-    def depth_first_eval(start_list, to_add, opt_dist, opt_path, cost):
-        if to_add.size == 0:
-            if cost <= opt_dist:
-                if cost == opt_dist: print('Equal fitness found.   -  ', time.asctime(time.localtime(time.time())))
-                else: print('New best fitness found: {}   -   '.format(cost, time.asctime(time.localtime(time.time()))))
-                opt_dist = cost
-                opt_path = start_list.copy()
-                print(opt_path)
-            return opt_dist, opt_path
-
-        ele = to_add[0]
-        to_add = np.delete(to_add, 0)
-        for i in range(0, len(start_list)):
-            cost += DISTANCES[start_list[i-1]][ele] + DISTANCES[ele][start_list[i]] - DISTANCES[start_list[i - 1]][start_list[i]]
-            start_list = np.insert(start_list, i, ele)
-            if cost <= opt_dist:
-                opt_dist, opt_path = depth_first_eval(start_list, to_add, opt_dist, opt_path, cost)
-            start_list = np.delete(start_list, i)
-            cost -= DISTANCES[start_list[i-1]][ele] + DISTANCES[ele][start_list[i]] - DISTANCES[start_list[i - 1]][start_list[i]]
-        return opt_dist, opt_path
-
-    if fnum: read_tsp_file(fnum)
-    opt_dist, opt_path, _ = get_best_path(FILENUM, brute_search=True)
-
-    start_time = time.time()
-    nodes = np.array([i for i in range(genome_length-1, -1, -1)])
-    opt_dist, opt_path = depth_first_eval(nodes[:3], nodes[3:], opt_dist, opt_path, euclidean_distance(nodes[:3]))
-    print("Heuristic aided brute force search took a total of: %s seconds" % (time.time() - start_time))
-    print('Optimal fitness: ', opt_dist)
-    print(opt_path)
 # endregion
 
 
