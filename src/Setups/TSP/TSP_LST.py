@@ -14,7 +14,9 @@ CITIES = None
 DISTANCES = None
 DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 MEMOIZED = dict()
+CLUSTERS = []
 eval_fitness = None
+dist_mod = 0.10
 
 
 def set_fitness_function(i):
@@ -106,12 +108,49 @@ def read_tsp_file(fnum):
 
 
 # region Population Seeding
+def get_map_range():
+    x = CITIES.max()
+    y = CITIES.min()
+    return (x[0] - y[0]), (x[1] - y[1])
+
+
+def cities_in_radius(city, radius):
+    x, y = CITIES[DATAFRAME_COLUMNS[1]], CITIES[DATAFRAME_COLUMNS[0]]
+    bool_frame = (((x-CITIES.loc[city][1])**2 + (y-CITIES.loc[city][0])**2)**0.5) <= radius
+    image = CITIES[bool_frame]
+    image.index.names = ['City - {}'.format(city)]
+    return image
+
+
+def find_clusters():
+    height, width = get_map_range()
+    if height > width: dist = height
+    else: dist = width
+
+    cities_left = set(CITIES.index)
+
+    city_clusters = []
+
+    while len(cities_left) != 0:
+        city = sample(cities_left, 1)[0]
+        cluster = cities_left & set(cities_in_radius(city, dist*dist_mod).index)
+        cities_left = cities_left - cluster
+        city_clusters.append(list(cluster))
+
+    return city_clusters
+
+
 def single_random_individual(genome_length):
     return sample([c for c in range(genome_length)], genome_length)
 
 
 def single_heuristic_individual(genome_length):
-    return sample([c for c in range(genome_length)], genome_length)
+    shuffle(CLUSTERS)
+    indiv = []
+    for x in CLUSTERS:
+        shuffle(x)
+        indiv += x
+    return indiv
 
 
 @fitness_applicator
@@ -120,9 +159,17 @@ def random_initialization(pop_size, genome_length):
 
 
 @fitness_applicator
-def heurisitic_initialization(pop_size, genome_length):
-    print('heurisitic_initialization() is a stub Method! Returning random_initialization()')
-    return random_initialization(pop_size, genome_length)
+def heurisitic_cluster_initialization(pop_size, genome_length):
+    global CLUSTERS
+    CLUSTERS = find_clusters()
+    return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
+
+
+@fitness_applicator
+def heurisitic_grid_initialization(pop_size, genome_length):
+    global CLUSTERS
+    CLUSTERS = find_clusters()
+    return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
 # endregion
 
 
