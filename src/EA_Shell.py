@@ -18,10 +18,10 @@ def lt(x, y):
 
 
 time_string = "\
-PSMTime = {:4.2f},\
-RMTime = {:4.2f},\
-MMTime = {:4.2f},\
-SSMTime = {:4.2f},\
+PSMTime = {:4.2f},  \
+RMTime = {:4.2f},  \
+MMTime = {:4.2f},  \
+SSMTime = {:4.2f},  \
 PMMTime = {:4.2f}\n\
 Total time: {:4.2f}\
 "
@@ -83,11 +83,11 @@ class EARunner:
         population_size = 60
         mating_pool_size = population_size//2 if (population_size//2) % 2 == 0 else (population_size//2)+1  # has to be even
         tournament_size = population_size//10
-        mutation_rate = 0.2
-        crossover_rate = 0.9
+        mutation_rate = 0.20
+        crossover_rate = 0.90
         start_temp = 10000
         cooling_rate = 0.995
-        population_threshold = 0.35 * population_size
+        population_threshold = 0.20 * population_size
         cp_1, cp_2, cp_3 = self.genome_length//4, 2*self.genome_length//4, 3*self.genome_length//4
 
         self.PSM.set_tournament_size(tournament_size)
@@ -112,7 +112,7 @@ class EARunner:
             # Generation Info
             if print_gens != 0 and generation % print_gens == 0:
                 print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                    generation, self.op(fitness), sum(fitness)/len(fitness))
+                    generation, self.op(fitness), sum(fitness)/population_size)
                 )
 
             start_time = time.time()
@@ -145,8 +145,7 @@ class EARunner:
 
         # Final Fitness Info
         op_fit = self.op(fitness)
-        # TODO - Remove +1
-        optimal_solutions = [i + 1 for i in range(population_size) if fitness[i] == op_fit]
+        optimal_solutions = [i for i in range(population_size) if fitness[i] == op_fit]
         total_time = sum([PSMTime, RMTime, MMTime, SSMTime, PMMTime])
 
         print("Best solution fitness:", op_fit)

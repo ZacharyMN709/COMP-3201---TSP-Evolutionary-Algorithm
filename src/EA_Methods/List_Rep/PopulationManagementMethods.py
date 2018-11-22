@@ -1,4 +1,4 @@
-from random import random, sample
+from random import random, sample, shuffle
 
 
 def gte(x, y):
@@ -25,8 +25,13 @@ op = None
 cmp_eq = None
 cmp_ne = None
 start_temp = 10000
-cooling_rate = 0.995
+cooling_rate = 0.99
 population_threshold = 20
+
+
+def make_indiv(genome_length):
+    sample([c for c in range(genome_length)], genome_length)
+population_method = make_indiv
 
 
 def set_genome_length(i):
@@ -68,27 +73,6 @@ def set_population_threshold(i):
 
 
 # region Population Management Methods
-# TODO - Determine if the decorators are needed.
-def probabilistic_modification(func):
-    def generate_output(population, fitness):
-        best_fit = op(fitness)
-        threshold = func()
-        for x in range(genome_length):
-            if fitness[x] == best_fit and random() < threshold:
-                population[x] = population_method()
-                fitness[x] = eval_fitness(population[x])
-
-        return population, fitness
-    return generate_output
-
-
-def discretized_modification(func):
-    def generate_output(population, fitness):
-        pass
-        return population, fitness
-    return generate_output
-
-
 def static_return(population, fitness):
     """
     Makes no changes to the population
@@ -130,7 +114,7 @@ def entropic_stabilizing(population, fitness):
         threshold = 0.8*((num_best - population_threshold) / (len(population) - population_threshold))
         for x in range(genome_length):
             if fitness[x] == best_fit and random() < threshold:
-                population[x] = population_method()
+                shuffle(population[x])
                 fitness[x] = eval_fitness(population[x])
 
     return population, fitness
@@ -149,7 +133,7 @@ def ouroboric_culling(population, fitness):
         num_to_remove = num_best - population_threshold
         for x in range(genome_length):
             if fitness[x] == best_fit:
-                population[x] = population_method()
+                shuffle(population[x])
                 fitness[x] = eval_fitness(population[x])
                 num_to_remove -= 1
                 if num_to_remove == 0:

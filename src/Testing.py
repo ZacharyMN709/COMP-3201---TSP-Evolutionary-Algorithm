@@ -12,10 +12,11 @@ Management Method:           {: <25}\
 "
 
 final_output = "\
-Average fitness: {}\nBest fitness: {}\
-Total 'best' individuals: {}\n\
-Total generations elapsed: {} generations\n\
-Total time elapsed: {} seconds\
+  Average fitness: {}\n\
+  Best fitness: {}\n\
+  Total 'best' individuals: {}\n\
+  Total generations elapsed: {} generations\n\
+  Total time elapsed: {} seconds\
 "
 
 
@@ -74,7 +75,7 @@ class EATester(EARunner):
             print("\n -------- \n")
 
         def print_final(v, w, x, y, z, a):
-            print("Number of iterations used: {}".format(self.RUNS))
+            print("After {} iterations, with {} generations per iteration".format(self.RUNS, generation_limit))
             print_header(v, w, x, y, z, a)
 
             mean = sum(best_fitnesses[v][w][x][y][z][a]) / len(best_fitnesses[v][w][x][y][z][a])
@@ -87,8 +88,8 @@ class EATester(EARunner):
 
             print(final_output.format(mean, best, solutions, generations, runtime))
             if true_opt:
-                print("Average solution {:4.2f}% larger than true optimum.".format(mean_per))
-                print("Best solution {:4.2f}% larger than true optimum.".format(best_per))
+                print("  Average solution {:4.2f}% larger than true optimum.".format(mean_per))
+                print("  Best solution {:4.2f}% larger than true optimum.".format(best_per))
             print("\n -------- \n")
 
         # Stats Set-up
