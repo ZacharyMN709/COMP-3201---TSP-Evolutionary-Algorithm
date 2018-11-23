@@ -90,13 +90,14 @@ def permutation_insert(individual):
     return individual
 
 
-@method_mapper
+#@method_mapper
 def permutation_inversion(individual):
     # Generate two random indices in ascending order
     x, y = gen_two_nums(True)
 
     # Reverse the contents from x to y
-    return individual[:x] + individual[x:y][::-1] + individual[y:]
+    individual[x:y] = individual[x:y][::-1]
+    return individual
 
 
 @method_mapper
@@ -116,16 +117,14 @@ if __name__ == '__main__':
     import time
     from random import sample
     genome_length = 100
+    test_count = 1000000
     mutation_rate = 1
 
-    mutate = permutation_insert
+    test = [list(range(0, genome_length-1)) for _ in range(test_count)]
+    for i in test: shuffle(i)
 
     start_time = time.time()
-    test = [sample([c for c in range(genome_length)], genome_length) for _ in range(genome_length)]
     for i in test:
-        print(i)
-        print(mutate(i))
-        print('- - -')
-
+        permutation_inversion(i)
     runtime = time.time() - start_time
     print("--- %s seconds ---" % runtime)
