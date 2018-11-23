@@ -80,7 +80,7 @@ def permutation_insert(individual):
     return individual
 
 
-#@method_mapper
+@method_mapper
 def permutation_inversion(individual):
     # Generate two random indices in ascending order
     x, y = gen_two_nums_ascending()
@@ -109,14 +109,10 @@ if __name__ == '__main__':
     test_count = 1000000
     mutation_rate = 1
 
-    mutate = permutation_insert
-
     test = [np.random.permutation(genome_length) for _ in range(test_count)]
 
     start_time = time.time()
     for i in test:
-        result = permutation_inversion(i)
-        if len(result) != len(i):
-            raise TypeError()
+        permutation_inversion(i)
     runtime = time.time() - start_time
     print("--- %s seconds ---" % runtime)
