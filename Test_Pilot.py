@@ -12,7 +12,14 @@ def import_modules(FILENUM=0, MODULE=0):
         from src.EA_Methods.List_Rep import PopulationManagementMethods as PMM
         from src.Setups.EightQueens import EightQueen as DEF
     else:
-        if MODULE == 2:
+        if MODULE == 3:
+            from src.EA_Methods.Array_Rep import ParentSelectionMethods as PSM
+            from src.EA_Methods.Array_Rep import MutationMethods as MM
+            from src.EA_Methods.Array_Rep import RecombinationMethods as RM
+            from src.EA_Methods.Array_Rep import SurvivorSelectionMethods as SSM
+            from src.EA_Methods.Array_Rep import PopulationManagementMethods as PMM
+            from src.Setups.TSP import TSP_ARR as DEF
+        elif MODULE == 2:
             from src.EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
             from src.EA_Methods.Pandas_Rep import MutationMethods as MM
             from src.EA_Methods.Pandas_Rep import RecombinationMethods as RM
@@ -42,7 +49,11 @@ def generate_algoritm(FILENUM=0, MODULE=0):
         from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
         genome_len = 8
     else:
-        if MODULE == 2:
+        if MODULE == 3:
+            from src.Setups.TSP.TSP_ARR import read_tsp_file as parse_file
+            from src.Setups.TSP.TSP_ARR import random_initialization as initialize
+            from src.Setups.TSP.TSP_ARR import euclidean_distance as eval_fitness
+        elif MODULE == 2:
             from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
             from src.Setups.TSP.TSP_PDS import random_initialization as initialize
             from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
@@ -101,6 +112,3 @@ if __name__ == '__main__':
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
     tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 1)
-
-
-
