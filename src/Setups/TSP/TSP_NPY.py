@@ -115,14 +115,14 @@ def random_initialization(pop_size, genome_length):
 
 
 @fitness_applicator
-def heurisitic_cluster_initialization(pop_size, genome_length):
-    print('heurisitic_initialization() is a stub Method! Returning random_initialization()')
+def heuristic_cluster_initialization(pop_size, genome_length):
+    print('heuristic_initialization() is a stub Method! Returning random_initialization()')
     return random_initialization(pop_size, genome_length)
 
 
 @fitness_applicator
-def heurisitic_grid_initialization(pop_size, genome_length):
-    print('heurisitic_initialization() is a stub Method! Returning random_initialization()')
+def heuristic_grid_initialization(pop_size, genome_length):
+    print('heuristic_initialization() is a stub Method! Returning random_initialization()')
     return random_initialization(pop_size, genome_length)
 # endregion
 

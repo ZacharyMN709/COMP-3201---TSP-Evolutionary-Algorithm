@@ -39,9 +39,9 @@ class EATester(EARunner):
         def run_test(v, w, x, y, z, a, i):
             print(matrix[v][w][x][y][z][a].funcs_used())
 
-            self.set_funcs(self.genome_length, self.eval_fitness,
-                           self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
-                           self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1], self.MANAGEMENT_METHODS[a][1])
+            self.set_params(self.genome_length, self.eval_fitness,
+                            self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
+                            self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1], self.MANAGEMENT_METHODS[a][1])
             op_fit, best_indivs, gencount, run_history, time_tuple = \
                 self.run_ea_algorithm(generation_limit, known_optimum, true_opt,
                                       print_gens if not self.multithread else 0, not self.multithread)

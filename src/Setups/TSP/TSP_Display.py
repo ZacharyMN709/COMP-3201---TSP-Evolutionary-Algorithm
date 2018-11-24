@@ -5,9 +5,9 @@ import pandas as pd
 
 class GraphingHelper:
     def __init__(self, fnum):
-        self.cities = self.read_tsp_file(fnum)
         self.long_names = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
         self.short_names = ['Lat', 'Lon']
+        self.cities = self.read_tsp_file(fnum)
 
     # region Display Methods
     def start_up_display(self):

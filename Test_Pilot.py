@@ -63,7 +63,7 @@ def generate_algoritm(FILENUM=0, MODULE=0):
         genome_len = parse_file(FILENUM)
 
     tester = EATester(PSM, RM, MM, SSM, DEF, PMM)
-    tester.set_funcs(genome_len, eval_fitness, initialize, None, None, None, None, None)
+    tester.set_params(genome_len, eval_fitness, initialize, None, None, None, None, None)
     return tester
 
 
@@ -96,7 +96,7 @@ if __name__ == '__main__':
 
     PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
-    POPULATION_METHODS = [('Random Initialization', DEF.random_initialization), ('Cluster Initialization', DEF.heurisitic_cluster_initialization)]
+    POPULATION_METHODS = [('Random Initialization', DEF.random_initialization), ('Cluster Initialization', DEF.heuristic_cluster_initialization)]
     PARENT_METHODS = [('MPS', PSM.mps), ('Tourney', PSM.tournament), ('Random', PSM.random_uniform)]
     RECOMBINATION_METHODS = [('Order Crossover', RM.order_crossover), ('PMX Crossover', RM.pmx_crossover)]
     MUTATION_METHODS = [('Swap', MM.permutation_swap), ('Insert', MM.permutation_insert), ('Inversion', MM.permutation_inversion)]

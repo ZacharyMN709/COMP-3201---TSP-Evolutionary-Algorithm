@@ -119,14 +119,14 @@ def random_initialization(pop_size, genome_length):
 
 
 @fitness_applicator
-def heurisitic_cluster_initialization(pop_size, genome_length):
+def heuristic_cluster_initialization(pop_size, genome_length):
     global CLUSTERS
     CLUSTERS = find_clusters()
     return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
 
 
 @fitness_applicator
-def heurisitic_grid_initialization(pop_size, genome_length):
+def heuristic_grid_initialization(pop_size, genome_length):
     global CLUSTERS
     CLUSTERS = find_clusters()
     return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
