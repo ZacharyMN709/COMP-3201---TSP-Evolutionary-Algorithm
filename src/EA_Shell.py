@@ -2,20 +2,20 @@ import time
 from src.Other.Helper_Strings import timed_funcs
 
 
-def gte(x, y):
-    return x >= y
+def gte(new, old):
+    return new >= old
 
 
-def lte(x, y):
-    return x <= y
+def lte(new, old):
+    return new <= old
 
 
-def gt(x, y):
-    return x > y
+def gt(new, old):
+    return new > old
 
 
-def lt(x, y):
-    return x < y
+def lt(new, old):
+    return new < old
 
 
 class EARunner:
@@ -28,8 +28,8 @@ class EARunner:
         self.DEF = DEF
         self.PMM = PMM
         self.op = max if self.DEF.MAX else min
-        self.cmp_eq = gte if self.DEF.MAX else lte
-        self.cmp_ne = gt if self.DEF.MAX else lt
+        self.as_good_as = gte if self.DEF.MAX else lte
+        self.better_than = gt if self.DEF.MAX else lt
         self.runnable = False
 
         self.PSM.set_op(self.op)
@@ -68,29 +68,28 @@ class EARunner:
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
-    def run_ea_algorithm(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
+    def run(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
         if not self.runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             return
 
-
         master_start_time = time.time()
-        vars = self.EAVars
+        ea_vars = self.EAVars
 
-        self.PSM.set_tournament_size(vars.tournament_size)
-        self.RM.set_crossover_points(vars.cp_1, vars.cp_2, vars.cp_3)
-        self.RM.set_crossover_rate(vars.crossover_rate)
-        self.MM.set_mutation_rate(vars.mutation_rate)
-        self.PMM.set_start_temp(vars.start_temp)
-        self.PMM.set_cooling_rate(vars.cooling_rate)
-        self.PMM.set_population_threshold(vars.population_threshold)
+        self.PSM.set_tournament_size(ea_vars.tournament_size)
+        self.RM.set_crossover_points(ea_vars.cp_1, ea_vars.cp_2, ea_vars.cp_3)
+        self.RM.set_crossover_rate(ea_vars.crossover_rate)
+        self.MM.set_mutation_rate(ea_vars.mutation_rate)
+        self.PMM.set_start_temp(ea_vars.start_temp)
+        self.PMM.set_cooling_rate(ea_vars.cooling_rate)
+        self.PMM.set_population_threshold(ea_vars.population_threshold)
         best_indivs = [None] * generation_limit
 
         PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime = 0, 0, 0, 0, 0, 0
 
         # Initialize Population
         start_time = time.time()
-        population, fitness = self.initialize(vars.population_size, self.genome_length)
+        population, fitness = self.initialize(ea_vars.population_size, self.genome_length)
         PITime += time.time() - start_time
 
         for generation in range(1, generation_limit + 1):
@@ -98,11 +97,11 @@ class EARunner:
             # Generation Info
             if print_gens != 0 and generation % print_gens == 0:
                 print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                    generation, self.op(fitness), sum(fitness) / vars.population_size)
+                    generation, self.op(fitness), sum(fitness) / ea_vars.population_size)
                 )
 
             start_time = time.time()
-            parents_index = self.parent_selection(fitness, vars.mating_pool_size)
+            parents_index = self.parent_selection(fitness, ea_vars.mating_pool_size)
             PSMTime += time.time() - start_time
 
             start_time = time.time()
@@ -123,9 +122,9 @@ class EARunner:
 
             # Break if converged at optimal solution
             op_fit = self.op(fitness)
-            optimal_solutions = [i for i in range(vars.population_size) if fitness[i] == op_fit]
+            optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
             best_indivs[generation-1] = (op_fit, population[optimal_solutions[0]][:])
-            if true_opt and self.cmp_eq(op_fit, known_optimum) and (len(optimal_solutions) == vars.population_size):
+            if true_opt and self.as_good_as(op_fit, known_optimum) and (len(optimal_solutions) == ea_vars.population_size):
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
                 break
 
@@ -133,7 +132,7 @@ class EARunner:
         master_time = time.time() - master_start_time
         op_fit = self.op(fitness)
         best_indivs = best_indivs[:generation-1]
-        optimal_solutions = [i for i in range(vars.population_size) if fitness[i] == op_fit]
+        optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
         total_time = sum([PSMTime, RMTime, MMTime, SSMTime, PMMTime])
         time_tuple = (PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time)
 
@@ -141,9 +140,10 @@ class EARunner:
             print("Best solution fitness:", op_fit)
             if true_opt: print(
                 "Best solution {:4.2f}% larger than true optimum.".format(100 * ((op_fit / known_optimum) - 1)))
-            print("Number of optimal solutions: ", len(optimal_solutions), '/', vars.population_size)
+            print("Number of optimal solutions: ", len(optimal_solutions), '/', ea_vars.population_size)
             print("Best solution indexes:", optimal_solutions)
-            if self.cmp_ne(op_fit, known_optimum): print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
+            if known_optimum and self.better_than(op_fit, known_optimum):
+                print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
             print("Best solution path:", population[optimal_solutions[0]])
             print(timed_funcs.format(PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time))
             print("--- %{} seconds ---".format(master_time))
