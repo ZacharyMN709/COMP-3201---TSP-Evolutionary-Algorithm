@@ -70,8 +70,8 @@ def read_tsp_file(fnum):
 # region Population Seeding
 def get_map_range():
     max_lat = max(LOCATIONS, key=lambda x: x[0])[0]
-    max_lon = min(LOCATIONS, key=lambda x: x[1])[1]
-    min_lat = max(LOCATIONS, key=lambda x: x[0])[0]
+    max_lon = max(LOCATIONS, key=lambda x: x[1])[1]
+    min_lat = min(LOCATIONS, key=lambda x: x[0])[0]
     min_lon = min(LOCATIONS, key=lambda x: x[1])[1]
     return (max_lat - min_lat), (max_lon - min_lon)
 
@@ -86,17 +86,16 @@ def cities_in_radius(city, radius):
 
 def find_clusters():
     height, width = get_map_range()
-    if height > width: dist = height
-    else: dist = width
+    if height > width: dist = height * dist_mod
+    else: dist = width * dist_mod
     city_clusters = []
 
     cities_left = {x for x in range(len(LOCATIONS))}
     while len(cities_left) != 0:
         city = sample(cities_left, 1)[0]
-        cluster = cities_left & cities_in_radius(city, dist*dist_mod)
+        cluster = cities_left & cities_in_radius(city, dist)
         cities_left = cities_left - cluster
         city_clusters.append(list(cluster))
-
     return city_clusters
 
 
@@ -144,6 +143,9 @@ def calc_distance(loc1, loc2):
 
 
 if __name__ == '__main__':
-    read_tsp_file(1)
-    # brute_force_solver(1)
+    genome_length = read_tsp_file(2)
 
+    for _ in range(10):
+        set_fitness_function(euclidean_distance)
+        pop = heuristic_cluster_initialization(10, genome_length)
+        #for x in pop: print(x)

@@ -71,8 +71,8 @@ def read_tsp_file(fnum):
 # region Population Seeding
 def get_map_range():
     max_lat = max(LOCATIONS, key=lambda x: x[0])[0]
-    max_lon = min(LOCATIONS, key=lambda x: x[1])[1]
-    min_lat = max(LOCATIONS, key=lambda x: x[0])[0]
+    max_lon = max(LOCATIONS, key=lambda x: x[1])[1]
+    min_lat = min(LOCATIONS, key=lambda x: x[0])[0]
     min_lon = min(LOCATIONS, key=lambda x: x[1])[1]
     return (max_lat - min_lat), (max_lon - min_lon)
 
