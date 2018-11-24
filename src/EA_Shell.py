@@ -79,7 +79,7 @@ class EARunner:
         crossover_rate = 0.90
         start_temp = 10000
         cooling_rate = 0.995
-        population_threshold = 0.20 * population_size
+        population_threshold = 0.05 * population_size
         cp_1, cp_2, cp_3 = self.genome_length // 4, 2 * self.genome_length // 4, 3 * self.genome_length // 4
 
         self.PSM.set_tournament_size(tournament_size)
