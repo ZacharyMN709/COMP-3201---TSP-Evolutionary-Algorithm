@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/EA_Shell.py" afterPath="$PROJECT_DIR$/src/EA_Shell.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" />
-      <change beforePath="$PROJECT_DIR$/src/Testing.py" afterPath="$PROJECT_DIR$/src/Testing.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -646,13 +643,6 @@
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
     </task>
-    <task id="LOCAL-00007" summary="Added a Jupyter Notebook for presentations.&#10;Also added TODOs for further generalizing code.&#10;TODO: Finish implementing mutation and crossover methods.">
-      <created>1540624210266</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1540624210266</updated>
-    </task>
     <task id="LOCAL-00008" summary="Further restructuring&#10;Added Colours.py for future styling.&#10;TODO: Finish implementing mutation and crossover methods.">
       <created>1540657859932</created>
       <option name="number" value="00008" />
@@ -989,7 +979,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543087617527</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="Saving work on the final presentation.">
+      <created>1543095207984</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1543095207984</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="TodoView">
@@ -1003,7 +1000,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
@@ -1011,7 +1007,7 @@
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3618421" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25718608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25718608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1037,7 +1033,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added EA Proposal V2.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="ACTUALLY Added EA Proposal V2.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Fixed a few errors with numpy arrays not playing nice as elements in dataframes.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Made a few changes. Of note, and weirdly, the list brute force seems to run faster than the numpy one. To be investigated.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
@@ -1062,7 +1057,8 @@
     <MESSAGE value="Added very temporary way of storing run results using pickle." />
     <MESSAGE value="Moved Pandas dependencies into a separate presentation module." />
     <MESSAGE value="Added a helper class to the EARunner to store variables, and easily manage defaults.&#10;&#10;Also deleted many old notebooks that were obsolete due to code updates. Starting on the final presentation now." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a helper class to the EARunner to store variables, and easily manage defaults.&#10;&#10;Also deleted many old notebooks that were obsolete due to code updates. Starting on the final presentation now." />
+    <MESSAGE value="Saving work on the final presentation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Saving work on the final presentation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
