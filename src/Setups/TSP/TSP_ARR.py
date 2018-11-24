@@ -1,18 +1,12 @@
+import os
 import csv
 from random import sample, shuffle
-import matplotlib.pyplot as plt
-import pandas as pd
-import time
 from array import array
-from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 # region Globals and Setters
 MAX = False
 FILENUM = None
 LOCATIONS = dict()
-CITIES = None
-DISTANCES = None
-DATAFRAME_COLUMNS = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
 MEMOIZED = dict()
 CLUSTERS = []
 eval_fitness = None
@@ -33,20 +27,6 @@ def fitness_applicator(func):
     return generate_population
 
 
-# region Display Methods
-def start_up_display():
-    # TODO - Improve Graphs
-    CITIES.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=CITIES.index.get_values(), colormap='winter')
-    plt.title('City Locations (Normalized to origin of 0)')
-
-
-def generation_display(population):
-    # TODO - Improve Graphs
-    CITIES.plot.scatter(x=DATAFRAME_COLUMNS[0], y=DATAFRAME_COLUMNS[1], c=CITIES.index.get_values(), colormap='winter')
-    plt.title('City Locations (Normalized to origin of 0)')
-# endregion
-
-
 # region Initialization
 def read_tsp_file(fnum):
     global FILENUM
@@ -63,7 +43,6 @@ def read_tsp_file(fnum):
         print('Warning! Invalid seletion. Defaulting to test')
         fname = "TSP_Testbed_10.txt"
 
-    import os
     script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
     abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
 
@@ -78,30 +57,12 @@ def read_tsp_file(fnum):
         shift_x, shift_y = min_x + ((max_x - min_x)/2), min_y + ((max_y - min_y)/2)
 
         # NOTE: Locations are slightly odd. Original (x, y) mapped to normalized (-y, x) to produce
-        # identifiable population map of Canada.
-        locations = [(shift_y - i[1], i[0] - shift_x) for i in locations]
-
-        # Save each location relative to an index for future use.
+        # identifiable map of Canada.
         global LOCATIONS
-        LOCATIONS = {key: locations[key] for key in range(len(locations))}
-
-    global CITIES
-    # Uses indexing from 0, rather than 1, by skipping the first column in the data.
-    CITIES = pd.read_csv(abs_file_path, usecols=[1, 2], header=None, delimiter=' ')
-    CITIES.columns = ['Lat', 'Lon']
-    CITIES.index.names = ['City']
-    # Translate and invert the x values, and translate the y values
-    CITIES['Lat'] = CITIES['Lat'] - (CITIES['Lat'].min() + (CITIES['Lat'].max() - CITIES['Lat'].min()) / 2)
-    CITIES['Lon'] = (CITIES['Lon'].min() + (CITIES['Lon'].max() - CITIES['Lon'].min()) / 2) - CITIES['Lon']
-    CITIES.columns = DATAFRAME_COLUMNS
-
-    global DISTANCES
-    Lats = CITIES[DATAFRAME_COLUMNS[0]].transpose()
-    Lons = CITIES[DATAFRAME_COLUMNS[1]].transpose()
-    DISTANCES = pd.DataFrame([((Lats - Lats[i])**2 + (Lons - Lons[i])**2)**0.5 for i in range(Lons.size)])
+        LOCATIONS = [(shift_y - i[1], i[0] - shift_x) for i in locations]
 
     global MEMOIZED
-    MEMOIZED = {key: dict() for key in range(len(LOCATIONS))}
+    MEMOIZED = [[((L1[0] - L2[0]) ** 2 + (L1[1] - L2[1]) ** 2) ** 0.5 for L2 in LOCATIONS] for L1 in LOCATIONS]
 
     return len(LOCATIONS)
 # endregion
@@ -109,32 +70,31 @@ def read_tsp_file(fnum):
 
 # region Population Seeding
 def get_map_range():
-    print("THESE ARE THE CITIES", CITIES)
-    x = CITIES.max()
-    y = CITIES.min()
-    return (x[0] - y[0]), (x[1] - y[1])
+    max_lat = max(LOCATIONS, key=lambda x: x[0])[0]
+    max_lon = min(LOCATIONS, key=lambda x: x[1])[1]
+    min_lat = max(LOCATIONS, key=lambda x: x[0])[0]
+    min_lon = min(LOCATIONS, key=lambda x: x[1])[1]
+    return (max_lat - min_lat), (max_lon - min_lon)
 
 
 def cities_in_radius(city, radius):
-    x, y = CITIES[DATAFRAME_COLUMNS[1]], CITIES[DATAFRAME_COLUMNS[0]]
-    bool_frame = (((x-CITIES.loc[city][1])**2 + (y-CITIES.loc[city][0])**2)**0.5) <= radius
-    image = CITIES[bool_frame]
-    image.index.names = ['City - {}'.format(city)]
-    return image
+    city = LOCATIONS[city]
+    x, y = [(c[1]-city[1])**2 for c in LOCATIONS], [(c[0]-city[0])**2 for c in LOCATIONS]
+
+    indexes = {i for i in range(len(LOCATIONS)) if (x[i] + y[i])**0.5 <= radius}
+    return indexes
 
 
 def find_clusters():
     height, width = get_map_range()
     if height > width: dist = height
     else: dist = width
-
-    cities_left = set(CITIES.index)
-
     city_clusters = []
 
+    cities_left = {x for x in range(len(LOCATIONS))}
     while len(cities_left) != 0:
         city = sample(cities_left, 1)[0]
-        cluster = cities_left & set(cities_in_radius(city, dist*dist_mod).index)
+        cluster = cities_left & cities_in_radius(city, dist*dist_mod)
         cities_left = cities_left - cluster
         city_clusters.append(list(cluster))
 
@@ -175,23 +135,10 @@ def heurisitic_grid_initialization(pop_size, genome_length):
 
 
 # region Fitness
-def euclid_memoize(f):
-    def memoize(loc1, loc2):
-        if loc1 < loc2:  # Make sure loc1 is the bigger of the two. Removes memoization redundancy.
-            loc1, loc2 = loc2, loc1
-        if loc2 not in MEMOIZED[loc1]:
-            MEMOIZED[loc1][loc2] = f(loc1, loc2)
-        return MEMOIZED[loc1][loc2]
-    return memoize
-
-
 def euclidean_distance(individual):  # Minimization
     return sum([calc_distance(individual[i-1], individual[i]) for i in range(len(individual))])
 
 
-@euclid_memoize
 def calc_distance(loc1, loc2):
-    x1, y1 = LOCATIONS[loc1]
-    x2, y2 = LOCATIONS[loc2]
-    return ((x1-x2)**2 + (y1 - y2)**2)**0.5
+    return MEMOIZED[loc1][loc2]
 # endregion

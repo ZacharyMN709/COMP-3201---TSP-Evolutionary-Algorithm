@@ -88,11 +88,11 @@ if __name__ == '__main__':
                    1: 'NumpyV1',
                    2: 'NumpyV2'}
 
-    FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+    FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     METHOD = 0  # 0: Lists   1: Numpy Arrays   2: Numpy Arrays V2
-    RUNS = 10  # Number of times each combination is run.
-    GENERATIONS = 2000
-    SAVE = True
+    RUNS = 1  # Number of times each combination is run.
+    GENERATIONS = 20
+    SAVE = False
 
     PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
@@ -114,13 +114,15 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    result_matrix = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 20)
+    result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 100)
 
     if SAVE:
-        fname = '{}_{} R{}-G{}, {}'.format(
+        to_save = {'matrix': result_matrix,
+                   'dimensions': matrix_dimensions}
+        fname = '{}_{} R{}-G{} {}.txt'.format(
             FILE_DICT.get(FILENUM, '?'), METHOD_DICT.get(METHOD, '?'), RUNS, GENERATIONS, get_timestamp())
-        with open(fname, 'wb') as f:
-            pickle.dump(result_matrix, f)
 
-
-
+        script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+        abs_file_path = os.path.join(script_dir, 'Documents', 'Test_Matrices', fname)
+        with open(os.path.join(abs_file_path), 'wb') as f:
+            pickle.dump(to_save, f)

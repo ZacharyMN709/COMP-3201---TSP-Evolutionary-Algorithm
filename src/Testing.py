@@ -100,4 +100,4 @@ class EATester(EARunner):
                                 matrix[v][w][x][y][z][a].print_simple_stats()
                                 print("\n -------- \n")
 
-        return matrix
+        return matrix, (v, w, x, y, z, a)
