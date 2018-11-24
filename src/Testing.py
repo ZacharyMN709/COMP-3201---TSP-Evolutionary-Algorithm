@@ -1,23 +1,5 @@
-import time
 from src.EA_Shell import EARunner
-
-
-output_string = "\
-Population initialization:   {: <25}\
-Parent selection:            {: <25}\n\
-Survivor selection:          {: <25}\
-Mutation Method:             {: <25}\n\
-Recombination Method:        {: <25}\
-Management Method:           {: <25}\
-"
-
-final_output = "\
-  Average fitness: {}\n\
-  Best fitness: {}\n\
-  Total 'best' individuals: {}\n\
-  Total generations elapsed: {} generations\n\
-  Total time elapsed: {} seconds\
-"
+from src.StatsHolder import StatsHolder
 
 
 class EATester(EARunner):
@@ -31,6 +13,8 @@ class EATester(EARunner):
         self.SURVIVOR_METHODS = None
         self.MANAGEMENT_METHODS = None
         self.testable = False
+        self.multithread = False
+        self.thread_count = 0
 
     def set_test_vars(self, runs, pop, par, rec, mut, sur, man):
         self.RUNS = runs
@@ -43,60 +27,42 @@ class EATester(EARunner):
 
         self.testable = pop and par and rec and mut and sur and runs and man
 
+    def start_threading(self, thread_count):
+        self.multithread = True
+        self.thread_count = thread_count
+
+    def stop_threading(self):
+        self.multithread = False
+        self.thread_count = 0
+
     def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=False):
         if not self.testable:
             print("Error! Missing information to run tests. Please check the code for errors.")
             return
 
-        def print_header(v, w, x, y, z, a):
-            print(output_string.format(
-                self.POPULATION_METHODS[v][0],
-                self.PARENT_METHODS[w][0],
-                self.SURVIVOR_METHODS[z][0],
-                self.MUTATION_METHODS[y][0],
-                self.RECOMBINATION_METHODS[x][0],
-                self.MANAGEMENT_METHODS[a][0]))
-
-        def run_test(v, w, x, y, z, a):
-            start_time = time.time()
-            print_header(v, w, x, y, z, a)
+        def run_test(v, w, x, y, z, a, i):
+            print(matrix[v][w][x][y][z][a].funcs_used())
 
             self.set_funcs(self.genome_length, self.eval_fitness,
                            self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
                            self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1], self.MANAGEMENT_METHODS[a][1])
-            op_fit, optimal_solutions, generation = self.run_ea_algorithm(generation_limit, known_optimum, true_opt, print_gens)
+            op_fit, best_indivs, gencount, run_history, time_tuple = \
+                self.run_ea_algorithm(generation_limit, known_optimum, true_opt, print_gens, not self.multithread)
 
-            runtime = time.time() - start_time
-            print("--- %s seconds ---" % runtime)
-            best_fitnesses[v][w][x][y][z][a].append(op_fit)
-            solutions_found[v][w][x][y][z][a].append(len(optimal_solutions))
-            final_generations[v][w][x][y][z][a].append(generation)
-            times_elapsed[v][w][x][y][z][a].append(runtime)
-            print("\n -------- \n")
-
-        def print_final(v, w, x, y, z, a):
-            print("After {} iterations, with {} generations per iteration".format(self.RUNS, generation_limit))
-            print_header(v, w, x, y, z, a)
-
-            mean = sum(best_fitnesses[v][w][x][y][z][a]) / len(best_fitnesses[v][w][x][y][z][a])
-            best = self.op(best_fitnesses[v][w][x][y][z][a])
-            mean_per = 100 * ((mean / known_optimum) - 1)
-            best_per = 100 * ((best / known_optimum) - 1)
-            solutions = sum(solutions_found[v][w][x][y][z][a])
-            generations = sum(final_generations[v][w][x][y][z][a])
-            runtime = sum(times_elapsed[v][w][x][y][z][a])
-
-            print(final_output.format(mean, best, solutions, generations, runtime))
-            if true_opt:
-                print("  Average solution {:4.2f}% larger than true optimum.".format(mean_per))
-                print("  Best solution {:4.2f}% larger than true optimum.".format(best_per))
+            matrix[v][w][x][y][z][a].set_run_stats(i, op_fit, best_indivs, gencount, run_history, time_tuple)
             print("\n -------- \n")
 
         # Stats Set-up
-        import copy
-
-        matrix = [[[[[[[]  # Make a matrix of empty lists.
-                      # matrix[v][w][x][y][z][a] returns a list corresponding to the functions used
+        matrix = [[[[[[StatsHolder(self.POPULATION_METHODS[v][0],
+                                   self.PARENT_METHODS[w][0],
+                                   self.SURVIVOR_METHODS[z][0],
+                                   self.MUTATION_METHODS[y][0],
+                                   self.RECOMBINATION_METHODS[x][0],
+                                   self.MANAGEMENT_METHODS[a][0],
+                                   self.RUNS,
+                                   self.op,
+                                   known_optimum if true_opt else None)
+                       # matrix[v][w][x][y][z][a] returns a object corresponding to the functions used
                        for a in range(len(self.MANAGEMENT_METHODS))]
                       for z in range(len(self.SURVIVOR_METHODS))]
                      for y in range(len(self.MUTATION_METHODS))]
@@ -104,20 +70,16 @@ class EATester(EARunner):
                    for w in range(len(self.PARENT_METHODS))]
                   for v in range(len(self.POPULATION_METHODS))]
 
-        best_fitnesses = copy.deepcopy(matrix)
-        solutions_found = copy.deepcopy(matrix)
-        final_generations = copy.deepcopy(matrix)
-        times_elapsed = copy.deepcopy(matrix)
-
         # EA Iterator
-        for _ in range(self.RUNS):
-            for v in range(len(self.POPULATION_METHODS)):
-                for w in range(len(self.PARENT_METHODS)):
-                    for x in range(len(self.RECOMBINATION_METHODS)):
-                        for y in range(len(self.MUTATION_METHODS)):
-                            for z in range(len(self.SURVIVOR_METHODS)):
-                                for a in range(len(self.MANAGEMENT_METHODS)):
-                                    run_test(v, w, x, y, z, a)
+        for v in range(len(self.POPULATION_METHODS)):
+            for w in range(len(self.PARENT_METHODS)):
+                for x in range(len(self.RECOMBINATION_METHODS)):
+                    for y in range(len(self.MUTATION_METHODS)):
+                        for z in range(len(self.SURVIVOR_METHODS)):
+                            for a in range(len(self.MANAGEMENT_METHODS)):
+                                for i in range(self.RUNS):
+                                    # TODO - Add multithreading here.
+                                    run_test(v, w, x, y, z, a, i)
 
         # Stats Output
         for v in range(len(self.POPULATION_METHODS)):
@@ -126,4 +88,9 @@ class EATester(EARunner):
                     for y in range(len(self.MUTATION_METHODS)):
                         for z in range(len(self.SURVIVOR_METHODS)):
                             for a in range(len(self.MANAGEMENT_METHODS)):
-                                print_final(v, w, x, y, z, a)
+                                print("After {} iterations, with {} generations per iteration".format(
+                                    self.RUNS, generation_limit))
+                                print(matrix[v][w][x][y][z][a].funcs_used())
+                                matrix[v][w][x][y][z][a].print_simple_stats()
+                                print(matrix[v][w][x][y][z][a])
+                                print("\n -------- \n")

@@ -12,20 +12,13 @@ def import_modules(FILENUM=0, MODULE=0):
         from src.EA_Methods.List_Rep import PopulationManagementMethods as PMM
         from src.Setups.EightQueens import EightQueen as DEF
     else:
-        if MODULE == 3:
+        if MODULE == 2:
             from src.EA_Methods.Array_Rep import ParentSelectionMethods as PSM
             from src.EA_Methods.Array_Rep import MutationMethods as MM
             from src.EA_Methods.Array_Rep import RecombinationMethods as RM
             from src.EA_Methods.Array_Rep import SurvivorSelectionMethods as SSM
             from src.EA_Methods.Array_Rep import PopulationManagementMethods as PMM
             from src.Setups.TSP import TSP_ARR as DEF
-        elif MODULE == 2:
-            from src.EA_Methods.Pandas_Rep import ParentSelectionMethods as PSM
-            from src.EA_Methods.Pandas_Rep import MutationMethods as MM
-            from src.EA_Methods.Pandas_Rep import RecombinationMethods as RM
-            from src.EA_Methods.Pandas_Rep import SurvivorSelectionMethods as SSM
-            from src.EA_Methods.Pandas_Rep import PopulationManagementMethods as PMM
-            from src.Setups.TSP import TSP_PDS as DEF
         elif MODULE == 1:
             from src.EA_Methods.Numpy_Rep import ParentSelectionMethods as PSM
             from src.EA_Methods.Numpy_Rep import MutationMethods as MM
@@ -49,14 +42,10 @@ def generate_algoritm(FILENUM=0, MODULE=0):
         from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
         genome_len = 8
     else:
-        if MODULE == 3:
+        if MODULE == 2:
             from src.Setups.TSP.TSP_ARR import read_tsp_file as parse_file
             from src.Setups.TSP.TSP_ARR import random_initialization as initialize
             from src.Setups.TSP.TSP_ARR import euclidean_distance as eval_fitness
-        elif MODULE == 2:
-            from src.Setups.TSP.TSP_PDS import read_tsp_file as parse_file
-            from src.Setups.TSP.TSP_PDS import random_initialization as initialize
-            from src.Setups.TSP.TSP_PDS import euclidean_distance as eval_fitness
         elif MODULE == 1:
             from src.Setups.TSP.TSP_NPY import read_tsp_file as parse_file
             from src.Setups.TSP.TSP_NPY import random_initialization as initialize
@@ -84,9 +73,9 @@ if __name__ == '__main__':
     print("Present working directory:", os.getcwd(), '\n')
 
     FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-    METHOD = 0  # 0: Lists   1: Numpy Arrays   2: Pandas Dataframes
+    METHOD = 0  # 0: Lists   1: Numpy Arrays   2: Numpy Arrays V2
     RUNS = 1  # Number of times each combination is run.
-    GENERATIONS = 100
+    GENERATIONS = 200
 
     PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
@@ -99,10 +88,7 @@ if __name__ == '__main__':
 
     tester = generate_algoritm(FILENUM, METHOD)
     tester.set_test_vars(RUNS, POPULATION_METHODS[:], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:],
-                         MUTATION_METHODS[2:], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[0:1])
-
-    #    tester.set_test_vars(RUNS, POPULATION_METHODS[0:1], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:],
-    #                     MUTATION_METHODS[2:], SURVIVOR_METHODS[0:], MANAGEMENT_METHODS)
+                         MUTATION_METHODS[2:], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[:])
 
     if FILENUM:
         from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
@@ -111,4 +97,5 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 1)
+    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 20)
+
