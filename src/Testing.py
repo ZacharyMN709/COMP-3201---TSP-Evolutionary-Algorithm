@@ -36,10 +36,6 @@ class EATester(EARunner):
         self.thread_count = 0
 
     def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0):
-        if not self.testable:
-            print("Error! Missing information to run tests. Please check the code for errors.")
-            return
-
         def run_test(v, w, x, y, z, a, i):
             print(matrix[v][w][x][y][z][a].funcs_used())
 
@@ -51,7 +47,14 @@ class EATester(EARunner):
                                       print_gens if not self.multithread else 0, not self.multithread)
 
             matrix[v][w][x][y][z][a].set_run_stats(i, op_fit, best_indivs, gencount, run_history, time_tuple)
-            print("\n -------- \n")
+            if not self.multithread:
+                print("\n -------- \n")
+            else:
+                print('Thread {} finished running!'.format(i))
+
+        if not self.testable:
+            print("Error! Missing information to run tests. Please check the code for errors.")
+            return
 
         # Stats Set-up
         matrix = [[[[[[StatsHolder(self.POPULATION_METHODS[v][0],
@@ -80,6 +83,8 @@ class EATester(EARunner):
                             for a in range(len(self.MANAGEMENT_METHODS)):
                                 for i in range(self.RUNS):
                                     # TODO - Add multithreading here.
+                                    if self.multithread:
+                                        print(matrix[v][w][x][y][z][a].funcs_used())
                                     run_test(v, w, x, y, z, a, i)
 
         # Stats Output
