@@ -97,5 +97,5 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 20)
+    result_matrix = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 20)
 

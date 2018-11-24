@@ -35,7 +35,7 @@ class EATester(EARunner):
         self.multithread = False
         self.thread_count = 0
 
-    def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=False):
+    def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0):
         if not self.testable:
             print("Error! Missing information to run tests. Please check the code for errors.")
             return
@@ -47,7 +47,8 @@ class EATester(EARunner):
                            self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
                            self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1], self.MANAGEMENT_METHODS[a][1])
             op_fit, best_indivs, gencount, run_history, time_tuple = \
-                self.run_ea_algorithm(generation_limit, known_optimum, true_opt, print_gens, not self.multithread)
+                self.run_ea_algorithm(generation_limit, known_optimum, true_opt,
+                                      print_gens if not self.multithread else 0, not self.multithread)
 
             matrix[v][w][x][y][z][a].set_run_stats(i, op_fit, best_indivs, gencount, run_history, time_tuple)
             print("\n -------- \n")
@@ -92,5 +93,6 @@ class EATester(EARunner):
                                     self.RUNS, generation_limit))
                                 print(matrix[v][w][x][y][z][a].funcs_used())
                                 matrix[v][w][x][y][z][a].print_simple_stats()
-                                print(matrix[v][w][x][y][z][a])
                                 print("\n -------- \n")
+
+        return matrix

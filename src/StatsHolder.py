@@ -61,13 +61,9 @@ class StatsHolder:
             self.MANAGEMENT_METHOD) + '\n'
 
     def __str__(self):
-        stats_info = \
-            str(self.best_fitnesses) + '\n' + \
-            str(self.best_individuals) + '\n' + \
-            str(self.generation_count) + '\n' + \
-            str(self.run_indivs_history) + '\n' + \
-            str(self.run_fitness_history) + '\n' + \
-            str(self.time_tuples) + '\n' + \
-            str(self.runtimes) + '\n'
-
+        stats_info = 'Total Runtime: {}\nBest Fitness Produced: {}'.format(
+            sum(self.runtimes), self.best(self.best_fitnesses))
+        if self.true_opt:
+            best_per = 100 * ((self.best(self.best_fitnesses) / self.true_opt) - 1)
+            stats_info += "\nBest solution {:4.2f}% larger than true optimum.".format(best_per)
         return self.funcs_used() + stats_info
