@@ -41,36 +41,23 @@ def method_mapper(func):
     return mutator
 
 
-def gen_two_nums(substring):
-    """
-    :param substring: If used for creating a sublist, should be true.
-    Ensures a single element list is not possible.
-    :return: Two integers x and y, such that x < y
-    """
-
-    # Generate x and y, such that x != y.
+def gen_two_nums():
     x = randint(0, genome_length - 1)
-    y = (x + randint(1, genome_length - 1)) % genome_length
+    y = randint(0, genome_length - 1)
+    return x, y
 
-    # Ensure x < y.
-    if x > y:
-        x, y = y, x
 
-    # If the indexes are for making a sublist/substring.
-    if substring and y - x == 1:
-        # If the indexes would yield one element, modify them, so they encapsulate two elements
-        if y != genome_length - 1:
-            return x, y + 1
-        else:
-            return x - 1, y
-    else:
-        return x, y
+def gen_two_nums_ascending():
+    # Generate two integers such that x > y
+    x = randint(0, genome_length - 2)
+    y = randint(x+1, genome_length - 1)
+    return x, y
 
 
 @method_mapper
 def permutation_swap(individual):
     # Generate two random indices
-    x, y = gen_two_nums(False)
+    x, y = gen_two_nums()
 
     # Swap the values at those indices
     individual[x], individual[y] = individual[y], individual[x]
@@ -81,7 +68,7 @@ def permutation_swap(individual):
 @method_mapper
 def permutation_insert(individual):
     # Generate two random indices
-    x, y = gen_two_nums(False)
+    x, y = gen_two_nums()
 
     # Insert the value at y in the position after x
     value = individual.pop(y)
@@ -93,7 +80,7 @@ def permutation_insert(individual):
 @method_mapper
 def permutation_inversion(individual):
     # Generate two random indices in ascending order
-    x, y = gen_two_nums(True)
+    x, y = gen_two_nums_ascending()
 
     # Reverse the contents from x to y
     individual[x:y] = individual[x:y][::-1]
@@ -103,7 +90,7 @@ def permutation_inversion(individual):
 @method_mapper
 def permutation_scramble(individual):
     # Generate two random indices in ascending order
-    x, y = gen_two_nums(True)
+    x, y = gen_two_nums_ascending()
 
     # Randomize the order of indices from x to y
     temp = individual[x:y]
