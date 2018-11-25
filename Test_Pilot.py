@@ -91,7 +91,7 @@ if __name__ == '__main__':
     FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     METHOD = 0  # 0: Lists   1: Numpy Arrays   2: Numpy Arrays V2
     RUNS = 1  # Number of times each combination is run.
-    GENERATIONS = 20
+    GENERATIONS = 2000
     SAVE = False
 
     PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
@@ -101,11 +101,11 @@ if __name__ == '__main__':
     RECOMBINATION_METHODS = [('Order Crossover', RM.order_crossover), ('PMX Crossover', RM.pmx_crossover)]
     MUTATION_METHODS = [('Swap', MM.permutation_swap), ('Insert', MM.permutation_insert), ('Inversion', MM.permutation_inversion)]
     SURVIVOR_METHODS = [('Mu + Lambda', SSM.mu_plus_lambda), ('Replace', SSM.replacement)]
-    MANAGEMENT_METHODS = [('None', PMM.static_return), ('Annealing', PMM.metallurgic_annealing), ('Entropy', PMM.metallurgic_annealing), ('Oroborous', PMM.metallurgic_annealing)]
+    MANAGEMENT_METHODS = [('None', PMM.static_return), ('Annealing', PMM.metallurgic_annealing), ('Entropy', PMM.metallurgic_annealing), ('Oroborous', PMM.metallurgic_annealing), ('Engineered', PMM.genetic_engineering)]
 
     tester = generate_algoritm(FILENUM, METHOD)
-    tester.set_test_vars(RUNS, POPULATION_METHODS[:], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
-                         MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[:])
+    tester.set_test_vars(RUNS, POPULATION_METHODS[1:2], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+                         MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:])
 
     if FILENUM:
         from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path

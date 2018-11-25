@@ -21,6 +21,7 @@ def lt(x, y):
 genome_length = 0
 population_method = None
 eval_fitness = None
+distances = None
 op = None
 cmp_eq = None
 cmp_ne = None
@@ -47,6 +48,11 @@ def set_population_method(i):
 def set_fitness_function(i):
     global eval_fitness
     eval_fitness = i
+
+
+def set_distances(i):
+    global distances
+    distances = i
 
 
 def set_op(i):
@@ -138,6 +144,29 @@ def ouroboric_culling(population, fitness):
                 num_to_remove -= 1
                 if num_to_remove == 0:
                     break
+
+    return population, fitness
+
+
+def genetic_engineering(population, fitness):
+    """
+    Shuffle all of the genes next to each other, and see if it improves.
+    If not, revert that change. Super charges a single fittest individual.
+    """
+
+    best_fit = op(fitness)
+    num_best = fitness.count(best_fit)
+
+    if num_best > population_threshold:
+        index = fitness.index(best_fit)
+        indiv = population[index]
+        for i in range(len(indiv)):
+            indiv[i-1], indiv[i] = indiv[i], indiv[i-1]
+            new_fit = eval_fitness(indiv)
+            if new_fit == op(new_fit, best_fit):
+                best_fit = new_fit
+            else:
+                indiv[i - 1], indiv[i] = indiv[i], indiv[i - 1]
 
     return population, fitness
 # endregion
