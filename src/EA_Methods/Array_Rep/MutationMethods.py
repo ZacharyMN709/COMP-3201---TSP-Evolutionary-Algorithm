@@ -89,13 +89,9 @@ def permutation_inversion(individual):
 
 @method_mapper
 def permutation_scramble(individual):
-    # Generate two random indices in ascending order
-    x, y = gen_two_nums_ascending()
-
-    # Randomize the order of indices from x to y
-    temp = individual[x:y]
-    shuffle(temp)
-    individual[x:y] = temp
+x, y = gen_two_nums_ascending()
+    for i in range((y-x)//2):
+        individual[x+i], individual[y-i] = individual[y-i], individual[x+i]
 
     return individual
 # endregion
