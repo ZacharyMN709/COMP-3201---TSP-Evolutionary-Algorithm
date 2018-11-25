@@ -95,8 +95,9 @@ def permutation_scramble(individual):
     # Randomize the order of indices from x to y
     temp = individual[x:y]
     shuffle(temp)
+    individual[x:y] = temp
 
-    return individual[:x] + temp + individual[y:]
+    return individual
 # endregion
 
 
