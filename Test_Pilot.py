@@ -88,8 +88,8 @@ if __name__ == '__main__':
                    1: 'NumpyV1',
                    2: 'NumpyV2'}
 
-    FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-    METHOD = 3  # 0: Lists   1: Numpy Arrays   2: Numpy Arrays V2
+    FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+    METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
     RUNS = 1  # Number of times each combination is run.
     GENERATIONS = 5000
     SAVE = False
