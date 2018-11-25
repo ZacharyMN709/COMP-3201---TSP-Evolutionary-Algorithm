@@ -77,28 +77,27 @@ def get_map_range():
     return (max_lat - min_lat), (max_lon - min_lon)
 
 
-def cities_in_radius(city, radius):
-    city = LOCATIONS[city]
-    x, y = [(c[1]-city[1])**2 for c in LOCATIONS], [(c[0]-city[0])**2 for c in LOCATIONS]
-
-    indexes = {i for i in range(len(LOCATIONS)) if (x[i] + y[i])**0.5 <= radius}
+def cities_in_radius(city, radius, cities):
+    x, y = [(c[1]-city[1])**2 for c in cities], [(c[0]-city[0])**2 for c in cities]
+    indexes = {i for i in range(len(cities)) if (x[i] + y[i])**0.5 <= radius}
     return indexes
 
 
-def find_clusters():
+def create_clusters(cities, city_indexes, mod_mod):
     height, width = get_map_range()
-    if height > width: dist = height
-    else: dist = width
+    if height > width: dist = height * dist_mod * mod_mod
+    else: dist = width * dist_mod * mod_mod
     city_clusters = []
 
-    cities_left = {x for x in range(len(LOCATIONS))}
+    cities_left = set(city_indexes)
     while len(cities_left) != 0:
         city = sample(cities_left, 1)[0]
-        cluster = cities_left & cities_in_radius(city, dist*dist_mod)
+        cluster = (cities_left & cities_in_radius(LOCATIONS[city], dist, cities)) | {city}
         cities_left = cities_left - cluster
         city_clusters.append(list(cluster))
 
     return city_clusters
+
 
 
 def single_random_individual(genome_length):

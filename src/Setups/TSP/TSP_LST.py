@@ -33,10 +33,8 @@ def read_tsp_file(fnum):
     if fnum == 1:
         fname = "TSP_WesternSahara_29.txt"
     elif fnum == 2:
-        print('Warning! Takes approximately 1.5 seconds per decade')
         fname = "TSP_Uruguay_734.txt"
     elif fnum == 3:
-        print('Warning! Takes approximately 45 seconds per decade')
         fname = "TSP_Canada_4663.txt"
     else:
         print('Warning! Invalid seletion. Defaulting to test')
@@ -76,26 +74,25 @@ def get_map_range():
     return (max_lat - min_lat), (max_lon - min_lon)
 
 
-def cities_in_radius(city, radius):
-    city = LOCATIONS[city]
-    x, y = [(c[1]-city[1])**2 for c in LOCATIONS], [(c[0]-city[0])**2 for c in LOCATIONS]
-
-    indexes = {i for i in range(len(LOCATIONS)) if (x[i] + y[i])**0.5 <= radius}
+def cities_in_radius(city, radius, cities):
+    x, y = [(c[1]-city[1])**2 for c in cities], [(c[0]-city[0])**2 for c in cities]
+    indexes = {i for i in range(len(cities)) if (x[i] + y[i])**0.5 <= radius}
     return indexes
 
 
-def find_clusters():
+def create_clusters(cities, city_indexes, mod_mod):
     height, width = get_map_range()
-    if height > width: dist = height * dist_mod
-    else: dist = width * dist_mod
+    if height > width: dist = height * dist_mod * mod_mod
+    else: dist = width * dist_mod * mod_mod
     city_clusters = []
 
-    cities_left = {x for x in range(len(LOCATIONS))}
+    cities_left = set(city_indexes)
     while len(cities_left) != 0:
         city = sample(cities_left, 1)[0]
-        cluster = cities_left & cities_in_radius(city, dist)
+        cluster = (cities_left & cities_in_radius(LOCATIONS[city], dist, cities)) | {city}
         cities_left = cities_left - cluster
         city_clusters.append(list(cluster))
+
     return city_clusters
 
 
@@ -109,6 +106,9 @@ def single_heuristic_individual(genome_length):
     for x in CLUSTERS:
         shuffle(x)
         indiv += x
+        for y in x:
+            shuffle(y)
+            indiv += y
     return indiv
 
 
@@ -120,14 +120,16 @@ def random_initialization(pop_size, genome_length):
 @fitness_applicator
 def heuristic_cluster_initialization(pop_size, genome_length):
     global CLUSTERS
-    CLUSTERS = find_clusters()
+    CLUSTERS = create_clusters(LOCATIONS, [x for x in range(len(LOCATIONS))], 1)
+    for i in range(len(CLUSTERS)):
+        CLUSTERS[i] = create_clusters([LOCATIONS[x] for x in CLUSTERS[i]], CLUSTERS[i], 0.5)
     return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
 
 
 @fitness_applicator
 def heuristic_grid_initialization(pop_size, genome_length):
     global CLUSTERS
-    CLUSTERS = find_clusters()
+    CLUSTERS = create_clusters(LOCATIONS, [x for x in range(len(LOCATIONS))], 1)
     return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
 # endregion
 
@@ -143,9 +145,12 @@ def calc_distance(loc1, loc2):
 
 
 if __name__ == '__main__':
-    genome_length = read_tsp_file(2)
+    genome_length = read_tsp_file(3)
 
-    for _ in range(10):
+    for _ in range(5):
         set_fitness_function(euclidean_distance)
         pop = heuristic_cluster_initialization(10, genome_length)
-        #for x in pop: print(x)
+        print(CLUSTERS)
+        #for x in CLUSTERS: print(x)
+        print()
+        for x in pop: print(x)
