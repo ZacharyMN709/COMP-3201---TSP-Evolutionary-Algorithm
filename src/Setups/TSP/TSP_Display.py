@@ -33,6 +33,21 @@ class GraphingHelper:
             plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1 - red_mod, bright_mod, bright_mod])
         plt.title('Path at Generation {: <5}:   {:4.2f}'.format(generation, fitness))
         plt.show()
+
+    def alt_generation_display(self, generation, fitness, individual):
+        # TODO - Improve Graphs
+        x = self.cities[self.long_names[0]]
+        y = self.cities[self.long_names[1]]
+
+        for i in range(len(self.cities)):
+            c1 = individual[i - 1]
+            c2 = individual[i]
+            per = pi * i / len(self.cities)
+            red_mod = max(cos(per), 0) * 0.3
+            bright_mod = -min(cos(per), 0) * 0.3
+            plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1 - red_mod, bright_mod, bright_mod], marker='o')
+        plt.title('Path at Generation {: <5}:   {:4.2f}'.format(generation, fitness))
+        plt.show()
     # endregion
 
     # region Initialization

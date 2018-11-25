@@ -81,6 +81,7 @@ class EARunner:
         self.RM.set_crossover_rate(ea_vars.crossover_rate)
         self.MM.set_mutation_rate(ea_vars.mutation_rate)
         self.PMM.set_start_temp(ea_vars.start_temp)
+        self.PMM.set_distances(self.DEF.MEMOIZED)
         self.PMM.set_cooling_rate(ea_vars.cooling_rate)
         self.PMM.set_population_threshold(ea_vars.population_threshold)
         best_indivs = [None] * generation_limit
@@ -146,7 +147,7 @@ class EARunner:
                 print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
             print("Best solution path:", population[optimal_solutions[0]])
             print(timed_funcs.format(PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time))
-            print("--- %{} seconds ---".format(master_time))
+            print("--- {} seconds ---".format(master_time))
 
         return op_fit, optimal_solutions, generation, best_indivs, time_tuple
 

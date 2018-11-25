@@ -1,13 +1,38 @@
-from random import random
+from random import random, sample, shuffle
+
+
+def gte(x, y):
+    return x >= y
+
+
+def lte(x, y):
+    return x <= y
+
+
+def gt(x, y):
+    return x > y
+
+
+def lt(x, y):
+    return x < y
+
 
 # region Globals and Setters
 genome_length = 0
 population_method = None
 eval_fitness = None
+distances = None
 op = None
+cmp_eq = None
+cmp_ne = None
 start_temp = 10000
-cooling_rate = 0.995
-population_threshold = 0.35
+cooling_rate = 0.99
+population_threshold = 20
+
+
+def make_indiv(genome_length):
+    sample([c for c in range(genome_length)], genome_length)
+population_method = make_indiv
 
 
 def set_genome_length(i):
@@ -25,8 +50,15 @@ def set_fitness_function(i):
     eval_fitness = i
 
 
+def set_distances(i):
+    global distances
+    distances = i
+
+
 def set_op(i):
-    global op
+    global op, cmp_eq, cmp_ne
+    cmp_eq = gte if op == max else lte
+    cmp_ne = gt if op == max else lt
     op = i
 
 
@@ -47,29 +79,6 @@ def set_population_threshold(i):
 
 
 # region Population Management Methods
-# TODO - Optimize input as a sorted list, so that searching is not required.
-
-# TODO - Determine if the decorators are needed.
-def probabilistic_modification(func):
-    def generate_output(population, fitness):
-        best_fit = op(fitness)
-        threshold = func()
-        for x in range(genome_length):
-            if fitness[x] == best_fit and random() < threshold:
-                population[x] = population_method()
-                fitness[x] = eval_fitness(population[x])
-
-        return population, fitness
-    return generate_output
-
-
-def discretized_modification(func):
-    def generate_output(population, fitness):
-        pass
-        return population, fitness
-    return generate_output
-
-
 def static_return(population, fitness):
     """
     Makes no changes to the population
@@ -84,32 +93,17 @@ def metallurgic_annealing(population, fitness):
     probability which is gauged by the 'temperature' and 'cooling rate'
     """
 
-    '''
-    // Calculate the acceptance probability
-    public static double acceptanceProbability(int energy, int newEnergy, double temperature) {
-        // If the new solution is better, accept it
-        if (newEnergy < energy) {
-            return 1.0;
-        }
-        // If the new solution is worse, calculate an acceptance probability
-        return Math.exp((energy - newEnergy) / temperature);
-    '''
+    global start_temp
+    start_temp *= cooling_rate
 
-    '''
-    class MyNumbers:
-        def __iter__(self):
-            self.a = 1
-            return self
+    new_pop = [sample([c for c in range(genome_length)], genome_length) for _ in range(len(population))]
+    new_fit = [eval_fitness(x) for x in new_pop]
 
-        def __next__(self):
-            if self.a <= 20:
-                x = self.a
-                self.a += 1
-                return x
-            else:
-                raise StopIteration
-    '''
-    pass
+    for x in range(len(population)):
+        if cmp_ne(new_fit[x], fitness[x]) or random() < 2.7182818**((fitness[x] - new_fit[x])/start_temp):
+            population[x] = new_pop[x]
+
+    return population, fitness
 
 
 def entropic_stabilizing(population, fitness):
@@ -126,7 +120,7 @@ def entropic_stabilizing(population, fitness):
         threshold = 0.8*((num_best - population_threshold) / (len(population) - population_threshold))
         for x in range(genome_length):
             if fitness[x] == best_fit and random() < threshold:
-                population[x] = population_method()
+                shuffle(population[x])
                 fitness[x] = eval_fitness(population[x])
 
     return population, fitness
@@ -145,11 +139,38 @@ def ouroboric_culling(population, fitness):
         num_to_remove = num_best - population_threshold
         for x in range(genome_length):
             if fitness[x] == best_fit:
-                population[x] = population_method()
+                shuffle(population[x])
                 fitness[x] = eval_fitness(population[x])
                 num_to_remove -= 1
                 if num_to_remove == 0:
                     break
+
+    return population, fitness
+
+
+def genetic_engineering(population, fitness):
+    """
+    Shuffle all of the genes next to each other, and see if it improves.
+    If not, revert that change. Super charges a single fittest individual.
+    """
+
+    best_fit = op(fitness)
+    num_best = fitness.count(best_fit)
+
+    if num_best > population_threshold:
+        index = fitness.index(best_fit)
+        indiv = population[index]
+        for i in range(len(indiv)):
+            i1 = i-2 % genome_length
+            i2 = i-1 % genome_length
+            i3 = i
+            i4 = i+1 % genome_length
+            indiv[i2], indiv[i3] = indiv[i3], indiv[i2]
+            new_fit = best_fit - distances[indiv[i1]][indiv[i2]] - distances[indiv[i3]][indiv[i4]] + distances[indiv[i1]][indiv[i3]] + distances[indiv[i2]][indiv[i4]]
+            if new_fit == op(new_fit, best_fit):
+                best_fit = new_fit
+            else:
+                indiv[i3], indiv[i2] = indiv[i2], indiv[i3]
 
     return population, fitness
 # endregion
