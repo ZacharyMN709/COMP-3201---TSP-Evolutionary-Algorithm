@@ -42,7 +42,7 @@ def import_modules(FILENUM=0, MODULE=0):
     return PSM, RM, MM, SSM, DEF, PMM
 
 
-def generate_algoritm(FILENUM=0, MODULE=0):
+def generate_algorithm(FILENUM=0, MODULE=0, MULTITHREAD=False):
     if not FILENUM:
         from src.Setups.EightQueens.EightQueen import random_initialization as initialize
         from src.Setups.EightQueens.EightQueen import fitness_8queen as eval_fitness
@@ -62,7 +62,7 @@ def generate_algoritm(FILENUM=0, MODULE=0):
             from src.Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
         genome_len = parse_file(FILENUM)
 
-    tester = EATester(PSM, RM, MM, SSM, DEF, PMM)
+    tester = EATester(PSM, RM, MM, SSM, DEF, PMM, mt=MULTITHREAD)
     tester.set_params(genome_len, eval_fitness, initialize, None, None, None, None, None)
     return tester
 
@@ -90,6 +90,7 @@ if __name__ == '__main__':
 
     FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
+    MULTITHREAD = True
     RUNS = 1  # Number of times each combination is run.
     GENERATIONS = 5000
     SAVE = False
@@ -103,9 +104,9 @@ if __name__ == '__main__':
     SURVIVOR_METHODS = [('Mu + Lambda', SSM.mu_plus_lambda), ('Replace', SSM.replacement)]
     MANAGEMENT_METHODS = [('None', PMM.static_return), ('Annealing', PMM.metallurgic_annealing), ('Entropy', PMM.metallurgic_annealing), ('Oroborous', PMM.metallurgic_annealing)]
 
-    tester = generate_algoritm(FILENUM, METHOD)
-    tester.set_test_vars(RUNS, POPULATION_METHODS[1:2], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
-                         MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[1:2])
+    tester = generate_algorithm(FILENUM, METHOD, MULTITHREAD)
+    tester.set_test_vars(RUNS, POPULATION_METHODS[0:1], PARENT_METHODS[0:3], RECOMBINATION_METHODS[0:2],
+                         MUTATION_METHODS[0:4], SURVIVOR_METHODS[0:2], MANAGEMENT_METHODS[0:1])
 
     if FILENUM:
         from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
