@@ -116,6 +116,15 @@ if __name__ == '__main__':
 
     result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 100)
 
+    # Iterates over each StatsHolder Object
+    for a in range(matrix_dimensions[0]):
+        for b in range(matrix_dimensions[1]):
+            for c in range(matrix_dimensions[2]):
+                for d in range(matrix_dimensions[3]):
+                    for e in range(matrix_dimensions[4]):
+                        for f in range(matrix_dimensions[5]):
+                            print(result_matrix[a][b][c][d][e][f])
+
     if SAVE:
         to_save = {'matrix': result_matrix,
                    'dimensions': matrix_dimensions}

@@ -1,4 +1,4 @@
-from random import random, sample, shuffle
+from random import random, sample, shuffle, randint
 
 
 def gte(x, y):
@@ -158,15 +158,16 @@ def genetic_engineering(population, fitness):
     num_best = fitness.count(best_fit)
 
     if num_best > population_threshold:
+        x = randint(1, 10)
         index = fitness.index(best_fit)
         indiv = population[index]
         for i in range(len(indiv)):
-            indiv[i-1], indiv[i] = indiv[i], indiv[i-1]
+            indiv[i - x], indiv[i] = indiv[i], indiv[i - x]
             new_fit = eval_fitness(indiv)
             if new_fit == op(new_fit, best_fit):
                 best_fit = new_fit
             else:
-                indiv[i - 1], indiv[i] = indiv[i], indiv[i - 1]
+                indiv[i - x], indiv[i] = indiv[i], indiv[i - x]
 
     return population, fitness
 # endregion

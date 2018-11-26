@@ -17,7 +17,7 @@ class GraphingHelper:
         self.cities.plot.scatter(x=self.long_names[0], y=self.long_names[1], c=self.cities.index.get_values(), colormap='winter')
         plt.title('City Locations (Normalized to origin of 0)')
 
-    def generation_display(self, generation, fitness, individual):
+    def generation_display(self, generation, fitness, individual, title='Path at Generation {: <5}:   {:4.2f}'):
         # TODO - Improve Graphs
         x = self.cities[self.long_names[0]]
         y = self.cities[self.long_names[1]]
@@ -31,7 +31,7 @@ class GraphingHelper:
             red_mod = max(cos(per), 0) * 0.3
             bright_mod = -min(cos(per), 0) * 0.3
             plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1 - red_mod, bright_mod, bright_mod])
-        plt.title('Path at Generation {: <5}:   {:4.2f}'.format(generation, fitness))
+        plt.title(title.format(generation, fitness))
         plt.show()
 
     def alt_generation_display(self, generation, fitness, individual):
