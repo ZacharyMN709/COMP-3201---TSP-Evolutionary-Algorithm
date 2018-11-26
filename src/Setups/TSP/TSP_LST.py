@@ -105,7 +105,7 @@ def single_heuristic_individual(genome_length):
     indiv = []
     for x in CLUSTERS:
         shuffle(x)
-        indiv += x
+        #indiv += x
         for y in x:
             shuffle(y)
             indiv += y
