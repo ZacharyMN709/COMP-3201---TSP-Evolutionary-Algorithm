@@ -1,6 +1,11 @@
 from src.Other.Helper_Strings import funcs_used, final_output
 
 
+class MergeError(Exception):
+    def __init__(self, message):
+        super().__init__(message)
+
+
 class StatsHolder:
     def __init__(self, POPULATION_METHOD, PARENT_METHOD, SURVIVOR_METHOD, MUTATION_METHOD,
                  RECOMBINATION_METHOD, MANAGEMENT_METHOD, RUNS, op, optimum=None):
@@ -70,6 +75,31 @@ class StatsHolder:
 
     def __repr__(self):
         return self.__str__()
+    
+        def __add__(self, other):
+        if self.best == other.best:
+            if self.true_opt and other.true_opt:
+                opt = self.best(self.true_opt, other.true_opt)
+            elif self.true_opt:
+                opt = self.true_opt
+            elif other.true_opt:
+                opt = other.true_opt
+            else:
+                opt = None
+            new_obj = StatsHolder(self.POPULATION_METHOD, self.PARENT_METHOD, self.SURVIVOR_METHOD, self.MUTATION_METHOD,
+                                  self.RECOMBINATION_METHOD, self.MANAGEMENT_METHOD, self.RUNS, self.best, opt)
+            new_obj.RUNS                = self.RUNS                + other.RUNS
+            new_obj.best_fitnesses      = self.best_fitnesses      + other.best_fitnesses
+            new_obj.best_individuals    = self.best_individuals    + other.best_individuals
+            new_obj.solutions_found     = self.solutions_found     + other.solutions_found
+            new_obj.generation_count    = self.generation_count    + other.generation_count
+            new_obj.run_indivs_history  = self.run_indivs_history  + other.run_indivs_history
+            new_obj.run_fitness_history = self.run_fitness_history + other.run_fitness_history
+            new_obj.time_tuples         = self.time_tuples         + other.time_tuples
+            new_obj.runtimes            = self.runtimes            + other.runtimes
+            return new_obj
+        else:
+            raise MergeError
 
     @staticmethod  # @staticmethod allows all StatsHolder objects to use this, irrespective of self.
     def compare(stats1, stats2):
