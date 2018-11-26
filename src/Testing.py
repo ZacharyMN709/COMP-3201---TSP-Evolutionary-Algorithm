@@ -16,6 +16,7 @@ class EATester(EARunner):
         self.testable = False
         self.multithread = mt
         self.processes = []
+        self.running = 0
 
     def set_test_vars(self, runs, pop, par, rec, mut, sur, man):
         self.RUNS = runs
@@ -30,9 +31,10 @@ class EATester(EARunner):
 
     def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0):
         def run_test(v, w, x, y, z, a, i, id):
-            if self.multithread: print('Thread {} started'.format(id))
-            print(matrix[v][w][x][y][z][a].funcs_used())
-
+            if self.multithread:
+                print('Thread {} Started'.format(id))
+            else:
+                print('Test {} Started'.format(id))
             self.set_params(self.genome_length, self.eval_fitness,
                             self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
                             self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1], self.MANAGEMENT_METHODS[a][1])
@@ -44,9 +46,7 @@ class EATester(EARunner):
                 print('Thread {} finished running!'.format(id))
                 print(matrix[v][w][x][y][z][a].funcs_used())
                 matrix[v][w][x][y][z][a].print_simple_stats()
-                print("")
-            else:
-                print("\n -------- \n")
+            print("\n -------- \n")
 
 
         if not self.testable:
@@ -81,10 +81,14 @@ class EATester(EARunner):
               for i in range(self.RUNS):
                if self.multithread:
                 # Spawn a new process to run the algorithm
-                process = Process(target=run_test, args=(v, w, x, y, z, a, i, len(self.processes)))
+                process_id = len(self.processes)
+                print('Thread {} Initialized'.format(process_id))
+                process = Process(target=run_test, args=(v, w, x, y, z, a, i, process_id))
                 self.processes.append(process)
                else:
-                run_test(v, w, x, y, z, a, i, None)
+                run_test(v, w, x, y, z, a, i, self.running)
+                self.running += 1
+               print(matrix[v][w][x][y][z][a].funcs_used())
 
 
         if self.multithread:
