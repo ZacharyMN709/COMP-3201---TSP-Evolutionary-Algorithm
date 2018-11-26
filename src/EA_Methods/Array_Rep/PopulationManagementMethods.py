@@ -1,4 +1,5 @@
-from random import random, sample, shuffle
+from random import random, sample, shuffle, randint
+from array import array
 
 
 def gte(x, y):
@@ -96,7 +97,7 @@ def metallurgic_annealing(population, fitness):
     global start_temp
     start_temp *= cooling_rate
 
-    new_pop = [sample([c for c in range(genome_length)], genome_length) for _ in range(len(population))]
+    new_pop = [array('i', sample([c for c in range(genome_length)], genome_length)) for _ in range(len(population))]
     new_fit = [eval_fitness(x) for x in new_pop]
 
     for x in range(len(population)):
@@ -158,15 +159,16 @@ def genetic_engineering(population, fitness):
     num_best = fitness.count(best_fit)
 
     if num_best > population_threshold:
+        x = randint(1, 10)
         index = fitness.index(best_fit)
         indiv = population[index]
         for i in range(len(indiv)):
-            indiv[i-1], indiv[i] = indiv[i], indiv[i-1]
+            indiv[i - x], indiv[i] = indiv[i], indiv[i - x]
             new_fit = eval_fitness(indiv)
             if new_fit == op(new_fit, best_fit):
                 best_fit = new_fit
             else:
-                indiv[i - 1], indiv[i] = indiv[i], indiv[i - 1]
+                indiv[i - x], indiv[i] = indiv[i], indiv[i - x]
 
     return population, fitness
 # endregion

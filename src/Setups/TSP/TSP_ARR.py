@@ -99,7 +99,6 @@ def create_clusters(cities, city_indexes, mod_mod):
     return city_clusters
 
 
-
 def single_random_individual(genome_length):
     return array('i', (sample([c for c in range(genome_length)], genome_length)))
 
@@ -109,8 +108,10 @@ def single_heuristic_individual(genome_length):
     indiv = []
     for x in CLUSTERS:
         shuffle(x)
-        indiv += x
-    return indiv
+        for y in x:
+            shuffle(y)
+            indiv += y
+    return array('i', indiv)
 
 
 @fitness_applicator
@@ -121,7 +122,9 @@ def random_initialization(pop_size, genome_length):
 @fitness_applicator
 def heuristic_cluster_initialization(pop_size, genome_length):
     global CLUSTERS
-    CLUSTERS = find_clusters()
+    CLUSTERS = create_clusters(LOCATIONS, [x for x in range(len(LOCATIONS))], 1)
+    for i in range(len(CLUSTERS)):
+        CLUSTERS[i] = create_clusters([LOCATIONS[x] for x in CLUSTERS[i]], CLUSTERS[i], 0.5)
     return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
 
 

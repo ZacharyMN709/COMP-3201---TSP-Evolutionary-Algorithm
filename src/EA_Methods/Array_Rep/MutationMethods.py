@@ -101,7 +101,7 @@ def permutation_inversion(individual):
 
 @method_mapper
 def permutation_scramble(individual):
-x, y = gen_two_nums_ascending()
+    x, y = gen_two_nums_ascending()
     for i in range((y-x)//2):
         individual[x+i], individual[y-i] = individual[y-i], individual[x+i]
 

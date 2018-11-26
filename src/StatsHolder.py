@@ -67,3 +67,10 @@ class StatsHolder:
             best_per = 100 * ((self.best(self.best_fitnesses) / self.true_opt) - 1)
             stats_info += "\nBest solution {:4.2f}% larger than true optimum.".format(best_per)
         return self.funcs_used() + stats_info
+
+    def __repr__(self):
+        return self.__str__()
+
+    @staticmethod  # @staticmethod allows all StatsHolder objects to use this, irrespective of self.
+    def compare(stats1, stats2):
+        pass
