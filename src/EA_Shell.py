@@ -68,7 +68,7 @@ class EARunner:
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
-    def run(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
+    def run(self, generation_limit, test_id, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
         if not self.runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             return
@@ -97,8 +97,8 @@ class EARunner:
 
             # Generation Info
             if print_gens != 0 and generation % print_gens == 0:
-                print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                    generation, self.op(fitness), sum(fitness) / ea_vars.population_size)
+                print("Test: {}\nGeneration: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
+                    test_id, generation, self.op(fitness), sum(fitness) / ea_vars.population_size)
                 )
 
             start_time = time.time()

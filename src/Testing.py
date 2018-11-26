@@ -30,20 +30,17 @@ class EATester(EARunner):
         self.testable = pop and par and rec and mut and sur and runs and man
 
     def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0):
-        def run_test(v, w, x, y, z, a, i, id):
-            if self.multithread:
-                print('Thread {} Started'.format(id))
-            else:
-                print('Test {} Started'.format(id))
+        def run_test(v, w, x, y, z, a, i, test_id):
+            print('Test {} Started'.format(test_id))
             self.set_params(self.genome_length, self.eval_fitness,
                             self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
                             self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1], self.MANAGEMENT_METHODS[a][1])
             op_fit, best_indivs, gencount, run_history, time_tuple = \
-                self.run(generation_limit, known_optimum, true_opt, print_gens if not self.multithread else False, True)
+                self.run(generation_limit, test_id, known_optimum, true_opt, print_gens, not self.multithread)
 
             matrix[v][w][x][y][z][a].set_run_stats(i, op_fit, best_indivs, gencount, run_history, time_tuple)
             if self.multithread:
-                print('Thread {} finished running!'.format(id))
+                print('Test {} finished running'.format(test_id))
                 print(matrix[v][w][x][y][z][a].funcs_used())
                 matrix[v][w][x][y][z][a].print_simple_stats()
             print("\n -------- \n")
