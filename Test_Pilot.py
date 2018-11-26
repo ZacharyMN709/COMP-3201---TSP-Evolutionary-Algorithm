@@ -170,7 +170,7 @@ def main():
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
     result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 25)
-    print(matrix_dimensions)
+    print('Matrix dimensions are: {}'.format(matrix_dimensions))
 
     # Iterates over each StatsHolder Object
     for a in range(matrix_dimensions[0]):
