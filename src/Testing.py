@@ -31,7 +31,8 @@ class EATester(EARunner):
 
     def iterate_tests(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0):
         def run_test(v, w, x, y, z, a, i, test_id):
-            print('Test {} Started'.format(test_id))
+            if self.multithread:
+                print('Test {} Started'.format(test_id))
             self.set_params(self.genome_length, self.eval_fitness,
                             self.POPULATION_METHODS[v][1], self.PARENT_METHODS[w][1], self.RECOMBINATION_METHODS[x][1],
                             self.MUTATION_METHODS[y][1], self.SURVIVOR_METHODS[z][1], self.MANAGEMENT_METHODS[a][1])
@@ -44,7 +45,6 @@ class EATester(EARunner):
                 print(matrix[v][w][x][y][z][a].funcs_used())
                 matrix[v][w][x][y][z][a].print_simple_stats()
             print("\n -------- \n")
-
 
         if not self.testable:
             print("Error! Missing information to run tests. Please check the code for errors.")
@@ -70,23 +70,22 @@ class EATester(EARunner):
 
         # EA Iterator
         for v in range(len(self.POPULATION_METHODS)):
-         for w in range(len(self.PARENT_METHODS)):
-          for x in range(len(self.RECOMBINATION_METHODS)):
-           for y in range(len(self.MUTATION_METHODS)):
-            for z in range(len(self.SURVIVOR_METHODS)):
-             for a in range(len(self.MANAGEMENT_METHODS)):
-              for i in range(self.RUNS):
-               if self.multithread:
-                # Spawn a new process to run the algorithm
-                process_id = len(self.processes)
-                print('Thread {} Initialized'.format(process_id))
-                process = Process(target=run_test, args=(v, w, x, y, z, a, i, process_id))
-                self.processes.append(process)
-               else:
-                run_test(v, w, x, y, z, a, i, self.running)
-                self.running += 1
-               print(matrix[v][w][x][y][z][a].funcs_used())
-
+            for w in range(len(self.PARENT_METHODS)):
+                for x in range(len(self.RECOMBINATION_METHODS)):
+                    for y in range(len(self.MUTATION_METHODS)):
+                        for z in range(len(self.SURVIVOR_METHODS)):
+                            for a in range(len(self.MANAGEMENT_METHODS)):
+                                for i in range(self.RUNS):
+                                    if self.multithread:
+                                        # Spawn a new process to run the algorithm
+                                        process_id = len(self.processes)
+                                        print('Thread {} Initialized'.format(process_id))
+                                        process = Process(target=run_test, args=(v, w, x, y, z, a, i, process_id))
+                                        self.processes.append(process)
+                                    else:
+                                        run_test(v, w, x, y, z, a, i, self.running)
+                                        self.running += 1
+                                    print(matrix[v][w][x][y][z][a].funcs_used())
 
         if self.multithread:
             # Start processes
@@ -96,18 +95,19 @@ class EATester(EARunner):
             for process in self.processes:
                 process.join()
 
-
         # Stats Output
         if not self.multithread:
-         for v in range(len(self.POPULATION_METHODS)):
-          for w in range(len(self.PARENT_METHODS)):
-           for x in range(len(self.RECOMBINATION_METHODS)):
-            for y in range(len(self.MUTATION_METHODS)):
-             for z in range(len(self.SURVIVOR_METHODS)):
-              for a in range(len(self.MANAGEMENT_METHODS)):
-               print("After {} iterations, with {} generations per iteration".format(self.RUNS, generation_limit))
-               print(matrix[v][w][x][y][z][a].funcs_used())
-               matrix[v][w][x][y][z][a].print_simple_stats()
-               print("\n -------- \n")
+            for v in range(len(self.POPULATION_METHODS)):
+                for w in range(len(self.PARENT_METHODS)):
+                    for x in range(len(self.RECOMBINATION_METHODS)):
+                        for y in range(len(self.MUTATION_METHODS)):
+                            for z in range(len(self.SURVIVOR_METHODS)):
+                                for a in range(len(self.MANAGEMENT_METHODS)):
+                                    print("After {} iterations, with {} generations per iteration".format(
+                                        self.RUNS, generation_limit))
+                                    print(matrix[v][w][x][y][z][a].funcs_used())
+                                    matrix[v][w][x][y][z][a].print_simple_stats()
+                                    print("\n -------- \n")
 
-        return matrix, (v, w, x, y, z, a)
+        return matrix, (len(self.POPULATION_METHODS), len(self.PARENT_METHODS), len(self.RECOMBINATION_METHODS),
+                        len(self.MUTATION_METHODS), len(self.SURVIVOR_METHODS), len(self.MANAGEMENT_METHODS))

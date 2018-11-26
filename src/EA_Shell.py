@@ -73,6 +73,8 @@ class EARunner:
             print("Error! Missing information to run EA. Please check the code for errors.")
             return
 
+        print("Test: {}".format(test_id))
+
         master_start_time = time.time()
         ea_vars = self.EAVars
 

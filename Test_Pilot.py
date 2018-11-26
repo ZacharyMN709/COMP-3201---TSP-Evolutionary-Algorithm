@@ -6,7 +6,7 @@ import time
 
 
 def get_timestamp():
-    return time.strftime("%m-%d %H:%M", time.gmtime())
+    return time.strftime("%m-%d-%H-%M", time.gmtime())
 
 
 def import_modules(FILENUM=0, MODULE=0):
@@ -62,20 +62,67 @@ def generate_algorithm(FILENUM=0, MODULE=0, MULTITHREAD=False):
             from src.Setups.TSP.TSP_LST import euclidean_distance as eval_fitness
         genome_len = parse_file(FILENUM)
 
+    PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, MODULE)
     tester = EATester(PSM, RM, MM, SSM, DEF, PMM, mt=MULTITHREAD)
     tester.set_params(genome_len, eval_fitness, initialize, None, None, None, None, None)
     return tester
 
 
 def go_to_project_root():
-    path = os.path.join(os.getcwd(), '..')
+    script_dir = os.path.dirname(__file__)
+    path = os.path.join(script_dir, '..')
     print(path)
-    sys.path.append(path)
     os.chdir(path)
     print("Present working directory:", os.getcwd(), '\n')
 
 
-if __name__ == '__main__':
+def main():
+    def pickle_stats_obj(obj):
+        def move_dir():
+            script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+
+            # Get the right dir based on test parameters
+            abs_dir_path = os.path.join(script_dir, 'Results', FILE_DICT.get(FILENUM, 4), METHOD_DICT.get(METHOD, 0))
+
+            # Change to that dir
+            os.chdir(abs_dir_path)
+
+            # Try and make a new dir for test results
+            dir_name = get_timestamp()
+            try:
+                os.makedirs(dir_name)
+            except FileExistsError:
+                print("Directory ", dir_name, " already exists")
+
+            # Move to the new dir
+            abs_dir_path = os.path.join(abs_dir_path, dir_name)
+
+            # Change to that dir
+            os.chdir(abs_dir_path)
+            print("Present working directory:", os.getcwd(), '\n')
+            return abs_dir_path
+
+        indices = (
+            POPULATION_DICT[obj.POPULATION_METHOD],
+            PARENT_DICT[obj.PARENT_METHOD],
+            SURVIVOR_DICT[obj.SURVIVOR_METHOD],
+            MUTATION_DICT[obj.MUTATION_METHOD],
+            RECOMBINATION_DICT[obj.RECOMBINATION_METHOD],
+            MANAGEMENT_DICT[obj.MANAGEMENT_METHOD]
+        )
+
+        # A dictionary which is to be pickled.
+        to_save = {'Stats': obj,
+                   'Funcs': indices,
+                   'Runs': RUNS,
+                   'Generations': GENERATIONS}
+
+        abs_dir_path = move_dir()
+        fname = '{}{}{}{}{}{}.txt'.format(indices[0], indices[1], indices[2], indices[3], indices[4], indices[5])
+        with open(os.path.join(abs_dir_path, fname), 'wb') as f:
+            pickle.dump(to_save, f)
+            print('Saved: {}'.format(fname))
+
     print("Present working directory:", os.getcwd(), '\n')
 
     FILE_DICT = {0: '8-Queens',
@@ -85,15 +132,15 @@ if __name__ == '__main__':
                  4: 'Test World'}
 
     METHOD_DICT = {0: 'Lists',
-                   1: 'NumpyV1',
-                   2: 'NumpyV2'}
+                   1: 'Numpy',
+                   2: 'Arrays'}
 
     FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-    METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
-    MULTITHREAD = True
-    RUNS = 1  # Number of times each combination is run.
-    GENERATIONS = 5000
-    SAVE = False
+    METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
+    MULTITHREAD = False
+    RUNS = 5  # Number of times each combination is run.
+    GENERATIONS = 50
+    SAVE = True
 
     PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
@@ -104,9 +151,16 @@ if __name__ == '__main__':
     SURVIVOR_METHODS = [('Mu + Lambda', SSM.mu_plus_lambda), ('Replace', SSM.replacement)]
     MANAGEMENT_METHODS = [('None', PMM.static_return), ('Annealing', PMM.metallurgic_annealing), ('Entropy', PMM.metallurgic_annealing), ('Oroborous', PMM.metallurgic_annealing)]
 
+    POPULATION_DICT = {POPULATION_METHODS[x][0]: x for x in range(len(POPULATION_METHODS))}
+    PARENT_DICT = {PARENT_METHODS[x][0]: x for x in range(len(PARENT_METHODS))}
+    RECOMBINATION_DICT = {RECOMBINATION_METHODS[x][0]: x for x in range(len(RECOMBINATION_METHODS))}
+    MUTATION_DICT = {MUTATION_METHODS[x][0]: x for x in range(len(MUTATION_METHODS))}
+    SURVIVOR_DICT = {SURVIVOR_METHODS[x][0]: x for x in range(len(SURVIVOR_METHODS))}
+    MANAGEMENT_DICT = {MANAGEMENT_METHODS[x][0]: x for x in range(len(MANAGEMENT_METHODS))}
+
     tester = generate_algorithm(FILENUM, METHOD, MULTITHREAD)
-    tester.set_test_vars(RUNS, POPULATION_METHODS[0:1], PARENT_METHODS[0:3], RECOMBINATION_METHODS[0:2],
-                         MUTATION_METHODS[0:4], SURVIVOR_METHODS[0:2], MANAGEMENT_METHODS[0:1])
+    tester.set_test_vars(RUNS, POPULATION_METHODS[0:1], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+                         MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[0:1])
 
     if FILENUM:
         from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
@@ -115,7 +169,8 @@ if __name__ == '__main__':
         opt_fitness, true_optimum = 16, True
         opt_individual = [5, 2, 6, 3, 0, 7, 1, 4]
 
-    result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 100)
+    result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 25)
+    print(matrix_dimensions)
 
     # Iterates over each StatsHolder Object
     for a in range(matrix_dimensions[0]):
@@ -124,15 +179,9 @@ if __name__ == '__main__':
                 for d in range(matrix_dimensions[3]):
                     for e in range(matrix_dimensions[4]):
                         for f in range(matrix_dimensions[5]):
-                            print(result_matrix[a][b][c][d][e][f])
+                            if SAVE and FILENUM != 0:
+                                pickle_stats_obj(result_matrix[a][b][c][d][e][f])
 
-    if SAVE:
-        to_save = {'matrix': result_matrix,
-                   'dimensions': matrix_dimensions}
-        fname = '{}_{} R{}-G{} {}.txt'.format(
-            FILE_DICT.get(FILENUM, '?'), METHOD_DICT.get(METHOD, '?'), RUNS, GENERATIONS, get_timestamp())
 
-        script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-        abs_file_path = os.path.join(script_dir, 'Documents', 'Test_Matrices', fname)
-        with open(os.path.join(abs_file_path), 'wb') as f:
-            pickle.dump(to_save, f)
+if __name__ == '__main__':
+    main()
