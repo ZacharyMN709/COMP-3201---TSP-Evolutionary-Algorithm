@@ -2,13 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Added the Brute Force TSP algorithm to optimize initial population">
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Setups/TSP Brute Force.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Setups/TSP Brute Force.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -51,8 +47,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="24" column="35" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="66" />
+            <state relative-caret-position="425">
+              <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
             </state>
           </provider>
         </entry>
@@ -99,20 +95,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/PopulationManagementMethods.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="168" column="134" selection-start-line="168" selection-start-column="134" selection-end-line="168" selection-end-column="134" />
+            <state relative-caret-position="847">
+              <caret line="166" column="48" selection-start-line="166" selection-start-column="48" selection-end-line="166" selection-end-column="48" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-34">
-              <caret line="91" column="14" lean-forward="true" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
+              <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -150,6 +146,7 @@
     </option>
     <option name="UPDATE_TYPE" value="MERGE" />
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SIGN_OFF_COMMIT" value="true" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -221,7 +218,7 @@
     <option name="height" value="744" />
   </component>
   <component name="ProjectView">
-    <navigator proportions="" version="1">
+    <navigator currentView="Scope" currentSubView="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope" proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -237,11 +234,32 @@
               <item name="CS3201-TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="CS3201-TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CS3201-TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Setups" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="CS3201-TSP-Evolutionary-Algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="CS3201-TSP-Evolutionary-Algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -251,18 +269,18 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods\Pandas_Rep" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Documents" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods\Numpy_Rep" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods\Pandas_Rep" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rebekah\PycharmProjects\CS3201-TSP-Evolutionary-Algorithm\src\Setups" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods\Pandas_Rep" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\EA_Methods" />
     </key>
   </component>
@@ -278,7 +296,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Test_Pilot">
+  <component name="RunManager" selected="Python.TSP Brute Force">
     <configuration name="EA_Shell" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="COMP 3201 - Assignment 3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -300,7 +318,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ParentSelectionMethods" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="TSP Brute Force" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="COMP 3201 - Assignment 3" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -308,12 +326,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/EA_Methods/Numpy_Rep" />
-      <option name="IS_MODULE_SDK" value="true" />
+      <option name="WORKING_DIRECTORY" value="$USER_HOME$/Documents/Programs" />
+      <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/ParentSelectionMethods.py" />
+      <option name="SCRIPT_NAME" value="$USER_HOME$/Documents/Programs/TSP Brute Force.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -409,16 +426,16 @@
       <item itemvalue="Python.Testing" />
       <item itemvalue="Python.TSP_LST" />
       <item itemvalue="Python.Test_Pilot" />
-      <item itemvalue="Python.ParentSelectionMethods" />
       <item itemvalue="Python.EA_Shell" />
+      <item itemvalue="Python.TSP Brute Force" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.TSP Brute Force" />
         <item itemvalue="Python.Test_Pilot" />
         <item itemvalue="Python.EA_Shell" />
         <item itemvalue="Python.Testing" />
         <item itemvalue="Python.TSP_LST" />
-        <item itemvalue="Python.ParentSelectionMethods" />
       </list>
     </recent_temporary>
   </component>
@@ -432,13 +449,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
-    </task>
-    <task id="LOCAL-00011" summary="Improved the Memoization set-up.&#10;Added a brute force solver for the TSP, but throws 'MemoryError', due to computational size of the problem. For now, randomly shuffles the list, and compares against the previous optimal ad infinitum.&#10;TODO: Finish implementing mutation and crossover methods.">
-      <created>1540755058284</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1540755058284</updated>
     </task>
     <task id="LOCAL-00012" summary="Added another brute-force solver, works, though is unfeasible for scale of problems.&#10;TODO: Finish implementing mutation and crossover methods.">
       <created>1540777776603</created>
@@ -776,7 +786,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543114838284</updated>
     </task>
-    <option name="localTasksCounter" value="60" />
+    <task id="LOCAL-00060" summary="Added the Brute Force TSP algorithm to optimize initial population">
+      <created>1543255013367</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1543255013369</updated>
+    </task>
+    <option name="localTasksCounter" value="61" />
     <servers />
   </component>
   <component name="TodoView">
@@ -789,7 +806,8 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1295" height="735" extended-state="6" />
+    <frame x="-7" y="-7" width="1295" height="735" extended-state="7" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.26153848" />
       <window_info id="Structure" order="1" weight="0.24939272" />
@@ -805,7 +823,7 @@
       <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.4969743" weight="0.32894737" />
       <window_info anchor="bottom" id="Terminal" order="9" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4969743" weight="0.32894737" />
+      <window_info anchor="bottom" id="Version Control" order="11" sideWeight="0.4969743" weight="0.3283582" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -844,7 +862,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Made a few changes. Of note, and weirdly, the list brute force seems to run faster than the numpy one. To be investigated.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Made a few changes. Of note, and weirdly, the list brute force seems to run faster than the numpy one. To be investigated.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Added optimum costs, and optimum path for Canada. Also, added the new mutation functions to the Testing.py module.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
     <MESSAGE value="Added some extra comments to modules.&#10;TODO: Modify code for finding files, so that it is system independent.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons." />
@@ -869,16 +886,10 @@
     <MESSAGE value="Saving work on the final presentation." />
     <MESSAGE value="Fixed the heuristic initialisation." />
     <MESSAGE value="Added a new, and incredibly effective population management strategy." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a new, and incredibly effective population management strategy." />
+    <MESSAGE value="Added the Brute Force TSP algorithm to optimize initial population" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added the Brute Force TSP algorithm to optimize initial population" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_WesternSahara_29.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="23" lean-forward="true" selection-end-line="28" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Testbed_10.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1078,8 +1089,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Testing.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="24" column="35" selection-start-line="44" selection-start-column="12" selection-end-line="44" selection-end-column="66" />
+        <state relative-caret-position="425">
+          <caret line="26" column="35" selection-start-line="26" selection-start-column="35" selection-end-line="26" selection-end-column="35" />
         </state>
       </provider>
     </entry>
@@ -1127,16 +1138,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-34">
-          <caret line="91" column="14" lean-forward="true" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="5831">
@@ -1153,10 +1154,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/Documents/Programs/TSP Brute Force.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="13" lean-forward="true" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/PopulationManagementMethods.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="168" column="134" selection-start-line="168" selection-start-column="134" selection-end-line="168" selection-end-column="134" />
+        <state relative-caret-position="847">
+          <caret line="166" column="48" selection-start-line="166" selection-start-column="48" selection-end-line="166" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="91" column="14" selection-start-line="91" selection-start-column="14" selection-end-line="91" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
