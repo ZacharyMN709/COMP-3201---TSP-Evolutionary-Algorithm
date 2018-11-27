@@ -92,7 +92,7 @@ SAVE = True
 
 PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
-POPULATION_METHODS = [('Random Initialization', DEF.random_initialization), ('Cluster Initialization', DEF.heuristic_cluster_initialization)]
+POPULATION_METHODS = [('Random', DEF.random_initialization), ('Cluster', DEF.heuristic_cluster_initialization), ('Euler', DEF.heuristic_euler_initialization)]
 PARENT_METHODS = [('MPS', PSM.mps), ('Tourney', PSM.tournament), ('Random', PSM.random_uniform)]
 RECOMBINATION_METHODS = [('Order Crossover', RM.order_crossover), ('PMX Crossover', RM.pmx_crossover)]
 MUTATION_METHODS = [('Swap', MM.permutation_swap), ('Insert', MM.permutation_insert), ('Inversion', MM.permutation_inversion), ('Shift', MM.permutation_shift)]

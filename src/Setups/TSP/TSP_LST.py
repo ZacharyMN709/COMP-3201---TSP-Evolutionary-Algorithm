@@ -21,14 +21,6 @@ def set_fitness_function(i):
 # endregion
 
 
-def fitness_applicator(func):
-    def generate_population(pop_size, genome_length):
-        population = func(pop_size, genome_length)
-        global eval_fitness
-        return population, [eval_fitness(i) for i in population]
-    return generate_population
-
-
 # region Initialization
 def read_tsp_file(fnum):
     global FILENUM
@@ -69,6 +61,14 @@ def read_tsp_file(fnum):
 
 
 # region Population Seeding
+def fitness_applicator(func):
+    def generate_population(pop_size, genome_length):
+        population = func(pop_size, genome_length)
+        global eval_fitness
+        return population, [eval_fitness(i) for i in population]
+    return generate_population
+
+
 # region Random
 
 
@@ -296,7 +296,7 @@ def single_euler_individual(genome_length):
 @fitness_applicator
 def heuristic_euler_initialization(pop_size, genome_length):
     global MSTREE, ODDVERTEXES
-    MSTREE = minimum_spanning_tree()
+    if not MSTREE: MSTREE = minimum_spanning_tree()
     ODDVERTEXES = find_odd_vertexes(MSTREE)
     return [single_euler_individual(genome_length) for _ in range(pop_size)]
 # endregion
@@ -315,11 +315,14 @@ def calc_distance(loc1, loc2):
 
 if __name__ == '__main__':
     genome_length = read_tsp_file(3)
+    import time
 
-    for _ in range(5):
-        set_fitness_function(euclidean_distance)
-        pop = heuristic_cluster_initialization(10, genome_length)
-        print(CLUSTERS)
-        #for x in CLUSTERS: print(x)
-        print()
-        for x in pop: print(x)
+    start_time = time.time()
+
+    set_fitness_function(euclidean_distance)
+    pop, fitmesses = heuristic_cluster_initialization(60, genome_length)
+    print(CLUSTERS)
+    #for x in CLUSTERS: print(x)
+    print()
+    for x in pop: print(x)
+    print(time.time() - start_time)
