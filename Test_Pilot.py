@@ -111,7 +111,7 @@ tester.set_test_vars(RUNS, POPULATION_METHODS[0:1], PARENT_METHODS[1:2], RECOMBI
                      MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[0:1])
 
 if FILENUM:
-    from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
+    from src.Setups.TSP.Inputs.Optimums import get_best_path
     opt_fitness, opt_individual, true_optimum = get_best_path(FILENUM)
 else:
     opt_fitness, true_optimum = 16, True

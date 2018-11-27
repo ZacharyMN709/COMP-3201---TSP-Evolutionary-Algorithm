@@ -7,7 +7,7 @@ FILE_DICT = {0: '8-Queens',
              1: 'Sahara',
              2: 'Uruguay',
              3: 'Canada',
-             4: 'Test World'}
+             4: 'TestWorld'}
 
 METHOD_DICT = {0: 'Lists',
                1: 'Numpy',
@@ -101,7 +101,7 @@ def get_pickled_stats(file_name, file_num, method_used):
 
 # region Heuristic Handler
 def pickle_euler_obj(to_save, file_num):
-    abs_dir_path = get_euler_dir()
+    abs_dir_path = get_euler_dir(file_num)
     move_dir(abs_dir_path)
     fname = get_euler_file(file_num)
 
@@ -116,11 +116,11 @@ def pickle_euler_obj(to_save, file_num):
     go_to_project_root()
 
 
-def get_euler_dir():
+def get_euler_dir(fnum):
     script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
 
     # Get the right dir based on test parameters
-    abs_dir_path = os.path.join(script_dir, 'src', 'Setups', 'TSP', 'TSP_Inputs')
+    abs_dir_path = os.path.join(script_dir, 'src', 'Setups', 'TSP', 'Inputs', FILE_DICT[fnum])
     return abs_dir_path
 
 
@@ -136,14 +136,14 @@ def get_pickled_euler(file_num, fast=False):
 
     try:
         if fast:
-            abs_dir_path = get_euler_dir()
+            abs_dir_path = get_euler_dir(file_num)
             fname = get_euler_file(file_num) + '-Fast'
             with open(os.path.join(abs_dir_path, fname), 'rb') as f:
                 euler_dict = pickle.load(f)
                 print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
             return euler_dict
         else:
-            abs_dir_path = get_euler_dir()
+            abs_dir_path = get_euler_dir(file_num)
             fname = get_euler_file(file_num)
             with open(os.path.join(abs_dir_path, fname), 'rb') as f:
                 euler_dict = pickle.load(f)
@@ -157,7 +157,7 @@ def get_pickled_euler(file_num, fast=False):
 
 # region Heuristic Handler
 def pickle_memo_obj(to_save, file_num):
-    abs_dir_path = get_memo_dir()
+    abs_dir_path = get_memo_dir(file_num)
     move_dir(abs_dir_path)
     fname = get_memo_file(file_num)
 
@@ -169,11 +169,11 @@ def pickle_memo_obj(to_save, file_num):
     go_to_project_root()
 
 
-def get_memo_dir():
+def get_memo_dir(fnum):
     script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
 
     # Get the right dir based on test parameters
-    abs_dir_path = os.path.join(script_dir, 'src', 'Setups', 'TSP', 'TSP_Inputs')
+    abs_dir_path = os.path.join(script_dir, 'src', 'Setups', 'TSP', 'Inputs', FILE_DICT[fnum])
     return abs_dir_path
 
 
@@ -185,7 +185,7 @@ def get_pickled_memo(file_num):
     # {'Locs': locs,
     #  'Dists', dists}
     try:
-        abs_dir_path = get_euler_dir()
+        abs_dir_path = get_euler_dir(file_num)
         fname = get_memo_file(file_num)
         with open(os.path.join(abs_dir_path, fname), 'rb') as f:
             euler_dict = pickle.load(f)

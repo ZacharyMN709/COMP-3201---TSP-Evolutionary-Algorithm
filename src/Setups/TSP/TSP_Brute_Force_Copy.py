@@ -24,7 +24,7 @@ def read_tsp_file(fnum):
         fname = "TSP_Testbed_10.txt"
 
     script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-    abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
+    abs_file_path = os.path.join(script_dir, 'Inputs', fname)
 
     with open(abs_file_path, 'r') as f:
         # Read and parse the file

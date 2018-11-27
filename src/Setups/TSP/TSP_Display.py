@@ -65,7 +65,7 @@ class GraphingHelper:
             fname = "TSP_Testbed_10.txt"
 
         script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-        abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
+        abs_file_path = os.path.join(script_dir, 'Inputs', fname)
 
         # Uses indexing from 0, rather than 1, by skipping the first column in the data.
         cities = pd.read_csv(abs_file_path, usecols=[1, 2], header=None, delimiter=' ')
