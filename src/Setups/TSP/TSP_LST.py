@@ -2,10 +2,13 @@ import os
 import csv
 from random import sample, shuffle
 from copy import deepcopy
+import numpy as np
+from array import array
 
 # region Globals and Setters
 MAX = False
 FILENUM = None
+REP = None
 LOCATIONS = dict()
 MEMOIZED = dict()
 CLUSTERS = []
@@ -22,9 +25,9 @@ def set_fitness_function(i):
 
 
 # region Initialization
-def read_tsp_file(fnum):
-    global FILENUM
-    FILENUM = fnum
+def read_tsp_file(fnum, representation=0):
+    global FILENUM, REP
+    FILENUM, REP = fnum, representation
     if fnum == 1:
         fname = "TSP_WesternSahara_29.txt"
     elif fnum == 2:
@@ -67,6 +70,17 @@ def fitness_applicator(func):
         global eval_fitness
         return population, [eval_fitness(i) for i in population]
     return generate_population
+
+
+def representation_wrapper(func):
+    def wrap_output(genome_length):
+        if REP == 2:
+            return array('i', func(genome_length))
+        elif REP == 1:
+            return np.array(func(genome_length))
+        else:
+            return list(func(genome_length))
+    return wrap_output
 
 
 # region Random
