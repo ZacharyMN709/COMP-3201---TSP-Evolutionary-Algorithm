@@ -104,3 +104,12 @@ class StatsHolder:
     @staticmethod  # @staticmethod allows all StatsHolder objects to use this, irrespective of self.
     def compare(stats1, stats2):
         pass
+
+    def average_genration_fitness(self):
+        avg_out = [0] * max(self.generation_count)
+
+        for x in range(len(avg_out)):
+            temp = [self.run_fitness_history[i][x] for i in self.RUNS if x < len(self.run_fitness_history[i])]
+            avg_out[x] = sum(temp) / len(temp)
+        pass
+
