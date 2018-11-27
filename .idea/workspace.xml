@@ -1,35 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Adding pickle objects under 100MB.">
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Setups/TSP/Christofide_Heuristic.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Setups/TSP/Cluster_Heuristics.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Setups/TSP/FileLoader.py" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Setups/TSP/ProblemDefinition.py" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Pickle_Helper.py" afterPath="$PROJECT_DIR$/Pickle_Helper.py" />
-      <change beforePath="$PROJECT_DIR$/Test_Pilot.py" afterPath="$PROJECT_DIR$/Test_Pilot.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/Optimums.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Optimums.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Canada_4663.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Canada_4663.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Canada/TSP_Canada_4663.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Canada_MST.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Canada_MST.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Canada/TSP_Canada_MST.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Canada_MST.txt-Fast" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Canada_MST.txt-Fast" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Canada/TSP_Canada_MST.txt-Fast" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Sahara_Dists.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Sahara/TSP_Sahara_Dists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Sahara_MST.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Sahara/TSP_Sahara_MST.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Sahara_MST.txt-Fast" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Sahara/TSP_Sahara_MST.txt-Fast" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Testbed_10.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/TestWorld/TSP_Testbed_10.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_734.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_734.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Uruguay/TSP_Uruguay_734.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_Dists.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_Dists.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Uruguay/TSP_Uruguay_Dists.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_MST.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_MST.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Uruguay/TSP_Uruguay_MST.txt" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_MST.txt-Fast" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Uruguay_MST.txt-Fast" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Uruguay/TSP_Uruguay_MST.txt-Fast" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_WesternSahara_29.txt" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Sahara/TSP_WesternSahara_29.txt" />
       <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_NPY.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_NPY.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,43 +39,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="TSP_Brute_Force_Copy.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py">
+      <file leaf-file-name="TSP_Brute_Force.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-676">
-              <caret line="203" column="18" lean-forward="false" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
-              <folding>
-                <element signature="e#0#11#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="125" column="42" lean-forward="false" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Pickle_Helper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Pickle_Helper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pickle_Helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1700">
-              <caret line="103" column="41" lean-forward="false" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="20" lean-forward="false" selection-start-line="1" selection-start-column="20" selection-end-line="1" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Optimums.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/Inputs/Optimums.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="85">
+              <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
               <folding />
             </state>
           </provider>
@@ -106,14 +62,68 @@
       <file leaf-file-name="TSP_LST.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="222">
-              <caret line="364" column="35" lean-forward="false" selection-start-line="364" selection-start-column="35" selection-end-line="364" selection-end-column="35" />
+            <state relative-caret-position="-153">
+              <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#2845#2860#0" expanded="false" />
-                <element signature="e#3142#3168#0" expanded="false" />
-                <element signature="e#4827#4850#0" expanded="false" />
+                <element signature="e#2876#2891#0" expanded="false" />
+                <element signature="e#3173#3199#0" expanded="false" />
+                <element signature="e#4858#4881#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProblemDefinition.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/ProblemDefinition.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#34#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Cluster_Heuristics.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/Cluster_Heuristics.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="41" column="97" lean-forward="false" selection-start-line="41" selection-start-column="97" selection-end-line="41" selection-end-column="97" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StatsHolder.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1095">
+              <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileLoader.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/FileLoader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="57" column="29" lean-forward="false" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EA_Shell.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EA_Shell.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,19 +135,6 @@
               <caret line="126" column="11" lean-forward="false" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="26" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TSP_ARR.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="126" column="11" lean-forward="false" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-                <element signature="e#4251#4274#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -165,6 +162,7 @@
       <find>[z]</find>
       <find>TP.</find>
       <find>#</find>
+      <find>copy.deepcopy</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -185,13 +183,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Testbed_6.txt" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Testbed_12.txt" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/TSP_Testbed_10.txt" />
-        <option value="$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/MutationMethods.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/CDN" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs/CDN.txt" />
-        <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/ParentSelectionMethods.py" />
         <option value="$PROJECT_DIR$/src/Other/Modular_Reference.py" />
         <option value="$PROJECT_DIR$/Testing.py" />
         <option value="$PROJECT_DIR$/src/Other/Timer.py" />
@@ -220,7 +211,6 @@
         <option value="$PROJECT_DIR$/src/EA_Methods/Array_Rep/PopulationManagementMethods.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/PopulationManagementMethods.py" />
         <option value="$PROJECT_DIR$/Documents/scratch" />
-        <option value="$PROJECT_DIR$/src/EA_Shell.py" />
         <option value="$PROJECT_DIR$/src/Testing.py" />
         <option value="$PROJECT_DIR$/Results/Canada/Arrays/blank.txt" />
         <option value="$PROJECT_DIR$/Results/Uruguay/Numpy/blank.txt" />
@@ -232,10 +222,18 @@
         <option value="$PROJECT_DIR$/Test_Pilot.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/Pickle_Helper.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/Random_Init.py" />
+        <option value="$PROJECT_DIR$/src/EA_Shell.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/Inputs/Christofide_Heuristic.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/FileLoader.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/ProblemContext.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/Christofide_Heuristic.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/Cluster_Heuristics.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/ProblemDefinition.py" />
       </list>
     </option>
   </component>
@@ -314,50 +312,6 @@
               <item name="Setups" type="462c0819:PsiDirectoryNode" />
               <item name="TSP" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP" type="462c0819:PsiDirectoryNode" />
-              <item name="Inputs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP" type="462c0819:PsiDirectoryNode" />
-              <item name="Inputs" type="462c0819:PsiDirectoryNode" />
-              <item name="Canada" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP" type="462c0819:PsiDirectoryNode" />
-              <item name="Inputs" type="462c0819:PsiDirectoryNode" />
-              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP" type="462c0819:PsiDirectoryNode" />
-              <item name="Inputs" type="462c0819:PsiDirectoryNode" />
-              <item name="TestWorld" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP" type="462c0819:PsiDirectoryNode" />
-              <item name="Inputs" type="462c0819:PsiDirectoryNode" />
-              <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -389,11 +343,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP\Inputs\TestWorld" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP\Inputs\Uruguay" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP\Inputs\Sahara" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP\Inputs\Canada" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\TSP_Results" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
@@ -559,13 +513,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Started on pandas based optimization. Added some test cells to the notebook, with comments for which functions work, are in progress or are stubs.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541383533146</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1541383533146</updated>
     </task>
     <task id="LOCAL-00023" summary="Fixed a small range error in Testing.py. &#10;Started on pandas based optimization. Added some test cells to the notebook, with comments for which functions work, are in progress or are stubs.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
       <created>1541444090691</created>
@@ -903,7 +850,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543337258767</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="Re-organizing problem input data.">
+      <created>1543337515481</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1543337515481</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TodoView">
@@ -921,7 +875,7 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -943,28 +897,28 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3618421" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25718608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2730711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24939272" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -975,7 +929,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Added sample output for a test run of the Sahara dataset. Also added percent-based evaluation of fitness, if given a true optimum.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
     <MESSAGE value="Adding output of some test runs for the Sahara dataset. Mu + Lambda seems to converge very quickly whereas Replace barely converges at all.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
     <MESSAGE value="Staring on implementing numpy arrays instead of lists.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
     <MESSAGE value="Implemented some numpy array methods.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
@@ -1000,20 +953,16 @@
     <MESSAGE value="Started merging of different representations. Should currently support backwards comaptability, moving into new branch to avoid catastrophy." />
     <MESSAGE value="Added fast loading of predefined objects." />
     <MESSAGE value="Adding pickle objects under 100MB." />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding pickle objects under 100MB." />
+    <MESSAGE value="Re-organizing problem input data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Re-organizing problem input data." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="6" />
+      <option name="time" value="7" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_PDS.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/PopulationManagementMethods.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/SurvivorSelectionMethods.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py" />
-    <entry file="file://$PROJECT_DIR$/Documents/Temp.txt" />
     <entry file="file://$PROJECT_DIR$/Documents/Timings.txt" />
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/ParentSelectionMethods.py" />
     <entry file="file://$PROJECT_DIR$/Sahara_Lists R1-G20, 11-24 07" />
@@ -1043,15 +992,7 @@
     <entry file="file://$PROJECT_DIR$/Results/Uruguay/Numpy/blank.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Test World/Lists/blank.txt" />
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP-Brute-Force.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Shell.py" />
     <entry file="file://$PROJECT_DIR$/Documents/deafults.txt" />
-    <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="798">
-          <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Results/Canada/Arrays/sample.txt" />
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1074,16 +1015,6 @@
         <state relative-caret-position="136">
           <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="65" selection-end-column="18" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1132,29 +1063,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="364" column="35" lean-forward="false" selection-start-line="364" selection-start-column="35" selection-end-line="364" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-            <element signature="e#2845#2860#0" expanded="false" />
-            <element signature="e#3142#3168#0" expanded="false" />
-            <element signature="e#4827#4850#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-676">
-          <caret line="203" column="18" lean-forward="false" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1163,11 +1071,104 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/Random_Init.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Shell.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="125" column="42" lean-forward="false" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="89">
+          <caret line="203" column="0" lean-forward="false" selection-start-line="203" selection-start-column="0" selection-end-line="255" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Pickle_Helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1700">
-          <caret line="103" column="41" lean-forward="false" selection-start-line="103" selection-start-column="41" selection-end-line="103" selection-end-column="41" />
+        <state relative-caret-position="85">
+          <caret line="11" column="26" lean-forward="true" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-153">
+          <caret line="174" column="0" lean-forward="false" selection-start-line="174" selection-start-column="0" selection-end-line="174" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#2876#2891#0" expanded="false" />
+            <element signature="e#3173#3199#0" expanded="false" />
+            <element signature="e#4858#4881#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/Christofide_Heuristic.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="81" column="34" lean-forward="false" selection-start-line="81" selection-start-column="34" selection-end-line="81" selection-end-column="34" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1095">
+          <caret line="78" column="4" lean-forward="false" selection-start-line="78" selection-start-column="4" selection-end-line="78" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/FileLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="57" column="29" lean-forward="false" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/Cluster_Heuristics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="41" column="97" lean-forward="false" selection-start-line="41" selection-start-column="97" selection-end-line="41" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/ProblemDefinition.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
