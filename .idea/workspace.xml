@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" afterPath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/StatsHolder.py" afterPath="$PROJECT_DIR$/src/StatsHolder.py" />
+      <change beforePath="$PROJECT_DIR$/Test_Pilot.py" afterPath="$PROJECT_DIR$/Test_Pilot.py" />
+      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,7 +33,7 @@
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Optimums.coverage" NAME="Optimums Coverage Results" MODIFIED="1541781731611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Main.coverage" NAME="Main Coverage Results" MODIFIED="1540609486080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Testing.coverage" NAME="Testing Coverage Results" MODIFIED="1542078783514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Test_Pilot.coverage" NAME="Test_Pilot Coverage Results" MODIFIED="1543278039000" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Test_Pilot.coverage" NAME="Test_Pilot Coverage Results" MODIFIED="1543361691617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/COMP_3201___Response_3___Code$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1540307553443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FileEditorManager">
@@ -38,7 +41,7 @@
       <file leaf-file-name="Pickle_Helper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Pickle_Helper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
+            <state relative-caret-position="1224">
               <caret line="194" column="19" lean-forward="false" selection-start-line="194" selection-start-column="19" selection-end-line="194" selection-end-column="19" />
               <folding>
                 <element signature="e#671#700#0" expanded="false" />
@@ -48,12 +51,36 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatsHolder.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="StatsHolder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
+            <state relative-caret-position="844">
               <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Test_Pilot.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="82">
+              <caret line="86" column="10" lean-forward="false" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="TSP_LST.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="185">
+              <caret line="63" column="28" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+              <folding>
+                <element signature="e#2921#2936#0" expanded="false" />
+                <element signature="e#3218#3244#0" expanded="false" />
+                <element signature="e#4903#4926#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -143,14 +170,14 @@
         <option value="$PROJECT_DIR$/Read_Pickles.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/MutationMethods.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_NPY.py" />
-        <option value="$PROJECT_DIR$/Test_Pilot.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py" />
         <option value="$PROJECT_DIR$/Pickle_Helper.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/StatsHolder.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
+        <option value="$PROJECT_DIR$/Test_Pilot.py" />
       </list>
     </option>
   </component>
@@ -181,66 +208,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-              <item name="Canada" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-              <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Setups" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP" type="462c0819:PsiDirectoryNode" />
-              <item name="TSP_Inputs" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
           <expand>
@@ -257,14 +224,134 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Documents" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Canada" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Canada" type="462c0819:PsiDirectoryNode" />
+              <item name="Arrays" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Canada" type="462c0819:PsiDirectoryNode" />
+              <item name="Lists" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Canada" type="462c0819:PsiDirectoryNode" />
+              <item name="Numpy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
+              <item name="Arrays" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
+              <item name="Lists" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
+              <item name="Numpy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
+              <item name="Arrays" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
+              <item name="Lists" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
+              <item name="Numpy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Setups" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP-3201---TSP-Evolutionary-Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Setups" type="462c0819:PsiDirectoryNode" />
+              <item name="TSP" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled/TSP Brute Force.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -294,7 +381,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.TSP_LST">
+  <component name="RunManager" selected="Python.Test_Pilot">
     <configuration name="Pickle_Helper" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -417,11 +504,11 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.TSP_Brute_Force" />
-        <item index="1" class="java.lang.String" itemvalue="Python.TSP_LST" />
-        <item index="2" class="java.lang.String" itemvalue="Python.TSP_Brute_Force_Copy" />
-        <item index="3" class="java.lang.String" itemvalue="Python.Pickle_Helper" />
-        <item index="4" class="java.lang.String" itemvalue="Python.Test_Pilot" />
+        <item index="0" class="java.lang.String" itemvalue="Python.Test_Pilot" />
+        <item index="1" class="java.lang.String" itemvalue="Python.TSP_Brute_Force" />
+        <item index="2" class="java.lang.String" itemvalue="Python.TSP_LST" />
+        <item index="3" class="java.lang.String" itemvalue="Python.TSP_Brute_Force_Copy" />
+        <item index="4" class="java.lang.String" itemvalue="Python.Pickle_Helper" />
       </list>
     </recent_temporary>
   </component>
@@ -795,47 +882,31 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.359491" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2730711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27291667" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24939272" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2730711" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24939272" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -973,14 +1044,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="125" column="42" lean-forward="false" selection-start-line="125" selection-start-column="12" selection-end-line="125" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="94" column="30" lean-forward="false" selection-start-line="94" selection-start-column="30" selection-end-line="94" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -996,9 +1059,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="203" column="18" lean-forward="false" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1007,19 +1067,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4913">
-          <caret line="364" column="35" lean-forward="false" selection-start-line="364" selection-start-column="35" selection-end-line="364" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-            <element signature="e#2849#2864#0" expanded="false" />
-            <element signature="e#3146#3172#0" expanded="false" />
-            <element signature="e#4831#4854#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1048,13 +1095,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Pickle_Helper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
+        <state relative-caret-position="1224">
           <caret line="194" column="19" lean-forward="false" selection-start-line="194" selection-start-column="19" selection-end-line="194" selection-end-column="19" />
           <folding>
             <element signature="e#671#700#0" expanded="false" />
@@ -1065,8 +1111,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
+        <state relative-caret-position="844">
           <caret line="112" column="45" lean-forward="false" selection-start-line="112" selection-start-column="45" selection-end-line="112" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="63" column="28" lean-forward="false" selection-start-line="63" selection-start-column="28" selection-end-line="63" selection-end-column="28" />
+          <folding>
+            <element signature="e#2921#2936#0" expanded="false" />
+            <element signature="e#3218#3244#0" expanded="false" />
+            <element signature="e#4903#4926#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="82">
+          <caret line="86" column="10" lean-forward="false" selection-start-line="86" selection-start-column="10" selection-end-line="86" selection-end-column="10" />
           <folding />
         </state>
       </provider>

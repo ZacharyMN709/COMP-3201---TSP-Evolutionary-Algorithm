@@ -84,11 +84,11 @@ def go_to_project_root():
 print("Present working directory:", os.getcwd(), '\n')
 
 FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
+METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
 MULTITHREAD = False
 RUNS = 1  # Number of times each combination is run.
-GENERATIONS = 1
-SAVE = True
+GENERATIONS = 100
+SAVE = False
 
 PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
@@ -107,8 +107,8 @@ SURVIVOR_DICT = {SURVIVOR_METHODS[x][0]: x for x in range(len(SURVIVOR_METHODS))
 MANAGEMENT_DICT = {MANAGEMENT_METHODS[x][0]: x for x in range(len(MANAGEMENT_METHODS))}
 
 tester = generate_algorithm(FILENUM, METHOD, MULTITHREAD)
-tester.set_test_vars(RUNS, POPULATION_METHODS[0:1], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
-                     MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[0:1])
+tester.set_test_vars(RUNS, POPULATION_METHODS, PARENT_METHODS, RECOMBINATION_METHODS,
+                     MUTATION_METHODS, SURVIVOR_METHODS, MANAGEMENT_METHODS)
 
 if FILENUM:
     from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
