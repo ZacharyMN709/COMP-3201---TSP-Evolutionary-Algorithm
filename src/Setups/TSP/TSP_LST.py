@@ -1,6 +1,7 @@
 import os
 import csv
 from random import sample, shuffle
+from copy import deepcopy
 
 # region Globals and Setters
 MAX = False
@@ -8,6 +9,8 @@ FILENUM = None
 LOCATIONS = dict()
 MEMOIZED = dict()
 CLUSTERS = []
+MSTREE = []
+ODDVERTEXES = []
 eval_fitness = None
 dist_mod = 0.10
 
@@ -66,6 +69,22 @@ def read_tsp_file(fnum):
 
 
 # region Population Seeding
+# region Random
+
+
+def single_random_individual(genome_length):
+    return sample([c for c in range(genome_length)], genome_length)
+
+
+@fitness_applicator
+def random_initialization(pop_size, genome_length):
+    return [single_random_individual(genome_length) for _ in range(pop_size)]
+
+
+# endregion
+# region Cluster Heuristic
+
+
 def get_map_range():
     max_lat = max(LOCATIONS, key=lambda x: x[0])[0]
     max_lon = max(LOCATIONS, key=lambda x: x[1])[1]
@@ -96,25 +115,15 @@ def create_clusters(cities, city_indexes, mod_mod):
     return city_clusters
 
 
-def single_random_individual(genome_length):
-    return sample([c for c in range(genome_length)], genome_length)
-
-
-def single_heuristic_individual(genome_length):
+def single_cluster_individual(genome_length):
     shuffle(CLUSTERS)
     indiv = []
     for x in CLUSTERS:
         shuffle(x)
-        #indiv += x
         for y in x:
             shuffle(y)
             indiv += y
     return indiv
-
-
-@fitness_applicator
-def random_initialization(pop_size, genome_length):
-    return [single_random_individual(genome_length) for _ in range(pop_size)]
 
 
 @fitness_applicator
@@ -123,14 +132,174 @@ def heuristic_cluster_initialization(pop_size, genome_length):
     CLUSTERS = create_clusters(LOCATIONS, [x for x in range(len(LOCATIONS))], 1)
     for i in range(len(CLUSTERS)):
         CLUSTERS[i] = create_clusters([LOCATIONS[x] for x in CLUSTERS[i]], CLUSTERS[i], 0.5)
-    return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
+    return [single_cluster_individual(genome_length) for _ in range(pop_size)]
+
+
+# endregion
+# region Grid Heuristic
 
 
 @fitness_applicator
 def heuristic_grid_initialization(pop_size, genome_length):
     global CLUSTERS
     CLUSTERS = create_clusters(LOCATIONS, [x for x in range(len(LOCATIONS))], 1)
-    return [single_heuristic_individual(genome_length) for _ in range(pop_size)]
+    return [single_cluster_individual(genome_length) for _ in range(pop_size)]
+
+
+# endregion
+# region Euler Heuristic
+
+
+# union by rank and path compression, used to detect cycle when forming MST
+class UnionFind:
+    def __init__(self):
+        self.weights = {}
+        self.parents = {}
+
+    def __getitem__(self, object):
+        if object not in self.parents:
+            self.parents[object] = object
+            self.weights[object] = 1
+            return object
+
+        # find path of objects leading to the root
+        path = [object]
+        root = self.parents[object]
+        while root != path[-1]:
+            path.append(root)
+            root = self.parents[root]
+
+        # compress the path and return
+        # flattens the structure of tree by making every node point to the root whenever Find is used on it
+        for ancestor in path:
+            self.parents[ancestor] = root
+        return root
+
+    def __iter__(self):
+        return iter(self.parents)
+
+    def union(self, *objects):
+        roots = [self[x] for x in objects]
+        heaviest = max([(self.weights[r], r) for r in roots])[1]
+        for r in roots:
+            if r != heaviest:
+                self.weights[heaviest] += self.weights[r]
+                self.parents[r] = heaviest
+
+
+# create minimum spanning tree using UnionFind()
+def minimum_spanning_tree():
+    tree = []
+    subtrees = UnionFind()
+    # sorts weighted edges, picks ones of lightest weight at beginning of list and adds them to tree
+    for weight, pt1, pt2 in sorted(
+            (MEMOIZED[pt1][pt2], pt1, pt2) for pt1 in range(len(MEMOIZED)) for pt2 in range(len(MEMOIZED[pt1]))):
+        if subtrees[pt1] != subtrees[pt2]:
+            tree.append((pt1, pt2, weight))
+            subtrees.union(pt1, pt2)
+    return tree
+
+
+def find_odd_vertexes(mst):
+    # Count all the edges for vertexes of the MST
+    edge_count = [0 for _ in range(len(MEMOIZED))]
+    for edge in mst:
+        edge_count[edge[0]] += 1
+        edge_count[edge[1]] += 1
+
+    # Return the vertexes with an odd number of edges
+    return [vertex for vertex in range(len(edge_count)) if edge_count[vertex] % 2 == 1]
+
+
+# add minimum weight matching edges to MST
+# problem in this class
+# TODO - Make non-destructive
+def minimum_weight_matching(mst, odd_vert):
+    shuffle(odd_vert)
+
+    while odd_vert:
+        # take an odd vertex
+        v = odd_vert.pop()
+        length = float("inf")
+        closest = 0
+        for u in odd_vert:
+            # don't match a vertex to itself, run through odd vertices until we find one closest to v
+            ## Can a duplicate be in the list?
+            if MEMOIZED[v][u] < length:
+                length = MEMOIZED[v][u]
+                closest = u
+
+        # add matched vertices to MST
+        mst.append((v, closest, length))
+        # remove matched vertex from odd vertex list
+        odd_vert.remove(closest)
+
+
+# delete repeated edges in matched MST
+# TODO - Make non-destructive
+def remove_edge(matched_mst, v1, v2):
+    # compare each matched edge to edge in MST, if edge already exists in MST, delete it??
+    for i, item in enumerate(matched_mst):
+        if (item[0] == v2 and item[1] == v1) or (item[0] == v1 and item[1] == v2):
+            del matched_mst[i]
+    return matched_mst
+
+
+# TODO - Make non-destructive
+def euler_tour(matched_mst_tree):
+    neighbours = [[] for _ in range(len(MEMOIZED))]
+    for edge in matched_mst_tree:
+        neighbours[edge[0]].append(edge[1])  # add vertex 1 to vertex 2's list of neighbours
+        neighbours[edge[1]].append(edge[0])  # add vertex 2 to vertex 1's list of neighbours
+
+    # find euler circuit
+    start_vertex = matched_mst_tree[0][0]
+    EP = [neighbours[start_vertex][0]]
+
+    while len(matched_mst_tree) > 0:
+        for i, v in enumerate(EP):
+            if len(neighbours[v]) > 0:
+                break
+
+        while len(neighbours[v]) > 0:
+            w = neighbours[v][0]
+
+            remove_edge(matched_mst_tree, v, w)
+
+            del neighbours[v][(neighbours[v].index(w))]
+            del neighbours[w][(neighbours[w].index(v))]
+
+            i += 1
+            EP.insert(i, w)
+            v = w
+    return EP
+
+
+def remove_duplicates(tour):
+    # delete repeated vertices in Euler cycle to create Hamiltonian cycle and find solution for TSP
+    path = []
+    visited = [False] * len(tour)
+    for v in tour:
+        if not visited[v]:
+            path.append(v)
+            visited[v] = True
+    return path
+
+
+def single_euler_individual(genome_length):
+    new_tree = deepcopy(MSTREE)
+    minimum_weight_matching(new_tree, deepcopy(ODDVERTEXES))
+    tour = euler_tour(new_tree)
+    return remove_duplicates(tour)
+
+
+@fitness_applicator
+def heuristic_euler_initialization(pop_size, genome_length):
+    global MSTREE, ODDVERTEXES
+    MSTREE = minimum_spanning_tree()
+    ODDVERTEXES = find_odd_vertexes(MSTREE)
+    return [single_euler_individual(genome_length) for _ in range(pop_size)]
+# endregion
 # endregion
 
 
