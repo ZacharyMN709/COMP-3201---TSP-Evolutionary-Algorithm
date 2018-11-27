@@ -4,6 +4,7 @@ from random import sample, shuffle
 from copy import deepcopy
 import numpy as np
 from array import array
+from Pickle_Helper import get_pickled_euler, get_pickled_memo, pickle_memo_obj
 
 # region Globals and Setters
 MAX = False
@@ -25,39 +26,46 @@ def set_fitness_function(i):
 
 
 # region Initialization
-def read_tsp_file(fnum, representation=0):
-    global FILENUM, REP
-    FILENUM, REP = fnum, representation
-    if fnum == 1:
-        fname = "TSP_WesternSahara_29.txt"
-    elif fnum == 2:
-        fname = "TSP_Uruguay_734.txt"
-    elif fnum == 3:
-        fname = "TSP_Canada_4663.txt"
+def read_tsp_file(fnum):
+    global FILENUM
+    FILENUM = fnum
+
+    city_dict = get_pickled_memo(fnum)
+    global MEMOIZED, LOCATIONS
+    if city_dict:
+        MEMOIZED, LOCATIONS = city_dict['Locs'], city_dict['Dists']
     else:
-        print('Warning! Invalid seletion. Defaulting to test')
-        fname = "TSP_Testbed_10.txt"
+        if fnum == 1:
+            fname = "TSP_WesternSahara_29.txt"
+        elif fnum == 2:
+            fname = "TSP_Uruguay_734.txt"
+        elif fnum == 3:
+            fname = "TSP_Canada_4663.txt"
+        else:
+            print('Warning! Invalid seletion. Defaulting to test')
+            fname = "TSP_Testbed_10.txt"
 
-    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-    abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
+        script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+        abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
 
-    with open(abs_file_path, 'r') as f:
-        # Read and parse the file
-        file = csv.reader(f, delimiter=' ')
-        locations = [(float(i[1]), float(i[2])) for i in file]
+        with open(abs_file_path, 'r') as f:
+            # Read and parse the file
+            file = csv.reader(f, delimiter=' ')
+            locations = [(float(i[1]), float(i[2])) for i in file]
 
-        # Shift the numbers, so they are smaller and centered
-        max_x, max_y = max(locations, key=lambda i: i[0])[0], max(locations, key=lambda i: i[1])[1]
-        min_x, min_y = min(locations, key=lambda i: i[0])[0], min(locations, key=lambda i: i[1])[1]
-        shift_x, shift_y = min_x + ((max_x - min_x)/2), min_y + ((max_y - min_y)/2)
+            # Shift the numbers, so they are smaller and centered
+            max_x, max_y = max(locations, key=lambda i: i[0])[0], max(locations, key=lambda i: i[1])[1]
+            min_x, min_y = min(locations, key=lambda i: i[0])[0], min(locations, key=lambda i: i[1])[1]
+            shift_x, shift_y = min_x + ((max_x - min_x)/2), min_y + ((max_y - min_y)/2)
 
-        # NOTE: Locations are slightly odd. Original (x, y) mapped to normalized (-y, x) to produce
-        # identifiable map of Canada.
-        global LOCATIONS
-        LOCATIONS = [(shift_y - i[1], i[0] - shift_x) for i in locations]
+            # NOTE: Locations are slightly odd. Original (x, y) mapped to normalized (-y, x) to produce
+            # identifiable map of Canada.
+            LOCATIONS = [(shift_y - i[1], i[0] - shift_x) for i in locations]
 
-    global MEMOIZED
-    MEMOIZED = [[((L1[0]-L2[0])**2 + (L1[1] - L2[1])**2)**0.5 for L2 in LOCATIONS] for L1 in LOCATIONS]
+        MEMOIZED = [[((L1[0]-L2[0])**2 + (L1[1] - L2[1])**2)**0.5 for L2 in LOCATIONS] for L1 in LOCATIONS]
+
+        to_save = {'Locs': LOCATIONS, 'Dists': MEMOIZED}
+        pickle_memo_obj(to_save, fnum)
 
     return len(LOCATIONS)
 # endregion
@@ -300,18 +308,33 @@ def remove_duplicates(tour):
     return path
 
 
+def rand_dupe_removal(tour):
+    for i in range(len(MEMOIZED)):
+        dupes = DUPE_DICT[i]
+        to_remove = sample(dupes, len(dupes)-1)
+        for x in to_remove:
+            tour[x] = None
+    return [x for x in tour if x is not None]
+
+
 def single_euler_individual(genome_length):
-    new_tree = deepcopy(MSTREE)
-    minimum_weight_matching(new_tree, deepcopy(ODDVERTEXES))
-    tour = euler_tour(new_tree)
-    return remove_duplicates(tour)
+    return remove_duplicates(EULERTOUR)
 
 
 @fitness_applicator
 def heuristic_euler_initialization(pop_size, genome_length):
-    global MSTREE, ODDVERTEXES
-    if not MSTREE: MSTREE = minimum_spanning_tree()
-    ODDVERTEXES = find_odd_vertexes(MSTREE)
+    global MSTREE, ODDVERTEXES, EULERTOUR, DUPE_DICT
+    euler_dict = get_pickled_euler(FILENUM, fast=True)
+    if euler_dict:
+        EULERTOUR = euler_dict['Euler']
+    else:
+        MSTREE = minimum_spanning_tree()
+        ODDVERTEXES = find_odd_vertexes(MSTREE)
+        new_tree = deepcopy(MSTREE)
+        minimum_weight_matching(new_tree, deepcopy(ODDVERTEXES))
+        EULERTOUR = euler_tour(new_tree)
+    DUPE_DICT = {i: [] for i in range(len(MEMOIZED))}
+    for i in range(len(EULERTOUR)): DUPE_DICT[EULERTOUR[i]].append(i)
     return [single_euler_individual(genome_length) for _ in range(pop_size)]
 # endregion
 # endregion

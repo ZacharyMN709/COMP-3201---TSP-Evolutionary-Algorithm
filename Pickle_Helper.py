@@ -104,10 +104,15 @@ def pickle_euler_obj(to_save, file_num):
     abs_dir_path = get_euler_dir()
     move_dir(abs_dir_path)
     fname = get_euler_file(file_num)
+
     abs_file_path = os.path.join(abs_dir_path, fname)
     with open(abs_file_path, 'wb') as f:
         pickle.dump(to_save, f)
         print('Saved: {}'.format(fname))
+
+    with open(abs_file_path + '-Fast', 'wb') as f:
+        pickle.dump({'Euler': to_save['Euler']}, f)
+        print('Saved: {}'.format(fname + '-Fast'))
     go_to_project_root()
 
 
@@ -123,18 +128,71 @@ def get_euler_file(file_num):
     return 'TSP_{}_MST.txt'.format(FILE_DICT[file_num])
 
 
-def get_pickled_euler(file_num):
+def get_pickled_euler(file_num, fast=False):
     # A dictionary which is to be pickled.
-    # {'MST': obj,
-    # 'Odd': indices}
+    # {'MST': MST,
+    # 'Odd': ODD,
+    # 'Euler': EUL}
 
-    abs_dir_path = get_euler_dir()
-    fname = get_euler_file(file_num)
-    with open(os.path.join(abs_dir_path, fname), 'rb') as f:
-        stats_dict = pickle.load(f)
-        print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
+    try:
+        if fast:
+            abs_dir_path = get_euler_dir()
+            fname = get_euler_file(file_num) + '-Fast'
+            with open(os.path.join(abs_dir_path, fname), 'rb') as f:
+                euler_dict = pickle.load(f)
+                print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
+            return euler_dict
+        else:
+            abs_dir_path = get_euler_dir()
+            fname = get_euler_file(file_num)
+            with open(os.path.join(abs_dir_path, fname), 'rb') as f:
+                euler_dict = pickle.load(f)
+                print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
+            return euler_dict
+    except FileNotFoundError:
+        return None
 
-    return stats_dict
+# endregion
+
+
+# region Heuristic Handler
+def pickle_memo_obj(to_save, file_num):
+    abs_dir_path = get_memo_dir()
+    move_dir(abs_dir_path)
+    fname = get_memo_file(file_num)
+
+    abs_file_path = os.path.join(abs_dir_path, fname)
+    with open(abs_file_path, 'wb') as f:
+        pickle.dump(to_save, f)
+        print('Saved: {}'.format(fname))
+
+    go_to_project_root()
+
+
+def get_memo_dir():
+    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
+
+    # Get the right dir based on test parameters
+    abs_dir_path = os.path.join(script_dir, 'src', 'Setups', 'TSP', 'TSP_Inputs')
+    return abs_dir_path
+
+
+def get_memo_file(file_num):
+    return 'TSP_{}_Dists.txt'.format(FILE_DICT[file_num])
+
+
+def get_pickled_memo(file_num):
+    # {'Locs': locs,
+    #  'Dists', dists}
+    try:
+        abs_dir_path = get_euler_dir()
+        fname = get_memo_file(file_num)
+        with open(os.path.join(abs_dir_path, fname), 'rb') as f:
+            euler_dict = pickle.load(f)
+            print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
+        return euler_dict
+    except FileNotFoundError:
+        return None
 # endregion
 
 
