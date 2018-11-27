@@ -3,6 +3,17 @@ from Pickle_Helper import pickle_stats_obj
 import os
 
 
+FILE_DICT = {0: '8-Queens',
+             1: 'Sahara',
+             2: 'Uruguay',
+             3: 'Canada',
+             4: 'Test World'}
+
+METHOD_DICT = {0: 'Lists',
+               1: 'Numpy',
+               2: 'Arrays'}
+
+
 def import_modules(FILENUM=0, MODULE=0):
     if not FILENUM:
         from src.EA_Methods.List_Rep import ParentSelectionMethods as PSM
@@ -72,21 +83,11 @@ def go_to_project_root():
 
 print("Present working directory:", os.getcwd(), '\n')
 
-FILE_DICT = {0: '8-Queens',
-             1: 'Sahara',
-             2: 'Uruguay',
-             3: 'Canada',
-             4: 'Test World'}
-
-METHOD_DICT = {0: 'Lists',
-               1: 'Numpy',
-               2: 'Arrays'}
-
-FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
+FILENUM = 3  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+METHOD = 1  # 0: Lists   1: Numpy Arrays   2: C Arrays
 MULTITHREAD = False
-RUNS = 5  # Number of times each combination is run.
-GENERATIONS = 50
+RUNS = 1  # Number of times each combination is run.
+GENERATIONS = 1
 SAVE = True
 
 PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)

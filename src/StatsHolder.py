@@ -76,7 +76,7 @@ class StatsHolder:
     def __repr__(self):
         return self.__str__()
     
-        def __add__(self, other):
+    def __add__(self, other):
         if self.best == other.best:
             if self.true_opt and other.true_opt:
                 opt = self.best(self.true_opt, other.true_opt)

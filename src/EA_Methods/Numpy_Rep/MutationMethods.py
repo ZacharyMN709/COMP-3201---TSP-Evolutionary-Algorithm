@@ -54,6 +54,18 @@ def gen_two_nums_ascending():
     return x, y
 
 
+def gen_two_ranges():
+    # Generate two integers such that x > y
+    x = randint(0, genome_length - 2)
+    y = randint(x+1, genome_length - 1)
+
+    # Generate a third integer such that a slice starting at that location with
+    # size (y-x) would fit in genome_length
+    w = randint(0, genome_length - (y-x)-1)
+
+    return x, y, w
+
+
 @method_mapper
 def permutation_swap(individual):
     # Generate two random indices
@@ -99,6 +111,16 @@ def permutation_scramble(individual):
     individual[x:y] = np.shuffle(individual[x:y])
     return np.concatenate((individual[:x], individual[x:y].sample(frac=1), individual[y:]), axis=None)
 
+
+@method_mapper
+def permutation_shift(individual):
+    # Generate two random indices in ascending order
+    x, y, w = gen_two_ranges()
+
+    for i in range(y-x):
+        individual[x+i], individual[w+i] = individual[w+i], individual[x+i]
+
+    return individual
 # endregion
 
 
