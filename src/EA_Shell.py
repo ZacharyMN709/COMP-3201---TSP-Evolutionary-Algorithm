@@ -159,8 +159,8 @@ class EAVars:
 
         self.genome_length = genome_length
         self.population_size = 60
-        self.mating_pool_size = 0
-        self.tournament_size = 0
+        self.mating_pool_size = 20
+        self.tournament_size = 6
         self.mutation_rate = 0.20
         self.crossover_rate = 0.90
         self.start_temp = 10000
@@ -170,7 +170,6 @@ class EAVars:
         self.cp_2 = 2 * self.genome_length // 4
         self.cp_3 = 3 * self.genome_length // 4
 
-        self.set_safe_matingpool(self.population_size)
         self.set_tourney_size_by_percent(0.1)
         self.set_population_threshold_by_percent(0.05)
 
@@ -179,16 +178,29 @@ class EAVars:
             size = int(size)
             if size > 0:
                 self.population_size = size
+                if self.population_size <= self.mating_pool_size:
+                    print('Resetting mating_pool size')
+                    self.set_safe_matingpool_by_int(size // 2)
             else:
                 print('Size cannot be less than one!')
         except TypeError:
             print('Value not parsable as an integer.')
 
-    def set_safe_matingpool(self, size):
-        if (size // 2) % 2 == 0:
-            self.mating_pool_size = size // 2
-        else:
-            self.mating_pool_size = (size // 2) + 1
+    def set_safe_matingpool_by_int(self, size):
+        if size < 2 or size >= self.population_size:
+            print('Invalid size. Size must be greater than 1, and no bigger than the population.')
+            if size % 2 == 0:
+                self.mating_pool_size = size
+            else:
+                self.mating_pool_size = size + 1
+
+    def set_safe_matingpool_by_percent(self, per):
+        if per > 1 or int(self.population_size * per) < 2:
+            print('Invalid percent. Percent must be less than 1, and leave a pool of size 2 or greater.')
+            if int(self.population_size * per) % 2 == 0:
+                self.mating_pool_size = int(self.population_size * per)
+            else:
+                self.mating_pool_size = int(self.population_size * per) + 1
 
     def set_tourney_size_by_int(self, num):
         self.tournament_size = num
