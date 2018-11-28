@@ -83,12 +83,12 @@ def go_to_project_root():
 
 print("Present working directory:", os.getcwd(), '\n')
 
-FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
+FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
 MULTITHREAD = False
 RUNS = 1  # Number of times each combination is run.
 GENERATIONS = 10000
-SAVE = False
+SAVE = True
 
 PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
@@ -133,7 +133,7 @@ tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBI
 
 tester = generate_algorithm(FILENUM, METHOD, MULTITHREAD)
 tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
-                     MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
+                     MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS)
 
 if FILENUM:
     from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
@@ -144,31 +144,34 @@ else:
 
 if __name__ == '__main__':
 
-    result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 25)
-    print('Matrix dimensions are: {}'.format(matrix_dimensions))
+    def save_run():
+        # Iterates over each StatsHolder Object
+        for a in range(matrix_dimensions[0]):
+            for b in range(matrix_dimensions[1]):
+                for c in range(matrix_dimensions[2]):
+                    for d in range(matrix_dimensions[3]):
+                        for e in range(matrix_dimensions[4]):
+                            for f in range(matrix_dimensions[5]):
+                                if FILENUM != 0:
+                                    obj = result_matrix[a][b][c][d][e][f]
 
-    # Iterates over each StatsHolder Object
-    for a in range(matrix_dimensions[0]):
-        for b in range(matrix_dimensions[1]):
-            for c in range(matrix_dimensions[2]):
-                for d in range(matrix_dimensions[3]):
-                    for e in range(matrix_dimensions[4]):
-                        for f in range(matrix_dimensions[5]):
-                            if SAVE and FILENUM != 0:
-                                obj = result_matrix[a][b][c][d][e][f]
+                                    indices = (
+                                        POPULATION_DICT[obj.POPULATION_METHOD],
+                                        PARENT_DICT[obj.PARENT_METHOD],
+                                        SURVIVOR_DICT[obj.SURVIVOR_METHOD],
+                                        MUTATION_DICT[obj.MUTATION_METHOD],
+                                        RECOMBINATION_DICT[obj.RECOMBINATION_METHOD],
+                                        MANAGEMENT_DICT[obj.MANAGEMENT_METHOD]
+                                    )
 
-                                indices = (
-                                    POPULATION_DICT[obj.POPULATION_METHOD],
-                                    PARENT_DICT[obj.PARENT_METHOD],
-                                    SURVIVOR_DICT[obj.SURVIVOR_METHOD],
-                                    MUTATION_DICT[obj.MUTATION_METHOD],
-                                    RECOMBINATION_DICT[obj.RECOMBINATION_METHOD],
-                                    MANAGEMENT_DICT[obj.MANAGEMENT_METHOD]
-                                )
+                                    # A dictionary which is to be pickled.
+                                    to_save = {'Stats': obj,
+                                               'Funcs': indices,
+                                               'Runs': RUNS,
+                                               'Generations': GENERATIONS}
+                                    pickle_stats_obj(to_save, FILENUM, METHOD)
 
-                                # A dictionary which is to be pickled.
-                                to_save = {'Stats': obj,
-                                           'Funcs': indices,
-                                           'Runs': RUNS,
-                                           'Generations': GENERATIONS}
-                                pickle_stats_obj(to_save, FILENUM, METHOD)
+    for _ in range(20):
+        result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 100)
+        print('Matrix dimensions are: {}'.format(matrix_dimensions))
+        if SAVE and FILENUM != 0: save_run()
