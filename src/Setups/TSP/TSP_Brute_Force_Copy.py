@@ -249,15 +249,14 @@ def tsp(file_num):
     print("Result length of the path: ", lengths)
     end_time = time.time() - start_time
     print("Loop time: ", end_time, "seconds")
-    return paths, lengths, MSTree, odd_vertexes, eul_tour
+    return paths, lengths, MSTree, odd_vertexes
 
 
 if __name__ == '__main__':
     # TODO - Pickle MSTs, and Odd Vertex Lists
-    file_num = 2
-    _, _, MST, ODD, EUL = tsp(file_num)
+    file_num = 3
+    _, _, MST, ODD = tsp(file_num)
     to_save = {'MST': MST,
-               'Odd': ODD,
-               'Euler': EUL}
+               'Odd': ODD}
 
     pickle_euler_obj(to_save, file_num)

@@ -26,11 +26,11 @@ def set_fitness_function(i):
 
 
 # region Initialization
-def read_tsp_file(fnum):
+def read_tsp_file(fnum, save=False):
     global FILENUM
     FILENUM = fnum
 
-    # city_dict = get_pickled_memo(fnum)
+    #city_dict = get_pickled_memo(fnum)
     #global MEMOIZED, LOCATIONS
     #if city_dict:
     #    MEMOIZED, LOCATIONS = city_dict['Locs'], city_dict['Dists']
@@ -67,8 +67,9 @@ def read_tsp_file(fnum):
         global MEMOIZED
         MEMOIZED = [[((L1[0]-L2[0])**2 + (L1[1] - L2[1])**2)**0.5 for L2 in LOCATIONS] for L1 in LOCATIONS]
 
-        to_save = {'Locs': LOCATIONS, 'Dists': MEMOIZED}
-        pickle_memo_obj(to_save, fnum)
+        if save:
+            to_save = {'Locs': LOCATIONS, 'Dists': MEMOIZED}
+            pickle_memo_obj(to_save, fnum)
 
     return len(LOCATIONS)
 # endregion
@@ -311,10 +312,10 @@ def remove_duplicates(tour):
     return path
 
 
-def rand_dupe_removal(tour):
+def rand_dupe_removal(tour, dupe_dict):
     tour = deepcopy(tour)
     for i in range(len(MEMOIZED)):
-        dupes = DUPE_DICT[i]
+        dupes = dupe_dict[i]
         to_remove = sample(dupes, len(dupes)-1)
         for x in to_remove:
             tour[x] = None
@@ -322,23 +323,27 @@ def rand_dupe_removal(tour):
 
 
 def single_euler_individual(genome_length):
-    return rand_dupe_removal(EULERTOUR)
+    new_tree = deepcopy(MSTREE)
+    minimum_weight_matching(new_tree, deepcopy(ODDVERTEXES))
+    tour = euler_tour(new_tree)
+
+    dupe_dict = {i: [] for i in range(len(MEMOIZED))}
+    for i in range(len(tour)): dupe_dict[tour[i]].append(i)
+    indiv = rand_dupe_removal(tour, dupe_dict)
+    return indiv
 
 
 @fitness_applicator
 def heuristic_euler_initialization(pop_size, genome_length):
-    global MSTREE, ODDVERTEXES, EULERTOUR, DUPE_DICT
-    euler_dict = get_pickled_euler(FILENUM, fast=True)
+    global MSTREE, ODDVERTEXES
+    euler_dict = get_pickled_euler(FILENUM, fast=False)
     if euler_dict:
-        EULERTOUR = euler_dict['Euler']
+        MSTREE = euler_dict['MST']
+        ODDVERTEXES = euler_dict['Odd']
     else:
         MSTREE = minimum_spanning_tree()
         ODDVERTEXES = find_odd_vertexes(MSTREE)
-        new_tree = deepcopy(MSTREE)
-        minimum_weight_matching(new_tree, deepcopy(ODDVERTEXES))
-        EULERTOUR = euler_tour(new_tree)
-    DUPE_DICT = {i: [] for i in range(len(MEMOIZED))}
-    for i in range(len(EULERTOUR)): DUPE_DICT[EULERTOUR[i]].append(i)
+
     return [single_euler_individual(genome_length) for _ in range(pop_size)]
 # endregion
 # endregion
@@ -355,7 +360,7 @@ def calc_distance(loc1, loc2):
 
 
 if __name__ == '__main__':
-    genome_length = read_tsp_file(2)
+    genome_length = read_tsp_file(3)
 
     print(genome_length)
     import time
@@ -363,9 +368,7 @@ if __name__ == '__main__':
     start_time = time.time()
 
     set_fitness_function(euclidean_distance)
-    pop, fitnesses = heuristic_euler_initialization(60, genome_length)
-    print(len(EULERTOUR))
-    print(len(set(EULERTOUR)))
-    print(len(single_euler_individual(genome_length)))
+    pop, fitnesses = heuristic_euler_initialization(5, genome_length)
+
 
     print(time.time() - start_time)

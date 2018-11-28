@@ -109,10 +109,6 @@ def pickle_euler_obj(to_save, file_num):
     with open(abs_file_path, 'wb') as f:
         pickle.dump(to_save, f)
         print('Saved: {}'.format(fname))
-
-    with open(abs_file_path + '-Fast', 'wb') as f:
-        pickle.dump({'Euler': to_save['Euler']}, f)
-        print('Saved: {}'.format(fname + '-Fast'))
     go_to_project_root()
 
 
