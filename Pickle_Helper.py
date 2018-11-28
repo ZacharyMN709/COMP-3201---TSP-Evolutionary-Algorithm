@@ -155,7 +155,7 @@ def get_pickled_euler(file_num, fast=False):
 # endregion
 
 
-# region Heuristic Handler
+# region City Handler
 def pickle_memo_obj(to_save, file_num):
     abs_dir_path = get_memo_dir()
     move_dir(abs_dir_path)
