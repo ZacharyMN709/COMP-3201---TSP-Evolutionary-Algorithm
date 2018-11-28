@@ -119,7 +119,7 @@ def entropic_stabilizing(population, fitness):
 
     if num_best > population_threshold:
         threshold = 0.8*((num_best - population_threshold) / (len(population) - population_threshold))
-        for x in range(genome_length):
+        for x in range(len(population)):
             if fitness[x] == best_fit and random() < threshold:
                 shuffle(population[x])
                 fitness[x] = eval_fitness(population[x])
