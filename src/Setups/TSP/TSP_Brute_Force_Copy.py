@@ -208,8 +208,9 @@ def tsp(file_num):
     paths = []
     lengths = []
 
-    fast = True
+    fast = False
     euler_dict = get_pickled_euler(FILENUM, fast=fast)
+    euler_dict = None
     if not euler_dict:
         MSTree = minimum_spanning_tree()
         odd_vertexes = find_odd_vertexes(MSTree)
@@ -224,6 +225,12 @@ def tsp(file_num):
             new_tree = copy.deepcopy(MSTree)
             minimum_weight_matching(new_tree, copy.deepcopy(odd_vertexes))
             eul_tour = euler_tour(new_tree)
+
+    print(MSTree)
+    print(odd_vertexes)
+
+    print(len(eul_tour))
+    print(len(set(eul_tour)))
 
     end_time = time.time() - start_time
     print("Init time: ", end_time, "seconds")
@@ -247,10 +254,10 @@ def tsp(file_num):
 
 if __name__ == '__main__':
     # TODO - Pickle MSTs, and Odd Vertex Lists
-    file_num = 3
+    file_num = 2
     _, _, MST, ODD, EUL = tsp(file_num)
     to_save = {'MST': MST,
                'Odd': ODD,
                'Euler': EUL}
 
-    # pickle_euler_obj(to_save, file_num)
+    pickle_euler_obj(to_save, file_num)

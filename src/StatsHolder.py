@@ -115,12 +115,20 @@ class StatsHolder:
 
     def average_generation_fitness(self):
         avg_out = [0] * max(self.generation_count)
+        print(len(avg_out))
 
         for x in range(len(avg_out)):
             temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
-            avg_out[x] = sum(temp) / len(temp)
-
+            try:
+                avg_out[x] = sum(temp) / len(temp)
+            except ZeroDivisionError:
+                avg_out = avg_out[0:x]
+                break
         return avg_out
 
+
 if __name__ == '__main__':
+    p = [('21021{} G10000.txt'.format(x), 1, 0) for x in range(5)]
+    s = StatsHolder.stat_obj_from_pickle(p[0])
+    s.average_generation_fitness()
     pass

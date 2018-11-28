@@ -312,6 +312,7 @@ def remove_duplicates(tour):
 
 
 def rand_dupe_removal(tour):
+    tour = deepcopy(tour)
     for i in range(len(MEMOIZED)):
         dupes = DUPE_DICT[i]
         to_remove = sample(dupes, len(dupes)-1)
@@ -321,7 +322,7 @@ def rand_dupe_removal(tour):
 
 
 def single_euler_individual(genome_length):
-    return remove_duplicates(EULERTOUR)
+    return rand_dupe_removal(EULERTOUR)
 
 
 @fitness_applicator
@@ -354,15 +355,17 @@ def calc_distance(loc1, loc2):
 
 
 if __name__ == '__main__':
-    genome_length = read_tsp_file(3)
+    genome_length = read_tsp_file(2)
+
+    print(genome_length)
     import time
 
     start_time = time.time()
 
     set_fitness_function(euclidean_distance)
-    pop, fitmesses = heuristic_cluster_initialization(60, genome_length)
-    print(CLUSTERS)
-    #for x in CLUSTERS: print(x)
-    print()
-    for x in pop: print(x)
+    pop, fitnesses = heuristic_euler_initialization(60, genome_length)
+    print(len(EULERTOUR))
+    print(len(set(EULERTOUR)))
+    print(len(single_euler_individual(genome_length)))
+
     print(time.time() - start_time)
