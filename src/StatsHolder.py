@@ -1,5 +1,4 @@
 from src.Other.Helper_Strings import funcs_used, final_output
-from Pickle_Helper import get_pickled_stats
 
 
 class MergeError(Exception):
@@ -32,6 +31,8 @@ class StatsHolder:
 
     @classmethod
     def stat_obj_from_pickle(cls, pickle_tuple):
+        from Pickle_Helper import get_pickled_stats
+
         file_name, file_num, method_used = pickle_tuple
         stats_dict = get_pickled_stats(file_name, file_num, method_used)
         return stats_dict['Stats']
@@ -112,12 +113,14 @@ class StatsHolder:
     def compare(stats1, stats2):
         pass
 
-    def average_genration_fitness(self):
+    def average_generation_fitness(self):
         avg_out = [0] * max(self.generation_count)
 
         for x in range(len(avg_out)):
-            temp = [self.run_fitness_history[i][x] for i in self.RUNS if x < len(self.run_fitness_history[i])]
+            temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
             avg_out[x] = sum(temp) / len(temp)
 
         return avg_out
 
+if __name__ == '__main__':
+    pass
