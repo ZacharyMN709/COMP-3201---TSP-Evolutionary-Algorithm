@@ -179,7 +179,7 @@ class EAVars:
             if size > 0:
                 self.population_size = size
                 if self.population_size <= self.mating_pool_size:
-                    print('Resetting mating_pool size')
+                    print('Population size smaller than mating pool size. Setting mating pool size to'.format(size // 2))
                     self.set_safe_matingpool_by_int(size // 2)
             else:
                 print('Size cannot be less than one!')
