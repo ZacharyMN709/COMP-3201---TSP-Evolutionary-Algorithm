@@ -130,7 +130,7 @@ class StatsHolder:
             temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
             try:
                 out[x] = self.best(temp)
-            except ZeroDivisionError:
+            except ValueError:
                 out = out[0:x]
                 break
         return out

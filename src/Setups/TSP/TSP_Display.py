@@ -2,6 +2,8 @@ import os
 import matplotlib.pyplot as plt
 import pandas as pd
 from math import pi, cos
+from src.Other import Colours as CP
+from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 
 class GraphingHelper:
@@ -9,19 +11,33 @@ class GraphingHelper:
         self.long_names = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
         self.short_names = ['Lat', 'Lon']
         self.cities = self.read_tsp_file(fnum)
+        self.opt, _, _ = get_best_path(fnum)
         self.colour = [1.0, 0.0, 0.0]
+        self.pallette = [CP.SPIRIT_0, CP.SPIRIT_1, CP.SPIRIT_2, CP.SPIRIT_9, CP.SPIRIT_7, CP.SPIRIT_6]
+        plt.style.use(plt.style.available[13])  ##4, 13, 21
+        self.single_plot_size = (7.5, 7.5)
+        self.double_plot_size = (8, 8)
+        self.quad_plot_size = (12, 12)
 
     # region Display Methods
     def start_up_display(self):
-        # TODO - Improve Graphs
         self.cities.plot.scatter(x=self.long_names[0], y=self.long_names[1], c=self.cities.index.get_values(), colormap='winter')
+        plt.gcf().set_size_inches(self.single_plot_size)
         plt.title('City Locations (Normalized to origin of 0)')
 
-    def generation_display(self, generation, fitness, individual, title='Path at Generation {: <5}:   {:4.2f}'):
-        # TODO - Improve Graphs
+    def plot_run(self, run_history, hax=None):
+        run_history.columns = ['Fitness', 'Route']
+        run_history['Fitness'].plot(color=CP.SPIRIT_0)
+        plt.axhline(y=self.opt, color=CP.SPIRIT_5, label='Optimum')
+        if hax:
+            plt.axhline(y=hax, color=CP.SPIRIT_5, label='Optimum')
+        plt.gcf().set_size_inches(self.single_plot_size)
+
+    def generation_display(self, generation, fitness, individual, alt_tile=False):
+        title = 'Path at Generation {: <5}:   {:4.2f}'
+        if alt_tile: title = 'Using {} Method:   {:4.2f}'
         x = self.cities[self.long_names[0]]
         y = self.cities[self.long_names[1]]
-
         self.cities.plot.scatter(x=self.long_names[0], y=self.long_names[1],  c=self.cities.index.get_values(), colormap='winter')
 
         for i in range(len(self.cities)):
@@ -32,12 +48,15 @@ class GraphingHelper:
             bright_mod = -min(cos(per), 0) * 0.3
             plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1 - red_mod, bright_mod, bright_mod])
         plt.title(title.format(generation, fitness))
+        plt.gcf().set_size_inches(self.single_plot_size)
         plt.show()
 
-    def alt_generation_display(self, generation, fitness, individual):
-        # TODO - Improve Graphs
+    def alt_generation_display(self, generation, fitness, individual, alt_tile=False):
+        title = 'Path at Generation {: <5}:   {:4.2f}'
+        if alt_tile: title = 'Using {} Method:   {:4.2f}'
         x = self.cities[self.long_names[0]]
         y = self.cities[self.long_names[1]]
+        #fig, axes = plt.subplots(figsize=(12, 12))
 
         for i in range(len(self.cities)):
             c1 = individual[i - 1]
@@ -46,9 +65,79 @@ class GraphingHelper:
             red_mod = max(cos(per), 0) * 0.3
             bright_mod = -min(cos(per), 0) * 0.3
             plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1 - red_mod, bright_mod, bright_mod], marker='o')
-        plt.title('Path at Generation {: <5}:   {:4.2f}'.format(generation, fitness))
+        plt.title(title.format(generation, fitness))
+        plt.gcf().set_size_inches(self.single_plot_size)
         plt.show()
+
+    def quad_plot(self, avgs, opts):
+        fig, axes = plt.subplots(ncols=2, nrows=2, figsize=self.quad_plot_size)
+        plt.subplots_adjust(wspace=0.2, hspace=0.2)
+
+        val_y_lim = max(avgs.iloc[len(avgs) - 1]) * 1.05
+        per_y_lim = max(((avgs.iloc[len(avgs) - 1] / self.opt) - 1) * 100) * 1.25
+
+        def plot_df(df, ax1, ax2, per):
+            num = 0
+            columns = [column for column in df.drop('x', axis=1)]
+            if ax2 == 0: axes[ax1, ax2].set_title('Averaged')
+            if ax2 == 1: axes[ax1, ax2].set_title('Best')
+            for column in columns:
+                if per:
+                    per_col = (((df[column] / self.opt) - 1) * 100)
+                    per_col.plot(ax=axes[ax1, ax2], color=self.pallette[num], alpha=0.66, legend=True)
+                    axes[ax1, ax2].set_ylim([-0.1, per_y_lim])
+                else:
+                    df[column].plot(ax=axes[ax1, ax2], color=self.pallette[num], legend=True)
+                    axes[ax1, ax2].set_ylim([self.opt * 0.999, val_y_lim])
+                num += 1
+            if per:
+                axes[ax1, ax2].set_ylabel('Percent Larger')
+                axes[ax1, ax2].axhline(y=0, color=CP.SPIRIT_5, label='Optimum')
+            else:
+                axes[ax1, ax2].set_ylabel('Fitness')
+                axes[ax1, ax2].axhline(y=self.opt, color=CP.SPIRIT_5, label='Optimum')
+
+        with pd.plotting.plot_params.use('x_compat', True):
+            plot_df(avgs, 0, 0, False)
+        with pd.plotting.plot_params.use('x_compat', True):
+            plot_df(opts, 0, 1, False)
+        with pd.plotting.plot_params.use('x_compat', True):
+            plot_df(avgs, 1, 0, True)
+        with pd.plotting.plot_params.use('x_compat', True):
+            plot_df(opts, 1, 1, True)
     # endregion
+
+
+    '''
+    def long_plot(avgs, opts):
+    colours = [CP.SPIRIT_0, CP.SPIRIT_1, CP.SPIRIT_2, CP.SPIRIT_9, CP.SPIRIT_7, CP.SPIRIT_6]
+    fig, axes = plt.subplots(nrows=2, figsize=(12, 24))
+    plt.subplots_adjust(wspace=0.25, hspace=0.4)
+    def plot_df(df, axis):
+        num = 0
+        for column in df.drop('x', axis=1):
+            num += 1
+            # plt.plot(df['x'], df[column], ax=axes[axis], marker='', color=colours[num], linewidth=1, alpha=0.9, label=column)
+            df[column].plot(ax=axes[axis], color=colours[num], legend=True)
+            #((df[column] / opt_dist) - 1).plot(ax=axes[axis], color=colours[num], alpha=0.0, secondary_y=True, legend=False)
+            #df.plot(ax=axes[axis], color=CP.KIKI_6, legend=True)
+            #df.plot(ax=axes[axis], color=CP.KIKI_7, alpha=0.33, secondary_y=True, legend=True)
+            #df.plot(ax=axes[axis], color=CP.KIKI_6, alpha=0.33, secondary_y=True, legend=True)
+
+    plot_df(avgs, 0)
+    axes[0].axhline(y=self.opt, color=CP.SPIRIT_5, label='Optimum')
+    axes[0].set_title("Average fitnesses over multiple runs", fontsize=12, fontweight=0, color=CP.SPIRIT_3)
+    axes[0].set_xlabel("Generations")
+    axes[0].set_ylabel("Fitness")
+    axes[0].right_ax.set_ylabel('Relative Fitness')
+
+    plot_df(opts, 1)
+    axes[1].axhline(y=self.opt, color=CP.SPIRIT_5, label='Optimum')
+    axes[1].set_title("Best fitnesses over multiple runs", fontsize=12, fontweight=0, color=CP.SPIRIT_3)
+    axes[1].set_xlabel("Generations")
+    axes[1].set_ylabel("Fitness")
+    axes[1].right_ax.set_ylabel('Relative Fitness')
+    '''
 
     # region Initialization
     def read_tsp_file(self, fnum):

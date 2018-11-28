@@ -44,7 +44,7 @@ class EARunner:
         self.apply_mutation = None
         self.select_survivors = None
         self.manage_population = None
-        self.EAVars = None
+        self.vars = None
 
     def set_params(self, genome_len, fit_eval, pop_init, psm, rm, mm, ssm, pmm):
         self.genome_length = genome_len
@@ -64,7 +64,7 @@ class EARunner:
         self.MM.set_genome_length(self.genome_length)
         self.PMM.set_genome_length(self.genome_length)
 
-        self.EAVars = EADefaultVars(genome_len)
+        self.vars = EAVars(genome_len)
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
@@ -76,7 +76,7 @@ class EARunner:
         print("Test: {}".format(test_id))
 
         master_start_time = time.time()
-        ea_vars = self.EAVars
+        ea_vars = self.vars
 
         self.PSM.set_tournament_size(ea_vars.tournament_size)
         self.RM.set_crossover_points(ea_vars.cp_1, ea_vars.cp_2, ea_vars.cp_3)
@@ -154,7 +154,7 @@ class EARunner:
         return op_fit, optimal_solutions, generation, best_indivs, time_tuple
 
 
-class EADefaultVars:
+class EAVars:
     def __init__(self, genome_length):
 
         self.genome_length = genome_length
@@ -173,6 +173,16 @@ class EADefaultVars:
         self.set_safe_matingpool(self.population_size)
         self.set_tourney_size_by_percent(0.1)
         self.set_population_threshold_by_percent(0.05)
+
+    def set_population_size(self, size):
+        try:
+            size = int(size)
+            if size > 0:
+                self.population_size = size
+            else:
+                print('Size cannot be less than one!')
+        except TypeError:
+            print('Value not parsable as an integer.')
 
     def set_safe_matingpool(self, size):
         if (size // 2) % 2 == 0:
