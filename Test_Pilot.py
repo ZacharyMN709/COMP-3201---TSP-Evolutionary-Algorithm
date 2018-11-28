@@ -88,7 +88,7 @@ METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
 MULTITHREAD = False
 RUNS = 1  # Number of times each combination is run.
 GENERATIONS = 10000
-SAVE = True
+SAVE = False
 
 PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
 
