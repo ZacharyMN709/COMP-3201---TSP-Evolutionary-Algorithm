@@ -97,7 +97,7 @@ PARENT_METHODS = [('MPS', PSM.mps), ('Tourney', PSM.tournament), ('Random', PSM.
 RECOMBINATION_METHODS = [('Order Crossover', RM.order_crossover), ('PMX Crossover', RM.pmx_crossover)]
 MUTATION_METHODS = [('Swap', MM.permutation_swap), ('Insert', MM.permutation_insert), ('Inversion', MM.permutation_inversion), ('Shift', MM.permutation_shift)]
 SURVIVOR_METHODS = [('Mu + Lambda', SSM.mu_plus_lambda), ('Replace', SSM.replacement)]
-MANAGEMENT_METHODS = [('None', PMM.static_return), ('Annealing', PMM.metallurgic_annealing), ('Entropy', PMM.metallurgic_annealing), ('Oroborous', PMM.metallurgic_annealing)]
+MANAGEMENT_METHODS = [('None', PMM.static_return), ('Annealing', PMM.metallurgic_annealing), ('Entropy', PMM.entropic_stabilizing), ('Oroborous', PMM.ouroboric_culling), ('Engineering', PMM.genetic_engineering)]
 
 POPULATION_DICT = {POPULATION_METHODS[x][0]: x for x in range(len(POPULATION_METHODS))}
 PARENT_DICT = {PARENT_METHODS[x][0]: x for x in range(len(PARENT_METHODS))}
@@ -106,9 +106,34 @@ MUTATION_DICT = {MUTATION_METHODS[x][0]: x for x in range(len(MUTATION_METHODS))
 SURVIVOR_DICT = {SURVIVOR_METHODS[x][0]: x for x in range(len(SURVIVOR_METHODS))}
 MANAGEMENT_DICT = {MANAGEMENT_METHODS[x][0]: x for x in range(len(MANAGEMENT_METHODS))}
 
+"""
+BASE INDIVIDUAL FOR STATS TESTING
+tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+                     MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
+"""
+
+
+'''
+POPULATION TESTING
+tester.set_test_vars(RUNS, POPULATION_METHODS, PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+                     MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
+'''
+'''
+MUTATION TESTING
+tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+                     MUTATION_METHODS, SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
+'''
+'''
+MANAGEMENT TESTING
+tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+                     MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS)
+'''
+
+
+
 tester = generate_algorithm(FILENUM, METHOD, MULTITHREAD)
-tester.set_test_vars(RUNS, POPULATION_METHODS, PARENT_METHODS, RECOMBINATION_METHODS,
-                     MUTATION_METHODS, SURVIVOR_METHODS, MANAGEMENT_METHODS)
+tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+                     MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
 
 if FILENUM:
     from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
