@@ -30,12 +30,12 @@ def read_tsp_file(fnum, save=False):
     global FILENUM
     FILENUM = fnum
 
-    #city_dict = get_pickled_memo(fnum)
-    #global MEMOIZED, LOCATIONS
-    #if city_dict:
-    #    MEMOIZED, LOCATIONS = city_dict['Locs'], city_dict['Dists']
-    #else:
-    if True:
+    city_dict = get_pickled_memo(fnum)
+    global MEMOIZED, LOCATIONS
+    if city_dict:
+        LOCATIONS, MEMOIZED = city_dict['Locs'], city_dict['Dists']
+    else:
+
         if fnum == 1:
             fname = "TSP_WesternSahara_29.txt"
         elif fnum == 2:
@@ -61,10 +61,8 @@ def read_tsp_file(fnum, save=False):
 
             # NOTE: Locations are slightly odd. Original (x, y) mapped to normalized (-y, x) to produce
             # identifiable map of Canada.
-            global LOCATIONS
             LOCATIONS = [(shift_y - i[1], i[0] - shift_x) for i in locations]
 
-        global MEMOIZED
         MEMOIZED = [[((L1[0]-L2[0])**2 + (L1[1] - L2[1])**2)**0.5 for L2 in LOCATIONS] for L1 in LOCATIONS]
 
         if save:

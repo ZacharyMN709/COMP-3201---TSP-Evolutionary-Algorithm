@@ -127,8 +127,7 @@ def get_euler_file(file_num):
 def get_pickled_euler(file_num, fast=False):
     # A dictionary which is to be pickled.
     # {'MST': MST,
-    # 'Odd': ODD,
-    # 'Euler': EUL}
+    # 'Odd': ODD}
 
     try:
         if fast:
