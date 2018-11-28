@@ -172,5 +172,3 @@ if __name__ == '__main__':
                                            'Runs': RUNS,
                                            'Generations': GENERATIONS}
                                 pickle_stats_obj(to_save, FILENUM, METHOD)
-
-
