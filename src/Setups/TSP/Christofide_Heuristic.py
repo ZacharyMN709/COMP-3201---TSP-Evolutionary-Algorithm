@@ -1,6 +1,6 @@
 from random import shuffle, sample
 from copy import deepcopy
-from Pickle_Helper import get_pickled_euler
+from src.Other.Pickle_Helper import get_pickled_euler
 
 MEMOIZED = list()
 DUPEDICT = dict()
@@ -177,7 +177,7 @@ def generate_euler_tour(distances, FILENUM, fast=True):
 
 
 if __name__ == '__main__':
-    from Pickle_Helper import pickle_euler_obj
+    from src.Other.Pickle_Helper import pickle_euler_obj
     from src.Setups.TSP.FileLoader import LoadHelper
 
     def tsp(file_num):

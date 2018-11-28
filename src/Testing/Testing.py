@@ -1,5 +1,5 @@
-from src.EA_Shell import EARunner
-from src.StatsHolder import StatsHolder
+from src.EA_Methods.EA_Shell import EARunner
+from src.Other.StatsHolder import StatsHolder
 from multiprocessing import Process
 
 
