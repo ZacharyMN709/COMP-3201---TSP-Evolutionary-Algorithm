@@ -115,7 +115,7 @@ class StatsHolder:
 
     def average_generation_fitness(self):
         out = [0] * max(self.generation_count)
-        for x in range(len(out) - 1):
+        for x in range(len(out)):
             temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
             try:
                 out[x] = sum(temp) / len(temp)
@@ -126,7 +126,7 @@ class StatsHolder:
 
     def best_generation_fitness(self):
         out = [0] * max(self.generation_count)
-        for x in range(len(out) - 1):
+        for x in range(len(out)):
             temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
             try:
                 out[x] = self.best(temp)

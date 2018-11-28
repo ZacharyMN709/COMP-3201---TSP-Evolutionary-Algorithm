@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Fixed another problem with Initalization.">
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" afterPath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210210 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210210 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210211 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210211 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210212 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210212 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210213 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210213 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210214 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210214 G10000.txt" />
       <change beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/HERMES-checkpoint.ipynb" afterPath="$PROJECT_DIR$/src/.ipynb_checkpoints/HERMES-checkpoint.ipynb" />
       <change beforePath="$PROJECT_DIR$/src/HERMES.ipynb" afterPath="$PROJECT_DIR$/src/HERMES.ipynb" />
       <change beforePath="$PROJECT_DIR$/src/StatsHolder.py" afterPath="$PROJECT_DIR$/src/StatsHolder.py" />
@@ -46,24 +43,24 @@
       <file leaf-file-name="Test_Pilot.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
+            <state relative-caret-position="34">
               <caret line="85" column="11" lean-forward="false" selection-start-line="85" selection-start-column="11" selection-end-line="85" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StatsHolder.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="StatsHolder.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-50">
-              <caret line="117" column="30" lean-forward="false" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+            <state relative-caret-position="305">
+              <caret line="128" column="31" lean-forward="false" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Colours.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Colours.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Other/Colours.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="69">
@@ -235,6 +232,20 @@
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
+              <item name="Arrays" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
+              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
+              <item name="Lists" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="Results" type="462c0819:PsiDirectoryNode" />
               <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -319,12 +330,9 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
           <PATH vcs="Git" revision="">$PROJECT_DIR$/Test_Pilot.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/EA_Methods/Array_Rep/PopulationManagementMethods.py</PATH>
+          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/PopulationManagementMethods.py</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Created" />
@@ -332,16 +340,6 @@
           <option name="mySupportsDeletion" value="false" />
           <option name="myCanBeAbsent" value="false" />
           <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210210 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210211 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210212 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210213 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210214 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210210 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210211 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210212 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210213 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210214 G10000.txt</PATH>
         </FILE-GROUP>
         <FILE-GROUP>
           <option name="myUpdateName" value="Deleted" />
@@ -586,13 +584,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fixed a few errors with numpy arrays not playing nice as elements in dataframes.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541525126735</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1541525126735</updated>
     </task>
     <task id="LOCAL-00028" summary="Made a few changes. Of note, and weirdly, the list brute force seems to run faster than the numpy one. To be investigated.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
       <created>1541651033447</created>
@@ -930,7 +921,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543393967529</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Adding data.">
+      <created>1543398038858</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1543398038858</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="TodoView">
@@ -948,9 +946,9 @@
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27760968" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1002,7 +1000,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Made some significant changes to the EA algorithm structure.&#10;The test suite parts are now split from the main EARunner, and access it by extending the ERRunner class and pilot module.&#10;Also cleaned up strings for ease of reading, and added tallies of individual function run-times.&#10;&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
     <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/EA_Shell.py&#10;#&#9;src/Testing.py" />
     <MESSAGE value="Made some small modifications to the code." />
     <MESSAGE value="Added the cluster-based population initialization." />
@@ -1027,7 +1024,8 @@
     <MESSAGE value="Fixed a problem with heuristic Initalization." />
     <MESSAGE value="Fixed another problem with heuristic Initalization." />
     <MESSAGE value="Fixed another problem with Initalization." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed another problem with Initalization." />
+    <MESSAGE value="Adding data." />
+    <option name="LAST_COMMIT_MESSAGE" value="Adding data." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1187,16 +1185,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
+        <state relative-caret-position="34">
           <caret line="85" column="11" lean-forward="false" selection-start-line="85" selection-start-column="11" selection-end-line="85" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="117" column="30" lean-forward="false" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -1205,6 +1195,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="69">
           <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="363" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="128" column="31" lean-forward="false" selection-start-line="128" selection-start-column="31" selection-end-line="128" selection-end-column="31" />
           <folding />
         </state>
       </provider>
