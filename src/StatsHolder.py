@@ -114,17 +114,26 @@ class StatsHolder:
         pass
 
     def average_generation_fitness(self):
-        avg_out = [0] * max(self.generation_count)
-        print(len(avg_out))
-
-        for x in range(len(avg_out)):
+        out = [0] * max(self.generation_count)
+        for x in range(len(out) - 1):
             temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
             try:
-                avg_out[x] = sum(temp) / len(temp)
+                out[x] = sum(temp) / len(temp)
             except ZeroDivisionError:
-                avg_out = avg_out[0:x]
+                out = out[0:x]
                 break
-        return avg_out
+        return out
+
+    def best_generation_fitness(self):
+        out = [0] * max(self.generation_count)
+        for x in range(len(out) - 1):
+            temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
+            try:
+                out[x] = self.best(temp)
+            except ZeroDivisionError:
+                out = out[0:x]
+                break
+        return out
 
 
 if __name__ == '__main__':
