@@ -10,10 +10,10 @@ from src.EA_Methods.PopulationManagementMethods import PopulationManagementHelpe
 
 
 class EARunner:
-    def __init__(self, var_helper, method):
+    def __init__(self, var_helper, method, fitness_helper):
         self.vars = var_helper
-        self.DEF = PopulationInitializationHelper(var_helper, method)
-        self.FIT = FitnessHelper(var_helper, method)
+        self.FEM = fitness_helper
+        self.PIM = PopulationInitializationHelper(var_helper, method)
         self.PSM = ParentSelectionHelper(var_helper, method)
         self.RM = RecombinationHelper(var_helper, method)
         self.MM = MutatorHelper(var_helper, method)
@@ -30,18 +30,26 @@ class EARunner:
         self.manage_population = None
 
     def get_method_helpers(self):
-        return self.DEF, self.PSM, self.RM, self.MM, self.SSM, self.PMM
+        return self. FEM, self.PIM, self.PSM, self.RM, self.MM, self.SSM, self.PMM
 
-    def set_params(self, fit_eval, pop_init, psm, rm, mm, ssm, pmm):
-        self.eval_fitness = fit_eval
-        self.initialize = pop_init
-        self.parent_selection = psm
-        self.generate_offspring = rm
-        self.apply_mutation = mm
-        self.select_survivors = ssm
-        self.manage_population = pmm
+    def set_params(self, fit, pop, psm, rm, mm, ssm, pmm):
+        self.eval_fitness = self.FEM.get_func_from_index(fit)
+        self.initialize = self.PIM.get_func_from_index(pop)
+        self.parent_selection = self.PSM.get_func_from_index(psm)
+        self.generate_offspring = self.RM.get_func_from_index(rm)
+        self.apply_mutation = self.MM.get_func_from_index(mm)
+        self.select_survivors = self.SSM.get_func_from_index(ssm)
+        self.manage_population = self.PMM.get_func_from_index(pmm)
 
-        self.runnable = fit_eval and pop_init and psm and rm and mm and ssm
+    def is_runnable(self):
+        return \
+            self.eval_fitness is not None and \
+            self.initialize is not None and \
+            self.parent_selection is not None and \
+            self.generate_offspring is not None and \
+            self.apply_mutation is not None and \
+            self.select_survivors is not None and \
+            self.manage_population is not None
 
     def run(self, generation_limit, test_id, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
         if not self.runnable:
@@ -93,15 +101,16 @@ class EARunner:
             # Break if converged at optimal solution
             op_fit = self.vars.best_of(fitness)
             optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
-            best_indivs[generation-1] = (op_fit, population[optimal_solutions[0]][:])
-            if true_opt and self.vars.as_good_as(op_fit, known_optimum) and (len(optimal_solutions) == ea_vars.population_size):
+            best_indivs[generation - 1] = (op_fit, population[optimal_solutions[0]][:])
+            if true_opt and self.vars.as_good_as(op_fit, known_optimum) and (
+                    len(optimal_solutions) == ea_vars.population_size):
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
                 break
 
         # Final Fitness Info
         master_time = time.time() - master_start_time
         op_fit = self.vars.best_of(fitness)
-        best_indivs = best_indivs[:generation-1]
+        best_indivs = best_indivs[:generation - 1]
         optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
         total_time = sum([PSMTime, RMTime, MMTime, SSMTime, PMMTime])
         time_tuple = (PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time)

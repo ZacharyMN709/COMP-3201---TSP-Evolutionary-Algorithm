@@ -1,17 +1,19 @@
+from src.EA_Methods.HelperTemplate import BaseHelper
 from random import randint
 
 
-class SurvivorSelectionHelper:
+class SurvivorSelectionHelper(BaseHelper):
     def __init__(self, var_helper, method):
-        self.vars = var_helper
-        self.method = method
-        self.SURVIVOR_METHODS = [('Mu + Lambda', self.mu_plus_lambda),
-                                 ('Replace', self.replacement)
-                                 ]
-        self.SURVIVOR_DICT = {self.SURVIVOR_METHODS[x][0]: x for x in range(len(self.SURVIVOR_METHODS))}
+        name_method_pairs = [('Mu + Lambda', self.mu_plus_lambda),
+                                  ('Replace', self.replacement)
+                                  ]
+        super().__init__(var_helper, method, name_method_pairs)
+
+    def __str__(self):
+        return super().__str__().format('SurvivorSelectionHelper')
 
     def get_func_from_index(self, i):
-        return self.SURVIVOR_METHODS[i][1]
+        return self.name_method_pairs[i][1]
 
     # region Survivor Selection Methods
     def mu_plus_lambda(self, parents, parent_fitness, offspring, offspring_fitness):

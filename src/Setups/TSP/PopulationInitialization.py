@@ -1,3 +1,4 @@
+from src.EA_Methods.HelperTemplate import BaseHelper
 from numpy import array as np_array
 from array import array as c_array
 from random import sample
@@ -18,31 +19,34 @@ def c_wrapper(indiv):
     return c_array('i', indiv)
 
 
-class PopulationInitializationHelper:
+class PopulationInitializationHelper(BaseHelper):
     def __init__(self, var_helper, method):
-        self.vars = var_helper
-        self.method = method
+        name_method_pairs = [('Random', self.random_initialization),
+                             ('Cluster', self.heuristic_cluster_initialization),
+                             ('Euler', self.heuristic_euler_initialization)
+                             ]
+        super().__init__(var_helper, method, name_method_pairs)
         self.wrappers = [list_wapper, np_warpper, c_wrapper]
         self.wrapper = self.wrappers[method]
-        self.POPULATION_METHODS = [('Random', self.random_initialization),
-                                   ('Cluster', self.heuristic_cluster_initialization),
-                                   ('Euler', self.heuristic_euler_initialization)
-                                   ]
-        self.POPULATION_DICT = {self.POPULATION_METHODS[x][0]: x for x in range(len(self.POPULATION_METHODS))}
+
+    def __str__(self):
+        return super().__str__().format('PopulationInitializationHelper')
 
     def get_func_from_index(self, i):
-        return self.POPULATION_METHODS[i][1]
+        return self.name_method_pairs[i][1]
 
     # region Population Seeding
     def fitness_applicator(self, func):
         def generate_population(pop_size, genome_length):
             population = func(pop_size, genome_length)
             return population, [self.vars.eval_fitness(i) for i in population]
+
         return generate_population
 
     def representation_wrapper(self, func):
         def wrap_output(genome_length):
             return self.wrapper(func(genome_length))
+
         return wrap_output
 
     @representation_wrapper

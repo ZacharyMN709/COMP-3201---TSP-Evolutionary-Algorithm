@@ -1,18 +1,20 @@
+from src.EA_Methods.HelperTemplate import BaseHelper
 from random import random, randint
 from copy import deepcopy
 
 
-class RecombinationHelper:
+class RecombinationHelper(BaseHelper):
     def __init__(self, var_helper, method):
-        self.vars = var_helper
-        self.method = method
-        self.RECOMBINATION_METHODS = [('Order Crossover', self.order_crossover),
-                                      ('PMX Crossover', self.pmx_crossover)
-                                      ]
-        self.RECOMBINATION_DICT = {self.RECOMBINATION_METHODS[x][0]: x for x in range(len(self.RECOMBINATION_METHODS))}
+        name_method_pairs = [('Order Crossover', self.order_crossover),
+                                  ('PMX Crossover', self.pmx_crossover)
+                                  ]
+        super().__init__(var_helper, method, name_method_pairs)
+
+    def __str__(self):
+        return super().__str__().format('RecombinationHelper')
 
     def get_func_from_index(self, i):
-        return self.RECOMBINATION_METHODS[i][1]
+        return self.name_method_pairs[i][1]
 
     # region Recombination Methods
 

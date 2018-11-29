@@ -1,20 +1,22 @@
+from src.EA_Methods.HelperTemplate import BaseHelper
 from random import random, sample, shuffle, randint
 
 
-class PopulationManagementHelper:
+class PopulationManagementHelper(BaseHelper):
     def __init__(self, var_helper, method):
-        self.vars = var_helper
-        self.method = method
-        self.MANAGEMENT_METHODS = [('None', self.static_return),
-                                   ('Annealing', self.metallurgic_annealing),
-                                   ('Entropy', self.metallurgic_annealing),
-                                   ('Oroborous', self.metallurgic_annealing),
-                                   ('Engineering', self.genetic_engineering)
-                                   ]
-        self.MANAGEMENT_DICT = {self.MANAGEMENT_METHODS[x][0]: x for x in range(len(self.MANAGEMENT_METHODS))}
+        name_method_pairs = [('None', self.static_return),
+                                  ('Annealing', self.metallurgic_annealing),
+                                  ('Entropy', self.metallurgic_annealing),
+                                  ('Oroborous', self.metallurgic_annealing),
+                                  ('Engineering', self.genetic_engineering)
+                                  ]
+        super().__init__(var_helper, method, name_method_pairs)
+
+    def __str__(self):
+        return super().__str__().format('PopulationManagementHelper')
 
     def get_func_from_index(self, i):
-        return self.MANAGEMENT_METHODS[i][1]
+        return self.name_method_pairs[i][1]
 
 
     # region Population Management Methods

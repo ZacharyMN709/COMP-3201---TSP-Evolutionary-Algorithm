@@ -1,5 +1,5 @@
+from src.EA_Methods.HelperTemplate import BaseHelper
 from random import randint, random, shuffle
-
 '''
 # region Globals and Setters
 genome_length = 0
@@ -24,19 +24,20 @@ def set_fitness_function(i):
 '''
 
 
-class MutatorHelper:
+class MutatorHelper(BaseHelper):
     def __init__(self, var_helper, method):
-        self.vars = var_helper
-        self.method = method
-        self.MUTATION_METHODS = [('Swap', self.permutation_swap),
-                                 ('Insert', self.permutation_insert),
-                                 ('Inversion', self.permutation_inversion),
-                                 ('Shift', self.permutation_shift)
-                                 ]
-        self.MUTATION_DICT = {self.MUTATION_METHODS[x][0]: x for x in range(len(self.MUTATION_METHODS))}
+        name_method_pairs = [('Swap', self.permutation_swap),
+                             ('Insert', self.permutation_insert),
+                             ('Inversion', self.permutation_inversion),
+                             ('Shift', self.permutation_shift)
+                             ]
+        super().__init__(var_helper, method, name_method_pairs)
+
+    def __str__(self):
+        return super().__str__().format('MutatorHelper')
 
     def get_func_from_index(self, i):
-        return self.MUTATION_METHODS[i][1]
+        return self.name_method_pairs[i][1]
 
     # region Mutation Methods
     # Takes in a method, and then 'injects' the random chance of running into the function
@@ -139,3 +140,6 @@ class MutatorHelper:
 
         return individual
     # endregion
+
+if __name__ == '__main__':
+    mu = MutatorHelper(0, 5)
