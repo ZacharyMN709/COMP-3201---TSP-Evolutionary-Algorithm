@@ -20,7 +20,7 @@ def read_tsp_file(fnum):
     elif fnum == 3:
         fname = "TSP_Canada_4663.txt"
     else:
-        print('Warning! Invalid seletion. Defaulting to test')
+        print('Warning! Invalid selection. Defaulting to test')
         fname = "TSP_Testbed_10.txt"
 
     script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
@@ -121,7 +121,6 @@ def minimum_weight_matching(mst, odd_vert):
         closest = 0
         for u in odd_vert:
             # don't match a vertex to itself, run through odd vertices until we find one closest to v
-            ## Can a duplicate be in the list?
             if MEMOIZED[v][u] < length:
                 length = MEMOIZED[v][u]
                 closest = u

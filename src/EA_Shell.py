@@ -131,7 +131,7 @@ class EARunner:
 
             if true_opt and self.as_good_as(op_fit, known_optimum) and (len(optimal_solutions) == ea_vars.population_size):
                 best_indivs = [i for i in best_indivs if i is not None]
-                print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
+                print("\n\nEnding early! Converged at generation: {}/{}\n\n".format(generation, generation_limit))
                 break
 
             if timed_exit and timed_exit < time.time() - master_start_time:
