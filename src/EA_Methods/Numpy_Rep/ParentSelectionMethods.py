@@ -4,7 +4,7 @@ from random import sample, random, shuffle
 
 # region Globals and Setters
 tournament_size = None
-op = None
+best = None
 
 
 def set_tournament_size(i):
@@ -13,7 +13,7 @@ def set_tournament_size(i):
 
 
 def set_op(i):
-    global op
+    global best
     op = i
 # endregion
 
@@ -60,7 +60,7 @@ def tournament(fitness, mating_pool_size):
     fit_indexes = [(x, fitness[x]) for x in range(len(fitness))]
 
     # Return a list of parents indices based of the winners of the tournaments.
-    return [op(sample(fit_indexes, tournament_size), key=lambda x: x[1])[0] for _ in range(mating_pool_size)]
+    return [best(sample(fit_indexes, tournament_size), key=lambda x: x[1])[0] for _ in range(mating_pool_size)]
 
 
 @randomize_output

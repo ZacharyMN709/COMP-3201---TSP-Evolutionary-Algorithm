@@ -4,18 +4,18 @@ from time import clock
 
 
 # region Globals and Setters
-op = None
+best = None
 
 
 def set_op(i):
-    global op
+    global best
     op = i
 # endregion
 
 
 # region Survivor Selection Methods
 def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness):
-    loc_op = min if op == max else max
+    loc_op = min if best == max else max
     max_size = len(parents)
 
     population = parents + offspring
@@ -31,7 +31,7 @@ def mu_plus_lambda(parents, parent_fitness, offspring, offspring_fitness):
 
 
 def replacement(parents, parent_fitness, offspring, offspring_fitness):
-    loc_op = min if op == max else max
+    loc_op = min if best == max else max
     max_size = len(parents) - len(offspring)
 
     # remove the weakest parents to make room for children

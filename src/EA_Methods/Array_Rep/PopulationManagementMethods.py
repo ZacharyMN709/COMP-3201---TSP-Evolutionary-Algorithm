@@ -23,9 +23,9 @@ genome_length = 0
 population_method = None
 eval_fitness = None
 distances = None
-op = None
-cmp_eq = None
-cmp_ne = None
+best = None
+as_good_as = None
+better_than = None
 start_temp = 10000
 cooling_rate = 0.99
 population_threshold = 20
@@ -57,7 +57,7 @@ def set_distances(i):
 
 
 def set_op(i):
-    global op, cmp_eq, cmp_ne
+    global best, as_good_as, better_than
     cmp_eq = gte if op == max else lte
     cmp_ne = gt if op == max else lt
     op = i
@@ -101,7 +101,7 @@ def metallurgic_annealing(population, fitness):
     new_fit = [eval_fitness(x) for x in new_pop]
 
     for x in range(len(population)):
-        if cmp_ne(new_fit[x], fitness[x]) or random() < 2.7182818**((fitness[x] - new_fit[x])/start_temp):
+        if better_than(new_fit[x], fitness[x]) or random() < 2.7182818**((fitness[x] - new_fit[x]) / start_temp):
             population[x] = new_pop[x]
 
     return population, fitness
@@ -114,7 +114,7 @@ def entropic_stabilizing(population, fitness):
     replaced with new individuals,
     """
 
-    best_fit = op(fitness)
+    best_fit = best(fitness)
     num_best = fitness.count(best_fit)
 
     if num_best > population_threshold:
@@ -134,7 +134,7 @@ def ouroboric_culling(population, fitness):
     of individuals which can share the maximum fitness.
     """
 
-    best_fit = op(fitness)
+    best_fit = best(fitness)
     num_best = fitness.count(best_fit)
     if num_best > population_threshold:
         num_to_remove = num_best - population_threshold
@@ -155,7 +155,7 @@ def genetic_engineering(population, fitness):
     If not, revert that change. Super charges a single fittest individual.
     """
 
-    best_fit = op(fitness)
+    best_fit = best(fitness)
     num_best = fitness.count(best_fit)
 
     if num_best > population_threshold:
@@ -165,7 +165,7 @@ def genetic_engineering(population, fitness):
         for i in range(len(indiv)):
             indiv[i - x], indiv[i] = indiv[i], indiv[i - x]
             new_fit = eval_fitness(indiv)
-            if new_fit == op(new_fit, best_fit):
+            if new_fit == best(new_fit, best_fit):
                 best_fit = new_fit
             else:
                 indiv[i - x], indiv[i] = indiv[i], indiv[i - x]

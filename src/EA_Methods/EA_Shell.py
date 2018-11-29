@@ -64,7 +64,7 @@ class EARunner:
         self.MM.set_genome_length(self.genome_length)
         self.PMM.set_genome_length(self.genome_length)
 
-        self.EAVars = EADefaultVars(genome_len)
+        self.EAVars = EAVarHelper(genome_len)
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
@@ -154,7 +154,7 @@ class EARunner:
         return op_fit, optimal_solutions, generation, best_indivs, time_tuple
 
 
-class EADefaultVars:
+class EAVarHelper:
     def __init__(self, genome_length):
 
         self.genome_length = genome_length
