@@ -35,6 +35,9 @@ class MutatorHelper:
                                  ]
         self.MUTATION_DICT = {self.MUTATION_METHODS[x][0]: x for x in range(len(self.MUTATION_METHODS))}
 
+    def get_func_from_index(self, i):
+        return self.MUTATION_METHODS[i][1]
+
     # region Mutation Methods
     # Takes in a method, and then 'injects' the random chance of running into the function
     def method_mapper(self, func):

@@ -8,7 +8,7 @@ class MergeError(Exception):
 
 class StatsHolder:
     def __init__(self, POPULATION_METHOD, PARENT_METHOD, SURVIVOR_METHOD, MUTATION_METHOD,
-                 RECOMBINATION_METHOD, MANAGEMENT_METHOD, RUNS, op, optimum=None):
+                 RECOMBINATION_METHOD, MANAGEMENT_METHOD, RUNS, best_of, optimum=None):
 
         self.POPULATION_METHOD = POPULATION_METHOD
         self.PARENT_METHOD = PARENT_METHOD
@@ -17,7 +17,7 @@ class StatsHolder:
         self.RECOMBINATION_METHOD = RECOMBINATION_METHOD
         self.MANAGEMENT_METHOD = MANAGEMENT_METHOD
         self.RUNS = RUNS
-        self.best = op
+        self.best_of = best_of
         self.true_opt = optimum
 
         self.best_fitnesses = [None] * self.RUNS
@@ -31,7 +31,7 @@ class StatsHolder:
 
     @classmethod
     def stat_obj_from_pickle(cls, pickle_tuple):
-        from Pickle_Helper import get_pickled_stats
+        from src.Other.Pickle_Helper import get_pickled_stats
 
         file_name, file_num, method_used = pickle_tuple
         stats_dict = get_pickled_stats(file_name, file_num, method_used)
@@ -52,7 +52,7 @@ class StatsHolder:
 
     def print_simple_stats(self):
         mean = sum(self.best_fitnesses) / len(self.best_fitnesses)
-        best = self.best(self.best_fitnesses)
+        best = self.best_of(self.best_fitnesses)
         mean_per = 100 * ((mean / self.true_opt) - 1)
         best_per = 100 * ((best / self.true_opt) - 1)
         solutions = sum(self.solutions_found)
@@ -75,9 +75,9 @@ class StatsHolder:
 
     def __str__(self):
         stats_info = 'Total Runtime: {}\nBest Fitness Produced: {}'.format(
-            sum(self.runtimes), self.best(self.best_fitnesses))
+            sum(self.runtimes), self.best_of(self.best_fitnesses))
         if self.true_opt:
-            best_per = 100 * ((self.best(self.best_fitnesses) / self.true_opt) - 1)
+            best_per = 100 * ((self.best_of(self.best_fitnesses) / self.true_opt) - 1)
             stats_info += "\nBest solution {:4.2f}% larger than true optimum.".format(best_per)
         return self.funcs_used() + stats_info
 
@@ -85,9 +85,9 @@ class StatsHolder:
         return self.__str__()
 
     def __add__(self, other):
-        if self.best == other.best:
+        if self.best_of == other.best:
             if self.true_opt and other.true_opt:
-                opt = self.best(self.true_opt, other.true_opt)
+                opt = self.best_of(self.true_opt, other.true_opt)
             elif self.true_opt:
                 opt = self.true_opt
             elif other.true_opt:
@@ -96,7 +96,7 @@ class StatsHolder:
                 opt = None
             new_obj = StatsHolder(self.POPULATION_METHOD, self.PARENT_METHOD, self.SURVIVOR_METHOD,
                                   self.MUTATION_METHOD, self.RECOMBINATION_METHOD, self.MANAGEMENT_METHOD,
-                                  self.RUNS, self.best, opt)
+                                  self.RUNS, self.best_of, opt)
             new_obj.RUNS = self.RUNS + other.RUNS
             new_obj.best_fitnesses = self.best_fitnesses + other.best_fitnesses
             new_obj.best_individuals = self.best_individuals + other.best_individuals
@@ -130,7 +130,7 @@ class StatsHolder:
         for x in range(len(out)):
             temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
             try:
-                out[x] = self.best(temp)
+                out[x] = self.best_of(temp)
             except ValueError:
                 out = out[0:x]
                 break

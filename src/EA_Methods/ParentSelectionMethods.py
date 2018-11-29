@@ -11,6 +11,9 @@ class ParentSelectionHelper:
                                ]
         self.PARENT_DICT = {self.PARENT_METHODS[x][0]: x for x in range(len(self.PARENT_METHODS))}
 
+    def get_func_from_index(self, i):
+        return self.PARENT_METHODS[i][1]
+
     # region Parent Selection Methods
     # Takes in a method, and then 'injects' the code to shuffle the output.
     @staticmethod

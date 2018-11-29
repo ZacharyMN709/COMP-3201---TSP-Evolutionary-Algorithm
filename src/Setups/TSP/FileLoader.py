@@ -22,17 +22,17 @@ class LoadHelper:
         self.locs = []
         self.dists = []
         self.genome_length = 0
-        self.pickled_dists = dict()
         self.load_data()
+        self.save_data()
 
     # region File Management
     def load_data(self):
         if self.load:
-            self.pickled_dists = get_pickled_memo(self.filenum)
-            if self.pickled_dists:
-                self.locs = self.pickled_dists['Locs']
+            pickled_dists = get_pickled_memo(self.filenum)
+            if pickled_dists:
+                self.locs = pickled_dists['Locs']
                 self.genome_length = len(self.locs)
-                self.dists = self.pickled_dists['Dists']
+                self.dists = pickled_dists['Dists']
             else:
                 self.read_csv()
         else:

@@ -10,6 +10,9 @@ class SurvivorSelectionHelper:
                                  ]
         self.SURVIVOR_DICT = {self.SURVIVOR_METHODS[x][0]: x for x in range(len(self.SURVIVOR_METHODS))}
 
+    def get_func_from_index(self, i):
+        return self.SURVIVOR_METHODS[i][1]
+
     # region Survivor Selection Methods
     def mu_plus_lambda(self, parents, parent_fitness, offspring, offspring_fitness):
         max_size = len(parents)

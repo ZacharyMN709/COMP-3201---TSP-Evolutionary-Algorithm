@@ -30,6 +30,9 @@ class PopulationInitializationHelper:
                                    ]
         self.POPULATION_DICT = {self.POPULATION_METHODS[x][0]: x for x in range(len(self.POPULATION_METHODS))}
 
+    def get_func_from_index(self, i):
+        return self.POPULATION_METHODS[i][1]
+
     # region Population Seeding
     def fitness_applicator(self, func):
         def generate_population(pop_size, genome_length):

@@ -11,6 +11,9 @@ class RecombinationHelper:
                                       ]
         self.RECOMBINATION_DICT = {self.RECOMBINATION_METHODS[x][0]: x for x in range(len(self.RECOMBINATION_METHODS))}
 
+    def get_func_from_index(self, i):
+        return self.RECOMBINATION_METHODS[i][1]
+
     # region Recombination Methods
 
     # Takes in a method, and automatically manages the incoming population/parents

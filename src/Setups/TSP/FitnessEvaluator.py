@@ -7,5 +7,8 @@ class FitnessHelper:
                                 ]
         self.FITNESS_DICT = {self.FITNESS_METHODS[x][0]: x for x in range(len(self.FITNESS_METHODS))}
 
+    def get_func_from_index(self, i):
+        return self.FITNESS_METHODS[i][1]
+
     def euclidean_distance(self, indiv):
         return sum([])

@@ -13,6 +13,10 @@ class PopulationManagementHelper:
                                    ]
         self.MANAGEMENT_DICT = {self.MANAGEMENT_METHODS[x][0]: x for x in range(len(self.MANAGEMENT_METHODS))}
 
+    def get_func_from_index(self, i):
+        return self.MANAGEMENT_METHODS[i][1]
+
+
     # region Population Management Methods
     @staticmethod
     def static_return(population, fitness):

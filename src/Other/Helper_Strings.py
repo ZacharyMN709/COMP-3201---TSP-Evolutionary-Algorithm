@@ -1,5 +1,5 @@
 timed_funcs = "\
-TITime = {:4.2f},  \
+PITime = {:4.2f},  \
 PSMTime = {:4.2f},  \
 RMTime = {:4.2f},  \
 MMTime = {:4.2f},  \
