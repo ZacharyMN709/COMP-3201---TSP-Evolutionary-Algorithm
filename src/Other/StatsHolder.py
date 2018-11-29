@@ -29,6 +29,14 @@ class StatsHolder:
         self.time_tuples = [None] * self.RUNS
         self.runtimes = [None] * self.RUNS
 
+    @classmethod
+    def stat_obj_from_pickle(cls, pickle_tuple):
+        from Pickle_Helper import get_pickled_stats
+
+        file_name, file_num, method_used = pickle_tuple
+        stats_dict = get_pickled_stats(file_name, file_num, method_used)
+        return stats_dict['Stats']
+
     def set_run_stats(self, i, op_fit, best_indivs, gencount, run_history, time_tuple):
         if self.RUNS < i:
             print('Index is out of bounds! Not saving data for index: {}'.format(i))
@@ -75,7 +83,7 @@ class StatsHolder:
 
     def __repr__(self):
         return self.__str__()
-    
+
     def __add__(self, other):
         if self.best == other.best:
             if self.true_opt and other.true_opt:
@@ -86,17 +94,18 @@ class StatsHolder:
                 opt = other.true_opt
             else:
                 opt = None
-            new_obj = StatsHolder(self.POPULATION_METHOD, self.PARENT_METHOD, self.SURVIVOR_METHOD, self.MUTATION_METHOD,
-                                  self.RECOMBINATION_METHOD, self.MANAGEMENT_METHOD, self.RUNS, self.best, opt)
-            new_obj.RUNS                = self.RUNS                + other.RUNS
-            new_obj.best_fitnesses      = self.best_fitnesses      + other.best_fitnesses
-            new_obj.best_individuals    = self.best_individuals    + other.best_individuals
-            new_obj.solutions_found     = self.solutions_found     + other.solutions_found
-            new_obj.generation_count    = self.generation_count    + other.generation_count
-            new_obj.run_indivs_history  = self.run_indivs_history  + other.run_indivs_history
+            new_obj = StatsHolder(self.POPULATION_METHOD, self.PARENT_METHOD, self.SURVIVOR_METHOD,
+                                  self.MUTATION_METHOD, self.RECOMBINATION_METHOD, self.MANAGEMENT_METHOD,
+                                  self.RUNS, self.best, opt)
+            new_obj.RUNS = self.RUNS + other.RUNS
+            new_obj.best_fitnesses = self.best_fitnesses + other.best_fitnesses
+            new_obj.best_individuals = self.best_individuals + other.best_individuals
+            new_obj.solutions_found = self.solutions_found + other.solutions_found
+            new_obj.generation_count = self.generation_count + other.generation_count
+            new_obj.run_indivs_history = self.run_indivs_history + other.run_indivs_history
             new_obj.run_fitness_history = self.run_fitness_history + other.run_fitness_history
-            new_obj.time_tuples         = self.time_tuples         + other.time_tuples
-            new_obj.runtimes            = self.runtimes            + other.runtimes
+            new_obj.time_tuples = self.time_tuples + other.time_tuples
+            new_obj.runtimes = self.runtimes + other.runtimes
             return new_obj
         else:
             raise MergeError
@@ -104,3 +113,32 @@ class StatsHolder:
     @staticmethod  # @staticmethod allows all StatsHolder objects to use this, irrespective of self.
     def compare(stats1, stats2):
         pass
+
+    def average_generation_fitness(self):
+        out = [0] * max(self.generation_count)
+        for x in range(len(out)):
+            temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
+            try:
+                out[x] = sum(temp) / len(temp)
+            except ZeroDivisionError:
+                out = out[0:x]
+                break
+        return out
+
+    def best_generation_fitness(self):
+        out = [0] * max(self.generation_count)
+        for x in range(len(out)):
+            temp = [self.run_fitness_history[i][x] for i in range(self.RUNS) if x < len(self.run_fitness_history[i])]
+            try:
+                out[x] = self.best(temp)
+            except ValueError:
+                out = out[0:x]
+                break
+        return out
+
+
+if __name__ == '__main__':
+    p = [('21021{} G10000.txt'.format(x), 1, 0) for x in range(5)]
+    s = StatsHolder.stat_obj_from_pickle(p[0])
+    s.average_generation_fitness()
+    pass
