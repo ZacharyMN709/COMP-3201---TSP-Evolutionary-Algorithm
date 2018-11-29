@@ -68,7 +68,8 @@ class EARunner:
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
-    def run(self, generation_limit, test_id, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
+    def run(self, generation_limit, test_id, known_optimum=None, true_opt=False,
+            print_gens=0, print_final=True, timed_exit=None):
         if not self.runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             return
@@ -99,8 +100,8 @@ class EARunner:
 
             # Generation Info
             if print_gens != 0 and generation % print_gens == 0:
-                print("Test: {}\nGeneration: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                    test_id, generation, self.op(fitness), sum(fitness) / ea_vars.population_size)
+                print("Generation: {}:  -  Test {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
+                    generation, test_id, self.op(fitness), sum(fitness) / ea_vars.population_size)
                 )
 
             start_time = time.time()
@@ -127,8 +128,14 @@ class EARunner:
             op_fit = self.op(fitness)
             optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
             best_indivs[generation-1] = (op_fit, population[optimal_solutions[0]][:])
+
             if true_opt and self.as_good_as(op_fit, known_optimum) and (len(optimal_solutions) == ea_vars.population_size):
+                best_indivs = [i for i in best_indivs if i is not None]
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
+                break
+
+            if timed_exit and timed_exit < time.time() - master_start_time:
+                best_indivs = [i for i in best_indivs if i is not None]
                 break
 
         # Final Fitness Info
@@ -143,11 +150,9 @@ class EARunner:
             print("Best solution fitness:", op_fit)
             if true_opt: print(
                 "Best solution {:4.2f}% larger than true optimum.".format(100 * ((op_fit / known_optimum) - 1)))
-            print("Number of optimal solutions: ", len(optimal_solutions), '/', ea_vars.population_size)
-            print("Best solution indexes:", optimal_solutions)
+            print("Copies of best: ", len(optimal_solutions), '/', ea_vars.population_size)
             if known_optimum and self.better_than(op_fit, known_optimum):
                 print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
-            print("Best solution path:", population[optimal_solutions[0]])
             print(timed_funcs.format(PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time))
             print("--- {} seconds ---".format(master_time))
 
@@ -179,7 +184,8 @@ class EAVars:
             if size > 0:
                 self.population_size = size
                 if self.population_size <= self.mating_pool_size:
-                    print('Population size smaller than mating pool size. Setting mating pool size to'.format(size // 2))
+                    print('Population size smaller than mating pool size.')
+                    print('Setting mating pool size to {}'.format(size // 2))
                     self.set_safe_matingpool_by_int(size // 2)
             else:
                 print('Size cannot be less than one!')

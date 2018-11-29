@@ -12,16 +12,16 @@ class GraphingHelper:
         self.short_names = ['Lat', 'Lon']
         self.cities = self.read_tsp_file(fnum)
         self.opt, _, _ = get_best_path(fnum)
-        self.colour = [1.0, 0.0, 0.0]
-        self.pallette = [CP.SPIRIT_0, CP.SPIRIT_1, CP.SPIRIT_2, CP.SPIRIT_9, CP.SPIRIT_7, CP.SPIRIT_6]
+        self.palette = [CP.SPIRIT_0, CP.SPIRIT_1, CP.SPIRIT_2, CP.SPIRIT_9, CP.SPIRIT_7, CP.SPIRIT_6]
         plt.style.use(plt.style.available[13])  ##4, 13, 21
-        self.single_plot_size = (7.5, 7.5)
-        self.double_plot_size = (8, 8)
-        self.quad_plot_size = (12, 12)
+        self.screen_width = 12
+        self.single_plot_size = (self.screen_width, 6)
+        self.double_plot_size = (self.screen_width, 8)
+        self.quad_plot_size = (self.screen_width, 12)
 
     # region Display Methods
     def start_up_display(self):
-        self.cities.plot.scatter(x=self.long_names[0], y=self.long_names[1], c=self.cities.index.get_values(), colormap='winter')
+        self.cities.plot.scatter(x=self.long_names[1], y=self.long_names[0], c=self.cities.index.get_values(), colormap='winter')
         plt.gcf().set_size_inches(self.single_plot_size)
         plt.title('City Locations (Normalized to origin of 0)')
 
@@ -36,16 +36,17 @@ class GraphingHelper:
     def generation_display(self, generation, fitness, individual, alt_tile=False):
         title = 'Path at Generation {: <5}:   {:4.2f}'
         if alt_tile: title = 'Using {} Method:   {:4.2f}'
-        x = self.cities[self.long_names[0]]
-        y = self.cities[self.long_names[1]]
-        self.cities.plot.scatter(x=self.long_names[0], y=self.long_names[1],  c=self.cities.index.get_values(), colormap='winter')
+        x = self.cities[self.long_names[1]]
+        y = self.cities[self.long_names[0]]
+        self.cities.plot.scatter(x=self.long_names[1], y=self.long_names[0],  c=self.cities.index.get_values(), colormap='winter')
 
-        for i in range(len(self.cities)):
+        tour_len = len(self.cities)
+        for i in range(tour_len):
             c1 = individual[i - 1]
             c2 = individual[i]
-            per = 2 * pi * i / len(self.cities)
-            red_mod = max(cos(per), 0) * 0.3
-            bright_mod = -min(cos(per), 0) * 0.3
+            per = 2 * pi * i / tour_len
+            red_mod = max(cos(per), 0) * 0.4
+            bright_mod = -min(cos(per), 0) * 0.4
             plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1 - red_mod, bright_mod, bright_mod])
         plt.title(title.format(generation, fitness))
         plt.gcf().set_size_inches(self.single_plot_size)
@@ -54,17 +55,15 @@ class GraphingHelper:
     def alt_generation_display(self, generation, fitness, individual, alt_tile=False):
         title = 'Path at Generation {: <5}:   {:4.2f}'
         if alt_tile: title = 'Using {} Method:   {:4.2f}'
-        x = self.cities[self.long_names[0]]
-        y = self.cities[self.long_names[1]]
-        #fig, axes = plt.subplots(figsize=(12, 12))
+        x = self.cities[self.long_names[1]]
+        y = self.cities[self.long_names[0]]
 
-        for i in range(len(self.cities)):
+        tour_len = len(self.cities)
+        for i in range(tour_len):
             c1 = individual[i - 1]
             c2 = individual[i]
-            per = pi * i / len(self.cities)
-            red_mod = max(cos(per), 0) * 0.3
-            bright_mod = -min(cos(per), 0) * 0.3
-            plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1 - red_mod, bright_mod, bright_mod], marker='o')
+            hue = (0.8 * i / tour_len) + 0.1
+            plt.plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1, hue, 0], marker='o')
         plt.title(title.format(generation, fitness))
         plt.gcf().set_size_inches(self.single_plot_size)
         plt.show()
@@ -84,10 +83,10 @@ class GraphingHelper:
             for column in columns:
                 if per:
                     per_col = (((df[column] / self.opt) - 1) * 100)
-                    per_col.plot(ax=axes[ax1, ax2], color=self.pallette[num], alpha=0.66, legend=True)
+                    per_col.plot(ax=axes[ax1, ax2], color=self.palette[num], alpha=0.66, legend=True)
                     axes[ax1, ax2].set_ylim([-0.1, per_y_lim])
                 else:
-                    df[column].plot(ax=axes[ax1, ax2], color=self.pallette[num], legend=True)
+                    df[column].plot(ax=axes[ax1, ax2], color=self.palette[num], legend=True)
                     axes[ax1, ax2].set_ylim([self.opt * 0.999, val_y_lim])
                 num += 1
             if per:
