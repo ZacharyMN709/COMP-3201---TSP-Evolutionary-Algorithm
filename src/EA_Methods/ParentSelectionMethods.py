@@ -5,6 +5,11 @@ class ParentSelectionHelper:
     def __init__(self, var_helper, method):
         self.vars = var_helper
         self.method = method
+        self.PARENT_METHODS = [('MPS', self.mps),
+                               ('Tourney', self.tournament),
+                               ('Random', self.random_uniform)
+                               ]
+        self.PARENT_DICT = {self.PARENT_METHODS[x][0]: x for x in range(len(self.PARENT_METHODS))}
 
     # region Parent Selection Methods
     # Takes in a method, and then 'injects' the code to shuffle the output.

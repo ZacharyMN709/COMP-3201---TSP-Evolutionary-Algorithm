@@ -6,6 +6,10 @@ class RecombinationHelper:
     def __init__(self, var_helper, method):
         self.vars = var_helper
         self.method = method
+        self.RECOMBINATION_METHODS = [('Order Crossover', self.order_crossover),
+                                      ('PMX Crossover', self.pmx_crossover)
+                                      ]
+        self.RECOMBINATION_DICT = {self.RECOMBINATION_METHODS[x][0]: x for x in range(len(self.RECOMBINATION_METHODS))}
 
     # region Recombination Methods
 

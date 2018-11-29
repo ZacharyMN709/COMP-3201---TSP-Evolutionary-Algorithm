@@ -16,14 +16,14 @@ def lt(x, y):
 
 
 class EAVarHelper:
-    def __init__(self, genome_length, fitness_function, maximise):
+    def __init__(self, genome_length, maximise):
         self.best_of = max if maximise else min
         self.worst_of = min if maximise else max
         self.as_good_as = gte if maximise else lte
         self.better_than = gt if maximise else lt
 
         self.genome_length = genome_length
-        self.eval_fitness = fitness_function
+        self.eval_fitness = None
         self.dist_mod = 0.1
         self.population_size = 60
         self.mating_pool_size = 0
@@ -79,3 +79,6 @@ class EAVarHelper:
             self.crossover_rate = 0.995
         else:
             self.crossover_rate = per
+
+    def set_eval_fitness(self, func):
+        self.eval_fitness = func

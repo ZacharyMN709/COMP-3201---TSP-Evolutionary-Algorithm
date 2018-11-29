@@ -5,6 +5,10 @@ class SurvivorSelectionHelper:
     def __init__(self, var_helper, method):
         self.vars = var_helper
         self.method = method
+        self.SURVIVOR_METHODS = [('Mu + Lambda', self.mu_plus_lambda),
+                                 ('Replace', self.replacement)
+                                 ]
+        self.SURVIVOR_DICT = {self.SURVIVOR_METHODS[x][0]: x for x in range(len(self.SURVIVOR_METHODS))}
 
     # region Survivor Selection Methods
     def mu_plus_lambda(self, parents, parent_fitness, offspring, offspring_fitness):

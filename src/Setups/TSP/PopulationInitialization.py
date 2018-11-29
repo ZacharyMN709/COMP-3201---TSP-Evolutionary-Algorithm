@@ -24,6 +24,11 @@ class PopulationInitializationHelper:
         self.method = method
         self.wrappers = [list_wapper, np_warpper, c_wrapper]
         self.wrapper = self.wrappers[method]
+        self.POPULATION_METHODS = [('Random', self.random_initialization),
+                                   ('Cluster', self.heuristic_cluster_initialization),
+                                   ('Euler', self.heuristic_euler_initialization)
+                                   ]
+        self.POPULATION_DICT = {self.POPULATION_METHODS[x][0]: x for x in range(len(self.POPULATION_METHODS))}
 
     # region Population Seeding
     def fitness_applicator(self, func):

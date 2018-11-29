@@ -28,6 +28,12 @@ class MutatorHelper:
     def __init__(self, var_helper, method):
         self.vars = var_helper
         self.method = method
+        self.MUTATION_METHODS = [('Swap', self.permutation_swap),
+                                 ('Insert', self.permutation_insert),
+                                 ('Inversion', self.permutation_inversion),
+                                 ('Shift', self.permutation_shift)
+                                 ]
+        self.MUTATION_DICT = {self.MUTATION_METHODS[x][0]: x for x in range(len(self.MUTATION_METHODS))}
 
     # region Mutation Methods
     # Takes in a method, and then 'injects' the random chance of running into the function

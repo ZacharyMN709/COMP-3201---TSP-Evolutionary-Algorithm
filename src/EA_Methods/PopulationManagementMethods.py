@@ -5,6 +5,13 @@ class PopulationManagementHelper:
     def __init__(self, var_helper, method):
         self.vars = var_helper
         self.method = method
+        self.MANAGEMENT_METHODS = [('None', self.static_return),
+                                   ('Annealing', self.metallurgic_annealing),
+                                   ('Entropy', self.metallurgic_annealing),
+                                   ('Oroborous', self.metallurgic_annealing),
+                                   ('Engineering', self.genetic_engineering)
+                                   ]
+        self.MANAGEMENT_DICT = {self.MANAGEMENT_METHODS[x][0]: x for x in range(len(self.MANAGEMENT_METHODS))}
 
     # region Population Management Methods
     @staticmethod

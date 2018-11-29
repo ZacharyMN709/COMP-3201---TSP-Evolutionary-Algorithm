@@ -1,5 +1,7 @@
 import time
 from src.Other.Helper_Strings import timed_funcs
+from src.Setups.TSP.PopulationInitialization import PopulationInitializationHelper
+from src.Setups.TSP.FitnessEvaluator import FitnessHelper
 from src.EA_Methods.ParentSelectionMethods import ParentSelectionHelper
 from src.EA_Methods.RecombinationMethods import RecombinationHelper
 from src.EA_Methods.MutationMethods import MutatorHelper
@@ -8,9 +10,10 @@ from src.EA_Methods.PopulationManagementMethods import PopulationManagementHelpe
 
 
 class EARunner:
-    def __init__(self, var_helper, prob_def, method):
+    def __init__(self, var_helper, method):
         self.vars = var_helper
-        self.DEF = prob_def
+        self.DEF = PopulationInitializationHelper(var_helper, method)
+        self.FIT = FitnessHelper(var_helper, method)
         self.PSM = ParentSelectionHelper(var_helper, method)
         self.RM = RecombinationHelper(var_helper, method)
         self.MM = MutatorHelper(var_helper, method)
@@ -29,7 +32,7 @@ class EARunner:
     def get_method_helpers(self):
         return self.DEF, self.PSM, self.RM, self.MM, self.SSM, self.PMM
 
-    def set_params(self, genome_len, fit_eval, pop_init, psm, rm, mm, ssm, pmm):
+    def set_params(self, fit_eval, pop_init, psm, rm, mm, ssm, pmm):
         self.eval_fitness = fit_eval
         self.initialize = pop_init
         self.parent_selection = psm
@@ -38,7 +41,7 @@ class EARunner:
         self.select_survivors = ssm
         self.manage_population = pmm
 
-        self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
+        self.runnable = fit_eval and pop_init and psm and rm and mm and ssm
 
     def run(self, generation_limit, test_id, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
         if not self.runnable:
@@ -56,7 +59,7 @@ class EARunner:
 
         # Initialize Population
         start_time = time.time()
-        population, fitness = self.initialize(ea_vars.population_size, self.genome_length)
+        population, fitness = self.initialize(ea_vars.population_size, self.vars.genome_length)
         PITime += time.time() - start_time
 
         for generation in range(1, generation_limit + 1):
