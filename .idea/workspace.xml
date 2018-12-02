@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Fixed another problem with Initalization.">
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210210 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210210 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210211 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210211 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210212 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210212 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210213 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210213 G10000.txt" />
-      <change beforePath="$PROJECT_DIR$/Results/Sahara/Lists/210214 G10000.txt" afterPath="$PROJECT_DIR$/Results/Sahara/Lists/210214 G10000.txt" />
+      <change beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/HERMES - Sahara Demo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/src/.ipynb_checkpoints/HERMES - Sahara Demo-checkpoint.ipynb" />
       <change beforePath="$PROJECT_DIR$/src/.ipynb_checkpoints/HERMES-checkpoint.ipynb" afterPath="$PROJECT_DIR$/src/.ipynb_checkpoints/HERMES-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/src/EA_Shell.py" afterPath="$PROJECT_DIR$/src/EA_Shell.py" />
+      <change beforePath="$PROJECT_DIR$/src/HERMES - Sahara Demo.ipynb" afterPath="$PROJECT_DIR$/src/HERMES - Sahara Demo.ipynb" />
       <change beforePath="$PROJECT_DIR$/src/HERMES.ipynb" afterPath="$PROJECT_DIR$/src/HERMES.ipynb" />
-      <change beforePath="$PROJECT_DIR$/src/StatsHolder.py" afterPath="$PROJECT_DIR$/src/StatsHolder.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,7 +19,7 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Pickle_Helper.coverage" NAME="Pickle_Helper Coverage Results" MODIFIED="1543278067617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$TSP_Brute_Force_Copy.coverage" NAME="TSP_Brute_Force_Copy Coverage Results" MODIFIED="1543393131082" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Setups/TSP" />
-    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$TSP_LST.coverage" NAME="TSP_LST Coverage Results" MODIFIED="1543393189299" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Setups/TSP" />
+    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$TSP_LST.coverage" NAME="TSP_LST Coverage Results" MODIFIED="1543443882831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Setups/TSP" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$COMP_3201___Assignment_3.coverage" NAME="COMP 3201 - Assignment 3 Coverage Results" MODIFIED="1540621801133" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_EA$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1540568967292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$StatsHolder.coverage" NAME="StatsHolder Coverage Results" MODIFIED="1543389068862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
@@ -38,16 +35,112 @@
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Optimums.coverage" NAME="Optimums Coverage Results" MODIFIED="1541781731611" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Setups/TSP/TSP_Inputs" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Main.coverage" NAME="Main Coverage Results" MODIFIED="1540609486080" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Testing.coverage" NAME="Testing Coverage Results" MODIFIED="1542078783514" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
-    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Test_Pilot.coverage" NAME="Test_Pilot Coverage Results" MODIFIED="1543394107076" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Test_Pilot.coverage" NAME="Test_Pilot Coverage Results" MODIFIED="1543402457734" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/COMP_3201___Response_3___Code$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1540307553443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+  </component>
+  <component name="DockManager">
+    <window id="1">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="EA_Shell.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/EA_Shell.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="1989">
+                    <caret line="133" column="40" lean-forward="false" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+    <window id="4">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="TSP_LST.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="0">
+                    <caret line="6" column="78" lean-forward="false" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
+    <window id="3">
+      <content type="file-editors">
+        <state>
+          <leaf>
+            <file leaf-file-name="MutationMethods.py" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="136">
+                    <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="65" selection-end-column="18" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="ParentSelectionMethods.py" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/ParentSelectionMethods.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="0">
+                    <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="SurvivorSelectionMethods.py" pinned="false" current-in-tab="true">
+              <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/SurvivorSelectionMethods.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="0">
+                    <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="PopulationManagementMethods.py" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="0">
+                    <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+            <file leaf-file-name="RecombinationMethods.py" pinned="false" current-in-tab="false">
+              <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py">
+                <provider selected="true" editor-type-id="text-editor">
+                  <state relative-caret-position="137">
+                    <caret line="62" column="17" lean-forward="false" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="17" />
+                    <folding />
+                  </state>
+                </provider>
+              </entry>
+            </file>
+          </leaf>
+        </state>
+      </content>
+    </window>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test_Pilot.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
+      <file leaf-file-name="Testing.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Testing.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-731">
-              <caret line="85" column="11" lean-forward="false" selection-start-line="85" selection-start-column="11" selection-end-line="85" selection-end-column="11" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -56,28 +149,31 @@
       <file leaf-file-name="StatsHolder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-50">
-              <caret line="117" column="30" lean-forward="false" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+            <state relative-caret-position="2244">
+              <caret line="132" column="29" lean-forward="false" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Colours.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Other/Colours.py">
+      <file leaf-file-name="TSP_Brute_Force_Copy.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="363" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="289">
+              <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
+              <folding>
+                <element signature="e#6430#7986#0" expanded="false" />
+                <element signature="e#8020#8209#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TSP_Display.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py">
+      <file leaf-file-name="TSP_Brute_Force.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-931">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="3281">
+              <caret line="195" column="34" lean-forward="false" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -152,30 +248,30 @@
         <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/SurvivorSelectionMethods.py" />
         <option value="$PROJECT_DIR$/Documents/Temp.txt" />
         <option value="$PROJECT_DIR$/src/EA_Stats.py" />
-        <option value="$PROJECT_DIR$/src/Other/Helper_Strings.py" />
         <option value="$PROJECT_DIR$/Documents/Test_Matrices/test.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/Array_Rep/PopulationManagementMethods.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/PopulationManagementMethods.py" />
         <option value="$PROJECT_DIR$/Documents/scratch" />
-        <option value="$PROJECT_DIR$/src/EA_Shell.py" />
         <option value="$PROJECT_DIR$/src/Testing.py" />
         <option value="$PROJECT_DIR$/Results/Canada/Arrays/blank.txt" />
         <option value="$PROJECT_DIR$/Results/Uruguay/Numpy/blank.txt" />
         <option value="$PROJECT_DIR$/Documents/Readings/deafults.txt" />
         <option value="$PROJECT_DIR$/Read_Pickles.py" />
         <option value="$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/MutationMethods.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_NPY.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" />
-        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py" />
         <option value="$PROJECT_DIR$/Pickle_Helper.py" />
-        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
         <option value="$PROJECT_DIR$/Test_Pilot.py" />
         <option value="$PROJECT_DIR$/src/StatsHolder.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_NPY.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" />
+        <option value="$PROJECT_DIR$/src/Other/Helper_Strings.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" />
+        <option value="$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/EA_Shell.py" />
       </list>
     </option>
   </component>
@@ -186,10 +282,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
-    <option name="width" value="1041" />
-    <option name="height" value="744" />
+    <option name="x" value="-7" />
+    <option name="width" value="697" />
+    <option name="height" value="735" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -207,6 +302,22 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="CS3201-TSP-Evolutionary-Algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+            </path>
+            <path>
+              <item name="CS3201-TSP-Evolutionary-Algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -217,36 +328,7 @@
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-              <item name="Canada" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-              <item name="Sahara" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="Results" type="462c0819:PsiDirectoryNode" />
-              <item name="Uruguay" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Other" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
@@ -265,22 +347,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="CS3201-TSP-Evolutionary-Algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-            </path>
-            <path>
-              <item name="CS3201-TSP-Evolutionary-Algorithm" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="" type="442cc68d:ScopeViewTreeModel$RootNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -290,6 +356,13 @@
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Documents" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\Uruguay" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\Sahara" />
+      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\TSP_Results" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Documents" />
@@ -297,138 +370,6 @@
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP\TSP_Inputs" />
       <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\Sahara" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\src\Setups\TSP" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\Uruguay" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\Sahara" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm" />
-      <recent name="C:\Users\Zachary\Documents\GitHub\COMP 3201 - TSP Evolutionary Algorithm\Results\Uruguay\Numpy" />
-    </key>
-  </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/misc.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/.idea/workspace.xml</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Test_Pilot.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210210 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210211 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210212 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210213 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Arrays/210214 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210210 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210211 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210212 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210213 G10000.txt</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/Results/Sahara/Lists/210214 G10000.txt</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -442,7 +383,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Test_Pilot">
+  <component name="RunManager" selected="Python.TSP_LST">
     <configuration name="StatsHolder" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -565,8 +506,8 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.Test_Pilot" />
-        <item index="1" class="java.lang.String" itemvalue="Python.TSP_LST" />
+        <item index="0" class="java.lang.String" itemvalue="Python.TSP_LST" />
+        <item index="1" class="java.lang.String" itemvalue="Python.Test_Pilot" />
         <item index="2" class="java.lang.String" itemvalue="Python.TSP_Brute_Force_Copy" />
         <item index="3" class="java.lang.String" itemvalue="Python.StatsHolder" />
         <item index="4" class="java.lang.String" itemvalue="Python.TSP_Brute_Force" />
@@ -586,69 +527,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
-    </task>
-    <task id="LOCAL-00027" summary="Fixed a few errors with numpy arrays not playing nice as elements in dataframes.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541525126735</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1541525126735</updated>
-    </task>
-    <task id="LOCAL-00028" summary="Made a few changes. Of note, and weirdly, the list brute force seems to run faster than the numpy one. To be investigated.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing mutation and crossover methods in list and pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541651033447</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1541651033447</updated>
-    </task>
-    <task id="LOCAL-00029" summary="Made a few changes. Of note, and weirdly, the list brute force seems to run faster than the numpy one. To be investigated.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541690830171</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1541690830171</updated>
-    </task>
-    <task id="LOCAL-00030" summary="Made a few changes. Of note, and weirdly, the list brute force seems to run faster than the numpy one. To be investigated.&#10;The pandas implementation framework is effectively complete, though still optimizable. Speed test comparisons are in order soon, after implementation of GA methods in the EA_Methods folder.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541692357723</created>
-      <option name="number" value="00030" />
-      <option name="presentableId" value="LOCAL-00030" />
-      <option name="project" value="LOCAL" />
-      <updated>1541692357723</updated>
-    </task>
-    <task id="LOCAL-00031" summary="Added optimum costs, and optimum path for Canada. Also, added the new mutation functions to the Testing.py module.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541782758185</created>
-      <option name="number" value="00031" />
-      <option name="presentableId" value="LOCAL-00031" />
-      <option name="project" value="LOCAL" />
-      <updated>1541782758185</updated>
-    </task>
-    <task id="LOCAL-00032" summary="Added some extra comments to modules.&#10;TODO: Modify code for finding files, so that it is system independent.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541785129783</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1541785129783</updated>
-    </task>
-    <task id="LOCAL-00033" summary="Made the file paths work system independently, and fixed their root to the main project folder.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas methods.&#10;TODO: Further improve testbed output, for algorithm comparisons.">
-      <created>1541787424297</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1541787424297</updated>
-    </task>
-    <task id="LOCAL-00034" summary="Added Partially Mapped Crossover in the list implementation, and started on the Edge List function.&#10;TODO: Finish implementing crossover methods in list and pandas and mutation methods in pandas.">
-      <created>1541819292536</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1541819292537</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Finished the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
-      <created>1541822963573</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1541822963573</updated>
     </task>
     <task id="LOCAL-00036" summary="Finished the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
       <created>1541871201223</created>
@@ -930,7 +808,70 @@
       <option name="project" value="LOCAL" />
       <updated>1543393967529</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="Adding data.">
+      <created>1543398038858</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1543398038858</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Updated HERMES.">
+      <created>1543402339390</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1543402339390</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Adding more data Files">
+      <created>1543418968597</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1543418968597</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Added more robust plotting">
+      <created>1543438443231</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1543438443231</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Fixed an issue with populations being smaller than mating pools.">
+      <created>1543442217247</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1543442217247</updated>
+    </task>
+    <task id="LOCAL-00081" summary="Finished up the notebook for presentations">
+      <created>1543456380823</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1543456380823</updated>
+    </task>
+    <task id="LOCAL-00082" summary="Finished up the notebook for presentations.">
+      <created>1543461867324</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1543461867324</updated>
+    </task>
+    <task id="LOCAL-00083" summary="Finished up the notebook for presentations.">
+      <created>1543468246715</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1543468246715</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Finished up the notebook for presentations.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <created>1543468270617</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1543468270617</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="TodoView">
@@ -947,12 +888,13 @@
     <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3283582" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36019737" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27760968" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25340393" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -969,30 +911,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3618421" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25718608" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="SciView" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39967105" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1002,14 +920,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Made some significant changes to the EA algorithm structure.&#10;The test suite parts are now split from the main EARunner, and access it by extending the ERRunner class and pilot module.&#10;Also cleaned up strings for ease of reading, and added tallies of individual function run-times.&#10;&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas." />
-    <MESSAGE value="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/EA_Shell.py&#10;#&#9;src/Testing.py" />
-    <MESSAGE value="Made some small modifications to the code." />
-    <MESSAGE value="Added the cluster-based population initialization." />
-    <MESSAGE value="Added an object which tracks stats of runs.&#10;Made to be compatible with multi-threading and expandable for further statistical analysis." />
-    <MESSAGE value="Added very temporary way of storing run results using pickle." />
-    <MESSAGE value="Moved Pandas dependencies into a separate presentation module." />
-    <MESSAGE value="Added a helper class to the EARunner to store variables, and easily manage defaults.&#10;&#10;Also deleted many old notebooks that were obsolete due to code updates. Starting on the final presentation now." />
     <MESSAGE value="Saving work on the final presentation." />
     <MESSAGE value="Fixed the heuristic initialisation." />
     <MESSAGE value="Added a new, and incredibly effective population management strategy." />
@@ -1027,33 +937,35 @@
     <MESSAGE value="Fixed a problem with heuristic Initalization." />
     <MESSAGE value="Fixed another problem with heuristic Initalization." />
     <MESSAGE value="Fixed another problem with Initalization." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed another problem with Initalization." />
+    <MESSAGE value="Adding data." />
+    <MESSAGE value="Updated HERMES." />
+    <MESSAGE value="Adding more data Files" />
+    <MESSAGE value="Added more robust plotting" />
+    <MESSAGE value="Fixed an issue with populations being smaller than mating pools." />
+    <MESSAGE value="Finished up the notebook for presentations" />
+    <MESSAGE value="Finished up the notebook for presentations." />
+    <MESSAGE value="Finished up the notebook for presentations.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished up the notebook for presentations.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="12" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Pandas_Rep/PopulationManagementMethods.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/SurvivorSelectionMethods.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py" />
     <entry file="file://$PROJECT_DIR$/Documents/Temp.txt" />
     <entry file="file://$PROJECT_DIR$/Documents/Timings.txt" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/ParentSelectionMethods.py" />
     <entry file="file://$PROJECT_DIR$/Sahara_Lists R1-G20, 11-24 07" />
     <entry file="file://$PROJECT_DIR$/Documents/Test_Matrices/test.py" />
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Array_Rep/RecombinationMethods.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/Array_Rep/MutationMethods.py" />
-    <entry file="file://$PROJECT_DIR$/src/Other/Helper_Strings.py" />
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Array_Rep/PopulationManagementMethods.py" />
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Array_Rep/ParentSelectionMethods.py" />
     <entry file="file://$PROJECT_DIR$/Documents/scratch" />
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP Brute Force.py" />
     <entry file="file://$PROJECT_DIR$/../../Programs/TSP Brute Force.py" />
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/PopulationManagementMethods.py" />
-    <entry file="file://$PROJECT_DIR$/src/Testing.py" />
     <entry file="file://$PROJECT_DIR$/Results/Sahara/Lists/11-26 h21 m34/010210.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Canada/Numpy/blank.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Canada/Lists/blank.txt" />
@@ -1068,34 +980,12 @@
     <entry file="file://$PROJECT_DIR$/Results/Uruguay/Numpy/blank.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Test World/Lists/blank.txt" />
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP-Brute-Force.py" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Shell.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="54" column="32" lean-forward="true" selection-start-line="54" selection-start-column="32" selection-end-line="54" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Documents/deafults.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Canada/Arrays/sample.txt" />
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EA_Methods/Numpy_Rep/MutationMethods.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1036">
           <caret line="65" column="18" lean-forward="false" selection-start-line="65" selection-start-column="18" selection-end-line="65" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="65" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1115,34 +1005,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_NPY.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="126" column="11" lean-forward="false" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2142">
-          <caret line="126" column="11" lean-forward="false" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-            <element signature="e#4255#4278#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="11" lean-forward="true" selection-start-line="0" selection-start-column="11" selection-end-line="0" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Pickle_Helper.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1635">
@@ -1151,17 +1013,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
+    <entry file="file://$PROJECT_DIR$/src/Other/Colours.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="363" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="8" column="25" lean-forward="false" selection-start-line="8" selection-start-column="25" selection-end-line="8" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Other/Helper_Strings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="986">
+          <caret line="62" column="53" lean-forward="false" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
+          <folding>
+            <element signature="e#4255#4278#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/Array_Rep/MutationMethods.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
-          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_NPY.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="526">
+          <caret line="62" column="53" lean-forward="false" selection-start-line="62" selection-start-column="53" selection-end-line="62" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="19" lean-forward="false" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/MutationMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="56" column="0" lean-forward="false" selection-start-line="56" selection-start-column="0" selection-end-line="65" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/PopulationManagementMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/RecombinationMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="62" column="17" lean-forward="false" selection-start-line="62" selection-start-column="4" selection-end-line="62" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/ParentSelectionMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_LST.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="6" column="78" lean-forward="false" selection-start-line="6" selection-start-column="78" selection-end-line="6" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="18" column="53" lean-forward="false" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
+        <state relative-caret-position="3281">
           <caret line="195" column="34" lean-forward="false" selection-start-line="195" selection-start-column="34" selection-end-line="195" selection-end-column="34" />
           <folding />
         </state>
@@ -1169,42 +1128,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Brute_Force_Copy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="256" column="16" lean-forward="false" selection-start-line="256" selection-start-column="16" selection-end-line="256" selection-end-column="16" />
+        <state relative-caret-position="289">
+          <caret line="22" column="37" lean-forward="false" selection-start-line="22" selection-start-column="37" selection-end-line="22" selection-end-column="37" />
           <folding>
-            <element signature="e#0#11#0" expanded="false" />
+            <element signature="e#6430#7986#0" expanded="false" />
+            <element signature="e#8020#8209#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-931">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Test_Pilot.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-731">
-          <caret line="85" column="11" lean-forward="false" selection-start-line="85" selection-start-column="11" selection-end-line="85" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/StatsHolder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-50">
-          <caret line="117" column="30" lean-forward="false" selection-start-line="117" selection-start-column="30" selection-end-line="117" selection-end-column="30" />
+        <state relative-caret-position="2244">
+          <caret line="132" column="29" lean-forward="false" selection-start-line="132" selection-start-column="29" selection-end-line="132" selection-end-column="29" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Other/Colours.py">
+    <entry file="file://$PROJECT_DIR$/src/EA_Shell.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="353" column="0" lean-forward="false" selection-start-line="353" selection-start-column="0" selection-end-line="363" selection-end-column="19" />
+        <state relative-caret-position="1989">
+          <caret line="133" column="40" lean-forward="false" selection-start-line="133" selection-start-column="40" selection-end-line="133" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EA_Methods/List_Rep/SurvivorSelectionMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Testing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>

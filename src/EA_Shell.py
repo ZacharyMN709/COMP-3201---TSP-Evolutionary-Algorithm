@@ -44,7 +44,7 @@ class EARunner:
         self.apply_mutation = None
         self.select_survivors = None
         self.manage_population = None
-        self.EAVars = None
+        self.vars = None
 
     def set_params(self, genome_len, fit_eval, pop_init, psm, rm, mm, ssm, pmm):
         self.genome_length = genome_len
@@ -64,11 +64,12 @@ class EARunner:
         self.MM.set_genome_length(self.genome_length)
         self.PMM.set_genome_length(self.genome_length)
 
-        self.EAVars = EADefaultVars(genome_len)
+        self.vars = EAVars(genome_len)
 
         self.runnable = genome_len and fit_eval and pop_init and psm and rm and mm and ssm
 
-    def run(self, generation_limit, test_id, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
+    def run(self, generation_limit, test_id, known_optimum=None, true_opt=False,
+            print_gens=0, print_final=True, timed_exit=None):
         if not self.runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             return
@@ -76,7 +77,7 @@ class EARunner:
         print("Test: {}".format(test_id))
 
         master_start_time = time.time()
-        ea_vars = self.EAVars
+        ea_vars = self.vars
 
         self.PSM.set_tournament_size(ea_vars.tournament_size)
         self.RM.set_crossover_points(ea_vars.cp_1, ea_vars.cp_2, ea_vars.cp_3)
@@ -99,8 +100,8 @@ class EARunner:
 
             # Generation Info
             if print_gens != 0 and generation % print_gens == 0:
-                print("Test: {}\nGeneration: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                    test_id, generation, self.op(fitness), sum(fitness) / ea_vars.population_size)
+                print("Generation: {}:  -  Test {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
+                    generation, test_id, self.op(fitness), sum(fitness) / ea_vars.population_size)
                 )
 
             start_time = time.time()
@@ -127,8 +128,14 @@ class EARunner:
             op_fit = self.op(fitness)
             optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
             best_indivs[generation-1] = (op_fit, population[optimal_solutions[0]][:])
+
             if true_opt and self.as_good_as(op_fit, known_optimum) and (len(optimal_solutions) == ea_vars.population_size):
-                print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
+                best_indivs = [i for i in best_indivs if i is not None]
+                print("\n\nEnding early! Converged at generation: {}/{}\n\n".format(generation, generation_limit))
+                break
+
+            if timed_exit and timed_exit < time.time() - master_start_time:
+                best_indivs = [i for i in best_indivs if i is not None]
                 break
 
         # Final Fitness Info
@@ -143,24 +150,22 @@ class EARunner:
             print("Best solution fitness:", op_fit)
             if true_opt: print(
                 "Best solution {:4.2f}% larger than true optimum.".format(100 * ((op_fit / known_optimum) - 1)))
-            print("Number of optimal solutions: ", len(optimal_solutions), '/', ea_vars.population_size)
-            print("Best solution indexes:", optimal_solutions)
+            print("Copies of best: ", len(optimal_solutions), '/', ea_vars.population_size)
             if known_optimum and self.better_than(op_fit, known_optimum):
                 print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
-            print("Best solution path:", population[optimal_solutions[0]])
             print(timed_funcs.format(PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time))
             print("--- {} seconds ---".format(master_time))
 
         return op_fit, optimal_solutions, generation, best_indivs, time_tuple
 
 
-class EADefaultVars:
+class EAVars:
     def __init__(self, genome_length):
 
         self.genome_length = genome_length
         self.population_size = 60
-        self.mating_pool_size = 0
-        self.tournament_size = 0
+        self.mating_pool_size = 20
+        self.tournament_size = 6
         self.mutation_rate = 0.20
         self.crossover_rate = 0.90
         self.start_temp = 10000
@@ -170,15 +175,38 @@ class EADefaultVars:
         self.cp_2 = 2 * self.genome_length // 4
         self.cp_3 = 3 * self.genome_length // 4
 
-        self.set_safe_matingpool(self.population_size)
         self.set_tourney_size_by_percent(0.1)
         self.set_population_threshold_by_percent(0.05)
 
-    def set_safe_matingpool(self, size):
-        if (size // 2) % 2 == 0:
-            self.mating_pool_size = size // 2
-        else:
-            self.mating_pool_size = (size // 2) + 1
+    def set_population_size(self, size):
+        try:
+            size = int(size)
+            if size > 0:
+                self.population_size = size
+                if self.population_size <= self.mating_pool_size:
+                    print('Population size smaller than mating pool size.')
+                    print('Setting mating pool size to {}'.format(size // 2))
+                    self.set_safe_matingpool_by_int(size // 2)
+            else:
+                print('Size cannot be less than one!')
+        except TypeError:
+            print('Value not parsable as an integer.')
+
+    def set_safe_matingpool_by_int(self, size):
+        if size < 2 or size >= self.population_size:
+            print('Invalid size. Size must be greater than 1, and no bigger than the population.')
+            if size % 2 == 0:
+                self.mating_pool_size = size
+            else:
+                self.mating_pool_size = size + 1
+
+    def set_safe_matingpool_by_percent(self, per):
+        if per > 1 or int(self.population_size * per) < 2:
+            print('Invalid percent. Percent must be less than 1, and leave a pool of size 2 or greater.')
+            if int(self.population_size * per) % 2 == 0:
+                self.mating_pool_size = int(self.population_size * per)
+            else:
+                self.mating_pool_size = int(self.population_size * per) + 1
 
     def set_tourney_size_by_int(self, num):
         self.tournament_size = num
