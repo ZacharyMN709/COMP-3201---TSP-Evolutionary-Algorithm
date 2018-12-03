@@ -19,6 +19,7 @@ class EulerTourBuilder:
         self.built = True
 
     def make_new_circuit(self):
+        self.gen_mst_and_vertices()
         matched_mst = self.minimum_weight_matching()
         euler_tour = self.create_euler_tour(matched_mst)
         return self.remove_duplicates(euler_tour)
@@ -87,7 +88,7 @@ class EulerTourBuilder:
             edge_count[edge[1]] += 1
 
         # Return the vertexes with an odd number of edges
-        return [vertex for vertex in range(len(edge_count)) if edge_count[vertex] % 2 == 1]
+        self.odd = [vertex for vertex in range(len(edge_count)) if edge_count[vertex] % 2 == 1]
 
     # add minimum weight matching edges to MST
     # problem in this class

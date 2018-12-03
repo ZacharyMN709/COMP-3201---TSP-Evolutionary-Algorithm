@@ -52,7 +52,7 @@ class ParentSelectionHelper(BaseHelper):
         fit_indexes = [(x, fitness[x]) for x in range(len(fitness))]
 
         # Return a list of parents indices based of the winners of the tournaments.
-        return [self.vars.op(sample(fit_indexes, self.vars.tournament_size), key=lambda x: x[1])[0] for _ in
+        return [self.vars.best_of(sample(fit_indexes, self.vars.tournament_size), key=lambda x: x[1])[0] for _ in
                 range(self.vars.mating_pool_size)]
 
     def random_uniform(self, fitness):

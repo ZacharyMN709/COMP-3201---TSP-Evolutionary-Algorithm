@@ -12,7 +12,7 @@ class BaseHelper:
     def __str__(self):
         template = 'Methods available in {}:\n'
         for i in range(len(self.name_method_pairs)):
-            template += '  {}:  {}'.format(i, self.name_method_pairs[i][0])
+            template += '  {}:  {}\n'.format(i, self.name_method_pairs[i][0])
         return template
 
     def __repr__(self):

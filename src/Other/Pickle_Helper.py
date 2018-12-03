@@ -19,14 +19,16 @@ def get_timestamp():
 
 
 def go_to_project_root():
+    os.chdir(get_root_dir())
+
+
+def get_root_dir():
     script_dir = os.path.dirname(__file__)
-    os.chdir(script_dir)
-    print("Present working directory:", os.getcwd(), '\n')
+    return os.path.join(script_dir, '..', '..')
 
 
 def move_dir(abs_dir_path):
     os.chdir(abs_dir_path)
-    print("Present working directory:", os.getcwd(), '\n')
     return abs_dir_path
 
 
@@ -76,10 +78,7 @@ def pickle_stats_obj(to_save, file_num, method_used):
 
 
 def get_stats_dir(filenum, method_used):
-    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-
-    # Get the right dir based on test parameters
-    abs_dir_path = os.path.join(script_dir, 'Results', FILE_DICT.get(filenum, 4), METHOD_DICT.get(method_used, 0))
+    abs_dir_path = os.path.join(get_root_dir(), 'Results', FILE_DICT.get(filenum, 4), METHOD_DICT.get(method_used, 0))
     return abs_dir_path
 
 
@@ -93,7 +92,7 @@ def get_pickled_stats(file_name, file_num, method_used):
     abs_dir_path = get_stats_dir(file_num, method_used)
     with open(os.path.join(abs_dir_path, file_name), 'rb') as f:
         stats_dict = pickle.load(f)
-        print('Loaded: {}'.format(os.path.join(abs_dir_path, file_name)))
+        print('Loaded: {}'.format(file_name))
 
     return stats_dict
 # endregion
@@ -117,10 +116,7 @@ def pickle_euler_obj(to_save, file_num):
 
 
 def get_euler_dir(fnum):
-    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-
-    # Get the right dir based on test parameters
-    abs_dir_path = os.path.join(script_dir, 'src', 'Setups', 'TSP', 'Inputs', FILE_DICT[fnum])
+    abs_dir_path = os.path.join(get_root_dir(), 'src', 'Setups', 'TSP', 'Inputs', FILE_DICT[fnum])
     return abs_dir_path
 
 
@@ -140,14 +136,14 @@ def get_pickled_euler(file_num, fast=False):
             fname = get_euler_file(file_num) + '-Fast'
             with open(os.path.join(abs_dir_path, fname), 'rb') as f:
                 euler_dict = pickle.load(f)
-                print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
+                print('Loaded: {}'.format(fname))
             return euler_dict
         else:
             abs_dir_path = get_euler_dir(file_num)
             fname = get_euler_file(file_num)
             with open(os.path.join(abs_dir_path, fname), 'rb') as f:
                 euler_dict = pickle.load(f)
-                print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
+                print('Loaded: {}'.format(fname))
             return euler_dict
     except FileNotFoundError:
         return None
@@ -170,10 +166,7 @@ def pickle_memo_obj(to_save, file_num):
 
 
 def get_memo_dir(fnum):
-    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-
-    # Get the right dir based on test parameters
-    abs_dir_path = os.path.join(script_dir, 'src', 'Setups', 'TSP', 'Inputs', FILE_DICT[fnum])
+    abs_dir_path = os.path.join(get_root_dir(), 'src', 'Setups', 'TSP', 'Inputs', FILE_DICT[fnum])
     return abs_dir_path
 
 
@@ -189,7 +182,7 @@ def get_pickled_memo(file_num):
         fname = get_memo_file(file_num)
         with open(os.path.join(abs_dir_path, fname), 'rb') as f:
             euler_dict = pickle.load(f)
-            print('Loaded: {}'.format(os.path.join(abs_dir_path, fname)))
+            print('Loaded: {}'.format(fname))
         return euler_dict
     except FileNotFoundError:
         return None

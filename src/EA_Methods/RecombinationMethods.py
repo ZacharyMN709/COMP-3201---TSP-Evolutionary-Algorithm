@@ -37,27 +37,27 @@ class RecombinationHelper(BaseHelper):
 
     def order_crossover(self, parent1, parent2):
         # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
-        offspring1 = parent1[:self.vars.p1] + [x for x in parent2[self.vars.p1:] + parent2[:self.vars.p1] if
-                                               x not in set(parent1[:self.vars.p1])]
-        offspring2 = parent2[:self.vars.p1] + [x for x in parent1[self.vars.p1:] + parent1[:self.vars.p1] if
-                                               x not in set(parent2[:self.vars.p1])]
+        offspring1 = parent1[:self.vars.cp1] + [x for x in parent2[self.vars.cp1:] + parent2[:self.vars.cp1] if
+                                               x not in set(parent1[:self.vars.cp1])]
+        offspring2 = parent2[:self.vars.cp1] + [x for x in parent1[self.vars.cp1:] + parent1[:self.vars.cp1] if
+                                               x not in set(parent2[:self.vars.cp1])]
         return offspring1, offspring2
 
     def pmx_crossover(self, parent1, parent2):
         # Find the differing genetic material of crossover segments, to handle duplicates.
-        diffs = set(parent1[self.vars.p1:self.vars.p2]) ^ set(parent2[self.vars.p1:self.vars.p2])
+        diffs = set(parent1[self.vars.cp1:self.vars.cp2]) ^ set(parent2[self.vars.cp1:self.vars.cp2])
 
         def pmx_helper(parent, mate):
             # Generate simple offspring template, which contains some duplicates, to be modified.
-            offspring = mate[:self.vars.p1] + parent[self.vars.p1:self.vars.p2] + mate[self.vars.p2:]
+            offspring = mate[:self.vars.cp1] + parent[self.vars.cp1:self.vars.cp2] + mate[self.vars.cp2:]
             off_mod = []
-            for x in mate[self.vars.p1:self.vars.p2]:
+            for x in mate[self.vars.cp1:self.vars.cp2]:
                 if x in diffs:
                     # Find the index of the unique element in the mate's crossover segment,
                     i = mate.index(x)
                     # then in the mate, find the index of the element in the parent at the previous index,
                     # until the found index is outside the index range of the crossover points.
-                    while self.vars.p1 <= i < self.vars.p2:
+                    while self.vars.cp1 <= i < self.vars.cp2:
                         i = mate.index(parent[i])
                     # Save the index of the duplicate to overwrite, and the element that replaces it.
                     off_mod.append((x, i))

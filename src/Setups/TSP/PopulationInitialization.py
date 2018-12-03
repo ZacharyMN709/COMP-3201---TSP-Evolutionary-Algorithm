@@ -136,7 +136,7 @@ class PopulationInitializationHelper(BaseHelper):
     # region Population Seeding
     def generate_population_using(self, func):
         def fitness_applicator():
-            population = [self.wrapper(func()) for _ in range(self.vars.pop_size)]
+            population = [self.wrapper(func()) for _ in range(self.vars.population_size)]
             return population, [self.vars.eval_fitness(i) for i in population]
 
         fitness_applicator.__name__ = func.__name__

@@ -19,7 +19,6 @@ class EARunner:
         self.MM = MutatorHelper(var_helper, data_type)
         self.SSM = SurvivorSelectionHelper(var_helper, data_type)
         self.PMM = PopulationManagementHelper(var_helper, data_type)
-        self.runnable = False
 
         self.initialize = None
         self.eval_fitness = None
@@ -52,8 +51,16 @@ class EARunner:
             self.manage_population is not None
 
     def run(self, generation_limit, test_id, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
-        if not self.runnable:
+        if not self.is_runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
+            print('self.eval_fitness is not None: {}'.format(self.eval_fitness is not None))
+            print('self.initialize is not None: {}'.format(self.initialize is not None))
+            print('self.parent_selection is not None: {}'.format(self.parent_selection is not None))
+            print('self.generate_offspring is not None: {}'.format(self.generate_offspring is not None))
+            print('self.apply_mutation is not None: {}'.format(self.apply_mutation is not None))
+            print('self.select_survivors is not None: {}'.format(self.select_survivors is not None))
+            print('self.manage_population is not None: {}'.format(self.manage_population is not None))
+
             return
 
         print("Test: {}".format(test_id))
@@ -68,7 +75,7 @@ class EARunner:
 
         # Initialize Population
         start_time = time.time()
-        population, fitness = self.initialize(ea_vars.population_size, self.vars.genome_length)
+        population, fitness = self.initialize()
         PITime += time.time() - start_time
 
         for generation in range(1, generation_limit + 1):
@@ -80,7 +87,7 @@ class EARunner:
                 )
 
             start_time = time.time()
-            parents_index = self.parent_selection(fitness, ea_vars.mating_pool_size)
+            parents_index = self.parent_selection(fitness)
             PSMTime += time.time() - start_time
 
             start_time = time.time()

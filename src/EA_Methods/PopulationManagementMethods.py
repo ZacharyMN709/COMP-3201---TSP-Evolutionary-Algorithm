@@ -50,7 +50,7 @@ class PopulationManagementHelper(BaseHelper):
         replaced with new individuals,
         """
 
-        best_fit = self.vars.best(fitness)
+        best_fit = self.vars.best_of(fitness)
         num_best = fitness.count(best_fit)
 
         if num_best > self.vars.population_threshold:
@@ -70,7 +70,7 @@ class PopulationManagementHelper(BaseHelper):
         of individuals which can share the maximum fitness.
         """
 
-        best_fit = self.vars.best(fitness)
+        best_fit = self.vars.best_of(fitness)
         num_best = fitness.count(best_fit)
         if num_best > self.vars.population_threshold:
             num_to_remove = num_best - self.vars.population_threshold
@@ -90,7 +90,7 @@ class PopulationManagementHelper(BaseHelper):
         If not, revert that change. Super charges a single fittest individual.
         """
 
-        best_fit = self.vars.best(fitness)
+        best_fit = self.vars.best_of(fitness)
         num_best = fitness.count(best_fit)
 
         if num_best > self.vars.population_threshold:
@@ -100,7 +100,7 @@ class PopulationManagementHelper(BaseHelper):
             for i in range(len(indiv)):
                 indiv[i - x], indiv[i] = indiv[i], indiv[i - x]
                 new_fit = self.vars.eval_fitness(indiv)
-                if new_fit == self.vars.best(new_fit, best_fit):
+                if new_fit == self.vars.best_of(new_fit, best_fit):
                     best_fit = new_fit
                 else:
                     indiv[i - x], indiv[i] = indiv[i], indiv[i - x]

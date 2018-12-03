@@ -32,9 +32,9 @@ class EAVarHelper:
         self.start_temp = 10000
         self.cooling_rate = 0.995
         self.population_threshold = 0
-        self.cp_1 = 1 * self.genome_length // 4
-        self.cp_2 = 2 * self.genome_length // 4
-        self.cp_3 = 3 * self.genome_length // 4
+        self.cp1 = 1 * self.genome_length // 4
+        self.cp2 = 2 * self.genome_length // 4
+        self.cp3 = 3 * self.genome_length // 4
         self.eng_swap_dist = max(10, genome_length // 25)
 
         self.set_safe_matingpool(self.population_size)

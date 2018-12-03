@@ -32,7 +32,7 @@ class LoadHelper:
         self.data = None
         self.genome_length = 0
         self.load_data()
-        self.save_data()
+        if overwrite: self.save_data()
 
     # region File Management
     def load_data(self):
@@ -65,7 +65,7 @@ class LoadHelper:
             self.genome_length = len(locs)
             dists = \
                 [[((locs[L1][0] - locs[L2][0]) ** 2 + (locs[L1][1] - locs[L2][1]) ** 2) ** 0.5
-                  for L2 in range(L1 + 1, len(locs))] for L1 in range(len(locs))]
+                  for L2 in range(len(locs))] for L1 in range(len(locs))]
             self.data = ProblemData(locs, dists)
 
     def save_data(self):
