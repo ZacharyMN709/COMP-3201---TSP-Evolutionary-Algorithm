@@ -1,6 +1,14 @@
 from src.EA_Methods.HelperTemplate import BaseHelper
 
 
+class FitnessHelperGenerator:
+    def __init__(self, data):
+        self.dists = data.dists
+
+    def make_fit_helper(self, var_helper, data_type):
+        return FitnessHelper(var_helper, data_type, self.dists)
+
+
 class FitnessHelper(BaseHelper):
     def __init__(self, var_helper, data_type, dists):
         name_method_pairs = [('Euclidean', self.euclidean_distance)

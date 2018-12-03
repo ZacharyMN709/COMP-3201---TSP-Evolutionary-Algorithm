@@ -3,7 +3,7 @@ from src.EA_Methods.EAVarHelper import EAVarHelper
 from src.EA_Methods.EA_Shell import EARunner
 from src.Pilot import go_to_project_root, current_dir
 from src.Setups.TSP.PopulationInitialization import PopulationInitializationGenerator
-from src.Setups.TSP.FitnessEvaluator import FitnessHelper
+from src.Setups.TSP.FitnessEvaluator import FitnessHelperGenerator
 from src.Setups.TSP.Inputs.Optimums import get_best_path
 
 go_to_project_root()
@@ -28,7 +28,7 @@ def single_run_setup():
     PRINT_GENS = 1
     SAVE = True
     BEST_PATH, _, TRUE_OPT = get_best_path(FILENUM)
-
+    METHODS_TO_USE = (0, 2, 1, 1, 2, 0, 4)
     '''
     Methods available in FitnessHelper:
       0:  Euclidean
@@ -45,12 +45,12 @@ def single_run_setup():
     Methods available in PopulationManagementHelper:
       0:  None  1:  Annealing  2:  Entropy  3:  Oroborous  4:  Engineering
     '''
-    METHODS_TO_USE = (0, 2, 1, 1, 2, 0, 4)
 
     file_data = LoadHelper(FILENUM)
     var_helper = EAVarHelper(file_data.genome_length, False)
     pop_init_generator = PopulationInitializationGenerator(file_data.data, FILENUM)
-    fitness_helper = FitnessHelper(var_helper, DATA_TYPE, file_data.data.dists)
+    fitness_helper_generator = FitnessHelperGenerator(file_data.data.dists)
+    fitness_helper = fitness_helper_generator.make_fit_helper(var_helper, DATA_TYPE)
     pop_init_helper = pop_init_generator.make_pop_helper(var_helper, DATA_TYPE)
 
     ea = EARunner(var_helper, DATA_TYPE, fitness_helper, pop_init_helper)
