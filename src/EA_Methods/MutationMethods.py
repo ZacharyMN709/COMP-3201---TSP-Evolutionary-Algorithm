@@ -1,43 +1,18 @@
 from src.EA_Methods.HelperTemplate import BaseHelper
 from random import randint, random, shuffle
-'''
-# region Globals and Setters
-genome_length = 0
-mutation_rate = 0.2
-eval_fitness = None
-
-
-def set_genome_length(i):
-    global genome_length
-    genome_length = i
-
-
-def set_mutation_rate(i):
-    global mutation_rate
-    mutation_rate = i
-
-
-def set_fitness_function(i):
-    global eval_fitness
-    eval_fitness = i
-# endregion
-'''
 
 
 class MutatorHelper(BaseHelper):
-    def __init__(self, var_helper, method):
+    def __init__(self, var_helper, data_type):
         name_method_pairs = [('Swap', self.permutation_swap),
                              ('Insert', self.permutation_insert),
                              ('Inversion', self.permutation_inversion),
                              ('Shift', self.permutation_shift)
                              ]
-        super().__init__(var_helper, method, name_method_pairs)
+        super().__init__(var_helper, data_type, name_method_pairs)
 
     def __str__(self):
         return super().__str__().format('MutatorHelper')
-
-    def get_func_from_index(self, i):
-        return self.name_method_pairs[i][1]
 
     # region Mutation Methods
     # Takes in a method, and then 'injects' the random chance of running into the function

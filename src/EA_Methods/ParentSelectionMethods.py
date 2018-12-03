@@ -3,18 +3,15 @@ from random import sample, random, shuffle
 
 
 class ParentSelectionHelper(BaseHelper):
-    def __init__(self, var_helper, method):
+    def __init__(self, var_helper, data_type):
         name_method_pairs = [('MPS', self.mps),
                              ('Tourney', self.tournament),
                              ('Random', self.random_uniform)
                              ]
-        super().__init__(var_helper, method, name_method_pairs)
+        super().__init__(var_helper, data_type, name_method_pairs)
 
     def __str__(self):
         return super().__str__().format('ParentSelectionHelper')
-
-    def get_func_from_index(self, i):
-        return self.name_method_pairs[i][1]
 
     # region Parent Selection Methods
     # Takes in a method, and then 'injects' the code to shuffle the output.

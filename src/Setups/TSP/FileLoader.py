@@ -12,6 +12,16 @@ FILE_DICT = {0: '8-Queens',
              4: 'TestWorld'}
 
 
+class ProblemData:
+    def __init__(self, locs=list(), dists=list()):
+        self.locs = locs
+        self.dists = dists
+
+    def set_data(self, locs, dists):
+        self.locs = locs
+        self.dists = dists
+
+
 class LoadHelper:
     def __init__(self, filenum, load_from_disk=True, overwrite=False):
         self.filenum = filenum
@@ -19,8 +29,7 @@ class LoadHelper:
         self.write = overwrite
         self.abs_dir_path = os.path.join(os.path.dirname(__file__), 'Inputs', FILE_DICT[filenum])
         self.abs_file_path = os.path.join(self.abs_dir_path, self.get_filename(filenum))
-        self.locs = []
-        self.dists = []
+        self.data = None
         self.genome_length = 0
         self.load_data()
         self.save_data()
@@ -30,9 +39,10 @@ class LoadHelper:
         if self.load:
             pickled_dists = get_pickled_memo(self.filenum)
             if pickled_dists:
-                self.locs = pickled_dists['Locs']
-                self.genome_length = len(self.locs)
-                self.dists = pickled_dists['Dists']
+                locs = pickled_dists['Locs']
+                self.genome_length = len(locs)
+                dists = pickled_dists['Dists']
+                self.data = ProblemData(locs, dists)
             else:
                 self.read_csv()
         else:
@@ -51,14 +61,15 @@ class LoadHelper:
 
             # NOTE: Locations are slightly odd. Original (x, y) mapped to normalized (-y, x) to produce
             # identifiable map of Canada.
-            self.locs = [(shift_y - i[1], i[0] - shift_x) for i in locations]
-            self.genome_length = len(self.locs)
-            self.dists = \
-                array('f', [[((self.locs[L1][0] - self.locs[L2][0])**2 + (self.locs[L1][1] - self.locs[L2][1])**2)**0.5
-                             for L2 in range(L1 + 1, len(self.locs))] for L1 in range(len(self.locs))])
+            locs = [(shift_y - i[1], i[0] - shift_x) for i in locations]
+            self.genome_length = len(locs)
+            dists = \
+                [[((locs[L1][0] - locs[L2][0])**2 + (locs[L1][1] - locs[L2][1])**2)**0.5
+                    for L2 in range(L1 + 1, len(locs))] for L1 in range(len(locs))]
+            self.data = ProblemData(locs, dists)
 
     def save_data(self):
-        to_save = {'Locs': self.locs, 'Dists': self.dists}
+        to_save = {'Locs': self.data.locs, 'Dists': self.data.dists}
         pickle_memo_obj(to_save, self.filenum)
 
     @staticmethod
@@ -73,12 +84,3 @@ class LoadHelper:
             print('Warning! Invalid selection. Defaulting to test')
             return "TSP_Testbed_10.txt"
     # endregion
-
-    def get_simple_dist(self, i1, i2):
-        return self.dists[i1][i2]
-
-    def get_complex_dist(self, i1, i2):
-        if i2 > i1: i1, i2 = i2, i1
-        x_1 = (((self.genome_length-i1+1) * self.genome_length)/2) - (((self.genome_length+1) * self.genome_length)/2)
-        x_0 = (self.genome_length - i2)
-        return self.dists[x_1 + x_0]

@@ -30,7 +30,7 @@ class EARunner:
         self.manage_population = None
 
     def get_method_helpers(self):
-        return self. FEM, self.PIM, self.PSM, self.RM, self.MM, self.SSM, self.PMM
+        return self.FEM, self.PIM, self.PSM, self.RM, self.MM, self.SSM, self.PMM
 
     def set_params(self, fit, pop, psm, rm, mm, ssm, pmm):
         self.eval_fitness = self.FEM.get_func_from_index(fit)
@@ -57,6 +57,7 @@ class EARunner:
             return
 
         print("Test: {}".format(test_id))
+        self.vars.set_eval_fitness(self.eval_fitness)
 
         master_start_time = time.time()
         ea_vars = self.vars

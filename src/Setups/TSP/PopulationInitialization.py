@@ -1,10 +1,9 @@
 from src.EA_Methods.HelperTemplate import BaseHelper
 from numpy import array as np_array
 from array import array as c_array
-from random import sample
-from src.Setups.TSP.FileLoader import LoadHelper
-from src.Setups.TSP.Cluster_Heuristics import create_clusters, generate_nested_clusters, parse_cluster
-from src.Setups.TSP.Christofide_Heuristic import generate_euler_tour, rand_dupe_removal
+from random import sample, shuffle
+from src.Setups.TSP.Cluster_Heuristics import ClusterBuilder
+from src.Setups.TSP.Christofide_Heuristic import EulerTourBuilder
 
 
 def list_wapper(indiv):
@@ -19,21 +18,32 @@ def c_wrapper(indiv):
     return c_array('i', indiv)
 
 
+class PopulationInitializationGenerator:
+    def __init__(self, data, filenum):
+        self.locs = data.locs
+        self.dists = data.dists
+        self.cluster_builder = ClusterBuilder(self.locs, self.dists)
+        self.euler_builder = EulerTourBuilder(self.dists, filenum)
+
+    def make_pop_helper(self, var_helper, data_type):
+        return PopulationInitializationHelper(var_helper, data_type, self.cluster_builder, self.euler_builder)
+
+
 class PopulationInitializationHelper(BaseHelper):
-    def __init__(self, var_helper, method):
+    def __init__(self, var_helper, data_type, cluster_builder, euler_builder):
         name_method_pairs = [('Random', self.random_initialization),
                              ('Cluster', self.heuristic_cluster_initialization),
                              ('Euler', self.heuristic_euler_initialization)
                              ]
-        super().__init__(var_helper, method, name_method_pairs)
+        super().__init__(var_helper, data_type, name_method_pairs)
         self.wrappers = [list_wapper, np_warpper, c_wrapper]
-        self.wrapper = self.wrappers[method]
+        self.wrapper = self.wrappers[data_type]
+        self.cluster_builder = cluster_builder
+        self.euler_builder = euler_builder
+        self.cluster = self.cluster_builder.generate_nested_clusters(var_helper.dist_mod)
 
     def __str__(self):
         return super().__str__().format('PopulationInitializationHelper')
-
-    def get_func_from_index(self, i):
-        return self.name_method_pairs[i][1]
 
     # region Population Seeding
     def fitness_applicator(self, func):
@@ -49,6 +59,9 @@ class PopulationInitializationHelper(BaseHelper):
 
         return wrap_output
 
+    def refresh_clusters(self):
+        self.cluster = self.cluster_builder.generate_nested_clusters(self.vars.dist_mod)
+
     @representation_wrapper
     def single_random_individual(self, genome_length):
         return sample([c for c in range(genome_length)], genome_length)
@@ -59,11 +72,17 @@ class PopulationInitializationHelper(BaseHelper):
 
     @representation_wrapper
     def single_cluster_individual(self, genome_length):
-        return parse_cluster(genome_length)
+        shuffle(self.cluster)
+        indiv = []
+        for x in self.cluster:
+            shuffle(x)
+            for y in x:
+                shuffle(y)
+                indiv += y
+        return indiv
 
     @fitness_applicator
     def heuristic_cluster_initialization(self, pop_size, genome_length):
-        generate_nested_clusters(FILEDATA.locs, self.vars.dist_mod)
         return [self.single_cluster_individual(genome_length) for _ in range(pop_size)]
 
     @fitness_applicator
@@ -72,9 +91,9 @@ class PopulationInitializationHelper(BaseHelper):
 
     @representation_wrapper
     def single_euler_individual(self, genome_length):
-        return rand_dupe_removal(EULERTOUR)
+        return self.euler_builder.make_new_circuit()
 
     @fitness_applicator
     def heuristic_euler_initialization(self, pop_size, genome_length):
-        EULERTOUR = generate_euler_tour(FILEDATA.locs, FILENUM, True)
+        self.euler_builder.gen_tree_and_tour()
         return [self.single_euler_individual(genome_length) for _ in range(pop_size)]

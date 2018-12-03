@@ -3,21 +3,17 @@ from random import random, sample, shuffle, randint
 
 
 class PopulationManagementHelper(BaseHelper):
-    def __init__(self, var_helper, method):
+    def __init__(self, var_helper, data_type):
         name_method_pairs = [('None', self.static_return),
-                                  ('Annealing', self.metallurgic_annealing),
-                                  ('Entropy', self.metallurgic_annealing),
-                                  ('Oroborous', self.metallurgic_annealing),
-                                  ('Engineering', self.genetic_engineering)
-                                  ]
-        super().__init__(var_helper, method, name_method_pairs)
+                             ('Annealing', self.metallurgic_annealing),
+                             ('Entropy', self.metallurgic_annealing),
+                             ('Oroborous', self.metallurgic_annealing),
+                             ('Engineering', self.genetic_engineering)
+                             ]
+        super().__init__(var_helper, data_type, name_method_pairs)
 
     def __str__(self):
         return super().__str__().format('PopulationManagementHelper')
-
-    def get_func_from_index(self, i):
-        return self.name_method_pairs[i][1]
-
 
     # region Population Management Methods
     @staticmethod
@@ -36,11 +32,13 @@ class PopulationManagementHelper(BaseHelper):
 
         self.vars.start_temp *= self.vars.cooling_rate
 
-        new_pop = [sample([c for c in range(self.vars.genome_length)], self.vars.genome_length) for _ in range(len(population))]
+        new_pop = [sample([c for c in range(self.vars.genome_length)], self.vars.genome_length) for _ in
+                   range(len(population))]
         new_fit = [self.vars.eval_fitness(x) for x in new_pop]
 
         for x in range(len(population)):
-            if self.vars.better_than(new_fit[x], fitness[x]) or random() < 2.7182818**((fitness[x] - new_fit[x]) / self.vars.start_temp):
+            if self.vars.better_than(new_fit[x], fitness[x]) or random() < 2.7182818 ** (
+                    (fitness[x] - new_fit[x]) / self.vars.start_temp):
                 population[x] = new_pop[x]
 
         return population, fitness
@@ -56,7 +54,8 @@ class PopulationManagementHelper(BaseHelper):
         num_best = fitness.count(best_fit)
 
         if num_best > self.vars.population_threshold:
-            threshold = 0.8*((num_best - self.vars.population_threshold) / (len(population) - self.vars.population_threshold))
+            threshold = 0.8 * ((num_best - self.vars.population_threshold) / (
+                        len(population) - self.vars.population_threshold))
             for x in range(self.vars.genome_length):
                 if fitness[x] == best_fit and random() < threshold:
                     shuffle(population[x])
