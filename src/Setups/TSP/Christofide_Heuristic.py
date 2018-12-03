@@ -11,7 +11,7 @@ class EulerTourBuilder:
         self.mst = None
         self.odd = None
 
-    def gen_tree_and_tour(self):
+    def gen_mst_and_vertices(self):
         if self.built: return
         if not self.load_from_file():
             self.new_minimum_spanning_tree()
@@ -172,18 +172,13 @@ class EulerTourBuilder:
                 del tour[x]
         return tour
 
-
-if __name__ == '__main__':
-    from src.Other.Pickle_Helper import pickle_euler_obj
-    from src.Setups.TSP.FileLoader import LoadHelper
-
-    def generate_pickle_object(file_num):
-        data = LoadHelper(file_num)
-        ch = EulerTourBuilder(data.data.dists, file_num)
-        to_save = {'MST': ch.mst,
-                   'Odd': ch.odd}
-        pickle_euler_obj(to_save, file_num)
-
-
-    file_num = 3
-    generate_pickle_object(file_num)
+    def generate_pickle_object(self, unloaded=False):
+        from src.Other.Pickle_Helper import pickle_euler_obj
+        if unloaded:
+            from src.Setups.TSP.FileLoader import LoadHelper
+            data = LoadHelper(self.filenum)
+            self.dists = data.data.dists
+        self.gen_mst_and_vertices()
+        to_save = {'MST': self.mst,
+                   'Odd': self.odd}
+        pickle_euler_obj(to_save, self.filenum)

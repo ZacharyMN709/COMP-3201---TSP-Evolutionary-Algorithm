@@ -10,15 +10,15 @@ from src.EA_Methods.PopulationManagementMethods import PopulationManagementHelpe
 
 
 class EARunner:
-    def __init__(self, var_helper, method, fitness_helper):
+    def __init__(self, var_helper, data_type, fitness_helper, population_initializer):
         self.vars = var_helper
         self.FEM = fitness_helper
-        self.PIM = PopulationInitializationHelper(var_helper, method)
-        self.PSM = ParentSelectionHelper(var_helper, method)
-        self.RM = RecombinationHelper(var_helper, method)
-        self.MM = MutatorHelper(var_helper, method)
-        self.SSM = SurvivorSelectionHelper(var_helper, method)
-        self.PMM = PopulationManagementHelper(var_helper, method)
+        self.PIM = population_initializer
+        self.PSM = ParentSelectionHelper(var_helper, data_type)
+        self.RM = RecombinationHelper(var_helper, data_type)
+        self.MM = MutatorHelper(var_helper, data_type)
+        self.SSM = SurvivorSelectionHelper(var_helper, data_type)
+        self.PMM = PopulationManagementHelper(var_helper, data_type)
         self.runnable = False
 
         self.initialize = None

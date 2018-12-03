@@ -7,10 +7,10 @@ from src.Setups.TSP.Inputs.Optimums import get_best_path
 
 
 class GraphingHelper:
-    def __init__(self, fnum):
+    def __init__(self, fnum, locs=None):
         self.long_names = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
         self.short_names = ['Lat', 'Lon']
-        self.cities = self.read_tsp_file(fnum)
+        self.cities = self.read_tsp_file(fnum) if not locs else locs
         self.opt, _, _ = get_best_path(fnum)
         self.palette = [CP.SPIRIT_0, CP.SPIRIT_1, CP.SPIRIT_2, CP.SPIRIT_9, CP.SPIRIT_7, CP.SPIRIT_6]
         plt.style.use(plt.style.available[13])  ##4, 13, 21
@@ -21,7 +21,8 @@ class GraphingHelper:
 
     # region Display Methods
     def start_up_display(self):
-        self.cities.plot.scatter(x=self.long_names[1], y=self.long_names[0], c=self.cities.index.get_values(), colormap='winter')
+        self.cities.plot.scatter(x=self.long_names[1], y=self.long_names[0], c=self.cities.index.get_values(),
+                                 colormap='winter')
         plt.gcf().set_size_inches(self.single_plot_size)
         plt.title('City Locations (Normalized to origin of 0)')
 
@@ -38,7 +39,8 @@ class GraphingHelper:
         if alt_tile: title = 'Using {} Method:   {:4.2f}'
         x = self.cities[self.long_names[1]]
         y = self.cities[self.long_names[0]]
-        self.cities.plot.scatter(x=self.long_names[1], y=self.long_names[0],  c=self.cities.index.get_values(), colormap='winter')
+        self.cities.plot.scatter(x=self.long_names[1], y=self.long_names[0], c=self.cities.index.get_values(),
+                                 colormap='winter')
 
         tour_len = len(self.cities)
         for i in range(tour_len):
@@ -104,8 +106,8 @@ class GraphingHelper:
             plot_df(avgs, 1, 0, True)
         with pd.plotting.plot_params.use('x_compat', True):
             plot_df(opts, 1, 1, True)
-    # endregion
 
+    # endregion
 
     '''
     def long_plot(avgs, opts):

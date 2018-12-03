@@ -4,10 +4,10 @@ from random import randint, random, shuffle
 
 class MutatorHelper(BaseHelper):
     def __init__(self, var_helper, data_type):
-        name_method_pairs = [('Swap', self.permutation_swap),
-                             ('Insert', self.permutation_insert),
-                             ('Inversion', self.permutation_inversion),
-                             ('Shift', self.permutation_shift)
+        name_method_pairs = [('Swap', self.apply_mutation_using(self.permutation_swap)),
+                             ('Insert', self.apply_mutation_using(self.permutation_insert)),
+                             ('Inversion', self.apply_mutation_using(self.permutation_inversion)),
+                             ('Shift', self.apply_mutation_using(self.permutation_shift))
                              ]
         super().__init__(var_helper, data_type, name_method_pairs)
 
@@ -16,9 +16,9 @@ class MutatorHelper(BaseHelper):
 
     # region Mutation Methods
     # Takes in a method, and then 'injects' the random chance of running into the function
-    def method_mapper(self, func):
-        def mutator(offspring):
-            def method_randomizer(individual):
+    def apply_mutation_using(self, func):
+        def fitness_applicator(offspring):
+            def randomize_method(individual):
                 # If apply the mutation X% of the time,
                 if random() < self.vars.mutation_rate:
                     return func(individual)
@@ -26,9 +26,11 @@ class MutatorHelper(BaseHelper):
                 else:
                     return individual
 
-            offspring = list(map(method_randomizer, offspring))
+            offspring = list(map(randomize_method, offspring))
             return offspring, list(map(self.vars.eval_fitness, offspring))
-        return mutator
+
+        fitness_applicator.__name__ = func.__name__
+        return fitness_applicator
 
     def gen_two_nums(self):
         x = randint(0, self.vars.genome_length - 1)
@@ -44,15 +46,14 @@ class MutatorHelper(BaseHelper):
     def gen_two_ranges(self):
         # Generate two integers such that x > y
         x = randint(0, self.vars.genome_length - 2)
-        y = randint(x+1, self.vars.genome_length - 1)
+        y = randint(x + 1, self.vars.genome_length - 1)
 
         # Generate a third integer such that a slice starting at that location with
         # size (y-x) would fit in genome_length
-        w = randint(0, self.vars.genome_length - (y-x)-1)
+        w = randint(0, self.vars.genome_length - (y - x) - 1)
 
         return x, y, w
 
-    @method_mapper
     def permutation_swap(self, individual):
         # DONE
         # Generate two random indices
@@ -63,7 +64,6 @@ class MutatorHelper(BaseHelper):
 
         return individual
 
-    @method_mapper
     def permutation_insert(self, individual):
         # TODO - Implement based on representation
         # Generate two random indices
@@ -71,11 +71,10 @@ class MutatorHelper(BaseHelper):
 
         # Insert the value at y in the position after x
         value = individual.pop(y)
-        individual.insert(x+1, value)
+        individual.insert(x + 1, value)
 
         return individual
 
-    @method_mapper
     def permutation_inversion(self, individual):
         # DONE
         # Generate two random indices in ascending order
@@ -91,7 +90,6 @@ class MutatorHelper(BaseHelper):
         '''
         return individual
 
-    @method_mapper
     def permutation_scramble(self, individual):
         # TODO - Implement based on representation
         # Generate two random indices in ascending order
@@ -104,17 +102,17 @@ class MutatorHelper(BaseHelper):
 
         return individual
 
-    @method_mapper
     def permutation_shift(self, individual):
         # TODO - Double Check
         # Generate two random ranges
         x, y, w = self.gen_two_ranges()
 
-        for i in range(y-x):
-            individual[x+i], individual[w+i] = individual[w+i], individual[x+i]
+        for i in range(y - x):
+            individual[x + i], individual[w + i] = individual[w + i], individual[x + i]
 
         return individual
     # endregion
+
 
 if __name__ == '__main__':
     mu = MutatorHelper(0, 5)

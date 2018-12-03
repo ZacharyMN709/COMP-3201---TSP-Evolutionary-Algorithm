@@ -5,9 +5,9 @@ from copy import deepcopy
 
 class RecombinationHelper(BaseHelper):
     def __init__(self, var_helper, data_type):
-        name_method_pairs = [('Order Crossover', self.order_crossover),
-                                  ('PMX Crossover', self.pmx_crossover)
-                                  ]
+        name_method_pairs = [('Order Crossover', self.recombine_parents_using(self.order_crossover)),
+                             ('PMX Crossover', self.recombine_parents_using(self.pmx_crossover))
+                             ]
         super().__init__(var_helper, data_type, name_method_pairs)
 
     def __str__(self):
@@ -17,8 +17,8 @@ class RecombinationHelper(BaseHelper):
 
     # Takes in a method, and automatically manages the incoming population/parents
     #  to mate parents pairwise, based on the recombination rate.
-    def method_randomizer(self, func):
-        def select_method(population, parents_index):
+    def recombine_parents_using(self, func):
+        def pair_parents(population, parents_index):
             offspring = [None] * len(parents_index)
             # Pair off parents,
             for i in range(0, len(parents_index), 2):
@@ -31,16 +31,18 @@ class RecombinationHelper(BaseHelper):
                     offspring[i], offspring[i + 1] = \
                         population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
             return offspring
-        return select_method
 
-    @method_randomizer
+        pair_parents.__name__ = func.__name__
+        return pair_parents
+
     def order_crossover(self, parent1, parent2):
         # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
-        offspring1 = parent1[:self.vars.p1] + [x for x in parent2[self.vars.p1:] + parent2[:self.vars.p1] if x not in set(parent1[:self.vars.p1])]
-        offspring2 = parent2[:self.vars.p1] + [x for x in parent1[self.vars.p1:] + parent1[:self.vars.p1] if x not in set(parent2[:self.vars.p1])]
+        offspring1 = parent1[:self.vars.p1] + [x for x in parent2[self.vars.p1:] + parent2[:self.vars.p1] if
+                                               x not in set(parent1[:self.vars.p1])]
+        offspring2 = parent2[:self.vars.p1] + [x for x in parent1[self.vars.p1:] + parent1[:self.vars.p1] if
+                                               x not in set(parent2[:self.vars.p1])]
         return offspring1, offspring2
 
-    @method_randomizer
     def pmx_crossover(self, parent1, parent2):
         # Find the differing genetic material of crossover segments, to handle duplicates.
         diffs = set(parent1[self.vars.p1:self.vars.p2]) ^ set(parent2[self.vars.p1:self.vars.p2])
@@ -58,22 +60,21 @@ class RecombinationHelper(BaseHelper):
                     while self.vars.p1 <= i < self.vars.p2:
                         i = mate.index(parent[i])
                     # Save the index of the duplicate to overwrite, and the element that replaces it.
-                    off_mod.append((x,  i))
+                    off_mod.append((x, i))
             # Finally, make all of the needed adjustments to the offspring.
             for c in off_mod: offspring[c[1]] = c[0]
             return offspring
 
         return pmx_helper(parent1, parent2), pmx_helper(parent2, parent1)
 
-    @method_randomizer
     def edge_crossover(self, parent1, parent2):
         # Make the edge list.
         edge_list = {key: set() for key in parent1}
-        for x in range(-1, self.vars.genome_length-1):
-            edge_list[parent1[x]].add(parent1[x-1])
-            edge_list[parent1[x]].add(parent1[x+1])
-            edge_list[parent2[x]].add(parent2[x-1])
-            edge_list[parent2[x]].add(parent2[x+1])
+        for x in range(-1, self.vars.genome_length - 1):
+            edge_list[parent1[x]].add(parent1[x - 1])
+            edge_list[parent1[x]].add(parent1[x + 1])
+            edge_list[parent2[x]].add(parent2[x - 1])
+            edge_list[parent2[x]].add(parent2[x + 1])
 
         # Make a dictionary of edge list lengths to simplify handling of edges.
         edge_list_len = {key: set() for key in range(0, 5)}
@@ -87,7 +88,7 @@ class RecombinationHelper(BaseHelper):
             x = randint(0, self.vars.genome_length - 1)
 
             # TODO - Fix
-            for i in range(0, self.vars.genome_length-1):
+            for i in range(0, self.vars.genome_length - 1):
                 # Set the element in the list, and increment
                 offspring[i] = x
 

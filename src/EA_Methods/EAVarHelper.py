@@ -1,4 +1,3 @@
-
 def gte(x, y):
     return x >= y
 
@@ -36,7 +35,7 @@ class EAVarHelper:
         self.cp_1 = 1 * self.genome_length // 4
         self.cp_2 = 2 * self.genome_length // 4
         self.cp_3 = 3 * self.genome_length // 4
-        self.eng_swap_dist = max(10, genome_length//25)
+        self.eng_swap_dist = max(10, genome_length // 25)
 
         self.set_safe_matingpool(self.population_size)
         self.set_tourney_size_by_percent(0.1)
@@ -86,4 +85,3 @@ class EAVarHelper:
 
     def set_swap_gen_eng_dist(self, dist):
         self.eng_swap_dist = max(10, dist)
-

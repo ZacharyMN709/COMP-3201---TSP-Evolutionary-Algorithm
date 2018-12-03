@@ -64,8 +64,8 @@ class LoadHelper:
             locs = [(shift_y - i[1], i[0] - shift_x) for i in locations]
             self.genome_length = len(locs)
             dists = \
-                [[((locs[L1][0] - locs[L2][0])**2 + (locs[L1][1] - locs[L2][1])**2)**0.5
-                    for L2 in range(L1 + 1, len(locs))] for L1 in range(len(locs))]
+                [[((locs[L1][0] - locs[L2][0]) ** 2 + (locs[L1][1] - locs[L2][1]) ** 2) ** 0.5
+                  for L2 in range(L1 + 1, len(locs))] for L1 in range(len(locs))]
             self.data = ProblemData(locs, dists)
 
     def save_data(self):

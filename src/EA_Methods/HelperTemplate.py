@@ -28,4 +28,3 @@ class BaseHelper:
     def set_func_from_index(self, i):
         # TODO - For future implementation of accessing the function from the helper class
         self.selected_method = self.get_func_from_index(i)
-

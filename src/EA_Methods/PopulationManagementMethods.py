@@ -55,7 +55,7 @@ class PopulationManagementHelper(BaseHelper):
 
         if num_best > self.vars.population_threshold:
             threshold = 0.8 * ((num_best - self.vars.population_threshold) / (
-                        len(population) - self.vars.population_threshold))
+                    len(population) - self.vars.population_threshold))
             for x in range(self.vars.genome_length):
                 if fitness[x] == best_fit and random() < threshold:
                     shuffle(population[x])
