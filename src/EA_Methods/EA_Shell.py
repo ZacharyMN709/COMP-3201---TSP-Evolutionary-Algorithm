@@ -27,6 +27,7 @@ class EAFactory:
         pop_init_helper = self.pop_generator.make_pop_helper(var_helper, data_type)
         ea = EARunner(var_helper, data_type, fitness_helper, pop_init_helper)
         ea.set_params(params[0], params[1], params[2], params[3], params[4], params[5], params[6])
+        return ea
 
     def change_file(self, filenum):
         self.filenum = filenum
@@ -78,7 +79,7 @@ class EARunner:
             self.select_survivors is not None and \
             self.manage_population is not None
 
-    def run(self, generation_limit, test_id, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
+    def run(self, generation_limit, pipe, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
         if not self.is_runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             print('self.eval_fitness is not None: {}'.format(self.eval_fitness is not None))
@@ -88,10 +89,8 @@ class EARunner:
             print('self.apply_mutation is not None: {}'.format(self.apply_mutation is not None))
             print('self.select_survivors is not None: {}'.format(self.select_survivors is not None))
             print('self.manage_population is not None: {}'.format(self.manage_population is not None))
-
             return
 
-        print("Test: {}".format(test_id))
         self.vars.set_eval_fitness(self.eval_fitness)
 
         master_start_time = time.time()
@@ -110,9 +109,10 @@ class EARunner:
 
             # Generation Info
             if print_gens != 0 and generation % print_gens == 0:
-                print("Test: {}\nGeneration: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                    test_id, generation, self.vars.best_of(fitness), sum(fitness) / ea_vars.population_size)
-                )
+                # print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
+                #     generation, self.vars.best_of(fitness), sum(fitness) / ea_vars.population_size)
+                # )
+                pipe.send([generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
 
             start_time = time.time()
             parents_index = self.parent_selection(fitness)

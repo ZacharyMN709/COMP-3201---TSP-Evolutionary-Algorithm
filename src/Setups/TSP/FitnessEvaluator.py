@@ -3,7 +3,7 @@ from src.EA_Methods.HelperTemplate import BaseHelper
 
 class FitnessHelperGenerator:
     def __init__(self, data):
-        self.dists = data.dists
+        self.dists = data
 
     def make_fit_helper(self, var_helper, data_type):
         return FitnessHelper(var_helper, data_type, self.dists)
