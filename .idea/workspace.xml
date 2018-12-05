@@ -405,13 +405,6 @@
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
     </task>
-    <task id="LOCAL-00037" summary="Another attempt at resolving path issues.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
-      <created>1541874263915</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1541874263915</updated>
-    </task>
     <task id="LOCAL-00038" summary="Revamped the testing suite by dividing the EA code into a class in a separate module. The class has helper functions to dynamically set the methods used when the EA runs. As well, moved the test code into a smaller more manageable pilot module to run and navigate testing more easily.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
       <created>1542148431416</created>
       <option name="number" value="00038" />
@@ -748,7 +741,14 @@
       <option name="project" value="LOCAL" />
       <updated>1543469892716</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Making a backup of the project as it was for the presentation before rebasing from refactorio.">
+      <created>1544054032234</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1544054032234</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TodoView">
@@ -796,7 +796,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fixed the heuristic initialisation." />
     <MESSAGE value="Added a new, and incredibly effective population management strategy." />
     <MESSAGE value="Added the Brute Force TSP algorithm to optimize initial population" />
     <MESSAGE value="Added functionality to save Stats Objects" />
@@ -821,7 +820,8 @@
     <MESSAGE value="Finished up the notebook for presentations." />
     <MESSAGE value="Finished up the notebook for presentations.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
     <MESSAGE value="Last minute checks for presentation. Emergency revert to here if needed.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Last minute checks for presentation. Emergency revert to here if needed.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <MESSAGE value="Making a backup of the project as it was for the presentation before rebasing from refactorio." />
+    <option name="LAST_COMMIT_MESSAGE" value="Making a backup of the project as it was for the presentation before rebasing from refactorio." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
