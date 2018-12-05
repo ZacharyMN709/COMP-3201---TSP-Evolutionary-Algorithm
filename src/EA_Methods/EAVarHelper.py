@@ -20,9 +20,10 @@ class EAVarHelper:
         self.worst_of = min if maximise else max
         self.as_good_as = gte if maximise else lte
         self.better_than = gt if maximise else lt
+        self.eval_fitness = None
+        self.make_new_individual = None
 
         self.genome_length = genome_length
-        self.eval_fitness = None
         self.dist_mod = 0.1
         self.population_size = 60
         self.mating_pool_size = 0
@@ -40,6 +41,12 @@ class EAVarHelper:
         self.set_safe_matingpool(self.population_size)
         self.set_tourney_size_by_percent(0.1)
         self.set_population_threshold_by_percent(0.05)
+
+    def set_eval_fitness(self, func):
+        self.eval_fitness = func
+
+    def set_new_indiv(self, func):
+        self.make_new_individual = func
 
     def set_safe_matingpool(self, size):
         if (size // 2) % 2 == 0:
@@ -79,9 +86,6 @@ class EAVarHelper:
             self.crossover_rate = 0.995
         else:
             self.crossover_rate = per
-
-    def set_eval_fitness(self, func):
-        self.eval_fitness = func
 
     def set_swap_gen_eng_dist(self, dist):
         self.eng_swap_dist = max(10, dist)

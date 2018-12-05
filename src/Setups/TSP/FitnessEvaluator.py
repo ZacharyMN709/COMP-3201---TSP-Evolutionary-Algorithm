@@ -5,15 +5,15 @@ class FitnessHelperGenerator:
     def __init__(self, data):
         self.dists = data
 
-    def make_fit_helper(self, var_helper, data_type):
-        return FitnessHelper(var_helper, data_type, self.dists)
+    def make_fit_helper(self, var_helper):
+        return FitnessHelper(var_helper, self.dists)
 
 
 class FitnessHelper(BaseHelper):
-    def __init__(self, var_helper, data_type, dists):
+    def __init__(self, var_helper, dists):
         name_method_pairs = [('Euclidean', self.euclidean_distance)
                              ]
-        super().__init__(var_helper, data_type, name_method_pairs)
+        super().__init__(var_helper, name_method_pairs)
         self.dists = dists
 
     def __str__(self):

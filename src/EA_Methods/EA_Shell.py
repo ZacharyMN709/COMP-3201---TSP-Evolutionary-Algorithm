@@ -23,7 +23,7 @@ class EAFactory:
 
     def make_ea_runner(self, data_type, params):
         var_helper = EAVarHelper(self.genome_length, self.maximize)
-        fitness_helper = self.fit_generator.make_fit_helper(var_helper, data_type)
+        fitness_helper = self.fit_generator.make_fit_helper(var_helper)
         pop_init_helper = self.pop_generator.make_pop_helper(var_helper, data_type)
         ea = EARunner(var_helper, data_type, fitness_helper, pop_init_helper)
         ea.set_params(params[0], params[1], params[2], params[3], params[4], params[5], params[6])
@@ -43,11 +43,12 @@ class EARunner:
         self.vars = var_helper
         self.FEM = fitness_helper
         self.PIM = population_initializer
-        self.PSM = ParentSelectionHelper(var_helper, data_type)
+        self.PSM = ParentSelectionHelper(var_helper)
         self.RM = RecombinationHelper(var_helper, data_type)
-        self.MM = MutatorHelper(var_helper, data_type)
-        self.SSM = SurvivorSelectionHelper(var_helper, data_type)
+        self.MM = MutatorHelper(var_helper)
+        self.SSM = SurvivorSelectionHelper(var_helper)
         self.PMM = PopulationManagementHelper(var_helper, data_type)
+        self.vars.set_new_indiv(self.PIM.self.wrapper(self.PIM.single_random_individual))
 
         self.initialize = None
         self.eval_fitness = None

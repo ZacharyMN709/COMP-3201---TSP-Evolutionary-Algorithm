@@ -3,13 +3,19 @@ from random import randint, random, shuffle
 
 
 class MutatorHelper(BaseHelper):
-    def __init__(self, var_helper, data_type):
+    """
+    The mutation methods which are presently implemented are all simple enough that using clever
+    indexing makes the functions fast d,ue to not requiring much memory reallocation, and more
+    importantly, makes the functions work for all supported data types.
+    """
+    def __init__(self, var_helper):
         name_method_pairs = [('Swap', self.apply_mutation_using(self.permutation_swap)),
                              ('Insert', self.apply_mutation_using(self.permutation_insert)),
                              ('Inversion', self.apply_mutation_using(self.permutation_inversion)),
-                             ('Shift', self.apply_mutation_using(self.permutation_shift))
+                             ('Shift', self.apply_mutation_using(self.permutation_shift)),
+                             ('Scramble', self.apply_mutation_using(self.permutation_scramble))
                              ]
-        super().__init__(var_helper, data_type, name_method_pairs)
+        super().__init__(var_helper, name_method_pairs)
 
     def __str__(self):
         return super().__str__().format('MutatorHelper')
@@ -40,7 +46,7 @@ class MutatorHelper(BaseHelper):
     def gen_two_nums_ascending(self):
         # Generate two integers such that x > y
         x = randint(0, self.vars.genome_length - 2)
-        y = randint(x, self.vars.genome_length - 1)
+        y = randint(x+1, self.vars.genome_length - 1)
         return x, y
 
     def gen_two_ranges(self):
@@ -65,13 +71,13 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_insert(self, individual):
-        # TODO - Implement based on representation
+        # DONE
         # Generate two random indices
-        x, y = self.gen_two_nums()
+        x, y = self.gen_two_nums_ascending()
 
         # Insert the value at y in the position after x
-        value = individual.pop(y)
-        individual.insert(x + 1, value)
+        for i in range(y - x):
+            individual[y-i-1], individual[y-i] = individual[y-i], individual[y-i-1]
 
         return individual
 
@@ -96,14 +102,14 @@ class MutatorHelper(BaseHelper):
         x, y = self.gen_two_nums_ascending()
 
         # Randomize the order of indices from x to y
-        temp = individual[x:y]
-        shuffle(temp)
-        individual[x:y] = temp
+        w = y - x
+        for i in range(w):
+            z = randint(0, w)
+            individual[x + i], individual[x + z] = individual[x + z], individual[x + i]
 
         return individual
 
     def permutation_shift(self, individual):
-        # TODO - Double Check
         # Generate two random ranges
         x, y, w = self.gen_two_ranges()
 
@@ -115,4 +121,21 @@ class MutatorHelper(BaseHelper):
 
 
 if __name__ == '__main__':
-    mu = MutatorHelper(0, 5)
+    from src.EA_Methods.EAVarHelper import EAVarHelper
+    from time import time
+
+    mu = MutatorHelper(EAVarHelper(20, False), 0)
+
+    methods = [mu.permutation_swap,
+     mu.permutation_insert,
+     mu.permutation_inversion,
+     mu.permutation_shift,
+     mu.permutation_scramble
+     ]
+
+    for x in methods:
+        start = time()
+        for y in range(10000):
+            indiv = [x for x in range(20)]
+            x(indiv)
+        print(time() - start)
