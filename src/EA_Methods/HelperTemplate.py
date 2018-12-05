@@ -1,7 +1,6 @@
 class BaseHelper:
-    def __init__(self, var_helper, data_type, nm_pairs, default_method=None):
+    def __init__(self, var_helper, nm_pairs, default_method=None):
         self.vars = var_helper
-        self.data_type = data_type
         self.name_method_pairs = nm_pairs
         self.name_to_index_dict = {self.name_method_pairs[x][0]: x for x in range(len(self.name_method_pairs))}
         if default_method is not None:
@@ -17,6 +16,9 @@ class BaseHelper:
 
     def __repr__(self):
         return self.__str__()
+
+    def __len__(self):
+        return len(self.name_method_pairs)
 
     def get_func_from_index(self, i):
         try:

@@ -4,11 +4,15 @@ from copy import deepcopy
 
 
 class RecombinationHelper(BaseHelper):
+    """
+    This class may need to be modified or extended in order to properly support numpy.
+    However it presently supports both c arrays and python lists.
+    """
     def __init__(self, var_helper, data_type):
         name_method_pairs = [('Order Crossover', self.recombine_parents_using(self.order_crossover)),
                              ('PMX Crossover', self.recombine_parents_using(self.pmx_crossover))
                              ]
-        super().__init__(var_helper, data_type, name_method_pairs)
+        super().__init__(var_helper, name_method_pairs)
 
     def __str__(self):
         return super().__str__().format('RecombinationHelper')
@@ -36,12 +40,21 @@ class RecombinationHelper(BaseHelper):
         return pair_parents
 
     def order_crossover(self, parent1, parent2):
-        # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
-        offspring1 = parent1[:self.vars.cp1] + [x for x in parent2[self.vars.cp1:] + parent2[:self.vars.cp1] if
-                                               x not in set(parent1[:self.vars.cp1])]
-        offspring2 = parent2[:self.vars.cp1] + [x for x in parent1[self.vars.cp1:] + parent1[:self.vars.cp1] if
-                                               x not in set(parent2[:self.vars.cp1])]
-        return offspring1, offspring2
+        def crossoverhelper(parent, offspring):
+            start, exclude = self.vars.cp1, set(offspring[:self.vars.cp1])
+            for i in range(self.vars.cp1, self.vars.genome_length):
+                if parent[i] not in exclude:
+                    offspring[start] = parent[i]
+                    start += 1
+
+            for i in range(0, self.vars.cp1):
+                if parent[i] not in exclude:
+                    offspring[start] = parent[i]
+                    start += 1
+            return offspring
+
+        offspring1, offspring2 = parent1.copy(), parent2.copy()
+        return crossoverhelper(parent2, offspring1), crossoverhelper(parent1, offspring2)
 
     def pmx_crossover(self, parent1, parent2):
         # Find the differing genetic material of crossover segments, to handle duplicates.
@@ -49,7 +62,10 @@ class RecombinationHelper(BaseHelper):
 
         def pmx_helper(parent, mate):
             # Generate simple offspring template, which contains some duplicates, to be modified.
-            offspring = mate[:self.vars.cp1] + parent[self.vars.cp1:self.vars.cp2] + mate[self.vars.cp2:]
+            offspring = mate.copy()
+            for i in range(self.vars.cp1, self.vars.cp2):
+                offspring[i] = parent[i]
+
             off_mod = []
             for x in mate[self.vars.cp1:self.vars.cp2]:
                 if x in diffs:
@@ -113,3 +129,24 @@ class RecombinationHelper(BaseHelper):
 
         return edge_helper(deepcopy(edge_list), deepcopy(edge_list_len)), edge_helper(edge_list, edge_list_len)
     # endregion
+
+
+if __name__ == '__main__':
+    from src.EA_Methods.EAVarHelper import EAVarHelper
+    from time import time
+    from random import shuffle
+
+    rc = RecombinationHelper(EAVarHelper(20, False), 0)
+
+    methods = [rc.order_crossover,
+               rc.pmx_crossover,
+               ]
+
+    for x in methods:
+        start = time()
+        for y in range(100):
+            indiv = [x for x in range(20)]
+            indiv2 = indiv.copy()
+            shuffle(indiv2)
+            print(x(indiv, indiv2))
+        print(time() - start)

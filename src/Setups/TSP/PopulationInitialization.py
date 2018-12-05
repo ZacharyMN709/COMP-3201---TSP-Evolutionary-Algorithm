@@ -43,7 +43,7 @@ class PopulationInitializationHelper(BaseHelper):
                              ('Cluster', self.generate_population_using(self.single_cluster_individual)),
                              ('Euler', self.generate_population_using(self.single_euler_individual))
                              ]
-        super().__init__(var_helper, data_type, name_method_pairs)
+        super().__init__(var_helper, name_method_pairs)
         self.wrappers = [list_wrapper, np_wrapper, c_wrapper]
         self.wrapper = self.wrappers[data_type]
         self.cluster_builder = cluster_builder
