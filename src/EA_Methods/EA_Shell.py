@@ -47,8 +47,8 @@ class EARunner:
         self.RM = RecombinationHelper(var_helper, data_type)
         self.MM = MutatorHelper(var_helper)
         self.SSM = SurvivorSelectionHelper(var_helper)
-        self.PMM = PopulationManagementHelper(var_helper, data_type)
-        self.vars.set_new_indiv(self.PIM.self.wrapper(self.PIM.single_random_individual))
+        self.PMM = PopulationManagementHelper(var_helper)
+        self.vars.set_new_indiv(self.PIM.wrapper(self.PIM.single_random_individual))
 
         self.initialize = None
         self.eval_fitness = None

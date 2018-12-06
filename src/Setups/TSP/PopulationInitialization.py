@@ -66,7 +66,7 @@ class PopulationInitializationHelper(BaseHelper):
         self.cluster = self.cluster_builder.generate_nested_clusters(self.vars.dist_mod)
 
     def single_random_individual(self):
-        return sample([c for c in range(self.vars.genome_length)], self.vars.genome_lengthgenome_length)
+        return sample([c for c in range(self.vars.genome_length)], self.vars.genome_length)
 
     def single_cluster_individual(self):
         shuffle(self.cluster)

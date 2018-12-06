@@ -15,11 +15,12 @@ def lt(x, y):
 
 
 class EAVarHelper:
-    def __init__(self, genome_length, maximise):
-        self.best_of = max if maximise else min
-        self.worst_of = min if maximise else max
-        self.as_good_as = gte if maximise else lte
-        self.better_than = gt if maximise else lt
+    def __init__(self, genome_length, maximize):
+        self.maximize = maximize
+        self.best_of = max if maximize else min
+        self.worst_of = min if maximize else max
+        self.as_good_as = gte if maximize else lte
+        self.better_than = gt if maximize else lt
         self.eval_fitness = None
         self.make_new_individual = None
 

@@ -3,14 +3,14 @@ from random import random, randint
 
 
 class PopulationManagementHelper(BaseHelper):
-    def __init__(self, var_helper, data_type):
+    def __init__(self, var_helper):
         name_method_pairs = [('None', self.static_return),
                              ('Annealing', self.metallurgic_annealing),
                              ('Entropy', self.metallurgic_annealing),
                              ('Oroborous', self.metallurgic_annealing),
                              ('Engineering', self.genetic_engineering)
                              ]
-        super().__init__(var_helper, data_type, name_method_pairs)
+        super().__init__(var_helper, name_method_pairs)
 
     def __str__(self):
         return super().__str__().format('PopulationManagementHelper')
@@ -32,7 +32,7 @@ class PopulationManagementHelper(BaseHelper):
 
         self.vars.start_temp *= self.vars.cooling_rate
 
-        new_pop = [self.vars.random_indiv() for _ in range(self.vars.population_size)]
+        new_pop = [self.vars.make_new_individual() for _ in range(self.vars.population_size)]
         new_fit = [self.vars.eval_fitness(x) for x in new_pop]
 
         for x in range(len(population)):
