@@ -5,17 +5,17 @@ import pandas as pd
 
 # Set-up easy grabbing of previously compiled stats.
 def pickle_to_df(identity_tuple, truncate):
-    def resolve_unpickle_tuples(method_name, country, implementation):
+    def resolve_unpickle_tuples(method_name, country, implementation, population):
         # (File_name, country, method)
         if method_name == 'Population':
-            return [('{}10214 G10000.txt'.format(x), country, implementation) for x in range(3)]
+            return [('{}10214 G{}.txt'.format(x, population), country, implementation) for x in range(3)]
         if method_name == 'Mutation':
-            return [('210{}14 G10000.txt'.format(x), country, implementation) for x in range(4)]
+            return [('210{}14 G{}.txt'.format(x, population), country, implementation) for x in range(4)]
         if method_name == 'Management':
-            return [('21021{} G10000.txt'.format(x), country, implementation) for x in range(5)]
+            return [('21021{} G{}.txt'.format(x, population), country, implementation) for x in range(5)]
 
-    method_name, country, implementation = identity_tuple
-    to_unpickle = resolve_unpickle_tuples(method_name, country, implementation)
+    method_name, country, implementation, pop = identity_tuple
+    to_unpickle = resolve_unpickle_tuples(method_name, country, implementation, pop)
     summaries = {}
     optimums = {}
     for x in to_unpickle:
@@ -35,6 +35,34 @@ def pickle_to_df(identity_tuple, truncate):
     return pd.DataFrame(summaries), pd.DataFrame(optimums)
 
 
+def gen_two_indivs(type1, type2):
+    from src.Setups.TSP import TSP_LST
+
+    TSP_LST.read_tsp_file(FILENUM)
+
+    def indiv_helper(indiv_num):
+        if indiv_num == 0:
+            return TSP_LST.single_random_individual(len(TSP_LST.LOCATIONS))
+        if indiv_num == 1:
+            return TSP_LST.single_cluster_individual(len(TSP_LST.LOCATIONS))
+        if indiv_num == 2:
+            return TSP_LST.single_euler_individual(len(TSP_LST.LOCATIONS))
+
+    indiv1, indiv2 = indiv_helper(type1), indiv_helper(type2)
+    grapher.indiv_dual_plot((INIT_DICT[type1], indiv1), (INIT_DICT[type2], indiv2))
+
+
+def gen_pickle_plots():
+    tests = ['Management', 'Mutation', 'Population']
+
+    for x in tests:
+        id_tuple = (x, FILENUM, METHOD, POP_SIZE)
+        avgs, opts = pickle_to_df(id_tuple, 0)
+        grapher.quad_plot(avgs, opts)
+        savefig('{} - {} - {} Tests.png'.format(FILE_DICT[FILENUM], METHOD_DICT[METHOD], x), bbox_inches='tight')
+        plt.show()
+
+
 if __name__ == '__main__':
     import matplotlib.pyplot as plt
     from pylab import savefig
@@ -49,15 +77,13 @@ if __name__ == '__main__':
                    1: 'Numpy',
                    2: 'Arrays'}
 
-    FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-    METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
+    INIT_DICT = {0: 'Random',
+                 1: 'Cluster',
+                 2: 'Christofides'}
 
-    grapher = GraphingHelper(FILENUM)  ## initialize the grapher with the Uruguay data.
-    tests = ['Management', 'Mutation', 'Population']
+    FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+    METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
+    POP_SIZE = 1000
 
-    for x in tests:
-        id_tuple = (x, FILENUM, METHOD)
-        avgs, opts = pickle_to_df(id_tuple, 0)
-        grapher.quad_plot(avgs, opts)
-        savefig('{} - {} - {} Tests.png'.format(FILE_DICT[FILENUM], METHOD_DICT[METHOD], x), bbox_inches='tight')
-        plt.show()
+    grapher = GraphingHelper(FILENUM)
+    gen_two_indivs(0, 1)

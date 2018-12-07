@@ -3,6 +3,8 @@ import csv
 from random import sample, shuffle
 from copy import deepcopy
 from array import array
+from Pickle_Helper import get_pickled_euler, get_pickled_memo, pickle_memo_obj
+
 
 # region Globals and Setters
 MAX = False
@@ -297,8 +299,14 @@ def single_euler_individual(genome_length):
 @fitness_applicator
 def heuristic_euler_initialization(pop_size, genome_length):
     global MSTREE, ODDVERTEXES
-    MSTREE = minimum_spanning_tree()
-    ODDVERTEXES = find_odd_vertexes(MSTREE)
+    euler_dict = get_pickled_euler(FILENUM, fast=False)
+    if euler_dict:
+        MSTREE = euler_dict['MST']
+        ODDVERTEXES = euler_dict['Odd']
+    else:
+        MSTREE = minimum_spanning_tree()
+        ODDVERTEXES = find_odd_vertexes(MSTREE)
+
     return [single_euler_individual(genome_length) for _ in range(pop_size)]
 # endregion
 # endregion

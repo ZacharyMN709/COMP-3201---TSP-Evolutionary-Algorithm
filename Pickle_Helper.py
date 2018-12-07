@@ -191,12 +191,12 @@ def get_pickled_memo(file_num):
 # endregion
 
 
-FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+FILENUM = 3  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
 METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
 
 if __name__ == '__main__':
 
-    loaded = get_pickled_stats('210214 G10000.txt', FILENUM, METHOD)
+    loaded = get_pickled_stats('210214 G1000.txt', FILENUM, METHOD)
 
     print(loaded['Runs'])
 

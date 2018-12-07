@@ -83,11 +83,11 @@ def go_to_project_root():
 
 print("Present working directory:", os.getcwd(), '\n')
 
-FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+FILENUM = 3  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
 METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
 MULTITHREAD = False
-RUNS = 1  # Number of times each combination is run.
-GENERATIONS = 10000
+RUNS = 5  # Number of times each combination is run.
+GENERATIONS = 1000
 SAVE = True
 
 PSM, RM, MM, SSM, DEF, PMM = import_modules(FILENUM, METHOD)
@@ -108,31 +108,30 @@ MANAGEMENT_DICT = {MANAGEMENT_METHODS[x][0]: x for x in range(len(MANAGEMENT_MET
 
 """
 BASE INDIVIDUAL FOR STATS TESTING
-tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+tester.set_test_vars(1, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
                      MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
 """
 
 
 '''
 POPULATION TESTING
-tester.set_test_vars(RUNS, POPULATION_METHODS, PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+tester.set_test_vars(1, POPULATION_METHODS, PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
                      MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
 '''
 '''
 MUTATION TESTING
-tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+tester.set_test_vars(1, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
                      MUTATION_METHODS, SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS[4:5])
 '''
 '''
 MANAGEMENT TESTING
-tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+tester.set_test_vars(1, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
                      MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS)
 '''
 
 
-
 tester = generate_algorithm(FILENUM, METHOD, MULTITHREAD)
-tester.set_test_vars(RUNS, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
+tester.set_test_vars(1, POPULATION_METHODS[2:3], PARENT_METHODS[1:2], RECOMBINATION_METHODS[1:2],
                      MUTATION_METHODS[2:3], SURVIVOR_METHODS[0:1], MANAGEMENT_METHODS)
 
 if FILENUM:
@@ -167,11 +166,11 @@ if __name__ == '__main__':
                                     # A dictionary which is to be pickled.
                                     to_save = {'Stats': obj,
                                                'Funcs': indices,
-                                               'Runs': RUNS,
+                                               'Runs': 1,
                                                'Generations': GENERATIONS}
                                     pickle_stats_obj(to_save, FILENUM, METHOD)
 
-    for _ in range(20):
+    for _ in range(RUNS):
         result_matrix, matrix_dimensions = tester.iterate_tests(GENERATIONS, opt_fitness, true_optimum, 100)
         print('Matrix dimensions are: {}'.format(matrix_dimensions))
         if SAVE and FILENUM != 0: save_run()
