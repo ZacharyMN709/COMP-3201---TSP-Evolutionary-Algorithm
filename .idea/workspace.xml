@@ -3,12 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Pickle_Helper.py" afterPath="$PROJECT_DIR$/Pickle_Helper.py" />
-      <change beforePath="$PROJECT_DIR$/Results/Canada/Lists/010210 G1.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Test_Pilot.py" afterPath="$PROJECT_DIR$/Test_Pilot.py" />
-      <change beforePath="$PROJECT_DIR$/src/GraphGenerator.py" afterPath="$PROJECT_DIR$/src/GraphGenerator.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" afterPath="$PROJECT_DIR$/src/Setups/TSP/TSP_Display.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -45,8 +39,8 @@
       <file leaf-file-name="GraphGenerator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/GraphGenerator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="83" column="15" lean-forward="false" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+            <state relative-caret-position="151">
+              <caret line="71" column="30" lean-forward="true" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
@@ -145,7 +139,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="refactorio" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="SIGN_OFF_COMMIT" value="true" />
@@ -626,13 +620,6 @@
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
     </task>
-    <task id="LOCAL-00037" summary="Another attempt at resolving path issues.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
-      <created>1541874263915</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1541874263915</updated>
-    </task>
     <task id="LOCAL-00038" summary="Revamped the testing suite by dividing the EA code into a class in a separate module. The class has helper functions to dynamically set the methods used when the EA runs. As well, moved the test code into a smaller more manageable pilot module to run and navigate testing more easily.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
       <created>1542148431416</created>
       <option name="number" value="00038" />
@@ -969,7 +956,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544200762791</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="Saving before merge attempt&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <created>1544221134880</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1544221134880</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="TodoView">
@@ -990,7 +984,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35869566" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35869566" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2585288" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1018,7 +1012,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Fixed the heuristic initialisation." />
     <MESSAGE value="Added a new, and incredibly effective population management strategy." />
     <MESSAGE value="Added the Brute Force TSP algorithm to optimize initial population" />
     <MESSAGE value="Added functionality to save Stats Objects" />
@@ -1043,7 +1036,8 @@
     <MESSAGE value="Finished up the notebook for presentations." />
     <MESSAGE value="Finished up the notebook for presentations.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
     <MESSAGE value="Made modifications to the graph generators to avoid memory issues, and uploading the graphs for the Uruguay dataset.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made modifications to the graph generators to avoid memory issues, and uploading the graphs for the Uruguay dataset.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <MESSAGE value="Saving before merge attempt&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Saving before merge attempt&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1290,8 +1284,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GraphGenerator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="83" column="15" lean-forward="false" selection-start-line="83" selection-start-column="15" selection-end-line="83" selection-end-column="15" />
+        <state relative-caret-position="151">
+          <caret line="71" column="30" lean-forward="true" selection-start-line="71" selection-start-column="30" selection-end-line="71" selection-end-column="30" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
