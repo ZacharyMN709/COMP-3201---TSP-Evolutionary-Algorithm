@@ -1,5 +1,6 @@
 import os
 import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 from math import pi, cos
 from src.Other import Colours as CP
@@ -8,6 +9,11 @@ from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
 
 class GraphingHelper:
     def __init__(self, fnum):
+        graph_style = 5
+        plt.style.use(plt.style.available[graph_style])  # 5, 14, 22
+        plt.figure(figsize=(30, 15))
+        sns.set_context("paper")
+
         self.long_names = ['Longitude (Range shifted)', 'Latitude (Range shifted)']
         self.short_names = ['Lat', 'Lon']
         self.cities = self.read_tsp_file(fnum)
