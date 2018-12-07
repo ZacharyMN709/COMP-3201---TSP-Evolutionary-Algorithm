@@ -1,8 +1,10 @@
 import os
 import csv
 from src.Other.Pickle_Helper import get_pickled_memo, pickle_memo_obj
+from array import array
 
 # region Globals and Setters
+MAX = False
 FILE_DICT = {0: '8-Queens',
              1: 'Sahara',
              2: 'Uruguay',

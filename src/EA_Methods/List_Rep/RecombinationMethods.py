@@ -136,11 +136,11 @@ def edge_crossover(parent1, parent2):
 
 if __name__ == '__main__':
     from random import sample
+    from time import time
     set_genome_length(10)
     crossover_rate = 1
-    test = [sample([c for c in range(genome_length)], genome_length) for _ in range(genome_length)]
-    out = edge_crossover(test, [c for c in range(genome_length)])
-    for x in range(len(test)):
-        print(test[x])
-        print(out[x])
-        print('- - -')
+    test = [sample([c for c in range(genome_length)], genome_length) for _ in range(10000)]
+    start = time()
+    out = edge_crossover(test, [c for c in range(10000)])
+    print(time() - start)
+

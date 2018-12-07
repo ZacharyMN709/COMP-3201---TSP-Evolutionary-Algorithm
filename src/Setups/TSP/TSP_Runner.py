@@ -50,7 +50,7 @@ def single_run_setup():
     var_helper = EAVarHelper(file_data.genome_length, False)
     pop_init_generator = PopulationInitializationGenerator(file_data.data, FILENUM)
     fitness_helper_generator = FitnessHelperGenerator(file_data.data)
-    fitness_helper = fitness_helper_generator.make_fit_helper(var_helper)
+    fitness_helper = fitness_helper_generator.make_fit_helper(var_helper, DATA_TYPE)
     pop_init_helper = pop_init_generator.make_pop_helper(var_helper, DATA_TYPE)
 
     ea = EARunner(var_helper, DATA_TYPE, fitness_helper, pop_init_helper)
