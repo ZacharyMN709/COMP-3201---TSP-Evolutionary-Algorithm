@@ -1,12 +1,21 @@
 from src.Setups.TSP.FileLoader import LoadHelper
 from src.EA_Methods.EAVarHelper import EAVarHelper
 from src.EA_Methods.EA_Shell import EARunner
+from src.EA_Methods.EA_Runner import run
 from src.Pilot import go_to_project_root, current_dir
 from src.Setups.TSP.PopulationInitialization import PopulationInitializationGenerator
 from src.Setups.TSP.FitnessEvaluator import FitnessHelperGenerator
 from src.Setups.TSP.Inputs.Optimums import get_best_path
 
-from multiprocessing import Process, Pipe
+import src.EA_Methods.MutationMethods
+import src.EA_Methods.ParentSelectionMethods
+import src.EA_Methods.PopulationManagementMethods
+import src.EA_Methods.RecombinationMethods
+import src.EA_Methods.SurvivorSelectionMethods
+import src.Setups.TSP.PopulationInitialization
+import src.Setups.TSP.FitnessEvaluator
+
+import multiprocessing as mp
 
 go_to_project_root()
 
@@ -24,13 +33,13 @@ DATA_TYPE_DICT = {0: 'Lists',
 def single_run_setup():
     FILENUM = 1
     DATA_TYPE = 0
-    THREAD_COUNT = 16
+    THREAD_COUNT = 1
     RUNS = 1  # Number of times each combination is run.
     GENERATIONS = 50000
-    PRINT_GENS = 5000
+    PRINT_GENS = 100
     SAVE = True
     BEST_PATH, _, TRUE_OPT = get_best_path(FILENUM)
-    METHODS_TO_USE = (0, 2, 1, 1, 2, 0, 3)
+    METHODS_TO_USE = (0, 0, 2, 1, 2, 0, 3)
     '''
     Methods available in FitnessHelper:
       0:  Euclidean
@@ -63,19 +72,22 @@ def single_run_setup():
     processes = []      # The processes running the algorithm
     pipes = []          # The pipes used to receive stats from processes
 
-    # Start a process for each thread
-    for thread in range(THREAD_COUNT):
-        parent_conn, child_conn = Pipe()
-        process = Process(target=ea.run, args=(GENERATIONS, child_conn, BEST_PATH, TRUE_OPT, PRINT_GENS))
-        process.start()
-        processes.append(process)
-        pipes.append(parent_conn)
+    if THREAD_COUNT > 1:
+        # Start a process for each thread
+        for thread in range(THREAD_COUNT):
+            parent_conn, child_conn = mp.Pipe()
+            process = mp.Process(target=ea.run, args=(GENERATIONS, child_conn, BEST_PATH, TRUE_OPT, PRINT_GENS))
+            process.start()
+            processes.append(process)
+            pipes.append(parent_conn)
 
-    # Poll for statistics
-    while True:
-        for index in range(len(pipes)):
-            if pipes[index].poll():
-                print(index, pipes[index].recv())
+        # Poll for statistics
+        while True:
+            for index in range(len(pipes)):
+                if pipes[index].poll():
+                    print(index, pipes[index].recv())
+    else:
+        ea.run(GENERATIONS, None, BEST_PATH, TRUE_OPT, PRINT_GENS)
 
 if __name__ == '__main__':
     single_run_setup()

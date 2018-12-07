@@ -110,10 +110,12 @@ class EARunner:
 
             # Generation Info
             if print_gens != 0 and generation % print_gens == 0:
-                # print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                #     generation, self.vars.best_of(fitness), sum(fitness) / ea_vars.population_size)
-                # )
-                pipe.send([generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
+                if pipe:
+                    pipe.send([generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
+                else:
+                    print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
+                        generation, self.vars.best_of(fitness), sum(fitness) / ea_vars.population_size)
+                    )
 
             start_time = time.time()
             parents_index = self.parent_selection(fitness)
