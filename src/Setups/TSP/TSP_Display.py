@@ -83,7 +83,7 @@ class GraphingHelper:
 
         def plot_df(df, ax1, ax2, per):
             num = 0
-            columns = [column for column in df.drop('x', axis=1)]
+            columns = [column for column in df]
             if ax2 == 0: axes[ax1, ax2].set_title('Averaged')
             if ax2 == 1: axes[ax1, ax2].set_title('Best')
             for column in columns:

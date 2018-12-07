@@ -2,6 +2,7 @@ from src.StatsHolder import StatsHolder
 from src.Setups.TSP.TSP_Display import GraphingHelper
 import pandas as pd
 
+
 # Set-up easy grabbing of previously compiled stats.
 def pickle_to_df(identity_tuple, truncate):
     def resolve_unpickle_tuples(method_name, country, implementation):
@@ -15,20 +16,23 @@ def pickle_to_df(identity_tuple, truncate):
 
     method_name, country, implementation = identity_tuple
     to_unpickle = resolve_unpickle_tuples(method_name, country, implementation)
-    stat_objs = [StatsHolder.stat_obj_from_pickle(x) for x in to_unpickle]
-    summaries = [s.average_generation_fitness() for s in stat_objs]
-    optimums = [s.best_generation_fitness() for s in stat_objs]
-    x_axis = {'x': [x for x in range(len(summaries[0]))][truncate:-1]}
-    if method_name == 'Population':
-        summaries = {stat_objs[y].POPULATION_METHOD : summaries[y][truncate:-1] for y in range(len(summaries))}
-        optimums = {stat_objs[y].POPULATION_METHOD : optimums[y][truncate:-1] for y in range(len(optimums))}
-    if method_name == 'Mutation':
-        summaries = {stat_objs[y].MUTATION_METHOD : summaries[y][truncate:-1] for y in range(len(summaries))}
-        optimums = {stat_objs[y].MUTATION_METHOD : optimums[y][truncate:-1] for y in range(len(optimums))}
-    if method_name == 'Management':
-        summaries = {stat_objs[y].MANAGEMENT_METHOD : summaries[y][truncate:-1] for y in range(len(summaries))}
-        optimums = {stat_objs[y].MANAGEMENT_METHOD : optimums[y][truncate:-1] for y in range(len(optimums))}
-    return pd.DataFrame({**x_axis, **summaries}), pd.DataFrame({**x_axis, **optimums})
+    summaries = {}
+    optimums = {}
+    for x in to_unpickle:
+        stat_obj = StatsHolder.stat_obj_from_pickle(x)
+        sum_list = stat_obj.average_generation_fitness()[truncate:-1]
+        opt_list = stat_obj.best_generation_fitness()[truncate:-1]
+        if method_name == 'Population':
+            summaries[stat_obj.POPULATION_METHOD] = sum_list
+            optimums[stat_obj.POPULATION_METHOD] = opt_list
+        if method_name == 'Mutation':
+            summaries[stat_obj.MUTATION_METHOD] = sum_list
+            optimums[stat_obj.MUTATION_METHOD] = opt_list
+        if method_name == 'Management':
+            summaries[stat_obj.MANAGEMENT_METHOD] = sum_list
+            optimums[stat_obj.MANAGEMENT_METHOD] = opt_list
+
+    return pd.DataFrame(summaries), pd.DataFrame(optimums)
 
 
 if __name__ == '__main__':
@@ -45,8 +49,8 @@ if __name__ == '__main__':
                    1: 'Numpy',
                    2: 'Arrays'}
 
-    FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
-    METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
+    FILENUM = 2  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+    METHOD = 2  # 0: Lists   1: Numpy Arrays   2: C Arrays
 
     grapher = GraphingHelper(FILENUM)  ## initialize the grapher with the Uruguay data.
     tests = ['Management', 'Mutation', 'Population']
