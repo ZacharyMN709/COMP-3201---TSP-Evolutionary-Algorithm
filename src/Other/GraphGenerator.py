@@ -1,4 +1,4 @@
-from src.StatsHolder import StatsHolder
+from src.Other.StatsHolder import StatsHolder
 from src.Setups.TSP.TSP_Display import GraphingHelper
 import pandas as pd
 
@@ -36,9 +36,11 @@ def pickle_to_df(identity_tuple, truncate):
 
 
 def gen_two_indivs(type1, type2):
-    from src.Setups.TSP import TSP_LST
+    from src.Setups.TSP import FileLoader, PopulationInitialization
 
-    TSP_LST.read_tsp_file(FILENUM)
+    file_data = FileLoader.LoadHelper(FILENUM)
+    PopulationInitialization.PopulationInitializationGenerator(file_data.data, FILENUM)
+
 
     def indiv_helper(indiv_num):
         if indiv_num == 0:

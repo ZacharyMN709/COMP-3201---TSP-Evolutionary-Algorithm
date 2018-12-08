@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Removed unneeded files, and finished implementing numpy in the mutation methods.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/TSP_Runner.py" afterPath="$PROJECT_DIR$/TSP_Runner.py" />
+      <change beforePath="$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py" afterPath="$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py" />
+      <change beforePath="$PROJECT_DIR$/src/Other/GraphGenerator.py" afterPath="$PROJECT_DIR$/src/Other/GraphGenerator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -38,6 +39,57 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="GraphGenerator.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Other/GraphGenerator.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="41" column="86" lean-forward="false" selection-start-line="41" selection-start-column="86" selection-end-line="41" selection-end-column="86" />
+              <folding>
+                <element signature="e#0#45#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PopulationInitialization.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/PopulationInitialization.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#62#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EARunner.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/EACore/EARunner.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="38" selection-end-column="68" />
+              <folding>
+                <marker date="1544241647505" expanded="true" signature="4892:5024" ph="CREATE TABLE... Generation_Data" />
+                <marker date="1544241647505" expanded="true" signature="5047:5251" ph="CREATE Table... Final_Data" />
+                <marker date="1544241647505" expanded="true" signature="6158:6208" ph="INSERT INTO Generation_Data... " />
+                <marker date="1544241647505" expanded="true" signature="8590:8653" ph="INSERT INTO Final_Data... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileLoader.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Setups/TSP/FileLoader.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-102">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="TSP_Runner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TSP_Runner.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -50,12 +102,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EAVarHelper.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="EAVarHelper.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/EACore/EAVarHelper.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="34" />
+            <state relative-caret-position="323">
+              <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PopulationManagementMethods.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="492">
+              <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
+              <folding>
+                <element signature="e#0#62#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -101,12 +165,13 @@
       </map>
     </option>
     <option name="SIGN_OFF_COMMIT" value="true" />
+    <push-targets>
+      <push-target-info target-remote="origin" target-branch="master" repo="$PROJECT_DIR$" source="master" />
+    </push-targets>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/EA_Methods/List_Rep/ParentSelectionMethods.py" />
-        <option value="$PROJECT_DIR$/src/Other/Modular_Reference.py" />
         <option value="$PROJECT_DIR$/Testing.py" />
         <option value="$PROJECT_DIR$/src/Other/Timer.py" />
         <option value="$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py" />
@@ -156,6 +221,8 @@
         <option value="$PROJECT_DIR$/src/EACore/EARunner.py" />
         <option value="$PROJECT_DIR$/src/EACore/MethodClasses/RecombinationMethods.py" />
         <option value="$PROJECT_DIR$/TSP_Runner.py" />
+        <option value="$PROJECT_DIR$/src/Other/GraphGenerator.py" />
+        <option value="$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py" />
       </list>
     </option>
   </component>
@@ -214,6 +281,12 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="EACore" type="462c0819:PsiDirectoryNode" />
               <item name="MethodClasses" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
+              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Other" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
@@ -539,13 +612,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
-    </task>
-    <task id="LOCAL-00038" summary="Revamped the testing suite by dividing the EA code into a class in a separate module. The class has helper functions to dynamically set the methods used when the EA runs. As well, moved the test code into a smaller more manageable pilot module to run and navigate testing more easily.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
-      <created>1542148431416</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1542148431416</updated>
     </task>
     <task id="LOCAL-00039" summary="Revamped the testing suite by dividing the EA code into a class in a separate module. The class has helper functions to dynamically set the methods used when the EA runs. As well, moved the test code into a smaller more manageable pilot module to run and navigate testing more easily.&#10;Found error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
       <created>1542151355161</created>
@@ -883,7 +949,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544235284864</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="Removed unneeded files, and finished implementing numpy in the mutation methods.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <created>1544241967137</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1544241967138</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="TodoView">
@@ -897,6 +970,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="6" side_tool="true" content_ui="tabs" />
@@ -904,7 +978,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2624811" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -965,7 +1039,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Results/Test World/Numpy/blank.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Uruguay/Arrays/blank.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Uruguay/Lists/blank.txt" />
     <entry file="file://$PROJECT_DIR$/Results/Uruguay/Numpy/blank.txt" />
@@ -1063,16 +1136,6 @@
     <entry file="file://$PROJECT_DIR$/src/StatsHolder.py" />
     <entry file="file://$PROJECT_DIR$/Test_Pilot.py" />
     <entry file="file://$PROJECT_DIR$/Pickle_Helper.py" />
-    <entry file="file://$PROJECT_DIR$/src/Other/GraphGenerator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="73" column="33" lean-forward="true" selection-start-line="73" selection-start-column="33" selection-end-line="73" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/TSP_ARR.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1171,32 +1234,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/PopulationInitialization.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="48" column="46" lean-forward="true" selection-start-line="48" selection-start-column="46" selection-end-line="48" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#62#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-357">
-          <caret line="0" column="43" lean-forward="true" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EACore/EARunner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="50" column="83" lean-forward="false" selection-start-line="50" selection-start-column="83" selection-end-line="50" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/EACore/MethodClasses/RecombinationMethods.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-935">
@@ -1217,11 +1254,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/FileLoader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EACore/EARunner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="38" selection-end-column="68" />
+          <folding>
+            <marker date="1544241647505" expanded="true" signature="4892:5024" ph="CREATE TABLE... Generation_Data" />
+            <marker date="1544241647505" expanded="true" signature="5047:5251" ph="CREATE Table... Final_Data" />
+            <marker date="1544241647505" expanded="true" signature="6158:6208" ph="INSERT INTO Generation_Data... " />
+            <marker date="1544241647505" expanded="true" signature="8590:8653" ph="INSERT INTO Final_Data... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Setups/TSP/PopulationInitialization.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="30" column="23" lean-forward="false" selection-start-line="30" selection-start-column="23" selection-end-line="30" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Other/GraphGenerator.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="41" column="86" lean-forward="false" selection-start-line="41" selection-start-column="86" selection-end-line="41" selection-end-column="86" />
+          <folding>
+            <element signature="e#0#45#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/EACore/EAVarHelper.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="8" lean-forward="false" selection-start-line="24" selection-start-column="8" selection-end-line="24" selection-end-column="34" />
+        <state relative-caret-position="323">
+          <caret line="31" column="32" lean-forward="true" selection-start-line="31" selection-start-column="32" selection-end-line="31" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="492">
+          <caret line="77" column="67" lean-forward="false" selection-start-line="77" selection-start-column="67" selection-end-line="77" selection-end-column="67" />
+          <folding>
+            <element signature="e#0#62#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
