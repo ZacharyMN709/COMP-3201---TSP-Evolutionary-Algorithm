@@ -58,7 +58,7 @@ def iterate_all_method_combos():
 
 if __name__ == '__main__':
     FILENUM = 1
-    DATA_TYPE = 2
+    DATA_TYPE = 0
     THREAD_COUNT = 1
     RUNS = 1  # Number of times each combination is run.
     GENERATIONS = 100
@@ -83,4 +83,6 @@ if __name__ == '__main__':
       0:  None  1:  Annealing  2:  Entropy  3:  Oroborous  4:  Engineering
     '''
 
-    iterate_all_method_combos()
+    for x in range(3):
+        DATA_TYPE = x
+        iterate_all_method_combos()
