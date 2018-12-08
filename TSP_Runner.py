@@ -6,6 +6,8 @@ from src.Setups.TSP.FitnessEvaluator import FitnessHelperGenerator
 from src.Setups.TSP.Inputs.Optimums import get_best_path
 
 import multiprocessing as mp
+import sqlite3 as sql
+import datetime
 
 
 FILE_DICT = {0: '8-Queens',
@@ -37,8 +39,16 @@ def single_run_setup():
 
 def threading_set_up():
     ea = single_run_setup()
+    db_string = ""
+    for num in METHODS_TO_USE:
+        db_string += str(num)
+    db_string += "_" + datetime.datetime.now().strftime("%H-%M") + ".db"
+
+    db = sql.connect(db_string)
+
     processes = []      # The processes running the algorithm
     pipes = []          # The pipes used to receive stats from processes
+    pipes_to_remove = []
 
     if THREAD_COUNT > 1:
         # Start a process for each thread
@@ -50,10 +60,23 @@ def threading_set_up():
             pipes.append(parent_conn)
 
         # Poll for statistics
-        while True:
+        while len(pipes) > 0:
             for index in range(len(pipes)):
                 if pipes[index].poll():
-                    print(index, pipes[index].recv())
+                    result = pipes[index].recv()
+                    # End process if it has completed
+                    if result[0] == True:
+                        print("------------")
+                        print("Final Result", index, result)
+                        print("------------")
+                        pipes_to_remove.append(index)
+                    else:
+                        print(index, result)
+
+            for index in sorted(pipes_to_remove, reverse=True):
+                del pipes[index]
+
+            pipes_to_remove = []
     else:
         ea.run(GENERATIONS, BEST_PATH, TRUE_OPT, PRINT_GENS, None)
 
