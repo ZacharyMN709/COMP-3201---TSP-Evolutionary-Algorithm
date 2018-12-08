@@ -6,8 +6,8 @@ class PopulationManagementHelper(BaseHelper):
     def __init__(self, var_helper):
         name_method_pairs = [('None', self.static_return),
                              ('Annealing', self.metallurgic_annealing),
-                             ('Entropy', self.metallurgic_annealing),
-                             ('Oroborous', self.metallurgic_annealing),
+                             ('Entropy', self.entropic_stabilizing),
+                             ('Oroborous', self.ouroboric_culling),
                              ('Engineering', self.genetic_engineering)
                              ]
         super().__init__(var_helper, name_method_pairs)
