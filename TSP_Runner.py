@@ -1,12 +1,11 @@
 from src.Setups.TSP.FileLoader import LoadHelper
 from src.EACore.EAVarHelper import EAVarHelper
-from src.EACore.EARunner import EARunner, EAFactory
+from src.EACore.EARunner import EARunner
+from src.Setups.TSP.EAFactory import EAFactory
 from src.Setups.TSP.PopulationInitialization import PopulationInitializationGenerator
 from src.Setups.TSP.FitnessEvaluator import FitnessHelperGenerator
 from src.Setups.TSP.Inputs.Optimums import get_best_path
 
-import multiprocessing as mp
-import sqlite3 as sql
 from datetime import datetime
 import json
 
@@ -40,7 +39,7 @@ def single_run_setup():
     ea.set_params(METHODS_TO_USE[0], METHODS_TO_USE[1], METHODS_TO_USE[2], METHODS_TO_USE[3],
                   METHODS_TO_USE[4], METHODS_TO_USE[5], METHODS_TO_USE[6])
 
-    ea.run(db_name, GENERATIONS, BEST_PATH, TRUE_OPT, PRINT_GENS, True)
+    ea.run(db_name, GENERATIONS, BEST_PATH, TRUE_OPT, REPORT_RATE, True)
 
 
 def iterate_all_method_combos():

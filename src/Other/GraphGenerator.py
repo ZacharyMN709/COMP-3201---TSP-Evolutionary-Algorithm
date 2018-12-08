@@ -37,18 +37,19 @@ def pickle_to_df(identity_tuple, truncate):
 
 def gen_two_indivs(type1, type2):
     from src.Setups.TSP import FileLoader, PopulationInitialization
+    from src.EACore.EAVarHelper import EAVarHelper
 
     file_data = FileLoader.LoadHelper(FILENUM)
-    PopulationInitialization.PopulationInitializationGenerator(file_data.data, FILENUM)
-
+    gen = PopulationInitialization.PopulationInitializationGenerator(file_data.data, FILENUM)
+    helper = gen.make_pop_helper(EAVarHelper(file_data.genome_length, False) ,0)
 
     def indiv_helper(indiv_num):
         if indiv_num == 0:
-            return TSP_LST.single_random_individual(len(TSP_LST.LOCATIONS))
+            return helper.single_random_individual()
         if indiv_num == 1:
-            return TSP_LST.single_cluster_individual(len(TSP_LST.LOCATIONS))
+            return helper.single_cluster_individual()
         if indiv_num == 2:
-            return TSP_LST.single_euler_individual(len(TSP_LST.LOCATIONS))
+            return helper.single_euler_individual()
 
     indiv1, indiv2 = indiv_helper(type1), indiv_helper(type2)
     grapher.indiv_dual_plot((INIT_DICT[type1], indiv1), (INIT_DICT[type2], indiv2))

@@ -9,6 +9,9 @@ class ParentSelectionHelper(BaseHelper):
     any individuals directly.
     """
     def __init__(self, var_helper):
+        """
+        :param var_helper: A reference to an EAVarHelper instance.
+        """
         name_method_pairs = [('MPS', self.select_parents_using(self.mps)),
                              ('Tourney', self.select_parents_using(self.tournament)),
                              ('Random', self.select_parents_using(self.random_uniform))
@@ -32,6 +35,13 @@ class ParentSelectionHelper(BaseHelper):
         return shuffle_output
 
     def mps(self, fitness):
+        """
+        Implement the MPS algorithm as described in class.
+        (Selects individuals using a roulette wheel with evenly spaced pegs, where each individual takes up
+        a segment with size proportional to their fitness. For highly fit individuals, this can ensure selection.)
+        :param fitness: The list of fitnesses.
+        :return: A list of integers, which represents the parents to be picked.
+        """
         selected_to_mate = [None] * self.vars.mating_pool_size  # a list of indices of picked parents in population
         total_fitness = sum(fitness)
         increment = 1 / self.vars.mating_pool_size  # The pointer 'angle'
@@ -55,6 +65,12 @@ class ParentSelectionHelper(BaseHelper):
         return selected_to_mate
 
     def tournament(self, fitness):
+        """
+        Selects small batches of parents, and chooses the best from each batch.
+        :param fitness: The list of fitnesses.
+        :param tournament_size: The size of the tournament, set in EAVarHelper.
+        :return: A list of integers, which represents the parents to be picked.
+        """
         # Generate tuples of index-fitness pairs.
         fit_indexes = [(x, fitness[x]) for x in range(self.vars.population_size)]
 
@@ -63,6 +79,11 @@ class ParentSelectionHelper(BaseHelper):
                 range(self.vars.mating_pool_size)]
 
     def random_uniform(self, fitness):
+        """
+        Randomly choose individuals (without replacement) to mate.
+        :param fitness: The list of fitnesses. Kept for compatibility, but is not used.
+        :return: A list of integers, which represents the parents to be picked.
+        """
         # Return a number of parent indices selected at random.
         return sample([x for x in range(self.vars.population_size)], self.vars.mating_pool_size)
     # endregion
@@ -76,7 +97,7 @@ if __name__ == '__main__':
     eavars.population_size = 20
     eavars.tournament_size = 4
     eavars.mating_pool_size = 10
-    ps = ParentSelectionHelper(eavars, 0)
+    ps = ParentSelectionHelper(eavars)
 
     methods = [ps.random_uniform,
                ps.tournament,

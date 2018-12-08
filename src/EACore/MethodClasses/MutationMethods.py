@@ -5,10 +5,13 @@ from random import randint, random
 class MutatorHelper(BaseHelper):
     """
     The mutation methods which are presently implemented are all simple enough that using clever
-    indexing makes the functions fast d,ue to not requiring much memory reallocation, and more
+    indexing makes the functions fast due to not requiring much memory reallocation, and more
     importantly, makes the functions work for all supported data types.
     """
     def __init__(self, var_helper):
+        """
+        :param var_helper:  A reference to an EAVarHelper instance.
+        """
         name_method_pairs = [('Swap', self.apply_mutation_using(self.permutation_swap)),
                              ('Insert', self.apply_mutation_using(self.permutation_insert)),
                              ('Inversion', self.apply_mutation_using(self.permutation_inversion)),
@@ -25,13 +28,14 @@ class MutatorHelper(BaseHelper):
     def apply_mutation_using(self, func):
         def fitness_applicator(offspring):
             def randomize_method(individual):
-                # If apply the mutation X% of the time,
+                # Apply the mutation X% of the time,
                 if random() < self.vars.mutation_rate:
                     return func(individual)
-                # and the original if the mutation is not applied.
+                # and return the original if the mutation is not applied.
                 else:
                     return individual
 
+            # Apply the mutation to each individual, and get the new fitnesses.
             offspring = list(map(randomize_method, offspring))
             return offspring, list(map(self.vars.eval_fitness, offspring))
 
@@ -39,6 +43,7 @@ class MutatorHelper(BaseHelper):
         return fitness_applicator
 
     def gen_two_nums(self):
+        # Generate two random integers x and y
         x = randint(0, self.vars.genome_length - 1)
         y = randint(0, self.vars.genome_length - 1)
         return x, y
@@ -61,7 +66,6 @@ class MutatorHelper(BaseHelper):
         return x, y, w
 
     def permutation_swap(self, individual):
-        # DONE
         # Generate two random indices
         x, y = self.gen_two_nums()
 
@@ -71,7 +75,6 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_insert(self, individual):
-        # DONE
         # Generate two random indices
         x, y = self.gen_two_nums_ascending()
 
@@ -82,7 +85,6 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_inversion(self, individual):
-        # DONE
         # Generate two random indices in ascending order
         x, y = self.gen_two_nums_ascending()
 
@@ -97,7 +99,6 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_scramble(self, individual):
-        # TODO - Implement based on representation
         # Generate two random indices in ascending order
         x, y = self.gen_two_nums_ascending()
 
@@ -113,6 +114,7 @@ class MutatorHelper(BaseHelper):
         # Generate two random ranges
         x, y, w = self.gen_two_ranges()
 
+        # Then shift one range down, while moving the other range up.
         for i in range(y - x):
             individual[x + i], individual[w + i] = individual[w + i], individual[x + i]
 
@@ -124,7 +126,7 @@ if __name__ == '__main__':
     from src.EACore.EAVarHelper import EAVarHelper
     from time import time
 
-    mu = MutatorHelper(EAVarHelper(20, False), 0)
+    mu = MutatorHelper(EAVarHelper(20, False))
 
     methods = [mu.permutation_swap,
      mu.permutation_insert,

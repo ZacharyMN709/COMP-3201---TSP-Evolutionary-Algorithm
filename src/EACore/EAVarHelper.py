@@ -15,7 +15,18 @@ def lt(x, y):
 
 
 class EAVarHelper:
+    """
+    A helper class which manages the variables used for the EA. When loaded it sets all to the defaults contained in
+    the class. Also helps in dynamically setting whether the problem to be solved maximizes or minimizes. The setters
+    are fairly bare-bones, but can be expanded upon to ensure that particular ranges are guaranteed for each variable.
+    """
     def __init__(self, genome_length, maximize):
+        """
+        A class which holds all the variables for the EA. Each method helper should be passed the same instance
+        of this class by reference, so all variables are in sync. Also dynamically sets maximization or minimization.
+        :param genome_length: The length of the individual used in the EA.
+        :param maximize: True is the problem maximizes, False if it minimizes
+        """
         self.maximize = maximize
         self.best_of = max if maximize else min
         self.worst_of = min if maximize else max

@@ -1,10 +1,6 @@
 from time import perf_counter
 import sqlite3 as sql
 from src.Other.Helper_Strings import timed_funcs
-from src.Setups.TSP.FileLoader import LoadHelper
-from src.Setups.TSP.PopulationInitialization import PopulationInitializationGenerator
-from src.Setups.TSP.FitnessEvaluator import FitnessHelperGenerator
-from src.EACore.EAVarHelper import EAVarHelper
 from src.EACore.MethodClasses.ParentSelectionMethods import ParentSelectionHelper
 from src.EACore.MethodClasses.RecombinationMethods import RecombinationHelper
 from src.EACore.MethodClasses.MutationMethods import MutatorHelper
@@ -12,34 +8,11 @@ from src.EACore.MethodClasses.SurvivorSelectionMethods import SurvivorSelectionH
 from src.EACore.MethodClasses.PopulationManagementMethods import PopulationManagementHelper
 
 
-class EAFactory:
-    def __init__(self, filenum, maximize):
-        self.filenum = filenum
-        self.maximize = maximize
-        self.file_data = LoadHelper(filenum)
-        self.data = self.file_data.data
-        self.genome_length = self.file_data.genome_length
-        self.pop_generator = PopulationInitializationGenerator(self.data, filenum)
-        self.fit_generator = FitnessHelperGenerator(self.data.dists)
-
-    def make_ea_runner(self, data_type, params):
-        var_helper = EAVarHelper(self.genome_length, self.maximize)
-        fitness_helper = self.fit_generator.make_fit_helper(var_helper)
-        pop_init_helper = self.pop_generator.make_pop_helper(var_helper, data_type)
-        ea = EARunner(var_helper, data_type, fitness_helper, pop_init_helper)
-        ea.set_params(params[0], params[1], params[2], params[3], params[4], params[5], params[6])
-        return ea
-
-    def change_file(self, filenum):
-        self.filenum = filenum
-        self.file_data = LoadHelper(filenum)
-        self.data = self.file_data.data
-        self.genome_length = self.file_data.genome_length
-        self.pop_generator = PopulationInitializationGenerator(self.data, filenum)
-        self.fit_generator = FitnessHelperGenerator(self.data.dists)
-
-
 class EARunner:
+    """
+    The main body for the generalized EA. Uses the classes which act as containers for function pointer,
+    and automatically handle modifying variables by using a shared object which contains those variables.
+    """
     def __init__(self, var_helper, data_type, fitness_helper, population_initializer):
         self.vars = var_helper
         self.FEM = fitness_helper
@@ -60,9 +33,22 @@ class EARunner:
         self.manage_population = None
 
     def get_method_helpers(self):
+        """
+        :return: Returns references to all the helper classes this EARunner is using.
+        """
         return self.FEM, self.PIM, self.PSM, self.RM, self.MM, self.SSM, self.PMM
 
     def set_params(self, fit, pop, psm, rm, mm, ssm, pmm):
+        """
+        Given valid integers, sets the classes' function pointers to those of the appropriate method.
+        :param fit: An integer
+        :param pop: An integer
+        :param psm: An integer
+        :param rm: An integer
+        :param mm: An integer
+        :param ssm: An integer
+        :param pmm: An integer
+        """
         self.eval_fitness = self.FEM.get_func_from_index(fit)
         self.initialize = self.PIM.get_func_from_index(pop)
         self.parent_selection = self.PSM.get_func_from_index(psm)
@@ -72,6 +58,9 @@ class EARunner:
         self.manage_population = self.PMM.get_func_from_index(pmm)
 
     def is_runnable(self):
+        """
+        :return: True if every function pointer has been correctly assigned, false otherwise.
+        """
         return \
             self.eval_fitness is not None and \
             self.initialize is not None and \
@@ -82,6 +71,17 @@ class EARunner:
             self.manage_population is not None
 
     def run(self, generation_limit, known_optimum=None, true_opt=False, report_rate=0, print_stats=False, db_name=None):
+        """
+        The master switch for the EA function. When called, starts running the algorithm if set-ups complete.
+        :param generation_limit: The number of generations that should be run
+        :param known_optimum: Default: None. If given, is the value of the best optimum known.
+        :param true_opt: Default: False. If given True, signals that known_optimum is the true global optimum.
+        :param report_rate: Default: 0. The frequency with which to print run stats to screen.
+        :param print_stats: Default: False. Whether the program prints the final stats of the run.
+        :param db_name: Default: None. If given, the database to store run statistics in.
+        :return: The best fitness found, the list of individuals which represent the best solution, the terminal
+        generation, and a tuple containing the runtime for each of the portions of the EA.
+        """
         try:
             if not self.is_runnable:
                 print("Error! Missing information to run EA. Please check the code for errors.")

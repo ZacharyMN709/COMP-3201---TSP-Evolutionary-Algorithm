@@ -10,6 +10,11 @@ class RecombinationHelper(BaseHelper):
     However it presently supports both c arrays and python lists.
     """
     def __init__(self, var_helper, data_type):
+        """
+        :param var_helper: A reference to an EAVarHelper instance.
+        :param data_type: The integer representation for the data type the individuals use. Determines which function
+        pointers that can be returned.
+        """
         if data_type != 1:
             name_method_pairs = [('Order Crossover', self.recombine_parents_using(self.order_crossover)),
                                  ('PMX Crossover', self.recombine_parents_using(self.pmx_crossover))
@@ -32,7 +37,7 @@ class RecombinationHelper(BaseHelper):
             offspring = [None] * len(parents_index)
             # Pair off parents,
             for i in range(0, len(parents_index), 2):
-                # apply the mutation randomly,
+                # apply the crossover randomly,
                 if random() < self.vars.crossover_rate:
                     offspring[i], offspring[i + 1] = \
                         func(population[parents_index[i]], population[parents_index[i + 1]])
@@ -47,18 +52,23 @@ class RecombinationHelper(BaseHelper):
 
     def order_crossover(self, parent1, parent2):
         def crossoverhelper(parent, offspring):
+            # Set the start point if where to copy, and set the elements to skip
             start, exclude = self.vars.cp1, set(offspring[:self.vars.cp1])
+
+            # From the start point to the end of the list, add the non-duplicates
             for i in range(self.vars.cp1, self.vars.genome_length):
                 if parent[i] not in exclude:
                     offspring[start] = parent[i]
                     start += 1
 
+            # From the beginning of the list to the start point , add the non-duplicates
             for i in range(0, self.vars.cp1):
                 if parent[i] not in exclude:
                     offspring[start] = parent[i]
                     start += 1
             return offspring
 
+        # Copy the parents, so that modifying them does not cause problems elsewhere.
         offspring1, offspring2 = deepcopy(parent1), deepcopy(parent2)
         return crossoverhelper(parent2, offspring1), crossoverhelper(parent1, offspring2)
 
@@ -90,16 +100,19 @@ class RecombinationHelper(BaseHelper):
         return pmx_helper(parent1, parent2), pmx_helper(parent2, parent1)
 
     def numpy_order_crossover(self, parent1, parent2):
-        # TODO - Optimize
+        # TODO - Optimize, by reducing/removing concatenation
         # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
         def crossover_helper(parent, mate):
+            # Shift the individual's genome
             temp1 = np.roll(parent, self.vars.genome_length - self.vars.cp1)
+            # Make a mask of the elements to keep
             mask1 = np.isin(temp1, mate[:self.vars.cp1], invert=True)
+            # Then use that mask to take the start, and all the non-duplicates and append them together.
             return np.concatenate((mate[:self.vars.cp1], temp1[mask1]), axis=None)
         return crossover_helper(parent1, parent2), crossover_helper(parent2, parent1)
 
     def numpy_pmx_crossover(self, parent1, parent2):
-        # TODO - Optimize
+        # TODO - Optimize, by reducing/removing concatenation
         # Find the differing genetic material of crossover segments, to handle duplicates.
         diffs = set(parent1[self.vars.cp1:self.vars.cp2]) ^ set(parent2[self.vars.cp1:self.vars.cp2])
     
@@ -124,6 +137,7 @@ class RecombinationHelper(BaseHelper):
         return pmx_helper(parent1, parent2), pmx_helper(parent2, parent1)
 
     def edge_crossover(self, parent1, parent2):
+        # TODO - Fix. Currently giving indexing errors.
         # Make the edge list.
         edge_list = {key: set() for key in parent1}
         for x in range(-1, self.vars.genome_length - 1):
@@ -143,7 +157,6 @@ class RecombinationHelper(BaseHelper):
             # Randomly select the first element to insert
             x = randint(0, self.vars.genome_length - 1)
 
-            # TODO - Fix
             for i in range(0, self.vars.genome_length - 1):
                 # Set the element in the list, and increment
                 offspring[i] = x
