@@ -52,8 +52,9 @@ def iterate_all_method_combos():
         for m in range(4):
          for n in range(2):
           for o in range(5):
+           db_name = str(i)+str(j)+str(k)+str(l)+str(m)+str(n)+str(o)
            ea = factory.make_ea_runner(DATA_TYPE, (i, j, k, l, m, n, o))
-           ea.run(GENERATIONS)
+           ea.run(GENERATIONS, print_stats=True, report_rate=PRINT_GENS)
 
 
 if __name__ == '__main__':

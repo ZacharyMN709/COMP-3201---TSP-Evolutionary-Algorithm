@@ -81,7 +81,7 @@ class EARunner:
             self.select_survivors is not None and \
             self.manage_population is not None
 
-    def run(self, db_name, generation_limit, known_optimum=None, true_opt=False, report_rate=0, print_stats=False):
+    def run(self, generation_limit, known_optimum=None, true_opt=False, report_rate=0, print_stats=False, db_name=None):
         if not self.is_runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             print('self.eval_fitness is not None: {}'.format(self.eval_fitness is not None))
@@ -94,9 +94,10 @@ class EARunner:
             return
 
         # Open Database to store stats
-        db = sql.connect(db_name)
-        db.execute("CREATE TABLE Generation_Data (generation integer, best_fitness real, avg_fitness real, best_individual text, copies_of_best integer)")
-        db.execute("CREATE Table Final_Data (best_fitness real, avg_fitness real, best_individual text, copies_of_best integer, PITime real, PSMTime real, RMTime real, MMTime real, SSMTime real, PMMTime real, TotalTime real)")
+        if db_name:
+            db = sql.connect(db_name)
+            db.execute("CREATE TABLE Generation_Data (generation integer, best_fitness real, avg_fitness real, best_individual text, copies_of_best integer)")
+            db.execute("CREATE Table Final_Data (best_fitness real, avg_fitness real, best_individual text, copies_of_best integer, PITime real, PSMTime real, RMTime real, MMTime real, SSMTime real, PMMTime real, TotalTime real)")
 
         self.vars.set_eval_fitness(self.eval_fitness)
 
@@ -119,8 +120,10 @@ class EARunner:
                 best_individual = str(population[fitness.index(best_fitness)])
                 copies_of_best = fitness.count(best_fitness)
                 stats = [generation, best_fitness, avg_fitness, best_individual, copies_of_best]
-                db.execute("INSERT INTO Generation_Data VALUES (?, ?, ?, ?, ?)", stats)
-                db.commit()
+
+                if db_name:
+                    db.execute("INSERT INTO Generation_Data VALUES (?, ?, ?, ?, ?)", stats)
+                    db.commit()
 
                 if print_stats:
                     print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}\n  Copies of Best: {}".format(
@@ -165,10 +168,11 @@ class EARunner:
         best_individual = population[fitness.index(best_fitness)]
         copies_of_best = fitness.count(best_fitness)
 
-        final_stats = [best_fitness, avg_fitness, str(best_individual), copies_of_best, PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, master_time]
-        db.execute("INSERT INTO Final_Data VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", final_stats)
-        db.commit()
-        db.close()
+        if db_name:
+            final_stats = [best_fitness, avg_fitness, str(best_individual), copies_of_best, PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, master_time]
+            db.execute("INSERT INTO Final_Data VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", final_stats)
+            db.commit()
+            db.close()
 
         if print_stats:
             print("Best solution fitness:", best_fitness)
