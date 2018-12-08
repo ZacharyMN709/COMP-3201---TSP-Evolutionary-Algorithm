@@ -51,6 +51,13 @@ class RecombinationHelper(BaseHelper):
         return pair_parents
 
     def order_crossover(self, parent1, parent2):
+        """
+        Takes the first part of a genomic sequence, and then appends all the missing elements in the order they're
+        found in the other parent.
+        :param parent1: An individual from the population list
+        :param parent2: An individual from the population list
+        :return: Two new offspring
+        """
         def crossoverhelper(parent, offspring):
             # Set the start point if where to copy, and set the elements to skip
             start, exclude = self.vars.cp1, set(offspring[:self.vars.cp1])
@@ -73,6 +80,13 @@ class RecombinationHelper(BaseHelper):
         return crossoverhelper(parent2, offspring1), crossoverhelper(parent1, offspring2)
 
     def pmx_crossover(self, parent1, parent2):
+        """
+        A function which implements 'Partially Mapped Crossover'. Please see in-line comments for
+        further explanation of how it works.
+        :param parent1: An individual from the population list
+        :param parent2: An individual from the population list
+        :return: Two new offspring
+        """
         # Find the differing genetic material of crossover segments, to handle duplicates.
         diffs = set(parent1[self.vars.cp1:self.vars.cp2]) ^ set(parent2[self.vars.cp1:self.vars.cp2])
 
@@ -100,6 +114,13 @@ class RecombinationHelper(BaseHelper):
         return pmx_helper(parent1, parent2), pmx_helper(parent2, parent1)
 
     def numpy_order_crossover(self, parent1, parent2):
+        """
+        Takes the first part of a genomic sequence, and then appends all the missing elements in the order they're
+        found in the other parent.
+        :param parent1: An individual from the population list
+        :param parent2: An individual from the population list
+        :return: Two new offspring
+        """
         # TODO - Optimize, by reducing/removing concatenation
         # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
         def crossover_helper(parent, mate):
@@ -112,6 +133,13 @@ class RecombinationHelper(BaseHelper):
         return crossover_helper(parent1, parent2), crossover_helper(parent2, parent1)
 
     def numpy_pmx_crossover(self, parent1, parent2):
+        """
+        A function which implements 'Partially Mapped Crossover'. Please see in-line comments for
+        further explanation of how it works.
+        :param parent1: An individual from the population list
+        :param parent2: An individual from the population list
+        :return: Two new offspring
+        """
         # TODO - Optimize, by reducing/removing concatenation
         # Find the differing genetic material of crossover segments, to handle duplicates.
         diffs = set(parent1[self.vars.cp1:self.vars.cp2]) ^ set(parent2[self.vars.cp1:self.vars.cp2])

@@ -1,3 +1,7 @@
+"""
+A module which plots data from pickled 'StatsHolder's. Future implementations will move away from this.
+This is not meant for public use, and will be removed in the future.
+"""
 from src.Other.StatsHolder import StatsHolder
 from src.Setups.TSP.TSP_Display import GraphingHelper
 import pandas as pd

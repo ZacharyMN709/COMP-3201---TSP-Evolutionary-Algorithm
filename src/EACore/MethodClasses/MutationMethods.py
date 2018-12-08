@@ -66,6 +66,11 @@ class MutatorHelper(BaseHelper):
         return x, y, w
 
     def permutation_swap(self, individual):
+        """
+        Swap the position of two genes.
+        :param individual: An individual from the population list
+        :return: The mutated individual.
+        """
         # Generate two random indices
         x, y = self.gen_two_nums()
 
@@ -75,6 +80,11 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_insert(self, individual):
+        """
+        Move a gene into another location.
+        :param individual: An individual from the population list
+        :return: The mutated individual.
+        """
         # Generate two random indices
         x, y = self.gen_two_nums_ascending()
 
@@ -85,6 +95,11 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_inversion(self, individual):
+        """
+        Invert a sequence of genes.
+        :param individual: An individual from the population list
+        :return: The mutated individual.
+        """
         # Generate two random indices in ascending order
         x, y = self.gen_two_nums_ascending()
 
@@ -99,6 +114,11 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_scramble(self, individual):
+        """
+        Randomly rearrange a sequence of genes.
+        :param individual: An individual from the population list
+        :return: The mutated individual.
+        """
         # Generate two random indices in ascending order
         x, y = self.gen_two_nums_ascending()
 
@@ -111,6 +131,11 @@ class MutatorHelper(BaseHelper):
         return individual
 
     def permutation_shift(self, individual):
+        """
+        Shift a sequence of genes down, moving the rest of the genes up.
+        :param individual: An individual from the population list
+        :return: The mutated individual.
+        """
         # Generate two random ranges
         x, y, w = self.gen_two_ranges()
 

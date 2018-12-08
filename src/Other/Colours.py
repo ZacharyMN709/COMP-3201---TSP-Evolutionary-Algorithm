@@ -1,3 +1,7 @@
+"""
+A module which contains references to a variety of colours.
+"""
+
 '''   Google Colour Palette   '''
 
 '''   RED   '''

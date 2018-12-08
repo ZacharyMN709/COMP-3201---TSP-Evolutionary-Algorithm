@@ -1,3 +1,7 @@
+"""
+Strings which can be referenced in other modules to help format output.
+"""
+
 timed_funcs = "\
 PITime = {:4.2f},  \
 PSMTime = {:4.2f},  \

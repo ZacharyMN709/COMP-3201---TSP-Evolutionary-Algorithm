@@ -2,14 +2,31 @@ from src.Other.Helper_Strings import funcs_used, final_output
 
 
 class MergeError(Exception):
+    """
+    A specific error thrown by the StatsHolder when two datasets are incompatible.
+    """
     def __init__(self, message):
         super().__init__(message)
 
 
 class StatsHolder:
+    """
+
+    """
     def __init__(self, POPULATION_METHOD, PARENT_METHOD, SURVIVOR_METHOD, MUTATION_METHOD,
                  RECOMBINATION_METHOD, MANAGEMENT_METHOD, RUNS, best_of, optimum=None):
+        """
 
+        :param POPULATION_METHOD:
+        :param PARENT_METHOD:
+        :param SURVIVOR_METHOD:
+        :param MUTATION_METHOD:
+        :param RECOMBINATION_METHOD:
+        :param MANAGEMENT_METHOD:
+        :param RUNS:
+        :param best_of:
+        :param optimum:
+        """
         self.POPULATION_METHOD = POPULATION_METHOD
         self.PARENT_METHOD = PARENT_METHOD
         self.SURVIVOR_METHOD = SURVIVOR_METHOD
@@ -143,4 +160,3 @@ if __name__ == '__main__':
     p = [('21021{} G10000.txt'.format(x), 1, 0) for x in range(5)]
     s = StatsHolder.stat_obj_from_pickle(p[0])
     s.average_generation_fitness()
-    pass

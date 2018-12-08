@@ -1,3 +1,9 @@
+"""
+A module which helps package objects and save them for future use.
+At present statistics are handled this way, but it is sub-optimal.
+This modules is also used to save the MST, and memoized city distances.
+"""
+
 import os
 import pickle
 import time
