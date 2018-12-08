@@ -33,9 +33,9 @@ DATA_TYPE_DICT = {0: 'Lists',
 def single_run_setup():
     FILENUM = 1
     DATA_TYPE = 0
-    THREAD_COUNT = 1
+    THREAD_COUNT = 8
     RUNS = 1  # Number of times each combination is run.
-    GENERATIONS = 50000
+    GENERATIONS = 800
     PRINT_GENS = 100
     SAVE = True
     BEST_PATH, _, TRUE_OPT = get_best_path(FILENUM)
@@ -69,8 +69,10 @@ def single_run_setup():
     ea.set_params(METHODS_TO_USE[0], METHODS_TO_USE[1], METHODS_TO_USE[2], METHODS_TO_USE[3],
                   METHODS_TO_USE[4], METHODS_TO_USE[5], METHODS_TO_USE[6])
 
+
     processes = []      # The processes running the algorithm
     pipes = []          # The pipes used to receive stats from processes
+    pipes_to_remove = []
 
     if THREAD_COUNT > 1:
         # Start a process for each thread
@@ -82,10 +84,23 @@ def single_run_setup():
             pipes.append(parent_conn)
 
         # Poll for statistics
-        while True:
+        while len(pipes) > 0:
             for index in range(len(pipes)):
                 if pipes[index].poll():
-                    print(index, pipes[index].recv())
+                    result = pipes[index].recv()
+                    # End process if it has completed
+                    if result[0] == True:
+                        print("------------")
+                        print("Final Result", index, result)
+                        print("------------")
+                        pipes_to_remove.append(index)
+                    else:
+                        print(index, result)
+
+            for index in sorted(pipes_to_remove, reverse=True):
+                del pipes[index]
+
+            pipes_to_remove = []
     else:
         ea.run(GENERATIONS, None, BEST_PATH, TRUE_OPT, PRINT_GENS)
 
