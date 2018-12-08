@@ -37,19 +37,23 @@ def pickle_to_df(identity_tuple, truncate):
 
 def gen_two_indivs(type1, type2):
     from src.Setups.TSP import TSP_LST
-
     TSP_LST.read_tsp_file(FILENUM)
+    TSP_LST.set_fitness_function(TSP_LST.euclidean_distance)
+    genome_length = len(TSP_LST.LOCATIONS)
+
 
     def indiv_helper(indiv_num):
         if indiv_num == 0:
-            return TSP_LST.single_random_individual(len(TSP_LST.LOCATIONS))
+            return TSP_LST.single_random_individual(genome_length)
         if indiv_num == 1:
-            return TSP_LST.single_cluster_individual(len(TSP_LST.LOCATIONS))
+            return TSP_LST.heuristic_cluster_initialization(1, genome_length)[0][0]
         if indiv_num == 2:
-            return TSP_LST.single_euler_individual(len(TSP_LST.LOCATIONS))
+            return TSP_LST.heuristic_euler_initialization(1, genome_length)[0][0]
 
     indiv1, indiv2 = indiv_helper(type1), indiv_helper(type2)
     grapher.indiv_dual_plot((INIT_DICT[type1], indiv1), (INIT_DICT[type2], indiv2))
+    savefig('{} Initialization - {} vs {}.png'.format(FILE_DICT[FILENUM], INIT_DICT[type1], INIT_DICT[type2]), bbox_inches='tight')
+    plt.show()
 
 
 def gen_pickle_plots():
@@ -81,9 +85,12 @@ if __name__ == '__main__':
                  1: 'Cluster',
                  2: 'Christofides'}
 
-    FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
+    FILENUM = 3  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
     POP_SIZE = 1000
 
     grapher = GraphingHelper(FILENUM)
-    gen_two_indivs(0, 1)
+    for y in range(3):
+        for z in range(3):
+            if y <= z: continue
+            gen_two_indivs(y, z)

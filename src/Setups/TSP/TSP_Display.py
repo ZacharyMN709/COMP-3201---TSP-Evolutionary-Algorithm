@@ -115,24 +115,25 @@ class GraphingHelper:
         fig, axes = plt.subplots(ncols=2, nrows=1, figsize=self.single_plot_size)
         plt.subplots_adjust(wspace=0.2, hspace=0.2)
 
-        def alt_generation_display(init_tuple, ax):
+        def plot_df(init_tuple, ax):
             init_method, individual = init_tuple
             title = 'Using {} Method'
             x = self.cities[self.long_names[1]]
             y = self.cities[self.long_names[0]]
 
             tour_len = len(self.cities)
+            print(individual)
             for i in range(tour_len):
                 c1 = individual[i - 1]
                 c2 = individual[i]
                 hue = (0.8 * i / tour_len) + 0.1
-                plt.plot([x[c1], x[c2]], [y[c1], y[c2]], ax=axes[ax, 0], color=[1, hue, 0], marker='o')
-            plt.title(title.format(init_method))
+                axes[ax].plot([x[c1], x[c2]], [y[c1], y[c2]], color=[1, hue, 0], marker='o')
+            axes[ax].set_title(title.format(init_method))
 
         with pd.plotting.plot_params.use('x_compat', True):
-            alt_generation_display(indiv_1, 0)
+            plot_df(indiv_1, 0)
         with pd.plotting.plot_params.use('x_compat', True):
-            alt_generation_display(indiv_2, 1)
+            plot_df(indiv_2, 1)
     # endregion
 
 
