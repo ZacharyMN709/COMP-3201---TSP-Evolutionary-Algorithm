@@ -16,6 +16,8 @@ import src.Setups.TSP.PopulationInitialization
 import src.Setups.TSP.FitnessEvaluator
 
 import multiprocessing as mp
+import sqlite3 as sql
+import datetime
 
 go_to_project_root()
 
@@ -68,6 +70,13 @@ def single_run_setup():
     ea = EARunner(var_helper, DATA_TYPE, fitness_helper, pop_init_helper)
     ea.set_params(METHODS_TO_USE[0], METHODS_TO_USE[1], METHODS_TO_USE[2], METHODS_TO_USE[3],
                   METHODS_TO_USE[4], METHODS_TO_USE[5], METHODS_TO_USE[6])
+
+    db_string = ""
+    for num in METHODS_TO_USE:
+        db_string += str(num)
+    db_string += "_" + datetime.datetime.now().strftime("%H-%M") + ".db"
+
+    db = sql.connect(db_string)
 
     processes = []      # The processes running the algorithm
     pipes = []          # The pipes used to receive stats from processes

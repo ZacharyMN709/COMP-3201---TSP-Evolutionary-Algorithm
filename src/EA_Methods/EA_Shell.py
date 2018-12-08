@@ -80,7 +80,7 @@ class EARunner:
             self.select_survivors is not None and \
             self.manage_population is not None
 
-    def run(self, generation_limit, pipe, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
+    def run(self, generation_limit, pipe, known_optimum=None, true_opt=False, report_rate=0, print_final=True):
         if not self.is_runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             print('self.eval_fitness is not None: {}'.format(self.eval_fitness is not None))
@@ -109,9 +109,9 @@ class EARunner:
         for generation in range(1, generation_limit + 1):
 
             # Generation Info
-            if print_gens != 0 and generation % print_gens == 0:
+            if report_rate != 0 and generation % report_rate == 0:
                 if pipe:
-                    pipe.send([generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
+                    pipe.send([False, generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
                 else:
                     print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
                         generation, self.vars.best_of(fitness), sum(fitness) / ea_vars.population_size)
@@ -154,7 +154,9 @@ class EARunner:
         total_time = sum([PSMTime, RMTime, MMTime, SSMTime, PMMTime])
         time_tuple = (PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time)
 
-        if print_final:
+        if pipe:
+            pipe.send([True, generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
+        elif print_final:
             print("Best solution fitness:", op_fit)
             if true_opt: print(
                 "Best solution {:4.2f}% larger than true optimum.".format(100 * ((op_fit / known_optimum) - 1)))
