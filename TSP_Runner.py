@@ -8,6 +8,7 @@ from src.Setups.TSP.Inputs.Optimums import get_best_path
 import multiprocessing as mp
 import sqlite3 as sql
 from datetime import datetime
+import json
 
 
 FILE_DICT = {0: '8-Queens',
@@ -44,29 +45,38 @@ def single_run_setup():
 
 def iterate_all_method_combos():
     factory = EAFactory(FILENUM, False)
+    for x in range(3):
+     for i in range(1):
+      for j in range(3):
+       for k in range(3):
+        for l in range(2):
+         for m in range(4):
+          for n in range(2):
+           for o in range(5):
+            if USE_DB:
+                db_name = str(x)+str(i)+str(j)+str(k)+str(l)+str(m)+str(n)+str(o)
+            else:
+                db_name = None
 
-    for i in range(1):
-     for j in range(3):
-      for k in range(3):
-       for l in range(2):
-        for m in range(4):
-         for n in range(2):
-          for o in range(5):
-           db_name = str(i)+str(j)+str(k)+str(l)+str(m)+str(n)+str(o)
-           ea = factory.make_ea_runner(DATA_TYPE, (i, j, k, l, m, n, o))
-           ea.run(GENERATIONS, print_stats=True, report_rate=PRINT_GENS)
+            ea = factory.make_ea_runner(DATA_TYPE, (i, j, k, l, m, n, o))
+            ea.run(GENERATIONS, db_name=db_name, print_stats=PRINT_STATS, report_rate=REPORT_RATE)
 
 
 if __name__ == '__main__':
-    FILENUM = 1
-    DATA_TYPE = 0
-    THREAD_COUNT = 1
-    RUNS = 1  # Number of times each combination is run.
-    GENERATIONS = 100
-    PRINT_GENS = 100
-    SAVE = False
+    with open("config.json", "r") as file:
+        config = json.loads(file.read())
+
+    DB_NAME = config["db_name"]
+    TEST_ALL = config["test_all"]
+    FILENUM = config["data_set"]
+    DATA_TYPE = config["data_type"]
+    RUNS = config["runs"]  # Number of times each combination is run.
+    GENERATIONS = config["generation_limit"]
+    REPORT_RATE = config["report_rate"]
     BEST_PATH, _, TRUE_OPT = get_best_path(FILENUM)
-    METHODS_TO_USE = (0, 0, 2, 1, 2, 0, 3)
+    METHODS_TO_USE = config["methods"]
+    PRINT_STATS = config["print_stats"]
+    USE_DB = config["use_db"]
     '''
     Methods available in FitnessHelper:
       0:  Euclidean
@@ -84,6 +94,11 @@ if __name__ == '__main__':
       0:  None  1:  Annealing  2:  Entropy  3:  Oroborous  4:  Engineering
     '''
 
-    for x in range(3):
-        DATA_TYPE = x
+    if TEST_ALL:
         iterate_all_method_combos()
+    else:
+        factory = EAFactory(FILENUM, False)
+        ea = factory.make_ea_runner(DATA_TYPE, METHODS_TO_USE)
+        if not USE_DB:
+            DB_NAME = None
+        ea.run(GENERATIONS, db_name=DB_NAME, print_stats=PRINT_STATS, report_rate=REPORT_RATE)
