@@ -2,33 +2,65 @@ from src.StatsHolder import StatsHolder
 from src.Setups.TSP.TSP_Display import GraphingHelper
 import pandas as pd
 
+
 # Set-up easy grabbing of previously compiled stats.
 def pickle_to_df(identity_tuple, truncate):
-    def resolve_unpickle_tuples(method_name, country, implementation):
+    def resolve_unpickle_tuples(method_name, country, implementation, population):
         # (File_name, country, method)
         if method_name == 'Population':
-            return [('{}10214 G10000.txt'.format(x), country, implementation) for x in range(3)]
+            return [('{}10214 G{}.txt'.format(x, population), country, implementation) for x in range(3)]
         if method_name == 'Mutation':
-            return [('210{}14 G10000.txt'.format(x), country, implementation) for x in range(4)]
+            return [('210{}14 G{}.txt'.format(x, population), country, implementation) for x in range(4)]
         if method_name == 'Management':
-            return [('21021{} G10000.txt'.format(x), country, implementation) for x in range(5)]
+            return [('21021{} G{}.txt'.format(x, population), country, implementation) for x in range(5)]
 
-    method_name, country, implementation = identity_tuple
-    to_unpickle = resolve_unpickle_tuples(method_name, country, implementation)
-    stat_objs = [StatsHolder.stat_obj_from_pickle(x) for x in to_unpickle]
-    summaries = [s.average_generation_fitness() for s in stat_objs]
-    optimums = [s.best_generation_fitness() for s in stat_objs]
-    x_axis = {'x': [x for x in range(len(summaries[0]))][truncate:-1]}
-    if method_name == 'Population':
-        summaries = {stat_objs[y].POPULATION_METHOD : summaries[y][truncate:-1] for y in range(len(summaries))}
-        optimums = {stat_objs[y].POPULATION_METHOD : optimums[y][truncate:-1] for y in range(len(optimums))}
-    if method_name == 'Mutation':
-        summaries = {stat_objs[y].MUTATION_METHOD : summaries[y][truncate:-1] for y in range(len(summaries))}
-        optimums = {stat_objs[y].MUTATION_METHOD : optimums[y][truncate:-1] for y in range(len(optimums))}
-    if method_name == 'Management':
-        summaries = {stat_objs[y].MANAGEMENT_METHOD : summaries[y][truncate:-1] for y in range(len(summaries))}
-        optimums = {stat_objs[y].MANAGEMENT_METHOD : optimums[y][truncate:-1] for y in range(len(optimums))}
-    return pd.DataFrame({**x_axis, **summaries}), pd.DataFrame({**x_axis, **optimums})
+    method_name, country, implementation, pop = identity_tuple
+    to_unpickle = resolve_unpickle_tuples(method_name, country, implementation, pop)
+    summaries = {}
+    optimums = {}
+    for x in to_unpickle:
+        stat_obj = StatsHolder.stat_obj_from_pickle(x)
+        sum_list = stat_obj.average_generation_fitness()[truncate:-1]
+        opt_list = stat_obj.best_generation_fitness()[truncate:-1]
+        if method_name == 'Population':
+            summaries[stat_obj.POPULATION_METHOD] = sum_list
+            optimums[stat_obj.POPULATION_METHOD] = opt_list
+        if method_name == 'Mutation':
+            summaries[stat_obj.MUTATION_METHOD] = sum_list
+            optimums[stat_obj.MUTATION_METHOD] = opt_list
+        if method_name == 'Management':
+            summaries[stat_obj.MANAGEMENT_METHOD] = sum_list
+            optimums[stat_obj.MANAGEMENT_METHOD] = opt_list
+
+    return pd.DataFrame(summaries), pd.DataFrame(optimums)
+
+
+def gen_two_indivs(type1, type2):
+    from src.Setups.TSP import TSP_LST
+
+    TSP_LST.read_tsp_file(FILENUM)
+
+    def indiv_helper(indiv_num):
+        if indiv_num == 0:
+            return TSP_LST.single_random_individual(len(TSP_LST.LOCATIONS))
+        if indiv_num == 1:
+            return TSP_LST.single_cluster_individual(len(TSP_LST.LOCATIONS))
+        if indiv_num == 2:
+            return TSP_LST.single_euler_individual(len(TSP_LST.LOCATIONS))
+
+    indiv1, indiv2 = indiv_helper(type1), indiv_helper(type2)
+    grapher.indiv_dual_plot((INIT_DICT[type1], indiv1), (INIT_DICT[type2], indiv2))
+
+
+def gen_pickle_plots():
+    tests = ['Management', 'Mutation', 'Population']
+
+    for x in tests:
+        id_tuple = (x, FILENUM, METHOD, POP_SIZE)
+        avgs, opts = pickle_to_df(id_tuple, 0)
+        grapher.quad_plot(avgs, opts)
+        savefig('{} - {} - {} Tests.png'.format(FILE_DICT[FILENUM], METHOD_DICT[METHOD], x), bbox_inches='tight')
+        plt.show()
 
 
 if __name__ == '__main__':
@@ -45,15 +77,13 @@ if __name__ == '__main__':
                    1: 'Numpy',
                    2: 'Arrays'}
 
+    INIT_DICT = {0: 'Random',
+                 1: 'Cluster',
+                 2: 'Christofides'}
+
     FILENUM = 1  # 0: 8-Queens   1: Sahara   2: Uruguay   3: Canada   4: Test World
     METHOD = 0  # 0: Lists   1: Numpy Arrays   2: C Arrays
+    POP_SIZE = 1000
 
-    grapher = GraphingHelper(FILENUM)  ## initialize the grapher with the Uruguay data.
-    tests = ['Management', 'Mutation', 'Population']
-
-    for x in tests:
-        id_tuple = (x, FILENUM, METHOD)
-        avgs, opts = pickle_to_df(id_tuple, 0)
-        grapher.quad_plot(avgs, opts)
-        savefig('{} - {} - {} Tests.png'.format(FILE_DICT[FILENUM], METHOD_DICT[METHOD], x), bbox_inches='tight')
-        plt.show()
+    grapher = GraphingHelper(FILENUM)
+    gen_two_indivs(0, 1)
