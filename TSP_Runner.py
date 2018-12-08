@@ -71,16 +71,6 @@ def single_run_setup():
     ea.set_params(METHODS_TO_USE[0], METHODS_TO_USE[1], METHODS_TO_USE[2], METHODS_TO_USE[3],
                   METHODS_TO_USE[4], METHODS_TO_USE[5], METHODS_TO_USE[6])
 
-<<<<<<< HEAD
-    db_string = ""
-    for num in METHODS_TO_USE:
-        db_string += str(num)
-    db_string += "_" + datetime.datetime.now().strftime("%H-%M") + ".db"
-
-    db = sql.connect(db_string)
-=======
->>>>>>> f7825236bb874e61921696f11f2ea07eb7d22cfb
-
     processes = []      # The processes running the algorithm
     pipes = []          # The pipes used to receive stats from processes
     pipes_to_remove = []
