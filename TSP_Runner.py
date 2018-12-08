@@ -7,7 +7,7 @@ from src.Setups.TSP.Inputs.Optimums import get_best_path
 
 import multiprocessing as mp
 import sqlite3 as sql
-import datetime
+from datetime import datetime
 
 
 FILE_DICT = {0: '8-Queens',
@@ -29,56 +29,17 @@ def single_run_setup():
     fitness_helper = fitness_helper_generator.make_fit_helper(var_helper)
     pop_init_helper = pop_init_generator.make_pop_helper(var_helper, DATA_TYPE)
 
+    db_name = "test_"
+    for num in METHODS_TO_USE:
+        db_name += str(num)
+    db_name += datetime.now().strftime("_%H_%M_%S")
+
     # Create a runner instance for the algorithm
     ea = EARunner(var_helper, DATA_TYPE, fitness_helper, pop_init_helper)
     ea.set_params(METHODS_TO_USE[0], METHODS_TO_USE[1], METHODS_TO_USE[2], METHODS_TO_USE[3],
                   METHODS_TO_USE[4], METHODS_TO_USE[5], METHODS_TO_USE[6])
 
-    return ea
-
-
-def threading_set_up():
-    ea = single_run_setup()
-    db_string = ""
-    for num in METHODS_TO_USE:
-        db_string += str(num)
-    db_string += "_" + datetime.datetime.now().strftime("%H-%M") + ".db"
-
-    db = sql.connect(db_string)
-
-    processes = []      # The processes running the algorithm
-    pipes = []          # The pipes used to receive stats from processes
-    pipes_to_remove = []
-
-    if THREAD_COUNT > 1:
-        # Start a process for each thread
-        for thread in range(THREAD_COUNT):
-            parent_conn, child_conn = mp.Pipe()
-            process = mp.Process(target=ea.run, args=(GENERATIONS, child_conn, BEST_PATH, TRUE_OPT, PRINT_GENS))
-            process.start()
-            processes.append(process)
-            pipes.append(parent_conn)
-
-        # Poll for statistics
-        while len(pipes) > 0:
-            for index in range(len(pipes)):
-                if pipes[index].poll():
-                    result = pipes[index].recv()
-                    # End process if it has completed
-                    if result[0] == True:
-                        print("------------")
-                        print("Final Result", index, result)
-                        print("------------")
-                        pipes_to_remove.append(index)
-                    else:
-                        print(index, result)
-
-            for index in sorted(pipes_to_remove, reverse=True):
-                del pipes[index]
-
-            pipes_to_remove = []
-    else:
-        ea.run(GENERATIONS, BEST_PATH, TRUE_OPT, PRINT_GENS, None)
+    ea.run(db_name, GENERATIONS, BEST_PATH, TRUE_OPT, PRINT_GENS, True)
 
 
 def iterate_all_method_combos():
