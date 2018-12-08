@@ -1,5 +1,5 @@
-from src.EA_Methods.HelperTemplate import BaseHelper
-from random import randint, random, shuffle
+from src.EACore.MethodClasses.HelperTemplate import BaseHelper
+from random import randint, random
 
 
 class MutatorHelper(BaseHelper):
@@ -121,7 +121,7 @@ class MutatorHelper(BaseHelper):
 
 
 if __name__ == '__main__':
-    from src.EA_Methods.EAVarHelper import EAVarHelper
+    from src.EACore.EAVarHelper import EAVarHelper
     from time import time
 
     mu = MutatorHelper(EAVarHelper(20, False), 0)

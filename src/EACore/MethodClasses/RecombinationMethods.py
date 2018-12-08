@@ -1,4 +1,5 @@
-from src.EA_Methods.HelperTemplate import BaseHelper
+import numpy as np
+from src.EACore.MethodClasses.HelperTemplate import BaseHelper
 from random import random, randint
 from copy import deepcopy
 
@@ -9,9 +10,14 @@ class RecombinationHelper(BaseHelper):
     However it presently supports both c arrays and python lists.
     """
     def __init__(self, var_helper, data_type):
-        name_method_pairs = [('Order Crossover', self.recombine_parents_using(self.order_crossover)),
-                             ('PMX Crossover', self.recombine_parents_using(self.pmx_crossover))
-                             ]
+        if data_type != 1:
+            name_method_pairs = [('Order Crossover', self.recombine_parents_using(self.order_crossover)),
+                                 ('PMX Crossover', self.recombine_parents_using(self.pmx_crossover))
+                                 ]
+        else:
+            name_method_pairs = [('Order Crossover', self.recombine_parents_using(self.numpy_order_crossover)),
+                                 ('PMX Crossover', self.recombine_parents_using(self.numpy_pmx_crossover))
+                                 ]
         super().__init__(var_helper, name_method_pairs)
 
     def __str__(self):
@@ -33,7 +39,7 @@ class RecombinationHelper(BaseHelper):
                 # or add copies of the originals, if no mutation happens.
                 else:
                     offspring[i], offspring[i + 1] = \
-                        population[parents_index[i]].copy(), population[parents_index[i + 1]].copy()
+                        deepcopy(population[parents_index[i]]), deepcopy(population[parents_index[i + 1]])
             return offspring
 
         pair_parents.__name__ = func.__name__
@@ -53,7 +59,7 @@ class RecombinationHelper(BaseHelper):
                     start += 1
             return offspring
 
-        offspring1, offspring2 = parent1.copy(), parent2.copy()
+        offspring1, offspring2 = deepcopy(parent1), deepcopy(parent2)
         return crossoverhelper(parent2, offspring1), crossoverhelper(parent1, offspring2)
 
     def pmx_crossover(self, parent1, parent2):
@@ -62,7 +68,7 @@ class RecombinationHelper(BaseHelper):
 
         def pmx_helper(parent, mate):
             # Generate simple offspring template, which contains some duplicates, to be modified.
-            offspring = mate.copy()
+            offspring = deepcopy(mate)
             for i in range(self.vars.cp1, self.vars.cp2):
                 offspring[i] = parent[i]
 
@@ -81,6 +87,40 @@ class RecombinationHelper(BaseHelper):
             for c in off_mod: offspring[c[1]] = c[0]
             return offspring
 
+        return pmx_helper(parent1, parent2), pmx_helper(parent2, parent1)
+
+    def numpy_order_crossover(self, parent1, parent2):
+        # TODO - Optimize
+        # Makes the offspring from the selected sub-sequence, and all the elements not in that sub-sequence.
+        def crossover_helper(parent, mate):
+            temp1 = np.roll(parent, self.vars.genome_length - self.vars.cp1)
+            mask1 = np.isin(temp1, mate[:self.vars.cp1], invert=True)
+            return np.concatenate((mate[:self.vars.cp1], temp1[mask1]), axis=None)
+        return crossover_helper(parent1, parent2), crossover_helper(parent2, parent1)
+
+    def numpy_pmx_crossover(self, parent1, parent2):
+        # TODO - Optimize
+        # Find the differing genetic material of crossover segments, to handle duplicates.
+        diffs = set(parent1[self.vars.cp1:self.vars.cp2]) ^ set(parent2[self.vars.cp1:self.vars.cp2])
+    
+        def pmx_helper(parent, mate):
+            # Generate simple offspring template, which contains some duplicates, to be modified.
+            offspring = np.concatenate((mate[:self.vars.cp1], parent[self.vars.cp1:self.vars.cp2], mate[self.vars.cp2:]), axis=None)
+            off_mod = []
+            for x in mate[self.vars.cp1:self.vars.cp2]:
+                if x in diffs:
+                    # Find the index of the unique element in the mate's crossover segment,
+                    i, = np.where(mate == x)
+                    # then in the mate, find the index of the element in the parent at the previous index,
+                    # until the found index is outside the index range of the crossover points.
+                    while self.vars.cp1 <= i < self.vars.cp2:
+                        i, = np.where(mate == parent[i])
+                    # Save the index of the duplicate to overwrite, and the element that replaces it.
+                    off_mod.append((x,  i))
+            # Finally, make all of the needed adjustments to the offspring.
+            for c in off_mod: offspring[c[1]] = c[0]
+            return offspring
+    
         return pmx_helper(parent1, parent2), pmx_helper(parent2, parent1)
 
     def edge_crossover(self, parent1, parent2):
@@ -132,7 +172,7 @@ class RecombinationHelper(BaseHelper):
 
 
 if __name__ == '__main__':
-    from src.EA_Methods.EAVarHelper import EAVarHelper
+    from src.EACore.EAVarHelper import EAVarHelper
     from time import time
     from random import shuffle
 

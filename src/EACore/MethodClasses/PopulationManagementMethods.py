@@ -1,4 +1,4 @@
-from src.EA_Methods.HelperTemplate import BaseHelper
+from src.EACore.MethodClasses.HelperTemplate import BaseHelper
 from random import random, randint
 
 

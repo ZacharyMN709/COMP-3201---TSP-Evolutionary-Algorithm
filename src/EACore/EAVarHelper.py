@@ -22,7 +22,8 @@ class EAVarHelper:
         self.as_good_as = gte if maximize else lte
         self.better_than = gt if maximize else lt
         self.eval_fitness = None
-        self.make_new_individual = None
+        self.make_new_indiv = None
+        self.wrapper = None
 
         self.genome_length = genome_length
         self.dist_mod = 0.1
@@ -46,8 +47,13 @@ class EAVarHelper:
     def set_eval_fitness(self, func):
         self.eval_fitness = func
 
-    def set_new_indiv(self, func):
-        self.make_new_individual = func
+    def set_new_indiv(self, func, wrapper):
+        self.make_new_indiv = func
+        self.wrapper = wrapper
+
+    def make_new_individual(self):
+        indiv = self.make_new_indiv()
+        return self.wrapper(indiv)
 
     def set_safe_matingpool(self, size):
         if (size // 2) % 2 == 0:

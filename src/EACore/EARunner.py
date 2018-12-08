@@ -3,12 +3,12 @@ from src.Other.Helper_Strings import timed_funcs
 from src.Setups.TSP.FileLoader import LoadHelper
 from src.Setups.TSP.PopulationInitialization import PopulationInitializationGenerator
 from src.Setups.TSP.FitnessEvaluator import FitnessHelperGenerator
-from src.EA_Methods.EAVarHelper import EAVarHelper
-from src.EA_Methods.ParentSelectionMethods import ParentSelectionHelper
-from src.EA_Methods.RecombinationMethods import RecombinationHelper
-from src.EA_Methods.MutationMethods import MutatorHelper
-from src.EA_Methods.SurvivorSelectionMethods import SurvivorSelectionHelper
-from src.EA_Methods.PopulationManagementMethods import PopulationManagementHelper
+from src.EACore.EAVarHelper import EAVarHelper
+from src.EACore.MethodClasses.ParentSelectionMethods import ParentSelectionHelper
+from src.EACore.MethodClasses.RecombinationMethods import RecombinationHelper
+from src.EACore.MethodClasses.MutationMethods import MutatorHelper
+from src.EACore.MethodClasses.SurvivorSelectionMethods import SurvivorSelectionHelper
+from src.EACore.MethodClasses.PopulationManagementMethods import PopulationManagementHelper
 
 
 class EAFactory:
@@ -48,7 +48,7 @@ class EARunner:
         self.MM = MutatorHelper(var_helper)
         self.SSM = SurvivorSelectionHelper(var_helper)
         self.PMM = PopulationManagementHelper(var_helper)
-        self.vars.set_new_indiv(self.PIM.wrapper(self.PIM.single_random_individual))
+        self.vars.set_new_indiv(self.PIM.single_random_individual, self.PIM.wrapper)
 
         self.initialize = None
         self.eval_fitness = None
@@ -80,7 +80,7 @@ class EARunner:
             self.select_survivors is not None and \
             self.manage_population is not None
 
-    def run(self, generation_limit, pipe, known_optimum=None, true_opt=False, print_gens=0, print_final=True):
+    def run(self, generation_limit, known_optimum=None, true_opt=False, print_gens=0, print_final=True, pipe=None):
         if not self.is_runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             print('self.eval_fitness is not None: {}'.format(self.eval_fitness is not None))

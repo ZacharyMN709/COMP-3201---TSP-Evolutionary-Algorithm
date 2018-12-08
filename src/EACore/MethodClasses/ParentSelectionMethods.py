@@ -1,4 +1,4 @@
-from src.EA_Methods.HelperTemplate import BaseHelper
+from src.EACore.MethodClasses.HelperTemplate import BaseHelper
 from random import sample, random, shuffle
 
 
@@ -69,7 +69,7 @@ class ParentSelectionHelper(BaseHelper):
 
 
 if __name__ == '__main__':
-    from src.EA_Methods.EAVarHelper import EAVarHelper
+    from src.EACore.EAVarHelper import EAVarHelper
     from time import time
 
     eavars = EAVarHelper(20, False)

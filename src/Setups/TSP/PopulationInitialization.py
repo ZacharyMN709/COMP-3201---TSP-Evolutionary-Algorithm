@@ -1,4 +1,4 @@
-from src.EA_Methods.HelperTemplate import BaseHelper
+from src.EACore.MethodClasses.HelperTemplate import BaseHelper
 from numpy import array as np_array
 from array import array as c_array
 from random import sample, shuffle
