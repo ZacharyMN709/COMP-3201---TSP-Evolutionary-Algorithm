@@ -1,4 +1,5 @@
-import time
+from time import perf_counter
+import sqlite3 as sql
 from src.Other.Helper_Strings import timed_funcs
 from src.Setups.TSP.FileLoader import LoadHelper
 from src.Setups.TSP.PopulationInitialization import PopulationInitializationGenerator
@@ -80,7 +81,7 @@ class EARunner:
             self.select_survivors is not None and \
             self.manage_population is not None
 
-    def run(self, generation_limit, pipe, known_optimum=None, true_opt=False, report_rate=0, print_final=True):
+    def run(self, db_name, generation_limit, known_optimum=None, true_opt=False, report_rate=0, print_stats=False):
         if not self.is_runnable:
             print("Error! Missing information to run EA. Please check the code for errors.")
             print('self.eval_fitness is not None: {}'.format(self.eval_fitness is not None))
@@ -92,80 +93,93 @@ class EARunner:
             print('self.manage_population is not None: {}'.format(self.manage_population is not None))
             return
 
+        # Open Database to store stats
+        db = sql.connect(db_name)
+        db.execute("CREATE TABLE Generation_Data (generation integer, best_fitness real, avg_fitness real, best_individual text, copies_of_best integer)")
+        db.execute("CREATE Table Final_Data (best_fitness real, avg_fitness real, best_individual text, copies_of_best integer, PITime real, PSMTime real, RMTime real, MMTime real, SSMTime real, PMMTime real, TotalTime real)")
+
         self.vars.set_eval_fitness(self.eval_fitness)
 
-        master_start_time = time.time()
+        master_start_time = perf_counter()
         ea_vars = self.vars
-
-        best_indivs = [None] * generation_limit
 
         PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime = 0, 0, 0, 0, 0, 0
 
         # Initialize Population
-        start_time = time.time()
+        start_time = perf_counter()
         population, fitness = self.initialize()
-        PITime += time.time() - start_time
+        PITime += perf_counter() - start_time
 
         for generation in range(1, generation_limit + 1):
 
             # Generation Info
             if report_rate != 0 and generation % report_rate == 0:
-                if pipe:
-                    pipe.send([False, generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
-                else:
-                    print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}".format(
-                        generation, self.vars.best_of(fitness), sum(fitness) / ea_vars.population_size)
-                    )
+                best_fitness = self.vars.best_of(fitness)
+                avg_fitness = sum(fitness)/len(fitness)
+                best_individual = str(population[fitness.index(best_fitness)])
+                copies_of_best = fitness.count(best_fitness)
+                stats = [generation, best_fitness, avg_fitness, best_individual, copies_of_best]
+                db.execute("INSERT INTO Generation_Data VALUES (?, ?, ?, ?, ?)", stats)
+                db.commit()
 
-            start_time = time.time()
+                if print_stats:
+                    print("Generation: {}\n  Best fitness: {}\n  Avg. fitness: {}\n  Copies of Best: {}".format(
+                        generation, best_fitness, avg_fitness, copies_of_best
+                    ))
+
+            start_time = perf_counter()
             parents_index = self.parent_selection(fitness)
-            PSMTime += time.time() - start_time
+            PSMTime += perf_counter() - start_time
 
-            start_time = time.time()
+            start_time = perf_counter()
             offspring = self.generate_offspring(population, parents_index)
-            RMTime += time.time() - start_time
+            RMTime += perf_counter() - start_time
 
-            start_time = time.time()
+            start_time = perf_counter()
             offspring, offspring_fitness = self.apply_mutation(offspring)
-            MMTime += time.time() - start_time
+            MMTime += perf_counter() - start_time
 
-            start_time = time.time()
+            start_time = perf_counter()
             population, fitness = self.select_survivors(population, fitness, offspring, offspring_fitness)
-            SSMTime += time.time() - start_time
+            SSMTime += perf_counter() - start_time
 
-            start_time = time.time()
+            start_time = perf_counter()
             population, fitness = self.manage_population(population, fitness)
-            PMMTime += time.time() - start_time
+            PMMTime += perf_counter() - start_time
 
             # Break if converged at optimal solution
-            op_fit = self.vars.best_of(fitness)
-            optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
-            best_indivs[generation - 1] = (op_fit, population[optimal_solutions[0]][:])
-            if true_opt and self.vars.as_good_as(op_fit, known_optimum) and (
+            best_fitness = self.vars.best_of(fitness)
+            optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == best_fitness]
+            if true_opt and self.vars.as_good_as(best_fitness, known_optimum) and (
                     len(optimal_solutions) == ea_vars.population_size):
                 print("Ending early. Converged at generation: {}/{}".format(generation, generation_limit))
                 break
 
         # Final Fitness Info
-        master_time = time.time() - master_start_time
-        op_fit = self.vars.best_of(fitness)
-        best_indivs = best_indivs[:generation - 1]
-        optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == op_fit]
+        master_time = perf_counter() - master_start_time
+        best_fitness = self.vars.best_of(fitness)
+        avg_fitness = sum(fitness)/len(fitness)
+        optimal_solutions = [i for i in range(ea_vars.population_size) if fitness[i] == best_fitness]
         total_time = sum([PSMTime, RMTime, MMTime, SSMTime, PMMTime])
         time_tuple = (PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time)
+        best_individual = population[fitness.index(best_fitness)]
+        copies_of_best = fitness.count(best_fitness)
 
-        if pipe:
-            pipe.send([True, generation, self.vars.best_of(fitness), sum(fitness)/ea_vars.population_size])
-        elif print_final:
-            print("Best solution fitness:", op_fit)
+        final_stats = [best_fitness, avg_fitness, str(best_individual), copies_of_best, PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, master_time]
+        db.execute("INSERT INTO Final_Data VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", final_stats)
+        db.commit()
+        db.close()
+
+        if print_stats:
+            print("Best solution fitness:", best_fitness)
             if true_opt: print(
-                "Best solution {:4.2f}% larger than true optimum.".format(100 * ((op_fit / known_optimum) - 1)))
+                "Best solution {:4.2f}% larger than true optimum.".format(100 * ((best_fitness / known_optimum) - 1)))
             print("Number of optimal solutions: ", len(optimal_solutions), '/', ea_vars.population_size)
             print("Best solution indexes:", optimal_solutions)
-            if known_optimum and self.vars.better_than(op_fit, known_optimum):
-                print('!!!! - - - NEW BEST: {} - - - !!!!'.format(op_fit))
+            if known_optimum and self.vars.better_than(best_fitness, known_optimum):
+                print('!!!! - - - NEW BEST: {} - - - !!!!'.format(best_fitness))
             print("Best solution path:", population[optimal_solutions[0]])
             print(timed_funcs.format(PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time))
             print("--- {} seconds ---".format(master_time))
 
-        return op_fit, optimal_solutions, generation, best_indivs, time_tuple
+        return best_fitness, optimal_solutions, generation, time_tuple
