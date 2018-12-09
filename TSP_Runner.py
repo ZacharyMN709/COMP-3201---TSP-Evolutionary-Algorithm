@@ -62,9 +62,10 @@ def iterate_all_method_combos():
 
 
 if __name__ == '__main__':
-    with open("config.json", "r") as file:
+    with open("TSP-config.json", "r") as file:
         config = json.loads(file.read())
 
+    MAXIMIZE = config["maximization"]
     DB_NAME = config["db_name"]
     TEST_ALL = config["test_all"]
     FILENUM = config["data_set"]
@@ -96,7 +97,7 @@ if __name__ == '__main__':
     if TEST_ALL:
         iterate_all_method_combos()
     else:
-        factory = EAFactory(FILENUM, False)
+        factory = EAFactory(FILENUM, MAXIMIZE)
         ea = factory.make_ea_runner(DATA_TYPE, METHODS_TO_USE)
         if not USE_DB:
             DB_NAME = None

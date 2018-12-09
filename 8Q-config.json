@@ -1,0 +1,9 @@
+{
+    "maximization": true,
+    "methods": [0, 0, 1, 1, 2, 0, 0],
+    "print_stats": true,
+    "generation_limit": 10000,
+    "report_rate": 100,
+    "runs": 1,
+    "data_type": 2
+}

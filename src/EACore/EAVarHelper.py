@@ -37,12 +37,12 @@ class EAVarHelper:
         self.wrapper = None
 
         self.genome_length = genome_length
-        self.dist_mod = 0.1
         self.population_size = 60
         self.mating_pool_size = 0
-        self.tournament_size = 0
         self.mutation_rate = 0.20
         self.crossover_rate = 0.90
+        self.tournament_size = 0
+        self.dist_mod = 0.1
         self.start_temp = 10000
         self.cooling_rate = 0.995
         self.population_threshold = 0

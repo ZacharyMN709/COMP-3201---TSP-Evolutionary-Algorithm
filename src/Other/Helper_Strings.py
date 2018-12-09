@@ -15,9 +15,9 @@ Func time: {:4.2f}     Total time: {:4.2f}\
 funcs_used = "\
 Population initialization:   {: <25}\
 Parent selection:            {: <25}\n\
-Survivor selection:          {: <25}\
-Mutation Method:             {: <25}\n\
 Recombination Method:        {: <25}\
+Mutation Method:             {: <25}\n\
+Survivor selection:          {: <25}\
 Management Method:           {: <25}\
 "
 

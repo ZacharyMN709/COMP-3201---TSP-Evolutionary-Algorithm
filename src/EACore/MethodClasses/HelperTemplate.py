@@ -40,6 +40,17 @@ class BaseHelper:
             print('Method not found! Returning None!')
             return None
 
+    def get_string_from_index(self, i):
+        """
+        :param i: An integer.
+        :return: Returns the sting associated with that index.
+        """
+        try:
+            return self.name_method_pairs[i][0]
+        except IndexError:
+            print('Method not found! Returning the empty string!')
+            return ''
+
     def set_func_from_index(self, i):
         # TODO - For future implementation of accessing the function from the helper class
         self.selected_method = self.get_func_from_index(i)

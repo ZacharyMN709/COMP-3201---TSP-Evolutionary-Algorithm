@@ -1,30 +1,41 @@
 from src.EACore.MethodClasses.HelperTemplate import BaseHelper
 
 
-class FitnessHelperGenerator:
-    def __init__(self, data):
-        self.dists = data
-
-    def make_fit_helper(self, var_helper):
-        return FitnessHelper(var_helper, self.dists)
-
-
 class FitnessHelper(BaseHelper):
-    def __init__(self, var_helper, dists):
-        name_method_pairs = [('Euclidean', self.euclidean_distance)
+    def __init__(self, var_helper):
+        name_method_pairs = [('Maximization', self.fitness_8queen),
+                             ('Diagonal', self.fitness_8queen_quick)
                              ]
         super().__init__(var_helper, name_method_pairs)
-        self.dists = dists
 
     def __str__(self):
         return super().__str__().format('FitnessHelper')
 
-    def euclidean_distance(self, indiv):
-        return sum([self.dists[indiv[i - 1]][indiv[i]] for i in range(self.vars.genome_length)])
+    def inc(self, dic, key):
+        if key in dic:
+            dic[key] += 1
+        else:
+            dic[key] = 0
 
-    def single_swap_fast_calc(self, fitness, lst1, lst2):
-        to_sub = self.dists[lst1[0]][lst1[1]] + self.dists[lst1[2]][lst1[1]] + \
-                 self.dists[lst2[0]][lst2[1]] + self.dists[lst2[2]][lst2[1]]
-        to_add = self.dists[lst1[0]][lst2[1]] + self.dists[lst1[2]][lst2[1]] + \
-                 self.dists[lst2[0]][lst1[1]] + self.dists[lst2[2]][lst1[1]]
-        return fitness + to_add - to_sub
+    def clashes(self, dic):
+        return int(sum([(((1 + dic[x]) * dic[x]) / 2) for x in dic if dic[x] != 0]))
+
+    def fitness_8queen(self, individual):  # maximization
+        M = 28
+
+        neg_diag = dict()
+        pos_diag = dict()
+        m = len(individual)
+
+        for i in range(m):
+            self.inc(neg_diag, (i - individual[i]))
+            self.inc(pos_diag, (i + individual[i]))
+
+        return M - (self.clashes(neg_diag) + self.clashes(pos_diag))
+
+    def fitness_8queen_quick(self, individual):  # maximization
+        m = len(individual)
+        neg_diag = set([i - individual[i] for i in range(m)])
+        pos_diag = set([i + individual[i] for i in range(m)])
+
+        return len(neg_diag) + len(pos_diag)
