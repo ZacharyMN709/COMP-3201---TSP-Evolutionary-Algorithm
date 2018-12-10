@@ -1,7 +1,8 @@
 # COMP 3201 - Evolutionary Algorithm Runner
 
-In order to run the code, you will need numpy, pandas, matplotlib and seaborn. These
-are common scientific computing libraries for Python.
+In order to run the code, you will need numpy, pandas, matplotlib and seaborn,
+if you're usng graphing functions. These are common scientific computing 
+libraries for Python.
 
 There are two problems presently set up to be solved. The 8-Queens problem, as well
 as the TSP problem, complete with datasets. Both of these problems use a JSON
