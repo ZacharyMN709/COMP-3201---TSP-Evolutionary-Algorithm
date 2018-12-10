@@ -44,7 +44,7 @@ As for the variables in the JSON object, their purposes are:
     2: Canada
 
 
-###EA Structure
+### EA Structure
 
 The 7 steps of the EA each derive from a helper class which handles manging function
 pointers, names, and keeping track of all the variables needed to run the EA. Below 
