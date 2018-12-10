@@ -83,7 +83,7 @@ class StatsHolder:
 
     def __repr__(self):
         return self.__str__()
-    
+
     def __add__(self, other):
         if self.best == other.best:
             if self.true_opt and other.true_opt:
@@ -94,17 +94,18 @@ class StatsHolder:
                 opt = other.true_opt
             else:
                 opt = None
-            new_obj = StatsHolder(self.POPULATION_METHOD, self.PARENT_METHOD, self.SURVIVOR_METHOD, self.MUTATION_METHOD,
+            new_obj = StatsHolder(self.POPULATION_METHOD, self.PARENT_METHOD, self.SURVIVOR_METHOD,
+                                  self.MUTATION_METHOD,
                                   self.RECOMBINATION_METHOD, self.MANAGEMENT_METHOD, self.RUNS, self.best, opt)
-            new_obj.RUNS                = self.RUNS                + other.RUNS
-            new_obj.best_fitnesses      = self.best_fitnesses      + other.best_fitnesses
-            new_obj.best_individuals    = self.best_individuals    + other.best_individuals
-            new_obj.solutions_found     = self.solutions_found     + other.solutions_found
-            new_obj.generation_count    = self.generation_count    + other.generation_count
-            new_obj.run_indivs_history  = self.run_indivs_history  + other.run_indivs_history
+            new_obj.RUNS = self.RUNS + other.RUNS
+            new_obj.best_fitnesses = self.best_fitnesses + other.best_fitnesses
+            new_obj.best_individuals = self.best_individuals + other.best_individuals
+            new_obj.solutions_found = self.solutions_found + other.solutions_found
+            new_obj.generation_count = self.generation_count + other.generation_count
+            new_obj.run_indivs_history = self.run_indivs_history + other.run_indivs_history
             new_obj.run_fitness_history = self.run_fitness_history + other.run_fitness_history
-            new_obj.time_tuples         = self.time_tuples         + other.time_tuples
-            new_obj.runtimes            = self.runtimes            + other.runtimes
+            new_obj.time_tuples = self.time_tuples + other.time_tuples
+            new_obj.runtimes = self.runtimes + other.runtimes
             return new_obj
         else:
             raise MergeError
@@ -128,7 +129,7 @@ class StatsHolder:
     def best_generation_fitness(self):
         out = [0] * max(self.generation_count)
         for x in range(len(out)):
-            temp = [self.run_fitness_history[i][x]  if x < len(self.run_fitness_history[i]) else self.true_opt
+            temp = [self.run_fitness_history[i][x] if x < len(self.run_fitness_history[i]) else self.true_opt
                     for i in range(self.RUNS)]
             try:
                 out[x] = self.best(temp)
@@ -136,6 +137,64 @@ class StatsHolder:
                 out = out[0:x]
                 break
         return out
+
+    def mean(self):
+        return sum(self.best_fitnesses) / len(self.best_fitnesses)
+
+    def std(self):
+        return (sum([(fit - self.mean()) ** 2 for fit in self.best_fitnesses]) / len(self.best_fitnesses)) ** 0.5
+
+    def ci95(self):
+        rng = 1.960 * self.std() / (len(self.best_fitnesses) ** 0.5)
+        return self.mean() - rng, self.mean() + rng
+
+    def sr(self):
+        return sum([fit < (self.true_opt * 1.1) for fit in self.best_fitnesses]) / len(self.best_fitnesses)
+
+    @staticmethod
+    def stat_cols():
+        return [
+            'Population initialization:    ',
+            'Parent selection:             ',
+            'Survivor selection:           ',
+            'Mutation Method:              ',
+            'Recombination Method:         ',
+            'Management Method:            ',
+            'Runs:                         ',
+            'Lower 95%CI:                  ',
+            'Mean:                         ',
+            'Upper 95%CI:                  ',
+            'STD:                          ',
+            'SRs:                          '
+        ]
+
+    def stat_items(self):
+        ci = self.ci95()
+        return ['{:<20}'.format(s) for s in [
+            self.POPULATION_METHOD,
+            self.PARENT_METHOD,
+            self.SURVIVOR_METHOD,
+            self.MUTATION_METHOD,
+            self.RECOMBINATION_METHOD,
+            self.MANAGEMENT_METHOD,
+            '{}'.format(self.RUNS),
+            '{:4.2f} km'.format(ci[0]),
+            '{:4.2f} km'.format(self.mean()),
+            '{:4.2f} km'.format(ci[1]),
+            '{:4.2f} km'.format(self.std()),
+            '{:4.2f}%'.format(round(self.sr() * 100, 2))
+        ]]
+
+    def print_stats(self):
+        ci = self.ci95()
+        print(self.funcs_used() +
+              'Runs:                         {}\n'.format(self.RUNS) +
+              'Lower 95%CI:                  {:4.2f} km\n'.format(ci[0]) +
+              'Mean:                         {:4.2f} km\n'.format(self.mean()) +
+              'Upper 95%CI:                  {:4.2f} km\n'.format(ci[1]) +
+              'STD:                          {:4.2f} km\n'.format(self.std()) +
+              'SRs:                          {:4.2f}%\n'.format(round(self.sr() * 100, 2))
+              )
 
 
 if __name__ == '__main__':

@@ -111,11 +111,47 @@ class GraphingHelper:
         with pd.plotting.plot_params.use('x_compat', True):
             plot_df(opts, 1, 1, True)
 
+    def modular_dual_plot(self, avgs, opts, percent_plot):
+        fig, axes = plt.subplots(ncols=2, nrows=1, figsize=self.single_plot_size)
+        plt.subplots_adjust(wspace=0.2, hspace=0.2)
+        axes[0].set_title('Averaged')
+        axes[1].set_title('Best')
+
+        def plot_pers(df, ax1):
+            num = 0
+            columns = [column for column in df]
+            per_y_lim = max(((avgs.iloc[len(avgs) - 1] / self.opt) - 1) * 100) * 1.25
+            axes[ax1].set_ylim([-0.1, per_y_lim])
+            for column in columns:
+                per_col = (((df[column] / self.opt) - 1) * 100)
+                per_col.plot(ax=axes[ax1], color=self.palette[num], alpha=0.66, legend=True)
+                num += 1
+            axes[ax1].set_ylabel('Percent Larger')
+            axes[ax1].axhline(y=0, color=CP.SPIRIT_5, label='Optimum')
+
+        def plot_vals(df, ax1):
+            num = 0
+            columns = [column for column in df]
+            val_y_lim = max(avgs.iloc[len(avgs) - 1]) * 1.05
+            axes[ax1].set_ylim([self.opt * 0.999, val_y_lim])
+            for column in columns:
+                df[column].plot(ax=axes[ax1], color=self.palette[num], legend=True)
+                num += 1
+            axes[ax1].set_ylabel('Fitness')
+            axes[ax1].axhline(y=self.opt, color=CP.SPIRIT_5, label='Optimum')
+
+        plot_df = plot_pers if percent_plot else plot_vals
+
+        with pd.plotting.plot_params.use('x_compat', True):
+            plot_df(avgs, 0)
+        with pd.plotting.plot_params.use('x_compat', True):
+            plot_df(opts, 1)
+
     def indiv_dual_plot(self, indiv_1, indiv_2):
         fig, axes = plt.subplots(ncols=2, nrows=1, figsize=self.single_plot_size)
         plt.subplots_adjust(wspace=0.2, hspace=0.2)
 
-        def plot_df(init_tuple, ax):
+        def plot_indiv(init_tuple, ax):
             init_method, individual = init_tuple
             title = 'Using {} Method'
             x = self.cities[self.long_names[1]]
@@ -131,9 +167,9 @@ class GraphingHelper:
             axes[ax].set_title(title.format(init_method))
 
         with pd.plotting.plot_params.use('x_compat', True):
-            plot_df(indiv_1, 0)
+            plot_indiv(indiv_1, 0)
         with pd.plotting.plot_params.use('x_compat', True):
-            plot_df(indiv_2, 1)
+            plot_indiv(indiv_2, 1)
     # endregion
 
 
