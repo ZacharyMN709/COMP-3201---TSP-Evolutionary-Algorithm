@@ -75,7 +75,7 @@ class PopulationManagementHelper(BaseHelper):
         if num_best > self.vars.population_threshold:
             threshold = 0.8 * ((num_best - self.vars.population_threshold) / (
                     self.vars.population_size - self.vars.population_threshold))
-            for x in range(self.vars.genome_length):
+            for x in range(self.vars.population_size):
                 if fitness[x] == best_fit and random() < threshold:
                     population[x] = self.vars.make_new_individual()
                     fitness[x] = self.vars.eval_fitness(population[x])
@@ -98,7 +98,7 @@ class PopulationManagementHelper(BaseHelper):
         num_best = fitness.count(best_fit)
         if num_best > self.vars.population_threshold:
             num_to_remove = num_best - self.vars.population_threshold
-            for x in range(self.vars.genome_length):
+            for x in range(self.vars.population_size):
                 if fitness[x] == best_fit:
                     population[x] = self.vars.make_new_individual()
                     fitness[x] = self.vars.eval_fitness(population[x])
