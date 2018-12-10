@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Adding more comments.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
-      <change beforePath="" afterPath="$PROJECT_DIR$/8Q_Runner.py" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/TSP-config.json" />
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/TSP_Runner.py" afterPath="$PROJECT_DIR$/TSP_Runner.py" />
-      <change beforePath="$PROJECT_DIR$/config.json" afterPath="$PROJECT_DIR$/8Q-config.json" />
-      <change beforePath="$PROJECT_DIR$/src/EACore/EARunner.py" afterPath="$PROJECT_DIR$/src/EACore/EARunner.py" />
-      <change beforePath="$PROJECT_DIR$/src/EACore/EAVarHelper.py" afterPath="$PROJECT_DIR$/src/EACore/EAVarHelper.py" />
-      <change beforePath="$PROJECT_DIR$/src/EACore/MethodClasses/HelperTemplate.py" afterPath="$PROJECT_DIR$/src/EACore/MethodClasses/HelperTemplate.py" />
-      <change beforePath="$PROJECT_DIR$/src/Other/Helper_Strings.py" afterPath="$PROJECT_DIR$/src/Other/Helper_Strings.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/EightQueens/EightQueen.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/EightQueens/FitnessEvaluator.py" afterPath="$PROJECT_DIR$/src/Setups/EightQueens/FitnessEvaluator.py" />
-      <change beforePath="$PROJECT_DIR$/src/Setups/EightQueens/PopulationInitialization.py" afterPath="$PROJECT_DIR$/src/Setups/EightQueens/PopulationInitialization.py" />
+      <change beforePath="$PROJECT_DIR$/desktop.ini" afterPath="" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,9 +52,11 @@
       <file leaf-file-name="TSP_Runner.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TSP_Runner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="223">
+            <state relative-caret-position="782">
               <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="e#0#48#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -106,7 +98,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="refactorio" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="SIGN_OFF_COMMIT" value="true" />
@@ -231,13 +223,6 @@
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="EACore" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
-              <item name="COMP 3201 - TSP Evolutionary Algorithm" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="EACore" type="462c0819:PsiDirectoryNode" />
-              <item name="MethodClasses" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="COMP 3201 - TSP Evolutionary Algorithm" type="b2602c69:ProjectViewProjectNode" />
@@ -471,13 +456,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
-    </task>
-    <task id="LOCAL-00042" summary="Staring on implementing numpy arrays instead of lists.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
-      <created>1542740360216</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1542740360216</updated>
     </task>
     <task id="LOCAL-00043" summary="Implemented some numpy array methods.&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
       <created>1542765048520</created>
@@ -815,7 +793,14 @@
       <option name="project" value="LOCAL" />
       <updated>1544311694993</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Added a suite to run the 8-Queens problem, and removed redundant code in EARunner.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <created>1544387860993</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1544387860993</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TodoView">
@@ -829,15 +814,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35855263" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35855263" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26626325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -889,7 +873,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Forcibly adding directories." />
     <MESSAGE value="Restoring items after a git error." />
     <MESSAGE value="Integrated Rebekah's heuristic." />
     <MESSAGE value="Integrated Rebekah's heuristic. Made some small tweaks." />
@@ -914,7 +897,8 @@
     <MESSAGE value="Fixed naming erroes in Population Management&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
     <MESSAGE value="Added comments to the Method Helpers, and moved the EAFactory into the TSP set-up, since it was not problem independent.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
     <MESSAGE value="Adding more comments.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Adding more comments.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <MESSAGE value="Added a suite to run the 8-Queens problem, and removed redundant code in EARunner.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added a suite to run the 8-Queens problem, and removed redundant code in EARunner.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1179,9 +1163,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TSP_Runner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="223">
+        <state relative-caret-position="782">
           <caret line="67" column="23" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#0#48#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
