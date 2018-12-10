@@ -4,7 +4,7 @@ import seaborn as sns
 import pandas as pd
 from math import pi, cos
 from src.Other import Colours as CP
-from src.Setups.TSP.TSP_Inputs.Optimums import get_best_path
+from src.Setups.TSP.Inputs.Optimums import get_best_path
 
 
 class GraphingHelper:
@@ -170,19 +170,19 @@ class GraphingHelper:
     # region Initialization
     def read_tsp_file(self, fnum):
         if fnum == 1:
-            fname = "TSP_WesternSahara_29.txt"
+            fname = "Sahara/TSP_WesternSahara_29.txt"
         elif fnum == 2:
             print('Warning! Takes approximately 1.5 seconds per decade')
-            fname = "TSP_Uruguay_734.txt"
+            fname = "Uruguay/TSP_Uruguay_734.txt"
         elif fnum == 3:
             print('Warning! Takes approximately 45 seconds per decade')
-            fname = "TSP_Canada_4663.txt"
+            fname = "Canada/TSP_Canada_4663.txt"
         else:
             print('Warning! Invalid seletion. Defaulting to test')
-            fname = "TSP_Testbed_10.txt"
+            fname = "TestWorld/TSP_Testbed_10.txt"
 
         script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-        abs_file_path = os.path.join(script_dir, 'TSP_Inputs', fname)
+        abs_file_path = os.path.join(script_dir, 'Inputs', fname)
 
         # Uses indexing from 0, rather than 1, by skipping the first column in the data.
         cities = pd.read_csv(abs_file_path, usecols=[1, 2], header=None, delimiter=' ')
