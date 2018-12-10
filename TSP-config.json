@@ -1,13 +1,13 @@
 {
     "maximization": false,
-    "test_all": false,
     "methods": [0, 1, 1, 1, 2, 0, 3],
-    "use_db": false,
     "print_stats": true,
-    "db_name": "stats.db",
     "generation_limit": 10000,
     "report_rate": 100,
     "runs": 1,
-    "data_set": 1,
-    "data_type": 2
+    "data_type": 2,
+    "db_name": "stats.db",
+    "test_all": false,
+    "use_db": false,
+    "data_set": 1
 }
