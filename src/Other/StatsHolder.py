@@ -127,10 +127,6 @@ class StatsHolder:
         else:
             raise MergeError
 
-    @staticmethod  # @staticmethod allows all StatsHolder objects to use this, irrespective of self.
-    def compare(stats1, stats2):
-        pass
-
     def average_generation_fitness(self):
         out = [0] * max(self.generation_count)
         for x in range(len(out)):
@@ -155,6 +151,64 @@ class StatsHolder:
                 break
         return out
 
+
+    def mean(self):
+        return sum(self.best_fitnesses) / len(self.best_fitnesses)
+
+    def std(self):
+        return (sum([(fit - self.mean()) ** 2 for fit in self.best_fitnesses]) / len(self.best_fitnesses)) ** 0.5
+
+    def ci95(self):
+        rng = 1.960 * self.std() / (len(self.best_fitnesses) ** 0.5)
+        return self.mean() - rng, self.mean() + rng
+
+    def sr(self):
+        return sum([fit < (self.true_opt * 1.1) for fit in self.best_fitnesses]) / len(self.best_fitnesses)
+
+    @staticmethod
+    def stat_cols():
+        return [
+            'Population initialization:    ',
+            'Parent selection:             ',
+            'Survivor selection:           ',
+            'Mutation Method:              ',
+            'Recombination Method:         ',
+            'Management Method:            ',
+            'Runs:                         ',
+            'Lower 95%CI:                  ',
+            'Mean:                         ',
+            'Upper 95%CI:                  ',
+            'STD:                          ',
+            'SRs:                          '
+        ]
+
+    def stat_items(self):
+        ci = self.ci95()
+        return ['{:<20}'.format(s) for s in [
+            self.POPULATION_METHOD,
+            self.PARENT_METHOD,
+            self.SURVIVOR_METHOD,
+            self.MUTATION_METHOD,
+            self.RECOMBINATION_METHOD,
+            self.MANAGEMENT_METHOD,
+            '{}'.format(self.RUNS),
+            '{:4.2f} km'.format(ci[0]),
+            '{:4.2f} km'.format(self.mean()),
+            '{:4.2f} km'.format(ci[1]),
+            '{:4.2f} km'.format(self.std()),
+            '{:4.2f}%'.format(round(self.sr() * 100, 2))
+        ]]
+
+    def print_stats(self):
+        ci = self.ci95()
+        print(self.funcs_used() +
+              'Runs:                         {}\n'.format(self.RUNS) +
+              'Lower 95%CI:                  {:4.2f} km\n'.format(ci[0]) +
+              'Mean:                         {:4.2f} km\n'.format(self.mean()) +
+              'Upper 95%CI:                  {:4.2f} km\n'.format(ci[1]) +
+              'STD:                          {:4.2f} km\n'.format(self.std()) +
+              'SRs:                          {:4.2f}%\n'.format(round(self.sr() * 100, 2))
+              )
 
 if __name__ == '__main__':
     p = [('21021{} G10000.txt'.format(x), 1, 0) for x in range(5)]

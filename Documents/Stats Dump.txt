@@ -1,0 +1,196 @@
+C:\Users\Zachary\Documents\GitHub\COMP-3201---TSP-Evolutionary-Algorithm\venv\Scripts\python.exe C:/Users/Zachary/Documents/GitHub/COMP-3201---TSP-Evolutionary-Algorithm/src/GraphGenerator.py
+Population initialization:    Random              Cluster             Euler
+Parent selection:             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering
+Runs:                         40                  40                  40
+Lower 95%CI:                  28569.80 km         28413.79 km         28691.91 km
+Mean:                         28759.12 km         28616.38 km         28806.44 km
+Upper 95%CI:                  28948.44 km         28818.97 km         28920.98 km
+STD:                          610.91 km           653.72 km           369.58 km
+SRs:                          100.00%             97.50%              100.00%
+
+Population initialization:    Random              Cluster             Euler
+Parent selection:             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering
+Runs:                         40                  40                  20
+Lower 95%CI:                  28424.47 km         28363.65 km         28894.78 km
+Mean:                         28583.23 km         28563.01 km         29005.92 km
+Upper 95%CI:                  28741.99 km         28762.37 km         29117.06 km
+STD:                          512.29 km           643.30 km           253.59 km
+SRs:                          100.00%             100.00%             100.00%
+
+Population initialization:    Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Swap                Insert              Inversion           Shift
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering         Engineering
+Runs:                         40                  40                  40                  40
+Lower 95%CI:                  29345.35 km         28870.20 km         28691.91 km         28960.52 km
+Mean:                         29563.06 km         29068.69 km         28806.44 km         29133.40 km
+Upper 95%CI:                  29780.76 km         29267.18 km         28920.98 km         29306.27 km
+STD:                          702.49 km           640.49 km           369.58 km           557.83 km
+SRs:                          80.00%              100.00%             100.00%             97.50%
+
+Population initialization:    Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Swap                Insert              Inversion           Shift
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering         Engineering
+Runs:                         40                  40                  20                  40
+Lower 95%CI:                  29528.72 km         28854.55 km         28894.78 km         28790.44 km
+Mean:                         29713.65 km         29051.99 km         29005.92 km         28932.39 km
+Upper 95%CI:                  29898.57 km         29249.42 km         29117.06 km         29074.35 km
+STD:                          596.72 km           637.10 km           253.59 km           458.07 km
+SRs:                          90.00%              100.00%             100.00%             100.00%
+
+Population initialization:    Euler               Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            None                Annealing           Entropy             Oroborous           Engineering
+Runs:                         40                  40                  40                  40                  40
+Lower 95%CI:                  28691.33 km         28628.40 km         28550.61 km         28427.54 km         28691.91 km
+Mean:                         28836.66 km         28780.04 km         28684.06 km         28573.76 km         28806.44 km
+Upper 95%CI:                  28981.99 km         28931.69 km         28817.50 km         28719.99 km         28920.98 km
+STD:                          468.96 km           489.33 km           430.61 km           471.84 km           369.58 km
+SRs:                          100.00%             100.00%             100.00%             100.00%             100.00%
+
+Population initialization:    Euler               Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            None                Annealing           Entropy             Oroborous           Engineering
+Runs:                         20                  20                  20                  20                  20
+Lower 95%CI:                  28707.41 km         28767.76 km         28586.06 km         28620.82 km         28894.78 km
+Mean:                         28856.75 km         28941.01 km         28777.19 km         28823.25 km         29005.92 km
+Upper 95%CI:                  29006.09 km         29114.25 km         28968.33 km         29025.69 km         29117.06 km
+STD:                          340.75 km           395.29 km           436.11 km           461.89 km           253.59 km
+SRs:                          100.00%             100.00%             100.00%             100.00%             100.00%
+
+Population initialization:    Random              Cluster             Euler
+Parent selection:             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering
+Runs:                         4                   4                   5
+Lower 95%CI:                  165821.33 km        126836.20 km        87281.57 km
+Mean:                         171444.62 km        129661.93 km        88064.16 km
+Upper 95%CI:                  177067.91 km        132487.66 km        88846.74 km
+STD:                          5738.05 km          2883.40 km          892.82 km
+SRs:                          0.00%               0.00%               20.00%
+
+Population initialization:    Random              Cluster             Euler
+Parent selection:             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering
+Runs:                         5                   5                   6
+Lower 95%CI:                  175144.40 km        128463.32 km        87780.52 km
+Mean:                         176990.26 km        129163.58 km        87993.87 km
+Upper 95%CI:                  178836.11 km        129863.85 km        88207.22 km
+STD:                          2105.85 km          798.90 km           266.64 km
+SRs:                          0.00%               0.00%               0.00%
+
+Population initialization:    Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Swap                Insert              Inversion           Shift
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering         Engineering
+Runs:                         5                   5                   5                   5
+Lower 95%CI:                  89984.18 km         88705.46 km         87281.57 km         89675.07 km
+Mean:                         90390.78 km         89822.09 km         88064.16 km         90465.88 km
+Upper 95%CI:                  90797.38 km         90938.72 km         88846.74 km         91256.70 km
+STD:                          463.87 km           1273.91 km          892.82 km           902.21 km
+SRs:                          0.00%               0.00%               20.00%              0.00%
+
+Population initialization:    Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Swap                Insert              Inversion           Shift
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering         Engineering
+Runs:                         5                   5                   6                   5
+Lower 95%CI:                  89882.41 km         89151.38 km         87780.52 km         89153.19 km
+Mean:                         90210.14 km         89920.72 km         87993.87 km         89909.78 km
+Upper 95%CI:                  90537.87 km         90690.06 km         88207.22 km         90666.37 km
+STD:                          373.89 km           877.70 km           266.64 km           863.16 km
+SRs:                          0.00%               0.00%               0.00%               0.00%
+
+Population initialization:    Euler               Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            None                Annealing           Entropy             Oroborous           Engineering
+Runs:                         5                   5                   5                   5                   5
+Lower 95%CI:                  90126.26 km         89530.47 km         89641.01 km         91060.69 km         87281.57 km
+Mean:                         90525.30 km         90500.97 km         90758.49 km         91569.23 km         88064.16 km
+Upper 95%CI:                  90924.34 km         91471.46 km         91875.96 km         92077.77 km         88846.74 km
+STD:                          455.25 km           1107.19 km          1274.87 km          580.17 km           892.82 km
+SRs:                          0.00%               0.00%               0.00%               0.00%               20.00%
+
+Population initialization:    Euler               Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            None                Annealing           Entropy             Oroborous           Engineering
+Runs:                         6                   6                   6                   6                   6
+Lower 95%CI:                  90321.55 km         90073.35 km         90069.64 km         89919.09 km         87780.52 km
+Mean:                         90622.37 km         90472.86 km         90731.12 km         90577.30 km         87993.87 km
+Upper 95%CI:                  90923.18 km         90872.36 km         91392.60 km         91235.51 km         88207.22 km
+STD:                          375.94 km           499.28 km           826.68 km           822.59 km           266.64 km
+SRs:                          0.00%               0.00%               0.00%               0.00%               0.00%
+
+Population initialization:    Random              Cluster             Euler
+Parent selection:             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering
+Runs:                         5                   5                   8
+Lower 95%CI:                  36964723.54 km      9376847.50 km       1477293.00 km
+Mean:                         37674918.06 km      9611262.12 km       1487054.52 km
+Upper 95%CI:                  38385112.58 km      9845676.75 km       1496816.03 km
+STD:                          810226.13 km        267432.16 km        14086.60 km
+SRs:                          0.00%               0.00%               0.00%
+
+Population initialization:    Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Swap                Insert              Inversion           Shift
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            Engineering         Engineering         Engineering         Engineering
+Runs:                         5                   5                   8                   5
+Lower 95%CI:                  1472077.38 km       1476830.33 km       1477293.00 km       1483337.12 km
+Mean:                         1480542.98 km       1484343.10 km       1487054.52 km       1488826.49 km
+Upper 95%CI:                  1489008.58 km       1491855.86 km       1496816.03 km       1494315.86 km
+STD:                          9657.99 km          8570.95 km          14086.60 km         6262.56 km
+SRs:                          0.00%               0.00%               0.00%               0.00%
+
+Population initialization:    Euler               Euler               Euler               Euler               Euler
+Parent selection:             Tourney             Tourney             Tourney             Tourney             Tourney
+Survivor selection:           Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda         Mu + Lambda
+Mutation Method:              Inversion           Inversion           Inversion           Inversion           Inversion
+Recombination Method:         PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover       PMX Crossover
+Management Method:            None                Annealing           Entropy             Oroborous           Engineering
+Runs:                         8                   8                   8                   8                   8
+Lower 95%CI:                  1523497.83 km       1524230.55 km       1526909.67 km       1520498.20 km       1477293.00 km
+Mean:                         1529352.81 km       1528565.46 km       1533085.68 km       1526109.83 km       1487054.52 km
+Upper 95%CI:                  1535207.79 km       1532900.37 km       1539261.69 km       1531721.45 km       1496816.03 km
+STD:                          8449.18 km          6255.60 km          8912.45 km          8098.00 km          14086.60 km
+SRs:                          0.00%               0.00%               0.00%               0.00%               0.00%
+
