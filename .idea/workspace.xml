@@ -1,31 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Clearing out old objects and unrelated documents.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
-      <change beforePath="" afterPath="$PROJECT_DIR$/Documents/EA Proposal.pdf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/README.md" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Sahara/TSP_Sahara_Dists.txt" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/Setups/TSP/Inputs/Uruguay/TSP_Uruguay_Dists.txt" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+    <list default="true" id="f4ad545d-fbd5-465c-8566-c59e8b15f10d" name="Default" comment="Updated JSON objects for simple default runs.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <change beforePath="" afterPath="$PROJECT_DIR$/Documents/CS3201 Final Project Report - Appendix.pdf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Documents/CS3201 Final Project Report.pdf" />
+      <change beforePath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" afterPath="$PROJECT_DIR$/.idea/COMP 3201 - Assignment 3.iml" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Documents/EA Proposal V2.gdoc" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/EA Proposal.gdoc" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Sahara - Arrays - Management Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Sahara - Arrays - Mutation Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Sahara - Arrays - Population Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Sahara - Lists - Management Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Sahara - Lists - Mutation Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Sahara - Lists - Population Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Uruguay - Arrays - Management Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Uruguay - Arrays - Mutation Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Uruguay - Arrays - Population Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Uruguay - Lists - Management Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Uruguay - Lists - Mutation Tests.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Documents/Graphs/Uruguay - Lists - Population Tests.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/8Q-config.json" afterPath="$PROJECT_DIR$/8Q-config.json" />
+      <change beforePath="$PROJECT_DIR$/Documents/CS3201 Final Project Report.gdoc" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change beforePath="$PROJECT_DIR$/TSP-config.json" afterPath="$PROJECT_DIR$/TSP-config.json" />
-      <change beforePath="$PROJECT_DIR$/src/Notebooks/.ipynb_checkpoints/HERMES - Canada Test-checkpoint.ipynb" afterPath="$PROJECT_DIR$/src/Notebooks/.ipynb_checkpoints/HERMES - Canada Test-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/src/Notebooks/HERMES - Canada Test.ipynb" afterPath="$PROJECT_DIR$/src/Notebooks/HERMES - Canada Test.ipynb" />
-      <change beforePath="$PROJECT_DIR$/src/Notebooks/HERMES.ipynb" afterPath="$PROJECT_DIR$/src/Notebooks/HERMES.ipynb" />
     </list>
     <list id="53b5caf1-964f-419a-bed8-96e08e2bfcf0" name="Revert: Clearing out old objects and unrelated documents." comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,7 +28,7 @@
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_EA$scratch.coverage" NAME="scratch Coverage Results" MODIFIED="1540568967292" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$StatsHolder.coverage" NAME="StatsHolder Coverage Results" MODIFIED="1543389068862" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$Testing__1_.coverage" NAME="Testing (1) Coverage Results" MODIFIED="1541787348238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$TSP_Runner.coverage" NAME="TSP_Runner Coverage Results" MODIFIED="1544387806868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$TSP_Runner.coverage" NAME="TSP_Runner Coverage Results" MODIFIED="1544483046424" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$TSP.coverage" NAME="TSP Coverage Results" MODIFIED="1541730663363" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src/Setups/TSP" />
     <SUITE FILE_PATH="coverage/COMP_3201___TSP_Evolutionary_Algorithm$GraphGenerator.coverage" NAME="GraphGenerator Coverage Results" MODIFIED="1544221107183" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/src" />
     <SUITE FILE_PATH="coverage/COMP_3201___Assignment_3$A3_main.coverage" NAME="A3_main Coverage Results" MODIFIED="1539380338072" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
@@ -64,19 +49,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-            <state split_layout="SPLIT">
-              <first_editor relative-caret-position="458">
-                <caret line="114" column="69" lean-forward="false" selection-start-line="114" selection-start-column="69" selection-end-line="114" selection-end-column="69" />
-                <folding />
-              </first_editor>
-              <second_editor />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="8Q_Runner.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/8Q_Runner.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -87,14 +59,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TSP_Runner.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TSP_Runner.py">
+      <file leaf-file-name="TSP-config.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/TSP-config.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="93" selection-end-column="7" />
-              <folding>
-                <element signature="e#0#48#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="34">
+              <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="8Q-config.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/8Q-config.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="119">
+              <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -173,7 +153,6 @@
         <option value="$PROJECT_DIR$/src/EA_Methods/RecombinationMethods.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/EAFactory.py" />
         <option value="$PROJECT_DIR$/src/EACore/MethodClasses/ParentSelectionMethods.py" />
-        <option value="$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py" />
         <option value="$PROJECT_DIR$/src/EACore/MethodClasses/SurvivorSelectionMethods.py" />
         <option value="$PROJECT_DIR$/src/EACore/MethodClasses/MutationMethods.py" />
         <option value="$PROJECT_DIR$/src/EACore/MethodClasses/RecombinationMethods.py" />
@@ -187,7 +166,6 @@
         <option value="$PROJECT_DIR$/config.json" />
         <option value="$PROJECT_DIR$/src/Setups/EightQueens/PopulationInitialization.py" />
         <option value="$PROJECT_DIR$/src/Setups/EightQueens/FitnessEvaluator.py" />
-        <option value="$PROJECT_DIR$/8Q-config.json" />
         <option value="$PROJECT_DIR$/8Q_Runner.py" />
         <option value="$PROJECT_DIR$/src/EACore/EARunner.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/Christofide_Heuristic.py" />
@@ -196,8 +174,10 @@
         <option value="$PROJECT_DIR$/src/Other/Pickle_Helper.py" />
         <option value="$PROJECT_DIR$/src/Setups/TSP/FileLoader.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/TSP-config.json" />
+        <option value="$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/TSP-config.json" />
+        <option value="$PROJECT_DIR$/8Q-config.json" />
       </list>
     </option>
   </component>
@@ -208,7 +188,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
+    <option name="x" value="676" />
     <option name="width" value="697" />
     <option name="height" value="735" />
   </component>
@@ -307,7 +287,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.FileLoader">
+  <component name="RunManager" selected="Python.TSP_Runner">
     <configuration name="8Q_Runner" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -430,9 +410,9 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.FileLoader" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Christofide_Heuristic" />
-        <item index="2" class="java.lang.String" itemvalue="Python.TSP_Runner" />
+        <item index="0" class="java.lang.String" itemvalue="Python.TSP_Runner" />
+        <item index="1" class="java.lang.String" itemvalue="Python.FileLoader" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Christofide_Heuristic" />
         <item index="3" class="java.lang.String" itemvalue="Python.8Q_Runner" />
         <item index="4" class="java.lang.String" itemvalue="Python.GraphGenerator" />
       </list>
@@ -452,27 +432,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539370361430</updated>
-    </task>
-    <task id="LOCAL-00046" summary="Made some significant changes to the EA algorithm structure.&#10;The test suite parts are now split from the main EARunner, and access it by extending the ERRunner class and pilot module.&#10;Also cleaned up strings for ease of reading, and added tallies of individual function run-times.&#10;&#10;TODO: Fix error in the Edge List function.&#10;TODO: Finish implementing crossover mutation methods in pandas.">
-      <created>1542868070049</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1542868070049</updated>
-    </task>
-    <task id="LOCAL-00047" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;# Conflicts:&#10;#&#9;src/EA_Shell.py&#10;#&#9;src/Testing.py">
-      <created>1542897441220</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1542897441220</updated>
-    </task>
-    <task id="LOCAL-00048" summary="Made some small modifications to the code.">
-      <created>1542897609240</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1542897609240</updated>
     </task>
     <task id="LOCAL-00049" summary="Added the cluster-based population initialization.">
       <created>1542925590156</created>
@@ -796,7 +755,28 @@
       <option name="project" value="LOCAL" />
       <updated>1544465617131</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="Added simple README.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <created>1544469505298</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1544469505298</updated>
+    </task>
+    <task id="LOCAL-00096" summary="Added simple README.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <created>1544476525026</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1544476525027</updated>
+    </task>
+    <task id="LOCAL-00097" summary="Pushing bug-fix in PMM.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;">
+      <created>1544476850174</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1544476850174</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="TodoView">
@@ -810,16 +790,15 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32826087" sideWeight="0.4969743" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.5075643" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35855263" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.35855263" sideWeight="0.4924357" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32730263" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26626325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26626325" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="R Packages" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="R Graphics" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -896,8 +875,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_NEW_TODO" value="false" />
-    <MESSAGE value="Started merging of different representations. Should currently support backwards comaptability, moving into new branch to avoid catastrophy." />
-    <MESSAGE value="Added fast loading of predefined objects." />
     <MESSAGE value="Adding pickle objects under 100MB." />
     <MESSAGE value="Adding class method to StatsObject to load directly from pickled file." />
     <MESSAGE value="Fixed small bug in StatsHolder." />
@@ -921,11 +898,13 @@
     <MESSAGE value="Forking for submission.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
     <MESSAGE value="Clearing out old objects and unrelated documents.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
     <MESSAGE value="Moving MSTs and removing deprecated code.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
-    <option name="LAST_COMMIT_MESSAGE" value="Moving MSTs and removing deprecated code.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <MESSAGE value="Added simple README.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <MESSAGE value="Pushing bug-fix in PMM.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pushing bug-fix in PMM.&#10;&#10;Signed-off-by: Zachary Northcott &lt;zmnorthcott@mun.ca&gt;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="13" />
+      <option name="time" value="14" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1015,16 +994,6 @@
         <state relative-caret-position="884">
           <caret line="55" column="34" lean-forward="false" selection-start-line="55" selection-start-column="34" selection-end-line="55" selection-end-column="34" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="549">
-          <caret line="35" column="48" lean-forward="false" selection-start-line="35" selection-start-column="48" selection-end-line="35" selection-end-column="48" />
-          <folding>
-            <element signature="e#0#62#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1170,7 +1139,7 @@
         <state relative-caret-position="-103">
           <caret line="73" column="27" lean-forward="false" selection-start-line="73" selection-start-column="27" selection-end-line="73" selection-end-column="27" />
           <folding>
-            <element signature="e#215#224#0" expanded="true" />
+            <element signature="e#215#224#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1183,20 +1152,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/8Q-config.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="35" lean-forward="false" selection-start-line="2" selection-start-column="35" selection-end-line="2" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Setups/TSP/Christofide_Heuristic.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1071">
           <caret line="63" column="32" lean-forward="false" selection-start-line="63" selection-start-column="32" selection-end-line="63" selection-end-column="32" />
           <folding>
-            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#0#34#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1217,32 +1178,48 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="172">
+            <caret line="46" column="4" lean-forward="false" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/EACore/MethodClasses/PopulationManagementMethods.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/TSP_Runner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="78" column="0" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="93" selection-end-column="7" />
+        <state relative-caret-position="-100">
+          <caret line="83" column="35" lean-forward="true" selection-start-line="83" selection-start-column="35" selection-end-line="83" selection-end-column="35" />
           <folding>
-            <element signature="e#0#48#0" expanded="true" />
+            <element signature="e#0#48#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TSP-config.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="13" />
+        <state relative-caret-position="34">
+          <caret line="2" column="20" lean-forward="false" selection-start-line="2" selection-start-column="20" selection-end-line="2" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="458">
-            <caret line="114" column="69" lean-forward="false" selection-start-line="114" selection-start-column="69" selection-end-line="114" selection-end-column="69" />
-            <folding />
-          </first_editor>
-          <second_editor />
+    <entry file="file://$PROJECT_DIR$/8Q-config.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="18" lean-forward="true" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -2,8 +2,8 @@
     "maximization": true,
     "methods": [0, 0, 1, 1, 2, 0, 0],
     "print_stats": true,
-    "generation_limit": 10000,
-    "report_rate": 100,
+    "generation_limit": 1000,
+    "report_rate": 10,
     "runs": 1,
-    "data_type": 2
+    "data_type": 0
 }
