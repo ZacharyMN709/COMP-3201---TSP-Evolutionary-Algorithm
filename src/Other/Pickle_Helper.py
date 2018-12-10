@@ -47,10 +47,6 @@ def pickle_euler_obj(to_save, file_num):
     with open(abs_file_path, 'wb') as f:
         pickle.dump(to_save, f)
         print('Saved: {}'.format(fname))
-
-    with open(abs_file_path + '-Fast', 'wb') as f:
-        pickle.dump({'Euler': to_save['Euler']}, f)
-        print('Saved: {}'.format(fname + '-Fast'))
     go_to_project_root()
 
 
@@ -63,27 +59,18 @@ def get_euler_file(file_num):
     return 'TSP_{}_MST.txt'.format(FILE_DICT[file_num])
 
 
-def get_pickled_euler(file_num, fast=False):
+def get_pickled_euler(file_num):
     # A dictionary which is to be pickled.
     # {'MST': MST,
-    # 'Odd': ODD,
-    # 'Euler': EUL}
+    # 'Odd': ODD}
 
     try:
-        if fast:
-            abs_dir_path = get_euler_dir(file_num)
-            fname = get_euler_file(file_num) + '-Fast'
-            with open(os.path.join(abs_dir_path, fname), 'rb') as f:
-                euler_dict = pickle.load(f)
-                print('Loaded: {}'.format(fname))
-            return euler_dict
-        else:
-            abs_dir_path = get_euler_dir(file_num)
-            fname = get_euler_file(file_num)
-            with open(os.path.join(abs_dir_path, fname), 'rb') as f:
-                euler_dict = pickle.load(f)
-                print('Loaded: {}'.format(fname))
-            return euler_dict
+        abs_dir_path = get_euler_dir(file_num)
+        fname = get_euler_file(file_num)
+        with open(os.path.join(abs_dir_path, fname), 'rb') as f:
+            euler_dict = pickle.load(f)
+            print('Loaded: {}'.format(fname))
+        return euler_dict
     except FileNotFoundError:
         return None
 

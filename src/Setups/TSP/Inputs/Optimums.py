@@ -344,25 +344,3 @@ def get_best_path(FILENUM, brute_search=False):
         return opt_dist, opt_path, True
     else:
         return BEST_SO_FAR, opt_path, False
-
-
-def calc_optimum(fnum, fname):
-    import os
-    script_dir = os.path.dirname(__file__)  # absolute path for directory/folder this script is in
-    abs_file_path = os.path.join(script_dir, fname)
-
-    with open(abs_file_path, 'r') as f:
-        import csv
-        # Read and parse the file
-        file = csv.reader(f, delimiter=' ')
-        locations = [int(i[0]) - 1 for i in file]
-
-        print(locations)
-        from src.Setups.TSP.TSP_LST import read_tsp_file, euclidean_distance
-        read_tsp_file(fnum)
-        print(euclidean_distance(locations))
-
-
-if __name__ == '__main__':
-    pass
-    #calc_optimum(3, "CDN_opt_path.txt")

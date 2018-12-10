@@ -13,8 +13,7 @@ import json
 FILE_DICT = {0: '8-Queens',
              1: 'Sahara',
              2: 'Uruguay',
-             3: 'Canada',
-             4: 'Test World'}
+             3: 'Canada'}
 
 DATA_TYPE_DICT = {0: 'Lists',
                   1: 'Numpy',
