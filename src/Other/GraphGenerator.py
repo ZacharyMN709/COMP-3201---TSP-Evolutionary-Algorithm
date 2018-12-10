@@ -7,17 +7,18 @@ from src.Setups.TSP.TSP_Display import GraphingHelper
 import pandas as pd
 
 
+def resolve_unpickle_tuples(method_name, country, implementation, population):
+    # (File_name, country, method)
+    if method_name == 'Population':
+        return [('{}10214 G{}.txt'.format(x, population), country, implementation) for x in range(3)]
+    if method_name == 'Mutation':
+        return [('210{}14 G{}.txt'.format(x, population), country, implementation) for x in range(4)]
+    if method_name == 'Management':
+        return [('21021{} G{}.txt'.format(x, population), country, implementation) for x in range(5)]
+
+
 # Set-up easy grabbing of previously compiled stats.
 def pickle_to_df(identity_tuple, truncate):
-    def resolve_unpickle_tuples(method_name, country, implementation, population):
-        # (File_name, country, method)
-        if method_name == 'Population':
-            return [('{}10214 G{}.txt'.format(x, population), country, implementation) for x in range(3)]
-        if method_name == 'Mutation':
-            return [('210{}14 G{}.txt'.format(x, population), country, implementation) for x in range(4)]
-        if method_name == 'Management':
-            return [('21021{} G{}.txt'.format(x, population), country, implementation) for x in range(5)]
-
     method_name, country, implementation, pop = identity_tuple
     to_unpickle = resolve_unpickle_tuples(method_name, country, implementation, pop)
     summaries = {}
@@ -59,7 +60,28 @@ def gen_two_indivs(type1, type2):
     grapher.indiv_dual_plot((INIT_DICT[type1], indiv1), (INIT_DICT[type2], indiv2))
 
 
-def gen_pickle_plots():
+def best_vs_avgs(type1, type2):
+    from src.Setups.TSP import TSP_LST
+    TSP_LST.read_tsp_file(FILENUM)
+    TSP_LST.set_fitness_function(TSP_LST.euclidean_distance)
+    genome_length = len(TSP_LST.LOCATIONS)
+
+
+    def indiv_helper(indiv_num):
+        if indiv_num == 0:
+            return TSP_LST.single_random_individual(genome_length)
+        if indiv_num == 1:
+            return TSP_LST.heuristic_cluster_initialization(1, genome_length)[0][0]
+        if indiv_num == 2:
+            return TSP_LST.heuristic_euler_initialization(1, genome_length)[0][0]
+
+    indiv1, indiv2 = indiv_helper(type1), indiv_helper(type2)
+    grapher.indiv_dual_plot((INIT_DICT[type1], indiv1), (INIT_DICT[type2], indiv2))
+    savefig('{} Initialization - {} vs {}.png'.format(FILE_DICT[FILENUM], INIT_DICT[type1], INIT_DICT[type2]), bbox_inches='tight')
+    plt.show()
+
+
+def gen_quad_pickle_plots():
     tests = ['Management', 'Mutation', 'Population']
 
     for x in tests:
@@ -67,6 +89,20 @@ def gen_pickle_plots():
         avgs, opts = pickle_to_df(id_tuple, 0)
         grapher.quad_plot(avgs, opts)
         savefig('{} - {} - {} Tests.png'.format(FILE_DICT[FILENUM], METHOD_DICT[METHOD], x), bbox_inches='tight')
+        plt.show()
+
+
+def gen_dual_pickle_plots():
+    tests = ['Management', 'Mutation', 'Population']
+
+    for x in tests:
+        id_tuple = (x, FILENUM, METHOD, POP_SIZE)
+        avgs, opts = pickle_to_df(id_tuple, 0)
+        grapher.modular_dual_plot(avgs, opts, False)
+        savefig('{} - {} - {} True Fitness.png'.format(FILE_DICT[FILENUM], METHOD_DICT[METHOD], x), bbox_inches='tight')
+        plt.show()
+        grapher.modular_dual_plot(avgs, opts, True)
+        savefig('{} - {} - {} Relative Fitness.png'.format(FILE_DICT[FILENUM], METHOD_DICT[METHOD], x), bbox_inches='tight')
         plt.show()
 
 
