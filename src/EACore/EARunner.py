@@ -176,7 +176,7 @@ class EARunner:
 
         except KeyboardInterrupt:
             print('User is terminating the program!')
-            print('Attempting to save stats before exit.')
+            print('')
 
         # Final Fitness Info
         master_time = perf_counter() - master_start_time
@@ -184,7 +184,6 @@ class EARunner:
         avg_fitness = sum(fitness) / len(fitness)
         optimal_solutions = [i for i in range(self.vars.population_size) if fitness[i] == best_fitness]
         total_time = sum([PSMTime, RMTime, MMTime, SSMTime, PMMTime])
-        time_tuple = (PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time)
         best_individual = population[fitness.index(best_fitness)]
         copies_of_best = fitness.count(best_fitness)
 
@@ -208,4 +207,4 @@ class EARunner:
             print(timed_funcs.format(PITime, PSMTime, RMTime, MMTime, SSMTime, PMMTime, total_time, master_time))
             print("--- {} seconds ---".format(master_time))
 
-        return best_fitness, optimal_solutions, generation, time_tuple
+        return best_fitness, population[optimal_solutions[0]], generation
