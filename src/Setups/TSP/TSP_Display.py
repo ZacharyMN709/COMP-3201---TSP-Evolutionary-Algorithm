@@ -135,38 +135,6 @@ class GraphingHelper:
             alt_generation_display(indiv_2, 1)
     # endregion
 
-
-    '''
-    def long_plot(avgs, opts):
-    colours = [CP.SPIRIT_0, CP.SPIRIT_1, CP.SPIRIT_2, CP.SPIRIT_9, CP.SPIRIT_7, CP.SPIRIT_6]
-    fig, axes = plt.subplots(nrows=2, figsize=(12, 24))
-    plt.subplots_adjust(wspace=0.25, hspace=0.4)
-    def plot_df(df, axis):
-        num = 0
-        for column in df.drop('x', axis=1):
-            num += 1
-            # plt.plot(df['x'], df[column], ax=axes[axis], marker='', color=colours[num], linewidth=1, alpha=0.9, label=column)
-            df[column].plot(ax=axes[axis], color=colours[num], legend=True)
-            #((df[column] / opt_dist) - 1).plot(ax=axes[axis], color=colours[num], alpha=0.0, secondary_y=True, legend=False)
-            #df.plot(ax=axes[axis], color=CP.KIKI_6, legend=True)
-            #df.plot(ax=axes[axis], color=CP.KIKI_7, alpha=0.33, secondary_y=True, legend=True)
-            #df.plot(ax=axes[axis], color=CP.KIKI_6, alpha=0.33, secondary_y=True, legend=True)
-
-    plot_df(avgs, 0)
-    axes[0].axhline(y=self.opt, color=CP.SPIRIT_5, label='Optimum')
-    axes[0].set_title("Average fitnesses over multiple runs", fontsize=12, fontweight=0, color=CP.SPIRIT_3)
-    axes[0].set_xlabel("Generations")
-    axes[0].set_ylabel("Fitness")
-    axes[0].right_ax.set_ylabel('Relative Fitness')
-
-    plot_df(opts, 1)
-    axes[1].axhline(y=self.opt, color=CP.SPIRIT_5, label='Optimum')
-    axes[1].set_title("Best fitnesses over multiple runs", fontsize=12, fontweight=0, color=CP.SPIRIT_3)
-    axes[1].set_xlabel("Generations")
-    axes[1].set_ylabel("Fitness")
-    axes[1].right_ax.set_ylabel('Relative Fitness')
-    '''
-
     # region Initialization
     def read_tsp_file(self, fnum):
         if fnum == 1:
